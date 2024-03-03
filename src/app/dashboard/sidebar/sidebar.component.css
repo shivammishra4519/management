@@ -1,0 +1,50 @@
+ul li {
+    list-style: none; /* Removes default list-style */
+}
+
+ul {
+    padding: 10px !important; /* Adds padding to <ul> elements */
+}
+
+li a {
+    text-decoration: none; /* Removes underline from links */
+    font-size: 20px; /* Sets font size for links */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Sets font family for links */
+    color: #F2C864; /* Sets text color for links */
+}
+
+.card {
+    width: 100%; /* Sets width for elements with class .card */
+    height: calc(100vh - 50px); /* Sets height for elements with class .card */
+    margin: 0px !important; /* Removes margin */
+    padding: 0px !important; /* Removes padding */
+}
+
+.active {
+    /* Styles for active elements */
+    width: 95%;
+    height: 35px;
+    background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+li a:hover{
+    color: #121212;
+}
+
+.inactive {
+    /* Styles for inactive elements */
+    width: 95%;
+    height: 35px;
+    background-image: linear-gradient(195deg, #1b1517 0%, #121212 100%);
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.inactive:hover {
+    /* Styles for inactive elements when hovered */
+    /* background-color: #fff; */
+    background-image: linear-gradient(195deg, #fff 0%, #fff 100%);
+}

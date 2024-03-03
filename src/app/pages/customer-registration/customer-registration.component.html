@@ -1,0 +1,82 @@
+<div class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Registration Form</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form [formGroup]="customerRegistrationForm" (ngSubmit)="registerCustomer()">
+                    <div class="row clearfix">
+                        <div class="col_half">
+                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                                <input type="text" name="name" placeholder="First Name" formControlName="firstName" />
+                            </div>
+                        </div>
+                        <div class="col_half">
+                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                                <input type="text" name="name" placeholder="Last Name" required
+                                    formControlName="lastName" />
+                            </div>
+                        </div>
+                    </div>
+                    <span>Upload Profile Picture</span>
+                    <input type="file" class="form-control" id="profilePicture" (change)="onProfilePictureSelected($event)"
+                        multiple accept="image/*">
+                    <div class="input_field"> <span><i class="fa fa-phone"></i></span>
+                        <input type="text" name="number" placeholder="Number" required formControlName="number" />
+                    </div>
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                        <input type="email" name="email" placeholder="Email" required formControlName="email" />
+                    </div>
+                    <div class="input_field radio_option">
+                        <input type="radio" name="gender" id="rd1" style="font-size: 45px;" formControlName="gender"
+                            value="male">
+                        <label for="rd1" style="font-size: 15px; margin-right: 10px;">Male</label>
+                        <input type="radio" name="gender" id="rd2" formControlName="gender" value="female">
+                        <label for="rd2" style="font-size: 15px;">Female</label>
+                    </div>
+
+                    <div class="input_field select_option">
+                        <select formControlName="state">
+                            <option value="1">Select a State</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                        </select>
+                        <br>
+                        <select style="margin-top: 5px;" formControlName="district">
+                            <option value="1">Select a District</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                        </select>
+                    </div>
+                    <div class="input_field uppercase-input"> <span><i aria-hidden="true"
+                                class="fa fa-address-card"></i></span>
+                        <input type="text" name="email" placeholder="Pan Card" maxlength="10" required
+                            formControlName="panCardNumber" />
+                    </div>
+                    <input type="file" class="form-control" id="panCard" (change)="onPanCardSelected($event)"
+                    multiple accept="image/*">
+                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-address-card"></i></span>
+                        <input type="text" name="email" placeholder="Adhar Card" required
+                            formControlName="adharCardNumber" />
+                    </div>
+                    <span>Upload Adhar Card</span>
+                    <input type="file" class="form-control" id="adharCard" (change)="onAdharCardSelected($event)"
+                        multiple accept="image/*">
+                    <span>Upload Other Document</span>
+                    <input type="file" class="form-control" id="otherDocument" (change)="onOtherDocumentSelected($event)"
+                        multiple accept="image/*">
+                    <!-- <div class="input_field">
+                        <input type="file" name="image" (change)="uploadImage($event)" />
+                    </div> -->
+                    
+                    <div class="input_field checkbox_option">
+                        <input type="checkbox" id="cb1">
+                        <label for="cb1">I agree with terms and conditions</label>
+                    </div>
+                    <input class="button" type="submit" value="Register" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

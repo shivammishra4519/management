@@ -1,0 +1,72 @@
+
+
+.sidebar {
+    background-color: #333;
+    color: white;
+    position: fixed;
+    z-index: 4;
+    top: 45px;
+    left: 0; /* Initially visible position */
+    transition: left 0.3s ease;
+  }
+  
+  .main-cont {
+    margin-left: 300px;
+    z-index: 2;
+    width: calc(100vw - 300px);
+  }
+
+
+
+
+.toggle-btn {
+    cursor: pointer;
+    font-size: 24px;
+    position: fixed;
+    top: 10px;
+    left: 5px;
+    z-index: 5;
+    display: none;
+    
+  }
+
+  .footer{
+    position: fixed;
+    bottom: 1px;
+    width: calc(100vw - 200px);
+  }
+  
+  /* Hide the checkbox */
+  #sidebar-toggle {
+    display: none;
+  }
+  
+  /* #sidebar-toggle:checked + .toggle-btn + .sidebar {
+    left: -200px;
+  } */
+  
+  @media screen and (max-width: 850px) {
+    /* Change the max-width value to target tablets and mobile devices */
+    .toggle-btn{
+        display: inline;
+    }
+    .sidebar {
+      width: 185px;
+      left: -100%; /* Initially hide off-screen for smaller screens */
+      transition: left 0.3s ease;
+    }
+  
+    #sidebar-toggle:checked + .toggle-btn + .sidebar {
+      left: 0; /* Move on-screen when checked on smaller screens */
+    }
+    .main-cont{
+        width: 100vw;
+        margin: 0px;
+        margin-top: 40px;
+        overflow: hidden;
+    }
+    .footer{
+      width: 100vw;
+    }
+  }
+  

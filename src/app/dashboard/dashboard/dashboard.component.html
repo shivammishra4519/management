@@ -1,0 +1,17 @@
+<div class="header">
+    <div class="row">
+        <div class="col-md-2">
+            <h1 style="text-align: center;"><i>ADMIN</i></h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <input type="checkbox" id="sidebar-toggle" />
+        <label for="sidebar-toggle" class="toggle-btn" style="color: black;">&#9776;</label>
+    <div class="col-md-2 sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-10 main-cont ">
+        <router-outlet />
+    </div>
+</div>
