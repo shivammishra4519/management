@@ -1,36 +1,67 @@
-<form>
-    <div class="container">
-        <h1 style="text-align: center;">Sell Device</h1>
-        <div class="row m-auto">
-            <div class="col-md-4">
-                <label for="name" class="form-label text-center">Name</label> <!-- Added text-center class -->
-                <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
-            </div>
-            <div class="col-md-4">
-                <label for="exampleInputEmail1" class="form-label text-center">Email address</label> <!-- Added text-center class -->
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-        </div>
+<div class="form_wrapper">
+  <div class="form_container">
+    <div class="title_container">
+      <h2>Sell Device</h2>
     </div>
-</form>
+    <div class="row clearfix">
+      <div class="">
+        <form>
+          <div class="input_field select_option">
+            <select (change)="onBrandSelected($event)">
+              <option value="1">Select a Brand</option>
+              <option *ngFor="let name of brandNames" [value]="name">{{ name }}</option>
+          </select>
+          
+          <br>
+          
+          <select style="margin-top: 5px;" (change)="onModelSelected($event)">
+              <option value="1">Select Model</option>
+              <option *ngFor="let name of models" [value]="name">{{ name }}</option>
+          </select>
+          
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-barcode"></i></span>
+            <input type="text" name="imei1" placeholder="IMEI Number1" required  />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-barcode"></i></span>
+            <input type="text" name="imei2" placeholder="IMEI Number2" required  />
+          </div>
 
-
-
-
-
-<!-- <form>
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+         
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-money"></i></span>
+            <input type="text" name="mrp" placeholder="MRP"  [(ngModel)]="addDevice.mrp"  />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-money"></i></span>
+            <input type="text" name="fileCharge" placeholder="File Charge" [(ngModel)]="addDevice.fileCharge"  />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-money"></i></span>
+            <input type="text" name="tamount" placeholder="totalAmount"  [(ngModel)]="addDevice.totalAmount"  />
+          </div>
+          <div class="input_field"> <span>h<i aria-hidden="true" class="fa fa-money"></i></span>
+            <input type="text" name="sellAmount" placeholder="Sell Amount" required  />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-money"></i></span>
+            <input type="text" name="downPayment" placeholder="Down Payment" [(ngModel)]="addDevice.downPayment"   />
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-money"></i></span>
+            <input type="text" name="financeAmount" placeholder="Finance Amount" [(ngModel)]="addDevice.financeAmount"   />
+          </div>
+          <div class="input_field select_option">
+            <select  (change)="onEmiSelected($event)">
+              <option value="0">Select EMI</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="input_field"> <span><i aria-hidden="true" class="fa fa-money"></i></span>
+            <input type="text" name="emiAmount" placeholder="EMI Amount" [(ngModel)]="addDevice.emiAmount"   />
+          </div>
+          <input class="button" type="submit" value="Register" />
+        </form>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form> -->
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { error } from 'node:console';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent {
     password: this.builder.control('', Validators.required),
   })
 
+ 
   login() {
 
     if(this.loginForm.value){
@@ -26,6 +28,9 @@ export class LoginComponent {
           console.log("token",data)
           this.router.navigate(['dashboard'])
 
+        },
+        error:error=>{
+          console.log(error)
         }
       })
     }

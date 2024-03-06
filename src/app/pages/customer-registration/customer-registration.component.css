@@ -39,6 +39,7 @@ body {
     -webkit-animation: expand 0.8s 0.6s ease-out forwards;
     animation: expand 0.8s 0.6s ease-out forwards;
     opacity: 0;
+    overflow-y: scroll !important;
 }
 
 .form_wrapper h2 {

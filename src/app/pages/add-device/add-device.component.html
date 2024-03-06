@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="card">
+        <h1 style="text-align: center;">Add device</h1>
+
+        <div class="row">
+            <div class="col-md-5">
+                <label for="brand" class="form-label text-center">Brand</label> 
+                <input type="text" class="form-control" id="brand" [(ngModel)]="addDevice.brand">
+            </div>
+            <div class="col-md-5">
+                <label for="model" class="form-label text-center">Model</label> 
+                <input type="text" class="form-control" id="model" [(ngModel)]="addDevice.model">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <label for="dpPrice" class="form-label text-center">DP Price</label> 
+                <input type="number" class="form-control" id="dpPrice" [(ngModel)]="addDevice.dpPrice">
+            </div>
+            <div class="col-md-5">
+                <label for="img" class="form-label text-center">Upload Image</label> 
+                <input type="file" class="form-control" id="img">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label for="margin" class="form-label text-center">Margin</label> 
+                <input type="number" class="form-control" id="margin" [(ngModel)]="addDevice.margin" (click)="submit()">
+            </div>
+            <div class="col-md-5">
+                <label for="mrp" class="form-label text-center">MRP</label> 
+                <input type="number" class="form-control" id="mrp" [(ngModel)]="addDevice.mrp" (click)="submit()" readonly>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label for="Intrest" class="form-label text-center">Intrest</label> 
+                <input type="number" class="form-control" id="Intrest" [(ngModel)]="addDevice.interest" >
+            </div>
+            <div class="col-md-5">
+                <label for="file" class="form-label text-center">File charge</label> 
+                <input type="number" class="form-control" id="file" [(ngModel)]="addDevice.fileCharge"  >
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <label for="Intrest" class="form-label text-center">downPayment</label> 
+                <input type="number" class="form-control" id="Intrest" [(ngModel)]="addDevice.downPayment" >
+            </div>
+            <div class="col-md-5">
+                <label for="file" class="form-label text-center">Total Amount</label> 
+                <input type="number" class="form-control" id="file" [(ngModel)]="addDevice.totalAmount" (click)="total()" readonly>
+            </div>
+        </div>
+        <div class="row m-auto">
+            <button type="submit" class="btn btn-success" (click)="addDetails()">Submit</button>
+        </div>
+    </div>
+</div>

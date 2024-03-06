@@ -13,7 +13,10 @@ const routes: Routes = [
         path: '', redirectTo: 'home', pathMatch: 'full'
       },
       { path: 'sell-devices', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule) },
-      { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) }
+      { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
+      { path: 'user-registration', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
+      { path: 'add-device', loadChildren: () => import('./pages/add-device/add-device.module').then(m => m.AddDeviceModule) },
+      { path: 'view-users', loadChildren: () => import('./pages/view-users/view-users.module').then(m => m.ViewUsersModule) },
     ]
   },
   {
@@ -23,7 +26,10 @@ const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'
   },
-  { path: 'customer-registraion', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) }
+  
+  // { path: 'customer-registraion', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
+  // { path: 'users', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
+  
 
 ];
 

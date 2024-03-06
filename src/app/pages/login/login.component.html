@@ -3,11 +3,11 @@
         <div class="login-title text-2xl mb-2">Login</div>
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <input type="text" placeholder="User Name" class="form-control" formControlName="number" />
-        <input type="password" placeholder="Password" class="form-control" formControlName="password" />
-        <label class="checkbox-label">
-            <input type="checkbox" /> Remember Me
-        </label>
-        <button type="submit" class="login-btn" (click)="login()">Login</button>
+            <input type="password" placeholder="Password" class="form-control" formControlName="password" />
+            <label class="checkbox-label">
+                <input type="checkbox" /> Remember Me
+            </label>
+            <button type="submit" class="login-btn" (click)="login()">Login</button>
         </form>
     </div>
 </div>

@@ -23,20 +23,25 @@ export class CustomerRegistrationComponent {
     state: ['1', Validators.required],
     district: ['1', Validators.required],
     images: ['', Validators.required],
-  })
-  images: File[] = [];
-
+  });
 
   registerCustomer() {
-    // this.service.customerRegister(this.customerRegistrationForm.value).subscribe((res: any) => {
-    //   console.log(res)
-    //   this.customerRegistrationForm.reset();
-    //   alert('customer added suceessfully')
-    // })
-
     const formData = new FormData();
-    this.images.forEach(image => {
-      formData.append('images', image);
+
+    this.profilePictures.forEach(image => {
+      formData.append('profilePictures', image);
+    });
+
+    this.panCardImages.forEach(image => {
+      formData.append('panCardImages', image);
+    });
+
+    this.adharCardImages.forEach(image => {
+      formData.append('adharCardImages', image);
+    });
+
+    this.otherDocumentImages.forEach(image => {
+      formData.append('otherDocumentImages', image);
     });
 
     this.http.post<any>('http://localhost:3000/api/upload', formData, { observe: 'response' }).subscribe(
@@ -44,14 +49,13 @@ export class CustomerRegistrationComponent {
         if (response instanceof HttpResponse) {
           console.log('Images uploaded successfully');
           console.log(response);
-          this.updateImagesArray(response)
+
           const img: any = response;
           this.customerRegistrationForm.patchValue({
             images: img.body.filenames
           });
           console.log(this.customerRegistrationForm.value)
           this.service.customerRegister(this.customerRegistrationForm.value).subscribe((res) => {
-            console.log(this.imagesArray, "updated")
             alert("success")
             console.log("res", res)
           })
@@ -65,56 +69,25 @@ export class CustomerRegistrationComponent {
     );
   }
 
-
-
-
-
-  imagesArray: any[] = [];
+  profilePictures: File[] = [];
+  panCardImages: File[] = [];
+  adharCardImages: File[] = [];
+  otherDocumentImages: File[] = [];
 
   onProfilePictureSelected(event: any) {
-    this.images.push(event.target.files[0]);
-    const obj = { profile: event.target.files[0].name };
-    this.imagesArray.push(obj);
-    console.log(event.target.files[0].name);
+    this.profilePictures.push(event.target.files[0]);
   }
 
   onPanCardSelected(event: any) {
-    this.images.push(event.target.files[0]);
-    const obj = { pancard: event.target.files[0].name };
-    this.imagesArray.push(obj);
-    console.log(event.target.files[0].name);
+    this.panCardImages.push(event.target.files[0]);
   }
 
   onAdharCardSelected(event: any) {
-    this.images.push(event.target.files[0]);
-    const obj = { adharcard1: event.target.files[0].name };
-    this.imagesArray.push(obj);
-    console.log(event.target.files[0].name);
+    this.adharCardImages.push(event.target.files[0]);
   }
 
   onOtherDocumentSelected(event: any) {
-    this.images.push(event.target.files[0]);
-    const obj = { adharcard2: event.target.files[0].name };
-    this.imagesArray.push(obj);
-    console.log(event.target.files[0].name);
+    this.otherDocumentImages.push(event.target.files[0]);
   }
-
-
-
-  updateImagesArray(response: any) {
-    const filenames: string[] = response.filenames;
-    const message: string = response.message;
-    filenames.forEach(value => {
-      this.imagesArray.forEach(value2 => {
-        const extractedValue1 = value.split('-')[1].trim();
-        const extractedValue2 = value2.trim();
-      })
-    })
-
-
-
-  }
-
-
 
 }
