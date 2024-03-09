@@ -12,11 +12,13 @@ const routes: Routes = [
       {
         path: '', redirectTo: 'home', pathMatch: 'full'
       },
-      { path: 'sell-devices', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule) },
+      { path: 'sell-devices/:number', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule) },
       { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
       { path: 'user-registration', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
       { path: 'add-device', loadChildren: () => import('./pages/add-device/add-device.module').then(m => m.AddDeviceModule) },
       { path: 'view-users', loadChildren: () => import('./pages/view-users/view-users.module').then(m => m.ViewUsersModule) },
+      { path: 'view-customers', loadChildren: () => import('./pages/view-customers/view-customers.module').then(m => m.ViewCustomersModule) },
+      { path: 'view-customers-list', loadChildren: () => import('./pages/view-customers-list/view-customers-list.module').then(m => m.ViewCustomersListModule) },
     ]
   },
   {
@@ -26,6 +28,8 @@ const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'
   },
+  
+  
   
   // { path: 'customer-registraion', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
   // { path: 'users', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },

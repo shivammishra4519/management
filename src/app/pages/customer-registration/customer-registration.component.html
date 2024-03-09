@@ -1,82 +1,83 @@
-<div class="form_wrapper">
-    <div class="form_container">
-        <div class="title_container">
-            <h2>Registration Form</h2>
-        </div>
-        <div class="row clearfix">
-            <div class="">
-                <form [formGroup]="customerRegistrationForm" (ngSubmit)="registerCustomer()">
-                    <div class="row clearfix">
-                        <div class="col_half">
-                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="name" placeholder="First Name" formControlName="firstName" />
-                            </div>
-                        </div>
-                        <div class="col_half">
-                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="name" placeholder="Last Name" required
-                                    formControlName="lastName" />
-                            </div>
-                        </div>
-                    </div>
-                    <span>Upload Profile Picture</span>
-                    <input type="file" class="form-control" id="profilePicture" (change)="onProfilePictureSelected($event)"
-                        multiple accept="image/*">
-                    <div class="input_field"> <span><i class="fa fa-phone"></i></span>
-                        <input type="text" name="number" placeholder="Number" required formControlName="number" />
-                    </div>
-                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
-                        <input type="email" name="email" placeholder="Email" required formControlName="email" />
-                    </div>
-                    <div class="input_field radio_option">
-                        <input type="radio" name="gender" id="rd1" style="font-size: 45px;" formControlName="gender"
-                            value="male">
-                        <label for="rd1" style="font-size: 15px; margin-right: 10px;">Male</label>
-                        <input type="radio" name="gender" id="rd2" formControlName="gender" value="female">
-                        <label for="rd2" style="font-size: 15px;">Female</label>
-                    </div>
 
-                    <div class="input_field select_option">
-                        <select formControlName="state">
-                            <option value="1">Select a State</option>
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                        </select>
-                        <br>
-                        <select style="margin-top: 5px;" formControlName="district">
-                            <option value="1">Select a District</option>
-                            <option>Option 1</option>
-                            <option>Option 2</option>
-                        </select>
-                    </div>
-                    <div class="input_field uppercase-input"> <span><i aria-hidden="true"
-                                class="fa fa-address-card"></i></span>
-                        <input type="text" name="email" placeholder="Pan Card" maxlength="10" required
-                            formControlName="panCardNumber" />
-                    </div>
-                    <input type="file" class="form-control" id="panCard" (change)="onPanCardSelected($event)"
-                    multiple accept="image/*">
-                    <div class="input_field"> <span><i aria-hidden="true" class="fa fa-address-card"></i></span>
-                        <input type="text" name="email" placeholder="Adhar Card" required
-                            formControlName="adharCardNumber" />
-                    </div>
-                    <span>Upload Adhar Card</span>
-                    <input type="file" class="form-control" id="adharCard" (change)="onAdharCardSelected($event)"
-                        multiple accept="image/*">
-                    <span>Upload Other Document</span>
-                    <input type="file" class="form-control" id="otherDocument" (change)="onOtherDocumentSelected($event)"
-                        multiple accept="image/*">
-                    <!-- <div class="input_field">
-                        <input type="file" name="image" (change)="uploadImage($event)" />
-                    </div> -->
-                    
-                    <div class="input_field checkbox_option">
-                        <input type="checkbox" id="cb1">
-                        <label for="cb1">I agree with terms and conditions</label>
-                    </div>
-                    <input class="button" type="submit" value="Register" />
-                </form>
+
+<div class="body">
+
+    <div class="main">
+        <h2>Customer Registration</h2>
+        <form [formGroup]="customerRegistrationForm" (ngSubmit)="registerCustomer()">
+            <label for="first">First Name:</label>
+            <input type="text" id="first" name="first" placeholder="First Name" formControlName="firstName" />
+
+            <label for="last">Last Name:</label>
+            <input type="text" id="last" name="last" placeholder="Last Name" required formControlName="lastName" />
+
+            <label for="profilePicture">Upload Profile Picture</label>
+            <input type="file" class="form-control" id="profilePicture" (change)="onProfilePictureSelected($event)"
+                multiple accept="image/*">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" formControlName="email" required>
+
+            <label for="number">Number</label>
+            <input type="text" name="number" id="number" placeholder="Number" required formControlName="number" />
+
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" placeholder="Enter your DOB" formControlName="dob" required>
+
+            <label for="adhar">Adhar:</label>
+            <input type="text" id="adhar" name="adhar" placeholder="Enter your Adhar Number" formControlName="adharCardNumber">
+
+
+            <label for="front">Upload Adhar Card Front</label>
+            <input type="file" class="form-control" id="front" (change)="onAdharCardSelected($event)" multiple
+                accept="image/*">
+
+            <label for="back">Upload Adhar Card Back</label>
+            <input type="file" class="form-control" id="back" (change)="onOtherDocumentSelected($event)" multiple
+                accept="image/*">
+
+
+
+
+            <label for="pan">Pan Card:</label>
+            <input type="text" id="pan" name="adhar" placeholder="Enter your Adhar Number"
+                formControlName="panCardNumber">
+
+            <label for="panCard">Upload Pan Card</label>
+
+            <input type="file" class="form-control" id="panCard" (change)="onPanCardSelected($event)" multiple
+                accept="image/*">
+
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" formControlName="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+
+            
+            <label for="state">State:</label>
+            <select id="state" name="state"  formControlName="state" required>
+                <option>up</option>
+                <option >mp</option>
+                <option >Other</option>
+            </select>
+            <label for="District">District:</label>
+            <select id="District" name="District" formControlName="district" required>
+                <option >up</option>
+                <option>mp</option>
+                <option>Other</option>
+            </select>
+
+            <div class="wrap">
+                <button type="submit">
+                    Submit
+                </button>
             </div>
-        </div>
+        </form>
     </div>
+
 </div>

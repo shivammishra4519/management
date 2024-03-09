@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,12 +12,13 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 })
 export class CustomerRegistrationComponent {
 
-  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient) { }
+  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router) { }
   customerRegistrationForm = this.builder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     number: ['', Validators.required],
     email: ['', Validators.required],
+    dob:['',Validators.required],
     panCardNumber: ['', Validators.required],
     adharCardNumber: ['', Validators.required],
     gender: ['', Validators.required],
@@ -55,9 +57,13 @@ export class CustomerRegistrationComponent {
             images: img.body.filenames
           });
           console.log(this.customerRegistrationForm.value)
-          this.service.customerRegister(this.customerRegistrationForm.value).subscribe((res) => {
-            alert("success")
-            console.log("res", res)
+          this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
+            next:res=>{
+              this.router.navigate(['/dashboard/sell-devices', this.customerRegistrationForm.value.number]);
+            },
+            error:err=>{
+              console.log(err)
+            }
           })
         } else {
           console.log('Non-JSON response:', response);

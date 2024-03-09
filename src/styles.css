@@ -5,6 +5,7 @@
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
+    /* overflow: hidden; */
     /* overflow-y: scroll; */
     /* overflow-y: visible; */
 }
@@ -17,3 +18,5 @@ body{
     background-color: #fff;
     /* border: 2px solid grey; */
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,8 @@
+/* Increase size of paginator arrow icons */
+.mat-paginator-navigation-previous, .mat-paginator-navigation-next {
+    font-size: 24px; /* Adjust the size as needed */
+  }
+  
+  .mat-elevation-z8{
+    overflow-x: scroll !important;
+  }
