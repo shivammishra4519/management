@@ -1,8 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { DatasharingService } from '../../services/datasharing.service';
 import { Router } from '@angular/router';
 
@@ -13,35 +10,27 @@ import { Router } from '@angular/router';
   styleUrl: './view-customers-list.component.css'
 })
 export class ViewCustomersListComponent {
-
+customerData:any;
   constructor(private service: ApiService,private dataService: DatasharingService,private router:Router) { 
-    this.service.customerListView().subscribe(
-      (res: any[]) => {
-        // Assuming the API response is an array of objects
-        this.dataSource.data = res; // Update dataSource with API response data
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      },
-      error => {
-        console.error('Error fetching data:', error);
+    service.customerListView().subscribe({
+      next:(data:any[])=>{
+        this.customerData=data;
       }
-    );
+    })
   }
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'adharCardNumber', 'number', 'Active', 'Action'];
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
 
 
 
   viewProfile(data: any) {
-    this.dataService.setCustomerData(data.element);
+    this.dataService.setCustomerData(data);
     this.router.navigate(['/dashboard/view-customers']);
   }
-
+  viewEmis(data:any){
+    this.dataService.setCustomerData(data);
+    this.router.navigate(['/dashboard/view-emi']);
+  }
   
 
 }

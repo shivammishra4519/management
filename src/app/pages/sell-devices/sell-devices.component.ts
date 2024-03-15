@@ -47,7 +47,6 @@ export class SellDevicesComponent {
         this.arrayOfObject = data;
         this.brandNames = data.map((obj: Device) => obj.brand); // Explicitly specify type for 'obj'
         // console.log("Brand Names:", this.brandNames);
-        console.log(this.brandNames)
       },
       error: error => {
         console.log(error)

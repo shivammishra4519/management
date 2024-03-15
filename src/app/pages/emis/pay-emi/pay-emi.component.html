@@ -1,0 +1,39 @@
+<div class="body">
+
+    <form [formGroup]="paymentForm" (ngSubmit)="payNow()">
+        <h2>Fill Details</h2>
+        <label for="userid">User Id</label>
+            <input type="text" id="name" name="userid" formControlName="user_id"  readonly>
+        
+            <label for="loanid">Loan Id</label>
+            <input type="text" id="loanid" name="loanid" formControlName="loan_Id" readonly>
+
+            
+            <label for="emiid">Installment Id</label>
+            <input type="text" id="emiid" name="emiid" formControlName="installmentId" readonly>
+
+            <label for="amount">Installment Amount</label>
+            <input type="number" id="amount" name="amount" formControlName="amount" readonly> 
+
+        <label for="method">Payment type</label>
+        <select id="method" (input)="paymentMethod($event)" formControlName="paymentMod">
+            <option value="0">Select Payment Mod</option>
+            <option value="online">Online</option>
+            <option value="cash">Cash</option>
+        </select>
+        <div *ngIf="isOnline">
+            <label for="utr">UTR Number</label>
+            <input type="number" id="utr" name="email" formControlName="utr">
+        </div>
+
+        <div *ngIf="!isOnline">
+            <label for="utr">Payment By</label>
+            <input type="number" id="utr" name="email" formControlName="paymentBy">
+        </div>
+
+        <label for="pin">Transection Pin</label>
+        <input type="password" id="pin" name="pin" formControlName="pin" > 
+
+        <button type="submit">Pay</button>
+    </form>
+</div>

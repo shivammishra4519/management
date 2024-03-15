@@ -10,30 +10,46 @@ import { ApiService } from '../../services/api.service';
 export class ViewCustomersComponent {
 
   customerData: any;
-  customerInfo:any;
+  customerInfo: any;
+  profile: string | null = null; // Initialize imageUrl as null
+  adhar: string | null = null; // Initialize imageUrl as null
+  back: string | null = null; // Initialize imageUrl as null
+  pan: string | null = null; // Initialize imageUrl as null
 
-  imageUrl:any
-  constructor(private dataService: DatasharingService,private service:ApiService) { 
-    
-  }
+  constructor(private dataService: DatasharingService, private service: ApiService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dataService.getCustomerData().subscribe(data => {
       this.customerData = data;
       this.service.viewProfile(this.customerData).subscribe({
-        next:(res:any)=>{
-          this.customerInfo=res;
-         this.service.imageView(this.customerInfo.images.profilePictures).subscribe(res=>{
-          console.log('res',res)
-          this.imageUrl=res;
-          console.log('')
-         })
+        next: (res: any) => {
+          this.customerInfo = res;
+          const imageName = this.customerInfo.images;
+          this.getImages(imageName);
         },
-        error:err=>{
-          console.log(err)
+        error: err => {
+          console.log(err);
         }
-      })
+      });
     });
   }
+
+
+
+  getImages(object:any){
+    this.service.imageView(object.profilePictures).subscribe(imageBlob => {
+      this.profile = URL.createObjectURL(imageBlob);
+    });
+    this.service.imageView(object.panCardImages).subscribe(imageBlob => {
+      this.pan = URL.createObjectURL(imageBlob);
+    });
+    this.service.imageView(object.adharCardImages).subscribe(imageBlob => {
+      this.adhar = URL.createObjectURL(imageBlob);
+    });
+    this.service.imageView(object.otherDocumentImages).subscribe(imageBlob => {
+      this.back = URL.createObjectURL(imageBlob);
+    });
+  }
+
 
 }

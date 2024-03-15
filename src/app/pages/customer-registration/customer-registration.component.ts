@@ -21,10 +21,11 @@ export class CustomerRegistrationComponent {
     dob:['',Validators.required],
     panCardNumber: ['', Validators.required],
     adharCardNumber: ['', Validators.required],
-    gender: ['', Validators.required],
+    gender: ['1', Validators.required],
     state: ['1', Validators.required],
     district: ['1', Validators.required],
     images: ['', Validators.required],
+    address:['',Validators.required]
   });
 
   registerCustomer() {

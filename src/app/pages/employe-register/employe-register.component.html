@@ -1,0 +1,40 @@
+<div class="body">
+
+    <form [formGroup]="employeeRegister" (ngSubmit)="register()">
+        <h2>Employee Register</h2>
+        <label for="userid">Name</label>
+            <input type="text" id="name" name="userid" formControlName="name"  >
+        
+            <label for="number">Mobile Number</label>
+            <input type="number" id="number" name="number" formControlName="number" >
+
+            
+            <label for="emiid">Email</label>
+            <input type="email" id="emiid" name="emiid" formControlName="email" >
+
+            <label for="pin">Transection Pin</label>
+            <input type="number" id="pin" name="pin" formControlName="pin"  > 
+            <div *ngIf="employeeRegister.controls['pin'].invalid && employeeRegister.controls['pin'].touched">
+                <div *ngIf="employeeRegister.controls['pin'].errors?.['required']">
+                  <label class="text-danger"> IMEI Number is required</label>
+                </div>
+                <div *ngIf="employeeRegister.controls['pin'].errors?.['pattern']">
+                  <label for="" class="text-danger"> Pin can not bigger thin 4 digit</label>
+                </div>
+              </div>
+
+        
+      
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" formControlName="password">
+       
+
+            <label for="cPassword">Confirm Password</label>
+            <input type="password" id="cPassword" name="cPassword" formControlName="confirmPassword">
+       
+
+    
+
+        <button type="submit">Submit</button>
+    </form>
+</div>

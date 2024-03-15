@@ -1,8 +1,90 @@
-/* Increase size of paginator arrow icons */
-.mat-paginator-navigation-previous, .mat-paginator-navigation-next {
-    font-size: 24px; /* Adjust the size as needed */
-  }
-  
-  .mat-elevation-z8{
-    overflow-x: scroll !important;
-  }
+.table-container {
+  /* Enable horizontal scrolling */
+ width: 100%; /* Ensure the container takes full width of the screen */
+ overflow: hidden;
+ margin-top: 50px;
+}
+
+.table {
+ /* Your existing table styles */
+ width: auto; 
+ white-space: nowrap; /* Prevent line breaks within table cells */
+ font-size: small;
+ border: 1px solid black;
+}
+
+.sr{
+ width: 20px;
+}
+.number{
+ width: 100px;
+}
+
+.adhar{
+ width: 130px;
+}
+.email{
+ width: 60px;
+}
+.dob{
+ width: 80px;
+}
+.pan{
+ width: 95px;
+}
+.gender{
+ width: 80px;
+}
+.state{
+ width: 120px;
+}
+.district{
+ width: 120px;
+}
+.shop{
+ width: 95px;
+}
+.address{
+ width: 150px;
+}
+.button{
+ width: 50px;
+}
+.first{
+  width: 120px;
+}
+.last{
+  width: 120px;
+}
+
+.button-svg{
+  width: 10px;
+  height: 10px;
+}
+td{
+ /* font-weight: 160; */
+ border: 1px solid black;
+text-align: center;
+}
+th{
+ border: 1px solid black;
+ text-align: center;
+}
+button {
+  /* Reset all styles */
+  all: unset;
+  cursor: pointer;
+}
+.emis{
+  width: 80px;
+}
+@media screen and (max-width: 600px) {
+.table-container{
+ overflow-x: auto !important;
+ margin-top: 55px;
+}
+}
+
+
+
+

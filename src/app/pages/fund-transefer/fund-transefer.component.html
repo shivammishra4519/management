@@ -1,0 +1,23 @@
+<div class="body">
+
+    <form [formGroup]="fromInfo" (ngSubmit)="fundTransfer()">
+        <h2>Fill Details</h2>
+       
+
+        <label for="method">Payment type</label>
+        <select id="method" formControlName="user_id" >
+            <option value="0">Select User</option>
+            <option *ngFor="let user of data" value={{user.number}}>{{user.name}} {{user.number}}</option>
+        
+        </select>
+
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount" formControlName="amount"   >
+        
+
+        <label for="pin">Transection Pin</label>
+        <input type="password" id="pin" name="pin"  formControlName="pin" > 
+
+        <button type="submit">Pay</button>
+    </form>
+</div>

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { error } from 'node:console';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { error } from 'node:console';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private router: Router, private builder: FormBuilder,private service:ApiService) { }
+  constructor(private router: Router, private builder: FormBuilder,private service:ApiService, private cookieService: CookieService) { }
   loginForm = this.builder.group({
     number: this.builder.control('', Validators.required),
     password: this.builder.control('', Validators.required),
@@ -24,8 +25,8 @@ export class LoginComponent {
       this.service.login(this.loginForm.value).subscribe({
         next:data=>{
           // this.loginForm.setValue(data.token);
+          // this.cookieService.set('jwtToken', data.token);
           localStorage.setItem('token',data.token)
-          console.log("token",data)
           this.router.navigate(['dashboard'])
 
         },

@@ -8,7 +8,7 @@ ul {
 
 li a {
     text-decoration: none; /* Removes underline from links */
-    font-size: 20px; /* Sets font size for links */
+    font-size: 15px; /* Sets font size for links */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; /* Sets font family for links */
     color: #F2C864; /* Sets text color for links */
 }

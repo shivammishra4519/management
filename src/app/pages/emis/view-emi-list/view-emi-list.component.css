@@ -1,0 +1,83 @@
+.table-container {
+    /* Enable horizontal scrolling */
+   width: 100%; /* Ensure the container takes full width of the screen */
+   overflow: hidden;
+   margin-top: 50px;
+}
+
+.table {
+   /* Your existing table styles */
+   width: auto; 
+   white-space: nowrap; /* Prevent line breaks within table cells */
+   font-size: small;
+   border: 1px solid black;
+}
+
+.sr{
+   width: 20px;
+}
+.brand{
+   width: 80px;
+}
+
+.imei{
+   width: 130px;
+}
+.model{
+   width: 90px;
+}
+.mrp{
+   width: 50px;
+}
+.fileCharge{
+   width: 140px;
+}
+.total{
+   width: 80px;
+}
+.sellamount{
+   width: 70px;
+}
+.downpayment{
+   width: 75px;
+}
+.financeAmount{
+   width: 75px;
+}
+.emiamount{
+   width: 60px;
+}
+.customernumber{
+   width: 120px;
+}
+.emi{
+   width: 40px;
+}
+.loanid{
+   width: 150px;
+}
+
+td{
+   /* font-weight: 160; */
+   border: 1px solid black;
+text-align: center;
+}
+th{
+   border: 1px solid black;
+   text-align: center;
+}
+.date{
+   width: 80px;
+}
+
+@media screen and (max-width: 600px) {
+  .table-container{
+   overflow-x: auto !important;
+   margin-top: 55px;
+  }
+ }
+
+
+
+
+ 

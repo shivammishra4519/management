@@ -1,0 +1,52 @@
+<div class="filter">
+    <div class="row1">
+        <div class="date-inp">
+            From :
+            <input type="date" >
+        </div>
+        <div class="date-inp">
+            To :
+            <input type="date" >
+        </div>
+        <div class="number">
+
+            <div class="text"> Customer Number :</div>
+            <div class="inp-box">
+                <input type="text" >
+            </div>
+<button class="btn-self" >Search</button>
+        </div>
+    </div>
+</div>
+
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th class="sr">S.N</th>
+            <th class="customernumber">Transection Id</th>
+            <th class="imei">Amount</th>
+            <th class="loanid">From</th>
+            <th class="brand">To</th>
+            <th class="model">From opening</th>
+            <th class="imei">From closeing</th>
+            <th class="mrp">To opening</th>
+            <th class="fileCharge">To closeing</th>
+            <th class="total">Time</th>
+            <th class="sellamount">Date</th>
+        </tr>
+        <tr *ngFor="let transection of transectioData; let i = index">
+            <td class="sr">{{ i + 1 }}</td>
+            <td class="customernumber">{{ transection.TransactionID }}</td>
+            <td class="imei">{{ transection.amount }}</td>
+            <td class="loanid">{{ transection.senderId }}</td>
+            <td class="brand">{{ transection.receverId }}</td>
+            <td class="model">{{ transection.senderDetails.senderOpeningAmount }}</td>
+            <td class="imei">{{ transection.senderDetails.senderCloseingAmount }}</td>
+            <td class="mrp">{{ transection.receverDetails.receverOpeningAmount}}</td>
+            <td class="fileCharge">{{ transection.receverDetails.receverCloseingAmount }}</td>
+            <td class="total">{{ transection.time }}</td>
+            <td class="sellamount">{{ transection.date }}</td>
+
+        </tr>
+    </table>
+</div>

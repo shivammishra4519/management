@@ -12,8 +12,7 @@ export class UsersComponent {
   constructor(private builder: FormBuilder, private service: ApiService) { }
 
   userRegister = this.builder.group({
-    firstName: this.builder.control('', Validators.required),
-    lastName: this.builder.control('', Validators.required),
+    name: this.builder.control('', Validators.required),
     email: this.builder.control('', Validators.required),
     number: this.builder.control('', Validators.required),
     shopName: this.builder.control('', Validators.required),

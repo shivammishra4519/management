@@ -8,13 +8,15 @@
     top: 95px;
     left: 0; /* Initially visible position */
     transition: left 0.3s ease;
+    width: 200px;
   }
   
   .main-cont {
-    margin-left: 300px;
+    margin-left: 210px;
     z-index: 2;
-    width: calc(100vw - 300px);
+    width: calc(100vw - 200px);
     margin-top: 95px;
+    overflow: hidden;
   }
 .header{
   position:fixed !important;
@@ -36,8 +38,8 @@
   /* align-items: right; */
   right: 20px;
   top: 20px;
-  width: 75px;
-  height: 60px;
+  width: 85px;
+  height: 65px;
   padding-top: 7px;
   padding-left: 9px;
   border: 2px solid black;
@@ -90,6 +92,7 @@
         margin: 0px;
         margin-top: 40px;
         overflow: hidden;
+        margin-left: 0px;
     }
     .footer{
       width: 100vw;

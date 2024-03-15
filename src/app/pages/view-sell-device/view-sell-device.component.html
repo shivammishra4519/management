@@ -1,0 +1,63 @@
+<div class="filter">
+    <div class="row1">
+        <div class="date-inp">
+            From :
+            <input type="date" [(ngModel)]="fromDate">
+        </div>
+        <div class="date-inp">
+            To :
+            <input type="date" [(ngModel)]="toDate">
+        </div>
+        <div class="number">
+
+            <div class="text"> Customer Number :</div>
+            <div class="inp-box">
+                <input type="text" [(ngModel)]="customerNumber">
+            </div>
+<button class="btn-self" (click)="filterData()">Search</button>
+        </div>
+    </div>
+</div>
+
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th class="sr">S.N</th>
+            <th class="customernumber">Customer Number</th>
+            <th class="imei">Customer Name</th>
+            <th class="loanid">Loan ID</th>
+            <th class="brand">B Name</th>
+            <th class="model">Model</th>
+            <th class="imei">IMEI</th>
+            <th class="mrp">MRP</th>
+            <th class="fileCharge">File Charge</th>
+            <th class="total">T Amount</th>
+            <th class="sellamount">S Amu</th>
+            <th class="downpayment">D Payment</th>
+            <th class="financeAmount">F Amount</th>
+            <th class="emi">EMI</th>
+            <th class="emiamount">EMI Amu</th>
+            <th class="date">Date</th>
+
+        </tr>
+        <tr *ngFor="let mobile of filteredData; let i = index">
+            <td class="sr">{{ i + 1 }}</td>
+            <td class="customernumber">{{ mobile.customerNumber }}</td>
+            <td class="imei">{{ mobile.imei2 }}</td>
+            <td class="loanid">{{ mobile.loan_Id }}</td>
+            <td class="brand">{{ mobile.brandName }}</td>
+            <td class="model">{{ mobile.modelName }}</td>
+            <td class="imei">{{ mobile.imei1 }}</td>
+            <td class="mrp">{{ mobile.mrp }}</td>
+            <td class="fileCharge">{{ mobile.fileCharge }}</td>
+            <td class="total">{{ mobile.totalAmount }}</td>
+            <td class="sellamount">{{ mobile.sellAmount }}</td>
+            <td class="downpayment">{{ mobile.downPayment }}</td>
+            <td class="financeAmount">{{ mobile.financeAmount }}</td>
+            <td class="emi">{{ mobile.emi }}</td>
+            <td class="emiamount">{{ mobile.emiAmount }}</td>
+            <td class="emiamount">{{ mobile.date }}</td>
+
+        </tr>
+    </table>
+</div>

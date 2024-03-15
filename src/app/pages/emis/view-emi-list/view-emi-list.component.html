@@ -1,0 +1,34 @@
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th class="sr">S.N</th>
+            <th class="customernumber">Customer Number</th>
+            <th class="imei">Customer Name</th>
+            <th class="loanid">Loan ID</th>
+            <th class="brand">Emi Number</th>
+            <th class="model">Employe Id</th>
+            <th class="imei">Payment Mod</th>
+            <th class="mrp">Amount</th>
+            <th class="fileCharge">Transection Id</th>
+            <th class="model">Date</th>
+            <th class="model">time</th>
+           
+          
+        </tr>
+        <tr *ngFor="let emi of emiData; let i = index">
+            <td class="sr">{{ i + 1 }}</td>
+            <td class="customernumber">{{ emi.user_id }}</td>
+            <td class="imei">{{ emi.name }}</td>
+            <td class="loanid">{{ emi.loan_Id }}</td>
+            <td class="brand">{{ emi.installmentId }}</td>
+            <td class="model"> {{ emi.employeId }} </td>
+            <td class="mrp">{{ emi.paymentMod }}</td>
+            <td class="imei">{{ emi.amount }}</td>
+            <td class="fileCharge">{{ emi.transectionId }}</td>
+            <td class="model">{{emi.date}}</td>
+            <td class="model">{{emi.time}}</td>
+           
+            
+        </tr>
+    </table>
+</div>

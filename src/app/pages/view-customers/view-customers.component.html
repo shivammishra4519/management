@@ -1,16 +1,46 @@
 <div class="main">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card" style="width: 18rem;">
-                <img [src]="imageUrl" class="card-img-top" alt="...">
+                <img [src]="profile" class="card-img-top" alt="...">
+                <!-- <img src="../../../assets/images/1708162611023 (1).jpg" class="card-img-top" alt="..."> -->
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <!-- <h5 class="card-title">{{customerInfo.firstName}}</h5> -->
+                    <h5 class="card-title">{{customerInfo.firstName}}</h5>
+                    <p class="card-text">Lorem ipsum dolor sit.</p>
                 </div>
-              </div>
+            </div>
+            <div class="data">
+                <div class="row">
+                    <span class="key">Name:</span>
+                    <span class="value">{{customerInfo.firstName}}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Number:</span>
+                    <span class="value">{{customerInfo.number}}</span>
+                </div>
+                <div class="row">
+                    <span class="key">DOB:</span>
+                    <span class="value">{{customerInfo.dob}}</span>
+                </div>
+                <div class="row">
+                    <span class="key">District:</span>
+                    <span class="value">{{customerInfo.district}}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Shop:</span>
+                    <span class="value">{{customerInfo.shop}}</span>
+                </div>
+                <div class="row">
+                    <span class="key">Creadit:</span>
+                    <span class="value">
+                        {{customerInfo.currentCreadit}}
+                    </span>
+                </div>
+            </div>
         </div>
-        <div class="cpl-md-8">
+        <div class="col-md-9">
+          
 
         </div>
     </div>

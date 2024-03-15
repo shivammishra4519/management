@@ -1,49 +1,51 @@
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-  
-      <!-- First Name Column -->
-      <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-        <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
-      </ng-container>
-  
-      <!-- Last Name Column -->
-      <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-        <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
-      </ng-container>
-  
-      <!-- Adhar Card Number Column -->
-      <ng-container matColumnDef="adharCardNumber">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Adhar Card Number </th>
-        <td mat-cell *matCellDef="let user"> {{user.adharCardNumber}} </td>
-      </ng-container>
-  
-      <!-- Mobile Number Column -->
-      <ng-container matColumnDef="number">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Number </th>
-        <td mat-cell *matCellDef="let user"> {{user.number}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Active">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Active </th>
-        <td mat-cell *matCellDef="let element">
-            {{element.active ? 'Active' : 'Inactive'}}
+<div class="table-container">
+  <table class="table">
+      <tr>
+          <th class="sr">S.N</th>
+          <th class="first">First Name</th>
+          <th class="last">Last Name</th>
+          <th class="number">Number</th>
+          <!-- <th class="email">email</th> -->
+          <th class="dob">DOB</th>
+          <th class="pan">Pan Card</th>
+          <th class="adhar">Adhar Card</th>
+          <th class="gender">Gender</th>
+          <th class="state">State</th>
+          <th class="district">District</th>
+          <th class="address">Address</th>
+          <th class="shop">Shop</th>
+          <th class="button">View Profile</th>
+          <th class="emis">View Emi</th>
+        
+      </tr>
+      <tr *ngFor="let user of customerData; let i = index">
+          <td class="sr">{{ i + 1 }}</td>
+          <td class="first">{{ user.firstName }}</td>
+          <td class="last">{{ user.lastName }}</td>
+          <td class="number">{{ user.number }}</td>
+          <!-- <td class="email">{{ user.email }}</td> -->
+          <td class="dob">{{ user.dob }}</td>
+          <td class="pan">{{ user.panCardNumber }}</td>
+          <td class="adhar">{{ user.adharCardNumber }}</td>
+          <td class="gender">{{ user.gender }}</td>
+          <td class="state">{{ user.state }}</td>
+          <td class="district">{{ user.district }}</td>
+          <td class="address">{{ user.address }}</td>
+          <td class="shop">{{ user.shop }}</td>
+          <td class="button-svg">
+            <button (click)="viewProfile(user)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20">
+                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                </svg>
+            </button>
         </td>
-    </ng-container>
-
-      <ng-container matColumnDef="Action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-        <td mat-cell *matCellDef="let element">
-          <button class="btn btn-primary" (click)="viewProfile({element})">
-            View Profile
-        </button>
+        <td class="emis">
+          <button (click)="viewEmis(user)">
+            <img src="../../../assets/images/5373059.png"  width="20" height="20"  alt="">
+          </button>
         </td>
-    </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let user; columns: displayedColumns;"></tr>
-    </table>
-  
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        
+          
+      </tr>
+  </table>
 </div>

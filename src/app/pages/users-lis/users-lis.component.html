@@ -1,0 +1,59 @@
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th class="sr">S.N</th>
+            <th class="customernumber">Name</th>
+            <th class="imei">Email</th>
+            <th class="loanid">Number</th>
+            <th class="brand">Active</th>
+            <th class="model">Role</th>
+            <th class="mrp">wallet Amount</th>
+          
+           
+          
+        </tr>
+        <tr *ngFor="let user of users; let i = index">
+            <td class="sr">{{ i + 1 }}</td>
+            <td class="customernumber">{{ user.name }}</td>
+            <td class="imei">{{ user.email }}</td>
+            <td class="loanid">{{ user.number }}</td>
+            <td class="brand">{{ user.active }}</td>
+            <td class="model"> {{ user.role }} </td>
+            <td class="mrp">
+                <div *ngIf="active">
+                    <button (click)="chek()"> Check</button>
+                </div>
+                <div *ngIf="!active">
+                    {{amount}}
+                </div>
+                
+            </td>
+          
+            
+        </tr>
+    </table>
+</div>
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModal()">
+    Open Modal
+  </button>
+  
+
+
+<div class="modal fade self-css" #exampleModal  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Modal content goes here
+          This is the content of the modal.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div> -->

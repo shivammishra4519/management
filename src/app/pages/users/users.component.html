@@ -1,43 +1,31 @@
-<div class="form_wrapper">
-    <div class="form_container">
-        <div class="title_container">
-            <h2>User Register</h2>
-        </div>
-        <div class="row clearfix">
-            <div class="">
-                <form [formGroup]="userRegister" (ngSubmit)="register()">
-                    <div class="row clearfix">
-                        <div class="col_half">
-                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="firstName" placeholder="First Name" formControlName="firstName" />
-                            </div>
-                        </div>
-                        <div class="col_half">
-                            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
-                                <input type="text" name="lastName" placeholder="Last Name" required
-                                    formControlName="lastName" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input_field"> <span><i class="fa fa-envelope"></i></span>
-                        <input type="email" name="email" placeholder="Email" required formControlName="email" />
-                    </div>
-                    <div class="input_field"> <span><i class="fa fa-phone"></i></span>
-                        <input type="text" name="number" placeholder="Mobile Number" required formControlName="number" />
-                    </div>
-                    <div class="input_field"> <span><i class="fa fa-building"></i></span>
-                        <input type="text" name="shopName" placeholder="Shop Name" required formControlName="shopName" />
-                    </div>
-                  
-                    <div class="input_field"> <span><i class="fa fa-lock"></i></span>
-                        <input type="password" name="password" placeholder="Password" required formControlName="password" />
-                    </div>
-                    <div class="input_field"> <span><i class="fa fa-lock"></i></span>
-                        <input type="password" name="confirmPassword" placeholder="Confirm Password" required formControlName="confirmPassword" />
-                    </div>
-                    <input class="button" type="submit" value="Register" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+ <form [formGroup]="userRegister" (ngSubmit)="register()">
+    <h1>User Register Form</h1>
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" formControlName="name"  />
+    <br />
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" formControlName="email" />
+    <br />
+    <label for="number">Number:</label>
+    <input type="number" name="number" id="number" formControlName="number" />
+    <br />
+
+    <label for="shop">Shop Name:</label>
+    <input type="text" name="shop" id="shop" formControlName="shopName" />
+    <br />
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" formControlName="password" />
+    <br />
+
+    <label for="password">Confirm Password:</label>
+    <input type="password" name="password" formControlName="confirmPassword" />
+    <br />
+
+    <button type="submit">Submit</button>
+</form>
+

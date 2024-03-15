@@ -19,14 +19,14 @@
             <input type="email" id="email" name="email" placeholder="Enter your email" formControlName="email" required>
 
             <label for="number">Number</label>
-            <input type="text" name="number" id="number" placeholder="Number" required formControlName="number" />
+            <input type="number" name="number" id="number" placeholder="Number" required formControlName="number" />
 
 
             <label for="dob">Date of Birth:</label>
             <input type="date" id="dob" name="dob" placeholder="Enter your DOB" formControlName="dob" required>
 
             <label for="adhar">Adhar:</label>
-            <input type="text" id="adhar" name="adhar" placeholder="Enter your Adhar Number" formControlName="adharCardNumber">
+            <input type="number" id="adhar" name="adhar" placeholder="Enter your Adhar Number" formControlName="adharCardNumber">
 
 
             <label for="front">Upload Adhar Card Front</label>
@@ -52,6 +52,7 @@
 
             <label for="gender">Gender:</label>
             <select id="gender" name="gender" formControlName="gender" required>
+                <option value="1">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -61,16 +62,19 @@
             
             <label for="state">State:</label>
             <select id="state" name="state"  formControlName="state" required>
-                <option>up</option>
+                <option value="1">Select State</option>
                 <option >mp</option>
                 <option >Other</option>
             </select>
             <label for="District">District:</label>
             <select id="District" name="District" formControlName="district" required>
-                <option >up</option>
+                <option value="1">Select a District</option>
                 <option>mp</option>
                 <option>Other</option>
             </select>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" formControlName="address" required>
 
             <div class="wrap">
                 <button type="submit">

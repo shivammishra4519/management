@@ -1,0 +1,59 @@
+<div class="card">
+    <h2 style="text-align: center;">Emi Details</h2>
+
+
+    <div class="main-field">
+        <div class="userid">
+            <span class="key">User Id:</span>
+            <span class="value">{{emidetails.user_id}}</span>
+        </div>
+        <div class="loanid">
+            <span class="key">Loan Id:</span>
+            <span class="value">{{emidetails.loan_Id}}</span>
+        </div>
+    </div>
+
+
+    <div class="installment" *ngFor="let emi of emiarray; let i = index">
+        <div class="emi1">
+            {{i+1}} Installment
+        </div>
+        <div class="emidetails">
+            <div class="rows">
+                <div class="detailskey">
+                    Due Date
+                </div>
+                <div class="detailsvalue">
+                    {{emi.dueDate}}
+                </div>
+            </div>
+
+            <div class="rows">
+                <div class="detailskey">
+                    Amount
+                </div>
+                <div class="detailsvalue">
+                    {{emi.amount}}
+                </div>
+            </div>
+
+
+            <div class="rows" *ngIf="(emi.paid)">
+                <div class="detailskey">
+                    Pay date
+                </div>
+                <div class="detailsvalue">
+                    12-05-2024
+                </div>
+            </div>
+            <div class="rows" *ngIf="!(emi.paid)">
+                <div class="detailskey">
+                    Pay Now
+                </div>
+                <div class="detailsvalue">
+                    <button (click)="PayEmi({installmentId:emi.installmentId,amoun:emi.amoint})">Pay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
