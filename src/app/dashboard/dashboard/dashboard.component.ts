@@ -16,4 +16,14 @@ this.walletBalance=data.amount;
   }
 })
 }
+
+
+checkAmount(){
+  this.service.checkBalance().subscribe({
+    next:data=>{
+  this.walletBalance=data.amount;
+  
+    }
+  })
+}
 }

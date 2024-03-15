@@ -1,19 +1,18 @@
 <div class="header">
     <div class="row">
         <div class="col-md-2" >
-            <h3 style="text-align: center;"><i>ADMIN</i></h3>
+            <h3 class="heading" (click)="checkAmount()">DASHBOARD</h3>
         </div>
         
     </div>
     <div class="wallet">
-        <span>Amount</span>
-        <br>
-        <span style="font-size: 14px; color: rgb(65, 4, 4); font-size: bold;"> &#8377;&nbsp;{{walletBalance}}</span>
+      <span class="symbol">&#8377;&nbsp;</span>
+        <span class="amount"> {{walletBalance}}</span>
     </div>
 </div>
 <div class="row">
     <input type="checkbox" id="sidebar-toggle" />
-        <label for="sidebar-toggle" class="toggle-btn" style="color: black;">&#9776;</label>
+        <label for="sidebar-toggle" class="toggle-btn" style="color: rgb(201, 71, 71);">&#9776;</label>
     <div class="col-md-2 sidebar">
         <app-sidebar></app-sidebar>
     </div>

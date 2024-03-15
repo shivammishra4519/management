@@ -105,6 +105,12 @@ export class ApiService {
   getAllUserList(): Observable<any> {
     return this.http.post(`${this.url}api/getuserlist`, {}, { headers: this.getHeaders() });
   }
+  sendOtp(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/send-otp`, data, { headers: this.getHeaders() });
+  }
+  verifye(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/verify-otp`, data, { headers: this.getHeaders() });
+  }
 
 
   imageView(imageName: string): Observable<Blob> {

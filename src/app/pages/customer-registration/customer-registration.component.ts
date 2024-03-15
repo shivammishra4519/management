@@ -11,21 +11,23 @@ import { Router } from '@angular/router';
   styleUrl: './customer-registration.component.css'
 })
 export class CustomerRegistrationComponent {
-
+  otpSection = false;
+  verified = false;
   constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router) { }
   customerRegistrationForm = this.builder.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     number: ['', Validators.required],
     email: ['', Validators.required],
-    dob:['',Validators.required],
+    dob: ['', Validators.required],
     panCardNumber: ['', Validators.required],
     adharCardNumber: ['', Validators.required],
     gender: ['1', Validators.required],
     state: ['1', Validators.required],
     district: ['1', Validators.required],
     images: ['', Validators.required],
-    address:['',Validators.required]
+    address: ['', Validators.required],
+    otp: ['', Validators.required]
   });
 
   registerCustomer() {
@@ -59,10 +61,10 @@ export class CustomerRegistrationComponent {
           });
           console.log(this.customerRegistrationForm.value)
           this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
-            next:res=>{
+            next: res => {
               this.router.navigate(['/dashboard/sell-devices', this.customerRegistrationForm.value.number]);
             },
-            error:err=>{
+            error: err => {
               console.log(err)
             }
           })
@@ -97,4 +99,34 @@ export class CustomerRegistrationComponent {
     this.otherDocumentImages.push(event.target.files[0]);
   }
 
+
+  sendOtp() {
+    
+   
+      const number = `+91${this.customerRegistrationForm.value.number}`
+      const obj = {
+        "phoneNumber": number
+      };
+      
+      console.log(obj)
+      this.service.sendOtp(obj).subscribe(res => {
+        this.otpSection = true;
+        console.log('response',res)
+      })
+    
+  }
+  verifyOtp() {
+    const otp = this.customerRegistrationForm.value.otp;
+    const number = `+91${this.customerRegistrationForm.value.number}`;
+    console.log(number)
+    const obj = {
+      phoneNumber: number,
+      otpCode:otp
+    }
+    this.service.verifye(obj).subscribe({
+      next:data=>{
+        this.verified=true
+      }
+    })
+}
 }

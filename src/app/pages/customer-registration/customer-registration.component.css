@@ -44,7 +44,7 @@
   input {
     display: block;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     padding: 8px;
     box-sizing: border-box;
     border: 1px solid #ddd;
@@ -79,8 +79,33 @@
     justify-content: center;
     align-items: center;
   }
-  
-
+  .otp {
+    all: initial;
+    position: relative;
+    left: 183px;
+    bottom: 33px; /* Add a 'top' value to ensure the position is correctly applied */
+    padding: 0; /* Reset padding to ensure consistent sizing */
+    margin: 0; /* Reset margin to ensure consistent spacing */
+}
+.verifyotp{
+  margin: 0px;
+}
+.verify{
+  all: initial;
+    position: relative;
+    left: 206px;
+    bottom: 33px; /* Add a 'top' value to ensure the position is correctly applied */
+    padding: 0; /* Reset padding to ensure consistent sizing */
+    margin: 0;
+}
+.Verified{
+  position: relative;
+  left: 187px;
+  bottom: 33px; /* Add a 'top' value to ensure the position is correctly applied */
+  padding: 0; /* Reset padding to ensure consistent sizing */
+  margin: 0;
+  color: green;
+}
   @media screen and (max-width: 600px) {
     .main{
         width: 96vw;
