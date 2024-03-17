@@ -12,6 +12,12 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CookieService } from 'ngx-cookie-service';
+import { SettingComponent } from './dashboard/basic-setting/setting/setting.component';
+import { BasicSettingComponent } from './dashboard/basic-setting/basic-setting/basic-setting.component';
+import { SetTemplateComponent } from './dashboard/basic-setting/set-template/set-template.component';
+import { SendSmsComponent } from './dashboard/basic-setting/send-sms/send-sms.component';
+import { UserSettingComponent } from './dashboard/basic-setting/user-setting/user-setting.component';
+import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +26,12 @@ import { CookieService } from 'ngx-cookie-service';
     SidebarComponent,
     HomeComponent,
     LoginComponent,
+    SettingComponent,
+    BasicSettingComponent,
+    SetTemplateComponent,
+    SendSmsComponent,
+    UserSettingComponent,
+    ViewTemplatesComponent
   ],
   imports: [
     BrowserModule,

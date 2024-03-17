@@ -1,0 +1,25 @@
+.self{
+    /* border: 1px solid grey; */
+    padding: 0px;
+    margin-top: 5px;
+    /* margin: 0px; */
+
+}
+.img-div{
+    width: 54px;
+    margin: auto;
+    height: 54px;
+    border: 2px solid grey;
+    border-radius: 50px;
+    padding-top: 5px;
+    
+}
+
+.img-div:hover {
+    border-color: red; /* Change border color on hover */
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Add shadow on hover */
+    background-color: #C0DFE7;
+    width: 56px;
+    height: 56px;
+    border-radius: 52px;
+}

@@ -1,0 +1,38 @@
+.setting{
+width: 450px;
+height: calc(100vh - 100px);
+border: 2px solid grey;
+}
+/* .body{
+
+} */
+
+.row-self{
+    display: flex;
+}
+.nav-self{
+    width: 33%;
+    display: block;
+    text-align: center;
+    background-color:rgb(199, 199, 222);
+    border: 2px solid wheat;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.half{
+    width: 100%;
+    display: flex;
+    margin-left: 1px;
+}
+.active{
+    background-color: blue;
+    color: white;
+}
+.body-main{
+    box-sizing: border-box;
+    width:calc(100vw - 600px) ;
+    margin-left: 1px;
+    border: 2px solid grey;
+    padding: 2px;
+    border-radius: 5px
+}

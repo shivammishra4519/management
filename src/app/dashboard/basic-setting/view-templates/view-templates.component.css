@@ -1,0 +1,54 @@
+td{
+    /* font-weight: 160; */
+    border: 1px solid black;
+text-align: center;
+}
+th{
+    border: 1px solid black;
+    text-align: center;
+    /* color: #C0DFE7; */
+    color: #014122;
+}
+
+.table-container {
+    /* Enable horizontal scrolling */
+   width: 100%; /* Ensure the container takes full width of the screen */
+   overflow: hidden;
+   /* margin-top: 50px; */
+  }
+  
+  .table {
+   /* Your existing table styles */
+   width: auto; 
+   white-space: nowrap; /* Prevent line breaks within table cells */
+   font-size: small;
+   border: 1px solid black;
+   /* background-color:#C0DFE7 ; */
+  }
+
+  .type{
+width: 120px;
+padding: 5px;
+  }
+  .template{
+    padding: 5px;
+width: 400px;
+  }
+  .id{
+    width: 200px;
+    padding: 5px;
+  }
+  .api{
+width: 300px;
+padding: 5px;
+  }
+  .action{
+    width: 80px;
+    padding: 5px;
+  }
+  button{
+    all:initial ;
+  }
+  .delete{
+    cursor: pointer;
+  }

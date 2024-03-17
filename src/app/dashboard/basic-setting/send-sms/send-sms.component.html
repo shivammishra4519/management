@@ -1,0 +1,21 @@
+<div class="body">
+
+    <form >
+        <h2>Fill Details</h2>
+       
+
+        <label for="method">Select User</label>
+        <select id="method" >
+            <option value="0">Select SMS API</option>
+            <option >https://textsms.vastbazaar.com/app/smsapi/index.php?</option>
+            <option >Employee</option>
+            <option >Customer</option>
+        </select>
+
+       
+        <label for="temp">MESSAGE</label>
+       <textarea name="template" id="temp" cols="20" rows="4" [(ngModel)]="template"></textarea>
+
+        <button type="submit"  (click)="sendSmsEv()">SUBMIT</button>
+    </form>
+</div>

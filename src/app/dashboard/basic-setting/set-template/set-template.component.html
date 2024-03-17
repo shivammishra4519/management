@@ -1,0 +1,26 @@
+<div class="body">
+
+    <form  [formGroup]="templateForm">
+        <h2>Fill Details</h2>
+       
+
+        <label for="method">Select SMS API</label>
+        <select id="method" formControlName="api" >
+            <option value="0">Select SMS API</option>
+            <option >https://textsms.vastbazaar.com/app/smsapi/index.php</option>
+            <option >ABC API</option>
+        
+        </select>
+
+        <label for="smsType">SMS TYPE</label>
+        <input type="text" id="smsType" name="smsType"  placeholder="Enter SMS TYPE"  formControlName="smsType" style="text-transform: uppercase;">
+        <label for="tempId">Template ID</label>
+        <input type="text" id="tempId" name="tempId" placeholder="Enter Template Id"   formControlName="templateId" >
+        
+
+        <label for="temp">TEMPLATE</label>
+       <textarea name="" id="" cols="20" rows="4" formControlName="template"></textarea>
+
+        <button type="submit" (click)="setTemplate()">SUBMIT</button>
+    </form>
+</div>

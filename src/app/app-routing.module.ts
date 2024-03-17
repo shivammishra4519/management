@@ -4,6 +4,14 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './auth.guard';
+import { SettingComponent } from './dashboard/basic-setting/setting/setting.component';
+import { BasicSettingComponent } from './dashboard/basic-setting/basic-setting/basic-setting.component';
+import { SetTemplateComponent } from './dashboard/basic-setting/set-template/set-template.component';
+import { employeeAuthGuard } from './employee-auth.guard';
+import { adminAuthGaurdGuard } from './admin-auth-gaurd.guard';
+import { SendSmsComponent } from './dashboard/basic-setting/send-sms/send-sms.component';
+import { UserSettingComponent } from './dashboard/basic-setting/user-setting/user-setting.component';
+// import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
   {
@@ -15,19 +23,31 @@ const routes: Routes = [
       },
       { path: 'sell-devices/:number', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule) },
       { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
-      { path: 'user-registration', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
+      { path: 'user-registration', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),canActivate:[adminAuthGaurdGuard] },
       { path: 'add-device', loadChildren: () => import('./pages/add-device/add-device.module').then(m => m.AddDeviceModule) },
       { path: 'view-users', loadChildren: () => import('./pages/view-users/view-users.module').then(m => m.ViewUsersModule) },
       { path: 'view-customers', loadChildren: () => import('./pages/view-customers/view-customers.module').then(m => m.ViewCustomersModule) },
       { path: 'view-customers-list', loadChildren: () => import('./pages/view-customers-list/view-customers-list.module').then(m => m.ViewCustomersListModule) },
       { path: 'view-sell-device', loadChildren: () => import('./pages/view-sell-device/view-sell-device.module').then(m => m.ViewSellDeviceModule) },
       { path: 'view-emi', loadChildren: () => import('./pages/emis/view-emi/view-emi.module').then(m => m.ViewEmiModule) },
-      { path: 'pay-emi', loadChildren: () => import('./pages/emis/pay-emi/pay-emi.module').then(m => m.PayEmiModule) },
+      { path: 'pay-emi', loadChildren: () => import('./pages/emis/pay-emi/pay-emi.module').then(m => m.PayEmiModule), },
       { path: 'view-emi-list', loadChildren: () => import('./pages/emis/view-emi-list/view-emi-list.module').then(m => m.ViewEmiListModule) },
-      { path: 'employe-register', loadChildren: () => import('./pages/employe-register/employe-register.module').then(m => m.EmployeRegisterModule) },
-      { path: 'fund-transefer', loadChildren: () => import('./pages/fund-transefer/fund-transefer.module').then(m => m.FundTranseferModule) },
-      { path: 'fund-transfe-details', loadChildren: () => import('./pages/fund-transefer-detaills/fund-transefer-detaills.module').then(m => m.FundTranseferDetaillsModule) },
-      { path: 'users-list', loadChildren: () => import('./pages/users-lis/users-lis.module').then(m => m.UsersLisModule) }
+      { path: 'employe-register', loadChildren: () => import('./pages/employe-register/employe-register.module').then(m => m.EmployeRegisterModule),canActivate:[adminAuthGaurdGuard] },
+      { path: 'fund-transefer', loadChildren: () => import('./pages/fund-transefer/fund-transefer.module').then(m => m.FundTranseferModule),canActivate:[adminAuthGaurdGuard] },
+      { path: 'fund-transfe-details', loadChildren: () => import('./pages/fund-transefer-detaills/fund-transefer-detaills.module').then(m => m.FundTranseferDetaillsModule),canActivate:[employeeAuthGuard] },
+      { path: 'users-list', loadChildren: () => import('./pages/users-lis/users-lis.module').then(m => m.UsersLisModule), },
+      {path:'setting',component:SettingComponent,
+      children:[
+        {path:'basic-setting',component:BasicSettingComponent},
+        {path:'set-template',component:SetTemplateComponent},
+        {path:'send-sms',component:SendSmsComponent},
+        {path:'user-setting',component:UserSettingComponent},
+        // {path:'view-template',component:ViewTemplatesComponent},
+      ],
+      canActivate:[adminAuthGaurdGuard]
+    }
+
+    
     
      
       
@@ -41,6 +61,8 @@ const routes: Routes = [
   {
     path: '', redirectTo: 'login', pathMatch: 'full'
   },
+
+  
  
  
 

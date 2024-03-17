@@ -1,0 +1,31 @@
+<div class="row-self">
+    <div class="setting card">
+  
+            <div class="half">
+                <span class="nav-self" [ngClass]="{ 'active': isUserSetting }" (click)="userSetting()" >USER SETTING</span>
+                <span class="nav-self" [ngClass]="{ 'active': isSmsSend }" (click)="sendSms()">SEND SMS</span>
+                <span class="nav-self" [ngClass]="{ 'active': isSetTemplate }" (click)="setTemplate()">SET TEMPLATE</span>
+            </div>
+            <div class="content-body">
+                <div *ngIf="isSetTemplate"> 
+                    <app-set-template></app-set-template>
+                </div>
+                <div *ngIf="isSmsSend">
+                    <app-send-sms></app-send-sms>
+                </div>
+                <div *ngIf="isUserSetting">
+                    <app-user-setting></app-user-setting>
+                </div>
+              
+            </div>
+   
+    </div>
+    <div class="body-main">
+        <!-- <app-basic-setting></app-basic-setting> -->
+        <div *ngIf="isSetTemplate">
+            <app-view-templates></app-view-templates>
+        </div>
+       
+       
+    </div>
+</div>

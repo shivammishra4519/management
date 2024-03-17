@@ -1,12 +1,12 @@
 <div class="header">
     <div class="row">
         <div class="col-md-2" >
-            <h3 class="heading" (click)="checkAmount()">DASHBOARD</h3>
+            <h3 class="heading"><a routerLink="/dashboard/setting">DASHBOARD</a></h3>
         </div>
         
     </div>
     <div class="wallet">
-      <span class="symbol">&#8377;&nbsp;</span>
+      <span class="symbol" (click)="checkAmount()">&#8377;&nbsp;</span>
         <span class="amount"> {{walletBalance}}</span>
     </div>
 </div>

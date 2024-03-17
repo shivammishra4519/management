@@ -84,12 +84,16 @@
     text-align: center;
     font-size: 25px;
     color: brown;
+    cursor: pointer;
   }
   .amount{
     text-align: center;
     font-size: 20px;
   }
-
+a{
+  all: initial;
+  cursor: pointer;
+}
 @media screen and (max-width: 850px) {
 
   /* Change the max-width value to target tablets and mobile devices */
@@ -153,6 +157,7 @@
     text-align: center;
     font-size: 25px;
     color: brown;
+    
   }
   .amount{
     text-align: center;

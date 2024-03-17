@@ -1,0 +1,23 @@
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th class="type">SMS TYPE</th>
+            <th class="id">TEMPLATEID</th>
+            <th class="template">TEMPLATE</th>
+            <th class="api">SMS API</th>
+            <th class="action">ACTION</th>
+        </tr>
+        <tr  *ngFor="let template of template">
+            <td class="type">{{template.smsType}}</td>
+            <td class="id">{{template.templateId}}</td>
+            <td class="template">{{template.template}}</td>
+            <td class="api">{{template.api}}</td>
+            <td class="action">
+                <button (click)="deleteMethod(template)">
+                    <img src="../../../../assets/svg/trash-solid.svg"  class="delete" width="20px">
+                </button>
+            </td>
+             
+        </tr>
+    </table>
+  </div>

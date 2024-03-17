@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,13 +9,14 @@ import { ApiService } from '../../services/api.service';
 })
 export class DashboardComponent {
   walletBalance:any;
-constructor(private service:ApiService){
+constructor(private service:ApiService,private auth:AuthService){
 service.checkBalance().subscribe({
   next:data=>{
 this.walletBalance=data.amount;
 
   }
 })
+auth.decodingRole()
 }
 
 
@@ -26,4 +28,7 @@ checkAmount(){
     }
   })
 }
+
+
+
 }

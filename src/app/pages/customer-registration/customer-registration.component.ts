@@ -99,34 +99,77 @@ export class CustomerRegistrationComponent {
     this.otherDocumentImages.push(event.target.files[0]);
   }
 
-
+  otp: any
+  template: any
+  message: any;
+  number: any
   sendOtp() {
-    
-   
-      const number = `+91${this.customerRegistrationForm.value.number}`
-      const obj = {
-        "phoneNumber": number
-      };
-      
-      console.log(obj)
-      this.service.sendOtp(obj).subscribe(res => {
-        this.otpSection = true;
-        console.log('response',res)
-      })
-    
-  }
-  verifyOtp() {
-    const otp = this.customerRegistrationForm.value.otp;
-    const number = `+91${this.customerRegistrationForm.value.number}`;
-    console.log(number)
-    const obj = {
-      phoneNumber: number,
-      otpCode:otp
-    }
-    this.service.verifye(obj).subscribe({
-      next:data=>{
-        this.verified=true
+
+
+    this.service.sendOtp().subscribe({
+      next: data => {
+        this.otp = data;
+        console.log(data)
       }
     })
-}
+
+    this.service.getTemplateByType({ type: "OTP1" }).subscribe({
+      next: data => {
+        this.template = data;
+        const tempMessage = data.template;
+        this.message = tempMessage.replace("{#var#}", this.otp);
+        console.log(this.message);
+      },
+      error: er => {
+        console.log(er)
+      }
+    })
+    this.number = this.customerRegistrationForm.value.number;
+    this.otpSection = true
+
+
+
+  }
+  verifyOtp() {
+    let htmlbody = `
+  
+    <form action="${this.template.api}" method="GET">
+    <label for="key">key:</label>
+    <input type="text" id="key" name="key" value="36138A813805F9"><br><br>
+    
+    <label for="campaign">Campaign:</label>
+    <input type="text" id="campaign" name="campaign" value="13393"><br><br>
+    
+    <label for="routeid">Route ID:</label>
+    <input type="text" id="routeid" name="routeid" value="30"><br><br>
+    
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" value="text"><br><br>
+    
+    <label for="contacts">Contacts:</label>
+    <input type="text" id="contacts" name="contacts" value="${this.number}"><br><br>
+    
+    <label for="senderid">Sender ID:</label>
+    <input type="text" id="senderid" name="senderid" value="OMTRDE"><br><br>
+    
+    <label for="msg">Message:</label><br>
+    <textarea id="msg" name="msg" rows="4" cols="50">${this.message}</textarea><br><br>
+    
+    <label for="template_id">Template ID:</label>
+    <input type="text" id="template_id" name="template_id" value="1207170920832124039"><br><br>
+    
+    <label for="pe_id">PE ID:</label>
+    <input type="text" id="pe_id" name="pe_id" value="1201163058752081861"><br><br>
+    
+    <input type="submit" value="Submit">
+  </form>
+  
+    `
+
+
+    const winUrl = URL.createObjectURL(
+      new Blob([htmlbody], { type: "text/html" })
+    );
+    window.location.href = winUrl;
+  }
 }

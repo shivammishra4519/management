@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "https://textsms.vastbazaar.com",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  
