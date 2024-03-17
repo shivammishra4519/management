@@ -44,7 +44,7 @@ const routes: Routes = [
         {path:'user-setting',component:UserSettingComponent},
         // {path:'view-template',component:ViewTemplatesComponent},
       ],
-      canActivate:[adminAuthGaurdGuard]
+      // canActivate:[adminAuthGaurdGuard]
     }
 
     
