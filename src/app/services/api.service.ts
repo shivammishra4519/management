@@ -7,7 +7,8 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private url = "http://localhost:3000/";
+  // private url = "http://localhost:3000/";
+  private url = "http://62.72.56.135:3000/";
   jwtToken = this.cookieService.get('jwtToken');
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
