@@ -17,6 +17,8 @@ export class LoginComponent {
     password: this.builder.control('', Validators.required),
   })
 
+
+
  
   login() {
 
@@ -39,7 +41,8 @@ export class LoginComponent {
     // this.router.navigate(['dashboard'])
   }
 
-
-
+  forgetPaasword(){
+    this.router.navigate(['/forget-password'])
+  }
   
 }

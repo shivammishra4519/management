@@ -54,26 +54,35 @@
 
               <div class="input_field">
                 <label for="mrp">MRP</label>
-                <input type="text" id="mrp" name="mrp" placeholder="MRP" [(ngModel)]="addDevice.mrp"
+                <input type="number" id="mrp" name="mrp" placeholder="MRP"
                   formControlName="mrp" readonly />
+                  <div *ngIf="mrpSection">
+                    <span style="color:green">   Real MRP {{deviceData.mrp}}</span>
+                  </div>
+                  
               </div>
 
               <div class="input_field">
                 <label for="fileCharge">File Charge</label>
-                <input type="text" id="fileCharge" name="fileCharge" placeholder="File Charge"
-                  [(ngModel)]="addDevice.fileCharge" formControlName="fileCharge" readonly />
+                <input type="number" id="fileCharge" name="fileCharge" placeholder="File Charge"
+                   formControlName="fileCharge" readonly />
+              </div>
+              <div class="input_field">
+                <label for="intrest">Intres</label>
+                <input type="number" id="intrest" name="intrest" placeholder="File Charge"
+                   formControlName="interest" readonly />
               </div>
 
               <div class="input_field">
                 <label for="tamount">Total Amount</label>
-                <input type="text" id="tamount" name="tamount" placeholder="Total Amount"
-                  [(ngModel)]="addDevice.totalAmount" formControlName="totalAmount" readonly />
+                <input type="number" id="tamount" name="total" placeholder="Total Amount"
+                  formControlName="totalAmount" readonly />
               </div>
 
               <div class="input_field">
-                <label for="sellAmount">Sell Amount</label>
-                <input type="text" id="sellAmount" name="sellAmount" placeholder="Sell Amount" 
-                  (input)="checkSellAmount($event)" formControlName="sellAmount" />
+                <label for="sellAmount">Discount</label>
+                <input type="number" id="sellAmount" name="discount" placeholder="Sell Amount" 
+                  formControlName="discount" (input)="discountInput($event)" />
                 <div *ngIf="showMessage">
                   <label style="font-size: 15px; color: red;">The amount should be less than total amount</label>
                 </div>
@@ -81,8 +90,8 @@
 
               <div class="input_field">
                 <label for="downPayment">Down Payment</label>
-                <input type="text" id="downPayment" name="downPayment" placeholder="Down Payment"
-                  [(ngModel)]="addDevice.downPayment" (input)="dowmPaymnetInput($event)"
+                <input type="number" id="downPayment" name="downPayment" placeholder="Down Payment"
+                 (input)="dowmPaymnetInput($event)"
                   formControlName="downPayment" />
                 <div *ngIf="invalidDownPayment">
                   <label for="downPayment" style="color: red;">Down Payment must be greater than 40% of total Amount
@@ -92,8 +101,8 @@
 
               <div class="input_field">
                 <label for="financeAmount">Finance Amount</label>
-                <input type="text" id="financeAmount" name="financeAmount" placeholder="Finance Amount"
-                  [(ngModel)]="addDevice.financeAmount" formControlName="financeAmount" readonly />
+                <input type="number" id="financeAmount" name="financeAmount" placeholder="Finance Amount"
+                  formControlName="financeAmount" readonly />
               </div>
 
               <div class="input_field select_option">
@@ -106,8 +115,8 @@
 
               <div class="input_field">
                 <label for="emiAmount">EMI Amount</label>
-                <input type="text" id="emiAmount" name="emiAmount" placeholder="EMI Amount"
-                  [(ngModel)]="addDevice.emiAmount" (input)="onEmiAmount($event)" formControlName="emiAmount" readonly />
+                <input type="number" id="emiAmount" name="emiAmount" placeholder="EMI Amount"
+                   (input)="onEmiAmount($event)" formControlName="emiAmount" readonly />
                 <div *ngIf="emiLabel">
                   <label for="downPayment" style="color: red;">Emi amoint should be greater then 1000</label>
                 </div>

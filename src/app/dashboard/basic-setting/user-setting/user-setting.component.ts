@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DatasharingService } from '../../../services/datasharing.service';
 
 @Component({
   selector: 'app-user-setting',
@@ -7,9 +8,41 @@ import { Router } from '@angular/router';
   styleUrl: './user-setting.component.css'
 })
 export class UserSettingComponent {
-constructor(private router:Router){}
-  blockUser(){
-    this.router.navigate(['/dashboard/setting/basic-setting'])
-  }
+constructor(private router:Router,private dataSharing:DatasharingService){}
+isUserSetting=true;
+isBasic=false
+isManageDevices=false;
+isAddDevice=false;
+isStockDevice=false;
+
+
+userSetting(){
+this.isBasic=false;
+this.isUserSetting=true;
+}
+basicSetting(){
+  this.isBasic=true;
+  this.isUserSetting=false;
+}
+addBrand(){
+  this.isManageDevices=true;
+  this.isAddDevice=false
+  this.isStockDevice=false
+}
+addDevice(){
+  this.isManageDevices=false;
+  this.isAddDevice=true
+  this.isStockDevice=false
+
+}
+
+viewDevice(){
+  this.isManageDevices=false;
+  this.isAddDevice=false
+  this.isStockDevice=true
+}
+
+ 
+
 
 }

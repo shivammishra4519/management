@@ -17,12 +17,13 @@ export class PayEmiComponent {
   constructor(private dataService: DatasharingService, private builder: FormBuilder, private service: ApiService) { }
   ngOnInit(): void {
     this.dataService.getCustomerData().subscribe(data => {
+      console.log(data)
       this.emidetails = data.otherDetails;
       this.installmentId = data.installmentId;
       data.amount
       this.paymentForm.patchValue({
-        user_id: this.emidetails.user_id,
-        loan_Id: this.emidetails.loan_Id,
+        user_id: this.emidetails.customerNumber,
+        loan_Id: this.emidetails.loanId,
         installmentId: this.installmentId,
         pin: null,
         utr: null,

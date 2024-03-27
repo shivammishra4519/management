@@ -5,11 +5,11 @@
     <div class="main-field">
         <div class="userid">
             <span class="key">User Id:</span>
-            <span class="value">{{emidetails.user_id}}</span>
+            <span class="value">{{emidetails.customerNumber}}</span>
         </div>
         <div class="loanid">
             <span class="key">Loan Id:</span>
-            <span class="value">{{emidetails.loan_Id}}</span>
+            <span class="value">{{emidetails.loanId}}</span>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
                     Pay Now
                 </div>
                 <div class="detailsvalue">
-                    <button (click)="PayEmi({installmentId:emi.installmentId,amoun:emi.amoint})">Pay</button>
+                    <button (click)="PayEmi({installmentId:emi.installmentId,amount:emi.amount})">Pay</button>
                 </div>
             </div>
         </div>

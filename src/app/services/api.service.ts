@@ -2,31 +2,34 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../environment'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  // private url = "http://localhost:3000/";
-  private url = "http://62.72.56.135:3000/";
+  private url = environment.apiUrl;
+  // private url = "http://62.72.56.135:3000/";
   jwtToken = this.cookieService.get('jwtToken');
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   private getHeaders(): HttpHeaders {
     let jwtToken: string | null = null;
-  
+
     // Check if localStorage is available and get the token if it exists
     if (typeof localStorage !== 'undefined' && localStorage.getItem('token')) {
+
       jwtToken = localStorage.getItem('token'); // Get the token from localStorage
     } else {
       console.warn('Token not found in localStorage.');
     }
-  
+
     console.log('Token retrieved from localStorage:', jwtToken); // Log the retrieved token
-  
+
     return new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
   }
-  
+
 
   // headers = new HttpHeaders().set("Authorization", `bearer ${this.jwtToken}`)
 
@@ -64,7 +67,7 @@ export class ApiService {
 
   customerListView(): Observable<any> {
     // const headers = new HttpHeaders().set("Authorization", `bearer ${this.jwtToken}`);
-    return this.http.post(`${this.url}customer/list`,{},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}customer/list`, {}, { headers: this.getHeaders() });
   }
 
   viewProfile(data: any): Observable<any> {
@@ -115,18 +118,19 @@ export class ApiService {
   getAllUserList(): Observable<any> {
     return this.http.post(`${this.url}api/getuserlist`, {}, { headers: this.getHeaders() });
   }
-  sendOtp(): Observable<any> {
-    return this.http.post(`${this.url}api/send-otp`, {}, { headers: this.getHeaders() });
+  sendOtp(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/send-otp`, data, { headers: this.getHeaders() });
   }
-  verifye(data:any): Observable<any> {
+  verifyeOtp(data: any): Observable<any> {
     return this.http.post(`${this.url}api/verify-otp`, data, { headers: this.getHeaders() });
   }
 
   verifyeToken(): Observable<any> {
+  
     return this.http.post(`${this.url}api/verifytoken`, {}, { headers: this.getHeaders() });
   }
 
-  setTemplate(data:any): Observable<any> {
+  setTemplate(data: any): Observable<any> {
     return this.http.post(`${this.url}sms/settemplate`, data, { headers: this.getHeaders() });
   }
 
@@ -134,38 +138,38 @@ export class ApiService {
     return this.http.post(`${this.url}sms/viewtemplate`, {}, { headers: this.getHeaders() });
   }
 
-  deleteTemplate(data:any): Observable<any> {
+  deleteTemplate(data: any): Observable<any> {
     return this.http.post(`${this.url}sms/deletetemplate`, data, { headers: this.getHeaders() });
   }
 
 
-  getTemplateByType(data:any): Observable<any> {
+  getTemplateByType(data: any): Observable<any> {
     return this.http.post(`${this.url}sms/gettemplate`, data, { headers: this.getHeaders() });
   }
 
 
+  saveSmsInDb(data: any): Observable<any> {
+    return this.http.post(`${this.url}sms/savesms`, data, { headers: this.getHeaders() });
+  }
 
-  submitToServer(data:any) {
+  checkUser(data: any): Observable<any> {
+    return this.http.post(`${this.url}forget/check`, data);
+  }
+
+  getSmsAll(): Observable<any> {
+    return this.http.post(`${this.url}sms/getsms`, {},{ headers: this.getHeaders() });
+  }
   
-
-    this.http.post<any>('https://textsms.vastbazaar.com/app/smsapi/index.php', data)
-      .subscribe(response => {
-        console.log('Response from server:', response);
-        // Handle the response here (e.g., update UI, show success message)
-      }, error => {
-        console.error('Error:', error);
-        // Handle errors (e.g., show error message to user)
-      });
+  createNewPassword(data: any): Observable<any> {
+    return this.http.post(`${this.url}forget/update`, data,);
+  }
+  
+  viewAllDevice(): Observable<any> {
+    return this.http.post(`${this.url}api/viewalldevice`, {},{ headers: this.getHeaders() });
   }
 
 
- 
-  sendSms(data: any): Observable<any> {
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = 'https://textsms.vastbazaar.com/app/smsapi/index.php';
 
-    return this.http.post(proxyUrl + apiUrl, data);
-  }
 
 
   imageView(imageName: string): Observable<Blob> {
@@ -179,7 +183,26 @@ export class ApiService {
   }
 
 
+  sendOtTonNumber(data: any) {
+    const apiUrl = data.smsApiUrl;
+    const queryParams = `?key=${environment.key}&campaign=${environment.campaign}&routeid=${environment.routeid}&type=${environment.type}&contacts=${data.contact}&senderid=${environment.senderid}&msg=${data.msg}&template_id=${data.template_id}&pe_id=${environment.pe_id}`;
+    const url = `${apiUrl}${queryParams}`;
+    return this.http.get(url)
+  }
 
-  
+  verifyAdhar(data:any): Observable<any> {
+    return this.http.post(`${this.url}adhar/sendOtp`, data);
+  }
+
+  verifyAdharOtp(data:any): Observable<any> {
+    return this.http.post(`${this.url}adhar/verify-otp`, data);
+  }
+
+  verifyPan(data:any): Observable<any> {
+    return this.http.post(`${this.url}adhar/verify-pan`, data);
+  }
+
+
+
 
 }

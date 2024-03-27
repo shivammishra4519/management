@@ -32,7 +32,7 @@
             <th class="mrp">MRP</th>
             <th class="fileCharge">File Charge</th>
             <th class="total">T Amount</th>
-            <th class="sellamount">S Amu</th>
+            <th class="sellamount">Discount</th>
             <th class="downpayment">D Payment</th>
             <th class="financeAmount">F Amount</th>
             <th class="emi">EMI</th>
@@ -44,19 +44,19 @@
             <td class="sr">{{ i + 1 }}</td>
             <td class="customernumber">{{ mobile.customerNumber }}</td>
             <td class="imei">{{ mobile.imei2 }}</td>
-            <td class="loanid">{{ mobile.loan_Id }}</td>
+            <td class="loanid">{{ mobile.loanId }}</td>
             <td class="brand">{{ mobile.brandName }}</td>
             <td class="model">{{ mobile.modelName }}</td>
             <td class="imei">{{ mobile.imei1 }}</td>
             <td class="mrp">{{ mobile.mrp }}</td>
             <td class="fileCharge">{{ mobile.fileCharge }}</td>
             <td class="total">{{ mobile.totalAmount }}</td>
-            <td class="sellamount">{{ mobile.sellAmount }}</td>
+            <td class="sellamount">{{ mobile.discount }}</td>
             <td class="downpayment">{{ mobile.downPayment }}</td>
             <td class="financeAmount">{{ mobile.financeAmount }}</td>
             <td class="emi">{{ mobile.emi }}</td>
             <td class="emiamount">{{ mobile.emiAmount }}</td>
-            <td class="emiamount">{{ mobile.date }}</td>
+            <td class="emiamount">{{ mobile.purchaseDate }}</td>
 
         </tr>
     </table>

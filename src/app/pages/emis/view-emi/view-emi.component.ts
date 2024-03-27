@@ -22,6 +22,7 @@ export class ViewEmiComponent {
       this.service.viewEmi(this.customerData).subscribe({
         next: (res: any) => {
           this.emidetails = res;
+          console.log(res)
           this.emiarray=this.emidetails.installments;
         },
         error: err => {
@@ -38,6 +39,7 @@ export class ViewEmiComponent {
       otherDetails:this.emidetails,
       amount:data.amount
     }
+    
     this.dataService.setCustomerData(obj);
     this.router.navigate(['/dashboard/pay-emi']);
 

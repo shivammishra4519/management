@@ -1,1 +1,71 @@
-<p>home works!</p>
+<h1 style="text-align: center;">Welcome to Dashboard</h1>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-3" *ngIf="role=='admin' || role=='employee'" >
+            <div class="card bg-c-red order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{shops}}</span></h2>
+                    <p class="m-b-0">Shops<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" *ngIf="role=='admin'">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{employeeList}}</span></h2>
+                    <p class="m-b-0">Employee<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" >
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{customer}}</span></h2>
+                    <p class="m-b-0"> Register Customer<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{devices}}</span></h2>
+                    <p class="m-b-0">Total Devoces<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{soldDevices}}</span></h2>
+                    <p class="m-b-0">Sold Devices<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>5</span></h2>
+                    <p class="m-b-0">successful Finded<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+
+       
+	</div>
+</div>
+
+
+
+
+

@@ -1,26 +1,93 @@
+<div class="main">
+
+
+
+<div class="row-self">
+    <div class="setting card">
+  
+   
+        <div class="half">
+            <span class="nav-self" [ngClass]="{ 'active': isUserSetting }" (click)="userSetting()" >USER SETTING</span>
+            <span class="nav-self" [ngClass]="{ 'active': isBasic }" (click)="basicSetting()">BASIC SETTING</span>
+        </div>
+        <div class="content-body">
+            <div class="users" *ngIf="isUserSetting">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-4 col text-center">
+                        <div class="self">
+                            <div class="img-div">
+                            <img src="../../../../assets/svg/user-tie-solid.svg" style="width:32px;">
+                            </div>
+                            <span >Block Employee</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 col text-center">
+                        <div class="self">
+                            <div class="img-div" >
+                            <img src="../../../../assets/svg/user-solid.svg" style="width:32px;">
+                            </div>
+                            <span >Block User</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4 col text-center">
+                        <div class="self">
+                            <div class="img-div">
+                            <img src="../../../../assets/svg/user-regular.svg" style="width:32px;">
+                            </div>
+                            <span >Block Customer</span>
+                        </div>
+                    </div>
+                
+                    
+                </div>
+            </div>
+            <div class="basic" *ngIf="isBasic">
 <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-4 col text-center">
         <div class="self">
-            <div class="img-div">
-            <img src="../../../../assets/svg/user-tie-solid.svg" style="width:32px;">
+            <div class="img-div"  (click)="addBrand()">
+            <img src="../../../../assets/svg/mobile-solid.svg" style="width:32px;">
             </div>
-            <span >Block Employee</span>
+            <span >Manage device</span>
         </div>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-4 col text-center">
         <div class="self">
-            <div class="img-div" (click)="blockUser()">
-            <img src="../../../../assets/svg/user-solid.svg" style="width:32px;">
+            <div class="img-div"  (click)="addDevice()">
+            <img src="../../../../assets/svg/plus-solid.svg" style="width:32px;">
             </div>
-            <span >Block User</span>
+            <span >Add device</span>
         </div>
     </div>
     <div class="col-md-4 col-sm-4 col-xs-4 col text-center">
         <div class="self">
-            <div class="img-div">
-            <img src="../../../../assets/svg/user-regular.svg" style="width:32px;">
+            <div class="img-div"  (click)="viewDevice()">
+            <img src="../../../../assets/svg/mobile-button-solid.svg" style="width:32px;">
             </div>
-            <span >Block Customer</span>
+            <span >View Device</span>
         </div>
     </div>
+</div>
+            </div>
+          
+        </div>
+
+   
+    </div>
+    <div class="body-main">
+        <div *ngIf="isManageDevices">
+            <app-device-setting></app-device-setting>
+        </div>
+        <div *ngIf="isAddDevice">
+<app-add-device></app-add-device>
+        </div>
+
+        <div *ngIf="isStockDevice">
+            <app-stock-device></app-stock-device>
+        </div>
+        
+    </div>
+</div>
+
+
 </div>

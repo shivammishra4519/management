@@ -1,9 +1,13 @@
 .self{
-    /* border: 1px solid grey; */
+   
     padding: 0px;
     margin-top: 5px;
-    /* margin: 0px; */
+    
 
+}
+
+.main{
+    overflow: hidden;
 }
 .img-div{
     width: 54px;
@@ -16,10 +20,50 @@
 }
 
 .img-div:hover {
-    border-color: red; /* Change border color on hover */
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Add shadow on hover */
+    border-color: red;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); 
     background-color: #C0DFE7;
     width: 56px;
     height: 56px;
     border-radius: 52px;
 }
+
+
+    
+    .row-self{
+        display: flex;
+        /* flex-wrap: wrap; */
+    }
+   
+    
+    .nav-self{
+        width: 50%;
+        display: block;
+        text-align: center;
+        background-color:rgb(199, 199, 222);
+        border: 2px solid wheat;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .half{
+        width: 100%;
+        display: flex;
+        margin-left: 1px;
+    }
+    .setting{
+        width: 450px;
+        height: calc(100vh - 100px);
+        border: 2px solid grey;
+        } 
+    .active{
+        background-color: blue;
+        color: white;
+    }
+    .body-main{
+        box-sizing: border-box;
+        width:calc(100vw - 600px) ;
+        margin-left: 1px;
+        border: 2px solid grey;
+        padding: 2px;
+        border-radius: 5px
+    }

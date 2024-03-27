@@ -1,0 +1,28 @@
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th class="type">BRAND</th>
+            <th class="id">MODEL</th>
+            <th class="template">DPPRICE</th>
+            <th class="api">MARGIN</th>
+            <th class="action">INTEREST</th>
+            <th class="action">FILE CHARGE</th>
+            <th class="action">DOWN PAYMENT</th>
+        </tr>
+        <tr  *ngFor="let device of devices">
+            <td class="type">{{device.brand}}</td>
+            <td class="id">{{device.model}}</td>
+            <td class="template">{{device.dpPrice}}</td>
+            <td class="api">{{device.margin}}</td>
+            <td class="api">{{device.interest}}</td>
+            <td class="api">{{device.fileCharge}}</td>
+            <td class="api">{{device.downPayment}}</td>
+            <td class="action">
+                <button (click)="deleteMethod()">
+                    <img src="../../../../assets/svg/trash-solid.svg"  class="delete" width="20px">
+                </button>
+            </td>
+             
+        </tr>
+    </table>
+  </div>

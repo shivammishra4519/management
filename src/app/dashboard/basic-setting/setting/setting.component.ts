@@ -31,6 +31,6 @@ this.router.navigate(['/dashboard/setting/set-template'])
     this.isSetTemplate=false;
     this.isSmsSend=false;
     this.isUserSetting=true;
-    this.router.navigate(['/dashboard/setting/user-setting'])
+    this.router.navigate(['/dashboard/setting/sms-setting'])
   };
 }

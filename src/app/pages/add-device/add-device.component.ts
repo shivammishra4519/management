@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { ViewdetailsService } from '../../services/viewdetails.service';
 
 @Component({
   selector: 'app-add-device',
@@ -8,40 +9,42 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './add-device.component.css'
 })
 export class AddDeviceComponent {
-  constructor(private builder: FormBuilder, private service:ApiService) { }
+  Brand:[]=[]
+  constructor(private builder: FormBuilder, private service:ApiService,private viewdetails:ViewdetailsService) {
+    viewdetails.viewBrand().subscribe({
+      next:data=>{
+        this.Brand=data.brand;
 
-  addDevice = {
-    brand: '',
-    model: '',
-    dpPrice: 0,
-    margin: 0,
-    mrp: 0,
-    interest:0,
-    fileCharge:0,
-    downPayment:0,
-    totalAmount:0
-  };
-  
-  submit() {
-    this.addDevice.mrp = this.addDevice.dpPrice + (this.addDevice.dpPrice*this.addDevice.margin)/100;
-  }
-
-  total(){
-    // this.addDevice.totalAmount=(this.addDevice.mrp+this.addDevice.intrest+this.addDevice.fileCharge)-this.addDevice.downPayment;
-    this.addDevice.totalAmount=(this.addDevice.mrp+(this.addDevice.mrp)*(this.addDevice.interest)/100) +(this.addDevice.mrp)*(this.addDevice.fileCharge)/100;
-  }
- 
-  addDetails(){
-    this.service.addDevice(this.addDevice).subscribe({
-      next:res=>{
-        console.log(res);
-  alert('device added')
-      },
-      error:error=>{
-        console.log(error);
       }
     })
+   }
+
+ addDevice=this.builder.group({
+brand:this.builder.control('0',Validators.required),
+model:this.builder.control('',Validators.required),
+dpPrice:this.builder.control(null,Validators.required),
+margin:this.builder.control(null,Validators.required),
+interest:this.builder.control(null,Validators.required),
+fileCharge:this.builder.control(null,Validators.required),
+downPayment:this.builder.control(null,Validators.required),
+ })
+
+
+
+submit(): void {
+  if (this.addDevice.invalid) {
+    alert('Please fill all details');
+  } else {
+    this.service.addDevice(this.addDevice.value).subscribe({
+      next: res => {
+        this.addDevice.reset();
+        alert('Device added');
+      },
+      error: error => {
+        console.error(error);
+        alert('An error occurred while adding the device');
+      }
+    });
   }
-  
-  
+}
 }

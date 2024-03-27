@@ -18,6 +18,13 @@ import { SetTemplateComponent } from './dashboard/basic-setting/set-template/set
 import { SendSmsComponent } from './dashboard/basic-setting/send-sms/send-sms.component';
 import { UserSettingComponent } from './dashboard/basic-setting/user-setting/user-setting.component';
 import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { SettingBodyComponent } from './dashboard/basic-setting/setting-body/setting-body.component';
+import { DeviceSettingComponent } from './dashboard/basic-setting/device-setting/device-setting.component';
+import { SmsSettingComponent } from './dashboard/basic-setting/sms-setting/sms-setting.component';
+import { AddDeviceComponent } from './pages/add-device/add-device.component';
+import { StockDeviceComponent } from './dashboard/basic-setting/stock-device/stock-device.component';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +38,13 @@ import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates
     SetTemplateComponent,
     SendSmsComponent,
     UserSettingComponent,
-    ViewTemplatesComponent
+    ViewTemplatesComponent,
+    ForgetPasswordComponent,
+    SettingBodyComponent,
+    DeviceSettingComponent,
+    SmsSettingComponent,
+    AddDeviceComponent,
+    StockDeviceComponent
   ],
   imports: [
     BrowserModule,

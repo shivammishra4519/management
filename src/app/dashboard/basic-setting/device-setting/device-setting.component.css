@@ -1,0 +1,43 @@
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  label {
+    display: block;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+  }
+  .nav-self{
+    width: 50%;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.half{
+    width: 100%;
+    display: flex;
+    margin-left: 1px;
+    border: 1px;
+}
+  .btn-self{
+    all:initial ;
+    margin-top:5px;
+    border: 1px solid;
+    width: 40px;
+    padding: 2px;
+    height: 15px;
+    display: block;
+  }
+  .line{
+    width: 100%;
+  }

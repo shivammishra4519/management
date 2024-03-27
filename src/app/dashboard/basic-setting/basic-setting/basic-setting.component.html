@@ -1,1 +1,21 @@
-<p>basic-setting works!</p>
+<div class="table-container">
+    <table class="table">
+        <tr>
+            <th class="type">NUMBER</th>
+            <th class="id">SHUTID</th>
+            <th class="template">MESSAGE</th>
+            <th class="api">DATE</th>
+            <th class="action">TIME</th>
+        </tr>
+        <tr  *ngFor="let sms of smsArray">
+            <td class="type">{{sms.number}}</td>
+            <td class="id">{{sms.smsShotId}}</td>
+            <td class="template">{{sms.message}}</td>
+            <td class="api">{{sms.date}}</td>
+            <td class="action">
+                {{sms.time}}
+            </td>
+             
+        </tr>
+    </table>
+  </div>

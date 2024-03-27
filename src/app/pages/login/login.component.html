@@ -5,7 +5,7 @@
             <input type="text" placeholder="User Name" class="form-control" formControlName="number" />
             <input type="password" placeholder="Password" class="form-control" formControlName="password" />
             <label class="checkbox-label">
-                <input type="checkbox" /> Remember Me
+                 <span class="forget" (click)="forgetPaasword()">Forget Password</span>
             </label>
             <button type="submit" class="login-btn" (click)="login()">Login</button>
         </form>

@@ -8,9 +8,11 @@ export class DatasharingService {
 
  
   private customerDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private setting: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   
 
   constructor() { }
+ public isManageDevice=false;
 
   setCustomerData(data: any) {
     this.customerDataSubject.next(data);
@@ -18,6 +20,13 @@ export class DatasharingService {
 
   getCustomerData() {
     return this.customerDataSubject.asObservable();
+  }
+
+  setSetting(data:any){
+    this.setting.next(data);
+  }
+  getSetting(){
+    return this.setting.asObservable();
   }
 
 }

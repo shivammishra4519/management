@@ -20,7 +20,7 @@ th{
   .table {
    /* Your existing table styles */
    width: auto; 
-   white-space: nowrap; /* Prevent line breaks within table cells */
+   /* white-space: nowrap;  */
    font-size: small;
    border: 1px solid black;
    /* background-color:#C0DFE7 ; */
@@ -41,6 +41,8 @@ width: 400px;
   .api{
 width: 300px;
 padding: 5px;
+word-wrap: break-word; 
+/* overflow: auto; */
   }
   .action{
     width: 80px;
