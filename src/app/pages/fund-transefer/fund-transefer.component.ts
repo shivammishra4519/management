@@ -36,7 +36,7 @@ export class FundTranseferComponent {
         this.service.fundTransfer(this.formInfo.value).subscribe({
           next: data => {
             this.formInfo.reset()
-            this.toastr.success('Hello world!', 'Success');
+            this.toastr.success('Fund Transfer succesfully');
           },
           error: err => {
             console.log('err', err)

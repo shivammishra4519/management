@@ -25,6 +25,10 @@ import { SmsSettingComponent } from './dashboard/basic-setting/sms-setting/sms-s
 import { AddDeviceComponent } from './pages/add-device/add-device.component';
 import { StockDeviceComponent } from './dashboard/basic-setting/stock-device/stock-device.component';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { SettleAmountComponent } from './shops/settle-amount/settle-amount.component';
+import { SettleBankComponent } from './shops/settle-bank/settle-bank.component';
+import { SettleAdminComponent } from './shops/settle-admin/settle-admin.component';
+import { SettleEmployeeComponent } from './shops/settle-employee/settle-employee.component';
 
 
 @NgModule({
@@ -45,7 +49,11 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
     DeviceSettingComponent,
     SmsSettingComponent,
     AddDeviceComponent,
-    StockDeviceComponent
+    StockDeviceComponent,
+    SettleAmountComponent,
+    SettleBankComponent,
+    SettleAdminComponent,
+    SettleEmployeeComponent
   ],
   imports: [
     BrowserModule,
