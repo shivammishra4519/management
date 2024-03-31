@@ -55,7 +55,7 @@ export class CustomerRegistrationComponent {
       formData.append('otherDocumentImages', image);
     });
 
-    this.http.post<any>(`${environment.adharApiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
+    this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
       (response) => {
         if (response instanceof HttpResponse) {
           console.log('Images uploaded successfully');
