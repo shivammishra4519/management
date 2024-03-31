@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../../../environment';
 
 
 
@@ -54,7 +55,7 @@ export class CustomerRegistrationComponent {
       formData.append('otherDocumentImages', image);
     });
 
-    this.http.post<any>('http://localhost:3000/api/upload', formData, { observe: 'response' }).subscribe(
+    this.http.post<any>(`${environment.adharApiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
       (response) => {
         if (response instanceof HttpResponse) {
           console.log('Images uploaded successfully');
