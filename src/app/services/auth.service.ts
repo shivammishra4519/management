@@ -8,7 +8,7 @@ import * as jwt_decode from 'jwt-decode';
 export class AuthService {
 
   constructor() { }
-
+userId:any;
 
   decodingRole() {
     const token = localStorage.getItem('token');
@@ -17,6 +17,7 @@ export class AuthService {
       // Decode the token
       const decodeToken: any = jwt_decode.jwtDecode(token) as { [key: string]: any };
       const role=decodeToken.role;
+      this.userId=decodeToken.number;
       return role;
     } else {
       console.error('Token not found in localStorage');

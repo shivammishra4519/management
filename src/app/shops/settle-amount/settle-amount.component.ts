@@ -13,13 +13,13 @@ export class SettleAmountComponent {
   constructor(private router:Router){}
   
   toBank(){
-this.router.navigate(['/dashboard/settle-amount/bank'])
+this.router.navigate(['/dashboard/bank'])
   }
   toEmployee(){
-    this.router.navigate(['/dashboard/settle-amount/employee']);
+    this.router.navigate(['/dashboard/employee']);
 
   }
   toAdmin(){
-    this.router.navigate(['/dashboard/settle-amount/admin'])
+    this.router.navigate(['/dashboard/admin'])
   }
 }

@@ -74,6 +74,7 @@ td{
    /* font-weight: 160; */
    border: 1px solid black;
 text-align: center;
+
 }
 th{
    border: 1px solid black;
@@ -107,6 +108,15 @@ input{
   }
  }
 
+
+ .bg-green{
+   background-color: rgb(15, 182, 15);
+   /* color: white; */
+ }
+ .bg-red{
+   background-color: rgb(192, 0, 0);
+   color: white;
+ }
 
 
 

@@ -2,19 +2,19 @@
     <div class="row1">
         <div class="date-inp">
             From :
-            <input type="date" >
+            <input type="date">
         </div>
         <div class="date-inp">
             To :
-            <input type="date" >
+            <input type="date">
         </div>
         <div class="number">
 
             <div class="text"> Customer Number :</div>
             <div class="inp-box">
-                <input type="text" >
+                <input type="text">
             </div>
-<button class="btn-self" >Search</button>
+            <button class="btn-self">Search</button>
         </div>
     </div>
 </div>
@@ -25,6 +25,7 @@
             <th class="sr">S.N</th>
             <th class="customernumber">Transection Id</th>
             <th class="imei">Amount</th>
+            <th class="sr">TYPE</th>
             <th class="loanid">From</th>
             <th class="brand">To</th>
             <th class="model">From opening</th>
@@ -34,10 +35,12 @@
             <th class="total">Time</th>
             <th class="sellamount">Date</th>
         </tr>
-        <tr *ngFor="let transection of transectioData; let i = index">
+        <tr *ngFor="let transection of transectioData; let i = index" [ngClass]="{ 'bg-red':  transection.senderId == number , 'bg-green' :transection.receverId == number}">
             <td class="sr">{{ i + 1 }}</td>
             <td class="customernumber">{{ transection.TransactionID }}</td>
             <td class="imei">{{ transection.amount }}</td>
+            <td class="sr" *ngIf="transection.senderId == number">Dr</td>
+            <td class="sr" *ngIf="transection.receverId == number">Cr</td>
             <td class="loanid">{{ transection.senderId }}</td>
             <td class="brand">{{ transection.receverId }}</td>
             <td class="model">{{ transection.senderDetails.senderOpeningAmount }}</td>
