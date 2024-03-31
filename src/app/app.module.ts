@@ -9,7 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CookieService } from 'ngx-cookie-service';
 import { SettingComponent } from './dashboard/basic-setting/setting/setting.component';
@@ -24,6 +24,7 @@ import { DeviceSettingComponent } from './dashboard/basic-setting/device-setting
 import { SmsSettingComponent } from './dashboard/basic-setting/sms-setting/sms-setting.component';
 import { AddDeviceComponent } from './pages/add-device/add-device.component';
 import { StockDeviceComponent } from './dashboard/basic-setting/stock-device/stock-device.component';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -51,13 +52,16 @@ import { StockDeviceComponent } from './dashboard/basic-setting/stock-device/sto
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,NoopAnimationsModule
+    ReactiveFormsModule,NoopAnimationsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot()
   ],
   providers: [
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
-    CookieService
+    CookieService,
+    provideToastr()
   ],
   bootstrap: [AppComponent]
 })

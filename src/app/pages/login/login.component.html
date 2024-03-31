@@ -1,7 +1,7 @@
 <div class="login-background">
     <div class="login-form shadow-lg">
         <div class="login-title text-2xl mb-2">Login</div>
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <form [formGroup]="loginForm" >
             <input type="text" placeholder="User Name" class="form-control" formControlName="number" />
             <input type="password" placeholder="Password" class="form-control" formControlName="password" />
             <label class="checkbox-label">

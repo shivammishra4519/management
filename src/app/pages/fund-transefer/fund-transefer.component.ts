@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fund-transefer',
@@ -9,7 +10,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class FundTranseferComponent {
   data: any[] = []
-  constructor(private service: ApiService, private builder: FormBuilder) {
+  constructor(private service: ApiService, private builder: FormBuilder,private toastr: ToastrService) {
     service.getUserList().subscribe(res => {
       this.data = res;
     })
@@ -35,7 +36,7 @@ export class FundTranseferComponent {
         this.service.fundTransfer(this.formInfo.value).subscribe({
           next: data => {
             this.formInfo.reset()
-            alert('fund transfer successfully');
+            this.toastr.success('Hello world!', 'Success');
           },
           error: err => {
             console.log('err', err)
