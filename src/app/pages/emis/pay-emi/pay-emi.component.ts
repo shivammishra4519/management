@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DatasharingService } from '../../../services/datasharing.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pay-emi',
@@ -14,7 +15,7 @@ export class PayEmiComponent {
   isOnline = false;
 
   amount: any
-  constructor(private dataService: DatasharingService, private builder: FormBuilder, private service: ApiService) { }
+  constructor(private dataService: DatasharingService, private builder: FormBuilder, private service: ApiService,private toster:ToastrService) { }
   ngOnInit(): void {
     this.dataService.getCustomerData().subscribe(data => {
       console.log(data)
@@ -55,13 +56,17 @@ export class PayEmiComponent {
     } else {
       this.isOnline = false;
     }
-    console.log('formvalue', this.paymentForm.value)
-    console.log('js', this.emidetails)
+   
   }
 
   payNow() {
-    this.service.payEmi(this.paymentForm.value).subscribe((res) => {
-      console.log('response from backend', res)
+    this.service.payEmi(this.paymentForm.value).subscribe({
+      next:data=>{
+        this.toster.success('Emi Paid Succesfully')
+      },
+      error:err=>{
+        console.log(err);
+      }
     })
   }
 

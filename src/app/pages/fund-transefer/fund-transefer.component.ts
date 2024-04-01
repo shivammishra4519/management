@@ -13,6 +13,7 @@ export class FundTranseferComponent {
   constructor(private service: ApiService, private builder: FormBuilder,private toastr: ToastrService) {
     service.getUserList().subscribe(res => {
       this.data = res;
+      console.log(res)
     })
   }
 

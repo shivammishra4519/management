@@ -6,7 +6,7 @@
             <label for="first">First Name:</label>
             <input type="text" id="first" name="first" placeholder="First Name" formControlName="firstName" />
 
-           
+
 
             <label for="profilePicture">Upload Profile Picture</label>
             <input type="file" class="form-control" id="profilePicture" (change)="onProfilePictureSelected($event)"
@@ -17,15 +17,14 @@
 
             <div>
                 <label for="number">Number</label>
-                <input type="number" name="number" id="number" placeholder="Number" required formControlName="number" />
-                <button class="otp" (click)="sendOtp()">Get Otp</button>
+                <input type="number" name="number" id="number" placeholder="Number" required [readOnly]="!numberOtp" formControlName="number" />
+                <button class="otp" (click)="sendOtp()" *ngIf="numberOtp" >Get Otp</button>
             </div>
 
             <div class="verifyotp" *ngIf="otpSection">
                 <label for="otp">Verify Otp</label>
                 <input type="text" name="otp" id="otp" placeholder="Enter otp" required formControlName="otp" />
-                <button class="verify" (click)="verifyOtp()" *ngIf="!verified">Verify</button>
-                <span class="Verified" *ngIf="verified">Verified</span>
+                <button class="verify" (click)="verifyOtp()" >Verify</button>
             </div>
 
 
@@ -33,15 +32,15 @@
             <input type="date" id="dob" name="dob" placeholder="Enter your DOB" formControlName="dob" required>
             <div>
                 <label for="adhar">Adhar:</label>
-                <input type="text" id="adhar" name="adhar" placeholder="Enter your Adhar Number"
+                <input type="text" id="adhar" name="adhar" placeholder="Enter your Adhar Number" [readOnly]="!otpAdharSended"
                     formControlName="adharCardNumber">
-                <button class="otp" (click)="sendAdharOtp()">Get Otp</button>
+                <button class="otp" (click)="sendAdharOtp()" *ngIf="otpAdharSended">Get Otp</button>
             </div>
             <div class="verifyotp" *ngIf="otpSectionAdhar">
                 <label for="otp">Verify Otp</label>
-                <input type="text" name="otpAdhar" id="otp" placeholder="Enter otp" required formControlName="otpAdhar" />
+                <input type="text" name="otpAdhar" id="otp" placeholder="Enter otp" required
+                    formControlName="otpAdhar" />
                 <button class="verify" (click)="verifyAdharOtp()" *ngIf="!verifiedAdhar">Verify</button>
-                <span class="Verified" *ngIf="verifiedAdhar">Verified</span>
             </div>
 
 
@@ -55,19 +54,28 @@
 
 
 
-<div>
-    <label for="pan">Pan Card:</label>
-    <input type="text" id="pan" name="adhar" placeholder="Enter your Adhar Number"
-        formControlName="panCardNumber">
-        <button class="otp" (click)="verifyPan()" *ngIf="!panverifyed">Verify Pan</button>
-        <span class="Verified" *ngIf="panverifyed">Verified</span>
-</div>
-           
+            <div>
+                <label for="pan">Pan Card:</label>
+                <input type="text" id="pan" name="adhar" placeholder="Enter your Adhar Number"
+                    formControlName="panCardNumber">
+                <button class="otp" (click)="verifyPan()" *ngIf="!panverifyed">Verify Pan</button>
+                <span class="Verified" *ngIf="panverifyed">Verified</span>
+            </div>
+
 
             <label for="panCard">Upload Pan Card</label>
 
             <input type="file" class="form-control" id="panCard" (change)="onPanCardSelected($event)" multiple
                 accept="image/*">
+<div *ngIf="role =='admin' ">
+    <label for="gender">Shop:</label>
+    <select id="gender" name="gender" formControlName="shop" required>
+        <option value="1">Select Shop</option>
+        <option *ngFor="let name of shopNames">{{name.shopName}}</option>
+
+    </select>
+</div>
+          
 
 
             <label for="gender">Gender:</label>
@@ -81,16 +89,15 @@
 
 
             <label for="state">State:</label>
-            <select id="state" name="state" formControlName="state" required>
+            <select id="state" name="state" formControlName="state"  (change)="onStateSelect($event)" required>
                 <option value="1">Select State</option>
-                <option>mp</option>
-                <option>Other</option>
+                <option *ngFor="let name of state">{{name}}</option>
             </select>
             <label for="District">District:</label>
-            <select id="District" name="District" formControlName="district" required>
-                <option value="1">Select a District</option>
-                <option>mp</option>
-                <option>Other</option>
+            <select id="District" name="District" formControlName="district" required (change)="onCitySelect($event)">
+                <option value="1">Select a city</option>
+                <option *ngFor="let name of city">{{name}}</option>
+                
             </select>
 
             <label for="address">Address:</label>

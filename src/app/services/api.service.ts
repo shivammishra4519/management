@@ -168,6 +168,14 @@ export class ApiService {
     return this.http.post(`${this.url}api/viewalldevice`, {},{ headers: this.getHeaders() });
   }
 
+  viewAllShopName(): Observable<any> {
+    return this.http.post(`${this.url}shops/names`, {},{ headers: this.getHeaders() });
+  }
+
+  getState(): Observable<any> {
+    return this.http.post(`${this.url}api/state`, {},{ headers: this.getHeaders() });
+  }
+
 
 
 
