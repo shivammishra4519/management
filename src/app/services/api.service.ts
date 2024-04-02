@@ -176,6 +176,9 @@ export class ApiService {
     return this.http.post(`${this.url}api/state`, {},{ headers: this.getHeaders() });
   }
 
+  filterCustomer(data:any): Observable<any> {
+    return this.http.post(`${this.url}customer/filter`, data,{ headers: this.getHeaders() });
+  }
 
 
 

@@ -3,7 +3,7 @@
       <tr>
           <th class="sr">S.N</th>
           <th class="first">First Name</th>
-          <th class="last">Last Name</th>
+        
           <th class="number">Number</th>
           <!-- <th class="email">email</th> -->
           <th class="dob">DOB</th>
@@ -21,7 +21,7 @@
       <tr *ngFor="let user of customerData; let i = index">
           <td class="sr">{{ i + 1 }}</td>
           <td class="first">{{ user.firstName }}</td>
-          <td class="last">{{ user.lastName }}</td>
+        
           <td class="number">{{ user.number }}</td>
           <!-- <td class="email">{{ user.email }}</td> -->
           <td class="dob">{{ user.dob }}</td>

@@ -1,0 +1,38 @@
+
+
+.pg-footer {
+    font-family: 'Roboto', sans-serif;
+}
+
+.footer {
+    background-color: #004658;
+    color: #fff;
+    position: fixed;
+    bottom: 1px;
+    width: 100%;
+    padding: 1px 0;
+    text-align: center;
+}
+
+.footer-copyright {
+    background-color: #027b9a;
+    color: #fff;
+    padding: 15px 30px;
+}
+
+.footer-copyright-wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.footer-copyright-text {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 0;
+}
+
+.footer-copyright-link {
+    color: #fff;
+    text-decoration: none;
+}

@@ -1,25 +1,22 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../../environment';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-
-
+import { environment } from '../../../../environment';
 
 @Component({
-  selector: 'app-customer-registration',
-  templateUrl: './customer-registration.component.html',
-  styleUrl: './customer-registration.component.css'
+  selector: 'app-otpadhar',
+  templateUrl: './otpadhar.component.html',
+  styleUrl: './otpadhar.component.css'
 })
-export class CustomerRegistrationComponent {
+export class OtpadharComponent {
   otpSection = false;
-  isOtpVerfied = false;
+  isOtpVerfied = true;
   otpSectionAdhar = false;
   verifiedAdhar = false;
-  panverifyed = false;
   role:any;
   shopNames:any;
   numberOtp=true;
@@ -49,7 +46,6 @@ export class CustomerRegistrationComponent {
     number: ['', Validators.required],
     email: ['', Validators.required],
     dob: ['', Validators.required],
-    panCardNumber: ['', Validators.required],
     adharCardNumber: ['', Validators.required],
     gender: ['1', Validators.required],
     state: ['1', Validators.required],
@@ -59,6 +55,10 @@ export class CustomerRegistrationComponent {
     otp: ['',],
     otpAdhar: ['', ],
     shop: ['', Validators.required],
+    fatherName: ['', Validators.required],
+    secondIdType: ['', Validators.required],
+    secondId: ['', Validators.required],
+
   });
 
   registerCustomer() {
@@ -93,7 +93,7 @@ export class CustomerRegistrationComponent {
             this.toastr.error('Mobile number not Verified');
           }
           else{
-           if(this.customerRegistrationForm.invalid){
+           if(false){
             this.toastr.error('Fill all details')
            }else[
             this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
@@ -102,7 +102,8 @@ export class CustomerRegistrationComponent {
                 this.router.navigate(['/dashboard/sell-devices', this.customerRegistrationForm.value.number]);
               },
               error: err => {
-                console.log(err)
+               
+                this.toastr.error(err.error.message)
               }
             })
            ]
@@ -208,7 +209,9 @@ export class CustomerRegistrationComponent {
         this.verifiedAdhar = true
         this.customerRegistrationForm.patchValue({
           firstName: data.name,
-          dob:data.dob
+          dob:data.dob,
+          fatherName:data.father
+
         })
         this.otpSectionAdhar = false;
         this.toastr.success('OTP VERFIYED')
@@ -216,15 +219,7 @@ export class CustomerRegistrationComponent {
     })
   }
 
-  verifyPan() {
-    const panId = this.customerRegistrationForm.value.panCardNumber;
-    this.service.verifyPan({ Panid: panId }).subscribe({
-      next: data => {
-        this.panverifyed = true;
-        console.log(data)
-      }
-    })
-  }
+ 
 
 
 
@@ -247,6 +242,5 @@ else{
       this.toastr.warning('Select A Valid State')
     }
   }
-  
-  
+
 }

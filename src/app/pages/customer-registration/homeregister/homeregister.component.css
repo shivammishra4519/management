@@ -1,0 +1,47 @@
+/* @import "../../../../assets/css/customer-register.css"; */
+.card {
+    width: 60vw;
+    margin: auto;
+}
+
+.row-self {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+   
+}
+
+.nav {
+    width: 33%;
+    background-color: rgb(177, 217, 230);
+    border: 1px solid black;
+   
+}
+
+.active {
+    background-color: grey;
+}
+a{
+    text-align: center;
+}
+.nav-itm{
+    cursor: pointer;
+    text-align: center;
+    display: block;
+}
+h3{
+    text-align: center;
+}
+
+
+
+@media screen and (max-width: 768px) {
+   .card{
+    width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+   }
+   
+  }

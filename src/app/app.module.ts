@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
@@ -29,6 +28,13 @@ import { SettleAmountComponent } from './shops/settle-amount/settle-amount.compo
 import { SettleBankComponent } from './shops/settle-bank/settle-bank.component';
 import { SettleAdminComponent } from './shops/settle-admin/settle-admin.component';
 import { SettleEmployeeComponent } from './shops/settle-employee/settle-employee.component';
+import { HomeregisterComponent } from './pages/customer-registration/homeregister/homeregister.component';
+import { OtpadharComponent } from './pages/customer-registration/otpadhar/otpadhar.component';
+import { NoneotpComponent } from './pages/customer-registration/noneotp/noneotp.component';
+import { FindCustomerComponent } from './pages/customer-registration/find-customer/find-customer.component';
+import { PaytmGatwayComponent } from './pages/paytm-gatway/paytm-gatway.component';
+import { GuarantorComponent } from './pages/guarantor/guarantor.component';
+import { HomeMainComponent } from './home-main/home-main.component';
 
 
 @NgModule({
@@ -53,14 +59,22 @@ import { SettleEmployeeComponent } from './shops/settle-employee/settle-employee
     SettleAmountComponent,
     SettleBankComponent,
     SettleAdminComponent,
-    SettleEmployeeComponent
+    SettleEmployeeComponent,
+    HomeregisterComponent,
+    OtpadharComponent,
+    NoneotpComponent,
+    FindCustomerComponent,
+    PaytmGatwayComponent,
+    GuarantorComponent,
+    HomeMainComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,NoopAnimationsModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot()
   ],

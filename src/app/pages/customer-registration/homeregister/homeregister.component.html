@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="row-self">
+        <div class="nav" [ngClass]="{'active': isFindUser}" (click)="findUser()"><span class="nav-itm">Find User</span></div>
+        <div class="nav" [ngClass]="{'active': isByAdhar}" (click)="registerByAdhar()"> <span class="nav-itm">  By adhar </span></div>
+        <div class="nav" [ngClass]="{'active': isManual}" (click)="manual()"><span class="nav-itm">manual</span></div>
+    </div>
+</div>
+
+
+<div class="main">
+    <div *ngIf="isFindUser">
+        <app-find-customer></app-find-customer>
+    </div>
+    <div *ngIf="isByAdhar">
+        <app-otpadhar></app-otpadhar>
+    </div>
+    <div *ngIf="isManual">
+        <app-noneotp></app-noneotp>
+    </div>
+   
+</div>
+
+

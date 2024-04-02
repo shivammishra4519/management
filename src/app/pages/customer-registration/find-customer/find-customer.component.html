@@ -1,0 +1,113 @@
+<div class="filter">
+    <div class="row1">
+
+        <div class="number">
+            <div class="text"> Number :</div>
+            <div class="inp-box">
+                <input type="number" [(ngModel)]="number">
+            </div>
+            <button class="btn-self" (click)="byNumber()">Search</button>
+        </div>
+        <div class="number">
+            <div class="text"> Aadhar :</div>
+            <div class="inp-box">
+                <input type="number" [(ngModel)]="adharcardNumber">
+            </div>
+            <button class="btn-self" (click)="byAadhar()">Search</button>
+        </div>
+
+    </div>
+    <div class="main" *ngIf="userData">
+        <h1 style="text-align: center;">CUSTOMER DETAILS</h1>
+        <div class="row-self">
+            <div class="width50">
+                Name:
+            </div>
+            <div class="width50">
+                {{userData.firstName}}
+            </div>
+        </div>
+        <div class="row-self">
+            <div class="width50">
+                FSTHER'S NAME:
+            </div>
+            <div class="width50">
+                {{userData.fatherName}}
+            </div>
+        </div>
+        <div class="row-self">
+            <div class="width50">
+                Number:
+            </div>
+            <div class="width50">
+                {{userData.number}}
+            </div>
+        </div>
+
+        <div class="row-self">
+            <div class="width50">
+                Adhar Number:
+            </div>
+            <div class="width50">
+                {{userData.adharCardNumber}}
+            </div>
+        </div>
+
+        <div class="row-self">
+            <div class="width50">
+                Gender:
+            </div>
+            <div class="width50">
+                {{userData.gender}}
+            </div>
+        </div>
+
+        <div class="row-self">
+            <div class="width50">
+                STATE:
+            </div>
+            <div class="width50">
+                {{userData.state}}
+            </div>
+        </div>
+
+        <div class="row-self">
+            <div class="width50">
+                CITY:
+            </div>
+            <div class="width50">
+                {{userData.district}}
+            </div>
+        </div>
+
+        <div class="row-self">
+            <div class="width50">
+                ADDRESS:
+            </div>
+            <div class="width50">
+                {{userData.address}}
+            </div>
+        </div>
+
+        <div class="row-self">
+            <div class="width50">
+                FINANCE STATUS:
+            </div>
+            <div class="width50">
+                <button (click)="checkStatus({number:userData.number})">check</button>
+            </div>
+        </div>
+
+        <div class="row-self">
+            <div class="width50">
+                SELL NEW DEVICE:
+            </div>
+            <div class="width50">
+                CLICK
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

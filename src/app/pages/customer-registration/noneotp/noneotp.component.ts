@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../../environment';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-
-
+import { environment } from '../../../../environment';
 
 @Component({
-  selector: 'app-customer-registration',
-  templateUrl: './customer-registration.component.html',
-  styleUrl: './customer-registration.component.css'
+  selector: 'app-noneotp',
+  templateUrl: './noneotp.component.html',
+  styleUrl: './noneotp.component.css'
 })
-export class CustomerRegistrationComponent {
+export class NoneotpComponent {
   otpSection = false;
-  isOtpVerfied = false;
+  isOtpVerfied = true;
   otpSectionAdhar = false;
   verifiedAdhar = false;
   panverifyed = false;
@@ -49,7 +47,6 @@ export class CustomerRegistrationComponent {
     number: ['', Validators.required],
     email: ['', Validators.required],
     dob: ['', Validators.required],
-    panCardNumber: ['', Validators.required],
     adharCardNumber: ['', Validators.required],
     gender: ['1', Validators.required],
     state: ['1', Validators.required],
@@ -59,6 +56,9 @@ export class CustomerRegistrationComponent {
     otp: ['',],
     otpAdhar: ['', ],
     shop: ['', Validators.required],
+    fatherName: ['', Validators.required],
+    secondIdType: ['0', Validators.required],
+    secondId: ['', Validators.required],
   });
 
   registerCustomer() {
@@ -196,35 +196,9 @@ export class CustomerRegistrationComponent {
     }
 
   }
-  verifyAdharOtp() {
-    const adhar = this.customerRegistrationForm.value.adharCardNumber;
-    const otp = this.customerRegistrationForm.value.otpAdhar;
-    const obj = {
-      Aadhaarid: adhar,
-      otp: otp
-    }
-    this.service.verifyAdharOtp(obj).subscribe({
-      next: data => {
-        this.verifiedAdhar = true
-        this.customerRegistrationForm.patchValue({
-          firstName: data.name,
-          dob:data.dob
-        })
-        this.otpSectionAdhar = false;
-        this.toastr.success('OTP VERFIYED')
-      }
-    })
-  }
+  
 
-  verifyPan() {
-    const panId = this.customerRegistrationForm.value.panCardNumber;
-    this.service.verifyPan({ Panid: panId }).subscribe({
-      next: data => {
-        this.panverifyed = true;
-        console.log(data)
-      }
-    })
-  }
+ 
 
 
 
@@ -247,6 +221,4 @@ else{
       this.toastr.warning('Select A Valid State')
     }
   }
-  
-  
 }

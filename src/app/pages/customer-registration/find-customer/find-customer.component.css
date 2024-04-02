@@ -1,0 +1,58 @@
+.filter{
+    background-color: #fff;
+    width: 60vw;
+    margin: auto;
+    margin-top: 10px;
+    min-height: 90vh;
+    border: 1px solid grey;
+    padding-top: 20px;
+}
+ .row1{
+    display: flex !important;
+ }
+ .number{
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+ }
+ input{
+    background:none;
+    border: 1px solid gray;
+    padding-left: 5px;
+ }
+ 
+ .btn-self{
+    background-color: rgb(1, 25, 1);
+    color: white;
+    width: 60px;
+ }
+ .main{
+    border: 1px solid;
+    width:60% ;
+    margin: auto;
+    margin-top: 10px;
+ }
+
+ .row-self{
+    width: 100%;
+    display: flex;
+    margin: auto;
+    /* margin-top: 10px; */
+ 
+ }
+ .width50{
+    width: 50%;
+    border: 1px solid grey;
+    padding-left: 20px;
+ }
+
+
+
+ @media screen and (max-width: 768px) {
+    .filter{
+        width: 100vw;
+    }
+    .row1{
+        flex-direction: column;
+    }
+   }

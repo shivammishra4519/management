@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-
 import { SettingComponent } from './dashboard/basic-setting/setting/setting.component';
 import { BasicSettingComponent } from './dashboard/basic-setting/basic-setting/basic-setting.component';
 import { SetTemplateComponent } from './dashboard/basic-setting/set-template/set-template.component';
@@ -21,6 +20,13 @@ import { SettleAmountComponent } from './shops/settle-amount/settle-amount.compo
 import { SettleBankComponent } from './shops/settle-bank/settle-bank.component';
 import { SettleAdminComponent } from './shops/settle-admin/settle-admin.component';
 import { SettleEmployeeComponent } from './shops/settle-employee/settle-employee.component';
+import { HomeregisterComponent } from './pages/customer-registration/homeregister/homeregister.component';
+import { NoneotpComponent } from './pages/customer-registration/noneotp/noneotp.component';
+import { OtpadharComponent } from './pages/customer-registration/otpadhar/otpadhar.component';
+import { FindCustomerComponent } from './pages/customer-registration/find-customer/find-customer.component';
+import { PaytmGatwayComponent } from './pages/paytm-gatway/paytm-gatway.component';
+import { GuarantorComponent } from './pages/guarantor/guarantor.component';
+import { HomeMainComponent } from './home-main/home-main.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -32,7 +38,15 @@ const routes: Routes = [
         path: '', redirectTo: 'home', pathMatch: 'full'
       },
       { path: 'sell-devices/:number', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
-      { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
+      // { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
+      {
+        path: 'customer-registration', component: HomeregisterComponent,
+        children: [
+          { path: 'manual', component: NoneotpComponent },
+          { path: 'byadhar', component: OtpadharComponent },
+          { path: 'find-customer', component: FindCustomerComponent },
+        ]
+      },
       { path: 'user-registration', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule), canActivate: [adminAuthGaurdGuard] },
       { path: 'view-users', loadChildren: () => import('./pages/view-users/view-users.module').then(m => m.ViewUsersModule) },
       { path: 'view-customers', loadChildren: () => import('./pages/view-customers/view-customers.module').then(m => m.ViewCustomersModule) },
@@ -47,8 +61,9 @@ const routes: Routes = [
       { path: 'users-list', loadChildren: () => import('./pages/users-lis/users-lis.module').then(m => m.UsersLisModule), canActivate: [adminAuthGaurdGuard] },
       { path: 'settle-amount', component: SettleAmountComponent, },
       { path: 'bank', component: SettleBankComponent },
-      {path:'admin',component:SettleAdminComponent},
-      {path:'employee',component:SettleEmployeeComponent},
+      { path: 'admin', component: SettleAdminComponent },
+      { path: 'guarantor', component: GuarantorComponent },
+      { path: 'employee', component: SettleEmployeeComponent },
       {
         path: 'setting', component: SettingComponent,
         children: [
@@ -69,10 +84,6 @@ const routes: Routes = [
         ]
       },
 
-
-
-
-
     ],
     canActivate: [authGuard]
   },
@@ -84,28 +95,19 @@ const routes: Routes = [
     path: 'forget-password',
     component: ForgetPasswordComponent
   },
+  {
+path:'home',component:HomeMainComponent },
 
   {
-    path: '', redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: 'home', pathMatch: 'full'
   },
 
-
-
-
-
-
-
-
-
-
-
-
-
+  {
+    path: 'payment', component: PaytmGatwayComponent
+  }
 
   // { path: 'customer-registraion', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
   // { path: 'users', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
-
-
 ];
 
 @NgModule({
