@@ -1,4 +1,11 @@
-<div class="body">
+
+<div class="body1" *ngIf="isLoader">
+    <div id="loader"></div>
+</div>
+
+
+
+<div class="body" *ngIf="!isLoader">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" routerLink="/home">
@@ -49,10 +56,10 @@
             <div class="row g-0">
                
                 <div class="col-md-6"> <!-- Adjusted to take up the remaining 50% of the width -->
-                    <div class="card-body">
+                    <div class="card-body text">
                         <p class="card-text" ><span class="tag-line">Uphar Mobile finance service</span>
                        <span class="content">
-                        At Uphar, we're revolutionizing the way you manage your finances. Our mobile finance service offers you the convenience and flexibility to stay in control of your money anytime, anywhere. From banking and budgeting to investing and payments, our secure and user-friendly app puts all your financial needs at your fingertips. Experience the freedom of managing your finances on the go with Uphar - empowering you to achieve your financial goals with ease
+                        At Uphar, we're revolutionizing the way you manage your finances. Our mobile finance service offers you the convenience and flexibility to stay in control of your money anytime, anywhere. From banking and budgeting to investing and payments, our secure and user-friendly app puts all your financial needs at your fingertips. Experience the freedom of managing your finances on the go with Uphar - empowering you to achieve your financial goals with ease.
                        </span></p>
                        
                     

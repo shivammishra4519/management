@@ -7,8 +7,12 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 })
 export class HomeMainComponent {
   isNavbarOpen: boolean = false;
-
-  constructor(private elementRef: ElementRef) {}
+  isLoader=true;
+  constructor(private elementRef: ElementRef) {
+    setTimeout(() => {
+      this.isLoader = false;
+    }, 3000);
+  }
 
   toggleNavbar(): void {
     this.isNavbarOpen = !this.isNavbarOpen;
@@ -52,4 +56,7 @@ export class HomeMainComponent {
   }
   
 
+
+
+ 
 }
