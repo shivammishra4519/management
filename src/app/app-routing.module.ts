@@ -27,6 +27,8 @@ import { FindCustomerComponent } from './pages/customer-registration/find-custom
 import { PaytmGatwayComponent } from './pages/paytm-gatway/paytm-gatway.component';
 import { GuarantorComponent } from './pages/guarantor/guarantor.component';
 import { HomeMainComponent } from './home-main/home-main.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -95,9 +97,9 @@ const routes: Routes = [
     path: 'forget-password',
     component: ForgetPasswordComponent
   },
-  {
-path:'home',component:HomeMainComponent },
-
+  {path:'home',component:HomeMainComponent },
+  {path:'about-us',component:AboutUsComponent },
+  {path:'contact-us',component:ContactUsComponent },
   {
     path: '', redirectTo: 'home', pathMatch: 'full'
   },

@@ -35,6 +35,9 @@ import { FindCustomerComponent } from './pages/customer-registration/find-custom
 import { PaytmGatwayComponent } from './pages/paytm-gatway/paytm-gatway.component';
 import { GuarantorComponent } from './pages/guarantor/guarantor.component';
 import { HomeMainComponent } from './home-main/home-main.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ServiceComponent } from './service/service.component';
 
 
 @NgModule({
@@ -66,7 +69,10 @@ import { HomeMainComponent } from './home-main/home-main.component';
     FindCustomerComponent,
     PaytmGatwayComponent,
     GuarantorComponent,
-    HomeMainComponent
+    HomeMainComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    ServiceComponent
   ],
   imports: [
     BrowserModule,

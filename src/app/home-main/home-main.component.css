@@ -1,38 +1,75 @@
 
 
-.pg-footer {
-    font-family: 'Roboto', sans-serif;
-}
 
-.footer {
-    background-color: #004658;
-    color: #fff;
-    position: fixed;
-    bottom: 1px;
-    width: 100%;
-    padding: 1px 0;
+
+.u-char{
+    padding-top: 2px;
+    
+    color: #027b9a;
+}
+.brand{
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+  
+}
+.mainchar{
+    width: 50px;
+    margin-top:13px ;
+    font-size: 70px;
     text-align: center;
+    color: #027b9a;
+}
+.full-name{
+    width: fit-content;
+    font-size: 20px;
+}
+.uphar{
+    color: #1f9aba;
+}
+.finance{
+    color: cadetblue;
 }
 
-.footer-copyright {
-    background-color: #027b9a;
-    color: #fff;
-    padding: 15px 30px;
+.card-body{
+    padding: 40px 70px !important;
 }
 
-.footer-copyright-wrapper {
-    margin: 0 auto;
-    max-width: 1200px;
+
+.content{
+font-size: 30px;
+color: #004658;
+}
+.tag-line{
+    color:  #127a59;
+    font-size: 40px;
 }
 
-.footer-copyright-text {
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 18px;
-    margin: 0;
+.about-us{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 60px;
 }
 
-.footer-copyright-link {
-    color: #fff;
-    text-decoration: none;
-}
+/* Target mobile devices (phones) */
+@media only screen and (max-width: 767px) {
+    .card-body{
+        padding: 10px 10px !important;
+    }
+    .content{
+        font-size: 18px;
+      
+    }
+    .tag-line{
+        font-size: 20px;
+    }
+    .body{
+        overflow: hidden;
+    }
+  }
+  
+  /* Target tablet devices */
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    
+  }
+  

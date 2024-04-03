@@ -1,49 +1,97 @@
-<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">UMF</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">Contact Us</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/login">Login</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<div class="body">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" routerLink="/home">
+                <div class="brand">
+                    <div class="mainchar">
+                       U
+                    </div>
+                    <div class="full-name">
+                        <span class="uphar"> Uphar</span><br>
+                        <span class="finance">mobile finance</span>
+                    </div>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" [class.show]="isNavbarOpen">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="scrollToAboutPlaceholder()" routerLinkActive="active" style="cursor: pointer;">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="scrollToServicePlaceholder()" routerLinkActive="active" style="cursor: pointer;">Our Services</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="scrollToContactPlaceholder()" routerLinkActive="active" style="cursor: pointer;">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
-
-
-
-<div class="footer">
-    <div class="pg-footer">
-        <footer class="footer">
+    </nav>
     
-            <div class="footer-copyright">
-                <div class="footer-copyright-wrapper">
-                    <p class="footer-copyright-text">
-                        <a class="footer-copyright-link" href="#" target="_self"> ©2020. | Designed By: umf | All
-                            rights reserved. </a>
-                    </p>
+    
+    
+    <div class="main">
+        <div class="card mb-3 mt-2" style="max-width: 98vw;">
+            <div class="row g-0">
+               
+                <div class="col-md-6"> <!-- Adjusted to take up the remaining 50% of the width -->
+                    <div class="card-body">
+                        <p class="card-text" ><span class="tag-line">Uphar Mobile finance service</span>
+                       <span class="content">
+                        At Uphar, we're revolutionizing the way you manage your finances. Our mobile finance service offers you the convenience and flexibility to stay in control of your money anytime, anywhere. From banking and budgeting to investing and payments, our secure and user-friendly app puts all your financial needs at your fingertips. Experience the freedom of managing your finances on the go with Uphar - empowering you to achieve your financial goals with ease
+                       </span></p>
+                       
+                    
+                    </div>
+                </div>
+                <div class="col-md-6"> <!-- Adjusted to take up 50% of the width -->
+                    <img src="../../assets/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg" class="img-fluid rounded-start" alt="...">
                 </div>
             </div>
-        </footer>
+        </div>
+        
     </div>
+    
+    
+    <div class="main">
+        <div class="card mb-3 mt-2" style="max-width: 98vw;">
+            <div id="aboutusPlaceholder">
+               <h1 class="about-us">About Us</h1>
+            </div>
+       <app-about-us></app-about-us>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="card mb-3 mt-2" style="max-width: 98vw;">
+            <div id="servicePlaceholder">
+               <h1 class="about-us">Services</h1>
+            </div>
+       <app-service></app-service>
+        </div>
+    </div>
+    
+    <div class="main">
+        <div class="card mb-3 mt-2" style="max-width: 98vw;">
+            <div id="contactPlaceholder">
+            
+            </div>
+            <app-contact-us></app-contact-us>
+        </div>
+    </div>  
+    
 </div>
-
