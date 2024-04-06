@@ -1,6 +1,4 @@
 
-
-
 <div class="card" style="background-image: linear-gradient(195deg, #42424a 0%, #191919 100%)">
    
     <ul>
@@ -9,12 +7,12 @@
         <li class="inactive" *ngIf="role=='admin'"><a routerLink="/dashboard/user-registration">User Register</a></li>
         <li class="inactive"><a routerLink="/dashboard/view-customers-list">Customer List</a></li>
         <li class="inactive"><a routerLink="/dashboard/view-emi-list">View emi</a></li>
-        <li class="inactive"><a routerLink="/dashboard/sell-device">sell device</a></li>
         <li class="inactive" *ngIf="role=='admin'"><a routerLink="/dashboard/employe-register">Employee Register</a></li>
         <li class="inactive" *ngIf="role=='admin'"><a routerLink="/dashboard/fund-transefer">Fund Transfer</a></li>
         <li class="inactive" ><a routerLink="/dashboard/settle-amount">Settle Amount</a></li>
         <li class="inactive"><a routerLink="/dashboard/fund-transfe-details"> Transectipn Details </a></li>
         <li class="inactive" *ngIf="role=='admin'"><a routerLink="/dashboard/users-list">Users list</a></li>
+        <li class="inactive"><a routerLink="/dashboard/sell-device">sell device</a></li>
         <li class="inactive" ><a routerLink="/dashboard/view-sell-device">Sold device</a></li>
         <li class="inactive"><a ><button class="log-out" (click)="logOut()">Log Out</button></a></li>
        
