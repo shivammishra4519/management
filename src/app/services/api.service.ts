@@ -181,6 +181,13 @@ export class ApiService {
   }
 
 
+  verifyCustomer(data:any): Observable<any> {
+    return this.http.post(`${this.url}customer/verify`, data,{ headers: this.getHeaders() });
+  }
+
+  registerGuarantor(data:any): Observable<any> {
+    return this.http.post(`${this.url}guarantor/register`, data,{ headers: this.getHeaders() });
+  }
 
 
   imageView(imageName: string): Observable<Blob> {

@@ -126,6 +126,7 @@ export class OtpadharComponent {
 
   onProfilePictureSelected(event: any) {
     this.profilePictures.push(event.target.files[0]);
+    console.log(this.profilePictures)
   }
 
   onPanCardSelected(event: any) {

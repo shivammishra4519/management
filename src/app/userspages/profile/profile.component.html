@@ -1,0 +1,75 @@
+<div class="row mt-2">
+    <div class="col-md-4">
+        <div class="main">
+            <div class="profile" style="width: 18rem;">
+                <img src="../../../assets/images/Rohit_Gurunath_Sharma.jpg" class="card-img-top" height="250px"
+                    alt="...">
+            </div>
+            <div class="nav-self">
+                <ul>
+                    <li><a href="">Setting</a></li>
+                    <li><a href="">Change Pin</a></li>
+                    <li><a href="">Change Password</a></li>
+                    <li><a href="">View </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="main">
+            <div *ngIf="isProfile">
+                <h2>IDENTITY</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fa fa-pen fa-xs edit"></i>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>:</td>
+                                    <td>ImDezCode</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>:</td>
+                                    <td>imdezcodegmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>:</td>
+                                    <td>Bali, Indonesia</td>
+                                </tr>
+                                <tr>
+                                    <td>Hobbies</td>
+                                    <td>:</td>
+                                    <td>Diving, Reading Book</td>
+                                </tr>
+                                <tr>
+                                    <td>Job</td>
+                                    <td>:</td>
+                                    <td>Web Developer</td>
+                                </tr>
+                                <tr>
+                                    <td>Skill</td>
+                                    <td>:</td>
+                                    <td>PHP, HTML, CSS, Java</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                <div class="changePassword" *ngIf="ischangePass">
+                    <div class="main">
+                        <h2>Change Password</h2>
+                        <div class="card-body">
+                            <input type="text" placeholder="Enter old Password">
+                        </div>
+                    </div>
+                </div>
+           
+
+        </div>
+
+    </div>
+</div>

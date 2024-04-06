@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CustomerDataService } from '../../datasharing/customer-data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sell-devices',
@@ -15,10 +17,7 @@ export class SellDevicesComponent {
   models: string[] = []
   deviceData: any;
   emis = [1, 2, 3, 4, 5]
-
-
-
-
+  otpSection=false;
   showMessage = false;
   invalidDownPayment = false;
   selectedBrandName: any;
@@ -26,16 +25,34 @@ export class SellDevicesComponent {
   emi = 0;
   emiLabel = false;
   sellAmount1 = 0;
-  constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute) {
+  isCustomerDataAvailable=false;
+  customerData:any;
+  isSelldevice:any;
+  isVerifyUser=true;
+  constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute,private customerService:CustomerDataService,private toaster:ToastrService) {
     service.viewModel().subscribe({
       next: (data: Device[]) => { // Specify the type of 'data' as Device[]
         this.arrayOfObject = data;
         this.brandNames = data.map((obj: Device) => obj.brand); // Explicitly specify type for 'obj'
-        // console.log("Brand Names:", this.brandNames);
       },
       error: error => {
         console.log(error)
       }
+    })
+
+    customerService.getCustomerData().subscribe(data=>{
+      if(!data){
+        this.isCustomerDataAvailable=false;
+        return
+      }
+      this.customerData=data;
+      this.isCustomerDataAvailable=true;
+      this.isVerifyUser=false;
+      this.sellDeviceForm.patchValue({
+        customerName:data.firstName,
+        customerNumber:data.number
+      })
+
     })
   }
 
@@ -53,18 +70,24 @@ export class SellDevicesComponent {
     emi: this.builder.control(0, Validators.required),
     emiAmount: this.builder.control(0, Validators.required),
     customerNumber: this.builder.control('', Validators.required),
+    customerName: this.builder.control('', Validators.required),
+    gaurantorNumber: this.builder.control('', Validators.required),
     interest: this.builder.control(0, Validators.required)
+  });
+
+  verifyUserData=this.builder.group({
+    number:this.builder.control('',Validators.required),
+    otp:this.builder.control(''),
   })
 
-  ngOnInit() {
-    const data = this.route.snapshot.paramMap.get('number');
-    this.sellDeviceForm.patchValue({
-      customerNumber: data
-
-    })
-
-  }
-
+  
+  gaurantorDataForm=this.builder.group({
+    name:this.builder.control('',Validators.required),
+    number:this.builder.control('',Validators.required),
+    address:this.builder.control('',Validators.required),
+    adharNumber:this.builder.control('',Validators.required),
+  })
+ 
 
 
 
@@ -264,6 +287,99 @@ discount:any;
     })
 
   }
+
+
+
+  verifyUser() {
+    const number:any = this.verifyUserData.value.number;
+    const strNum: string = number.toString();
+    const numLength: number = strNum.length; 
+    if (!number || numLength < 10) {
+        this.toaster.error('Enter a valid number');
+        return;
+    }
+    
+    this.service.verifyCustomer(this.verifyUserData.value).subscribe({
+        next: data => {
+            this.toaster.success('OTP sent to number');
+            this.customerData=null;
+            this.customerData=data;
+            this.sellDeviceForm.patchValue({
+              customerName:data.firstName,
+              customerNumber:data.number
+            })
+            this.sendOtp();
+
+
+            // this.isVerifyUser=false;
+            // this.isCustomerDataAvailable=true;
+        },
+        error: err => {
+            this.toaster.error('Customer does not exist');
+        }
+    });
+}
+
+
+
+sendOtp() {
+  const number = this.verifyUserData.value.number;
+
+  if (number) {
+    this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
+      next: data => {
+        this.otpSection = true
+        this.toaster.success('Otp send to Your Number')
+      },
+      error: err => {
+        this.toaster.error('Somtheing went wrong')
+      }
+    })
+  } else {
+    this.toaster.error('Somtheing went wrong')
+  }
+}
+
+
+verifyOtp() {
+
+  this.service.verifyeOtp(this.verifyUserData.value).subscribe({
+    next: data => {
+      this.isVerifyUser=false;
+      this.isCustomerDataAvailable=true;
+      this.toaster.success('OTP Verifyed Successfully')
+    },
+    error: err => {
+      this.toaster.error('Invalid OTP')
+    }
+  })
+}
+
+
+
+
+
+registerGaurantour(){
+  if(this.gaurantorDataForm.invalid){
+    this.toaster.error('fill all details');
+    return
+  }
+  this.service.registerGuarantor(this.gaurantorDataForm.value).subscribe({
+    next:data=>{
+      const number=this.gaurantorDataForm.value.number;
+      this.sellDeviceForm.patchValue({
+        gaurantorNumber:number
+      })
+      this.toaster.success('gaurantor registred successfully');
+      this.isCustomerDataAvailable=false;
+      this.isSelldevice=true;
+    },
+    error:err=>{
+      console.log(err)
+      this.toaster.error('somtheing went wrong or gaurantor already exit');
+    }
+  })
+}
 
 
 

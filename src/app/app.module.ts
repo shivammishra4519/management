@@ -38,6 +38,7 @@ import { HomeMainComponent } from './home-main/home-main.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ServiceComponent } from './service/service.component';
+import { ProfileComponent } from './userspages/profile/profile.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { ServiceComponent } from './service/service.component';
     HomeMainComponent,
     AboutUsComponent,
     ContactUsComponent,
-    ServiceComponent
+    ServiceComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

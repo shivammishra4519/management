@@ -29,6 +29,7 @@ import { GuarantorComponent } from './pages/guarantor/guarantor.component';
 import { HomeMainComponent } from './home-main/home-main.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ProfileComponent } from './userspages/profile/profile.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -39,7 +40,11 @@ const routes: Routes = [
       {
         path: '', redirectTo: 'home', pathMatch: 'full'
       },
-      { path: 'sell-devices/:number', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
+      {
+path:'profile',
+component:ProfileComponent
+      },
+      { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       // { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
       {
         path: 'customer-registration', component: HomeregisterComponent,
