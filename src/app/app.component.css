@@ -7,9 +7,9 @@
 .footer {
     background-color: #004658;
     color: #fff;
-    /* position: fixed; */
+    position: relative;
     bottom: 1px;
-    width: 100%;
+    width: 100vw;
     padding: 1px 0;
     text-align: center;
 }

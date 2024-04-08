@@ -163,6 +163,9 @@ export class ApiService {
   createNewPassword(data: any): Observable<any> {
     return this.http.post(`${this.url}forget/update`, data,);
   }
+  saveConactSms(data: any): Observable<any> {
+    return this.http.post(`${this.url}conactus/save`, data,);
+  }
   
   viewAllDevice(): Observable<any> {
     return this.http.post(`${this.url}api/viewalldevice`, {},{ headers: this.getHeaders() });

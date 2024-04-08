@@ -18,21 +18,21 @@
         </div>
       </div>
       <div class="contact-form-wrapper">
-        <form>
+        <form [formGroup]="details">
           <div class="form-item">
-            <input type="text" name="sender" required>
+            <input type="text" name="sender" required formControlName="name"> 
             <label>Name:</label>
           </div>
           <div class="form-item">
-            <input type="text" name="email" required>
+            <input type="text" name="email" required formControlName="number">
             <label>Contact Number:</label>
           </div>
           <div class="form-item">
-            <input type="text" name="email" required>
+            <input type="email" name="email" required formControlName="email">
             <label>Email:</label>
           </div>
           <div class="form-item">
-            <textarea class="" name="message" required></textarea>
+            <textarea class="" name="message" required formControlName="message"></textarea>
             <label>Message:</label>
           </div>
           <button class="submit-btn">Send</button>  

@@ -16,6 +16,7 @@ constructor(private service:ApiService){
     },
     error:err=>{
       alert('somtheing went wrong')
+      console.log(err)
     }
   })
 }

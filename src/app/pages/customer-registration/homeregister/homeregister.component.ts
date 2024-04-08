@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './homeregister.component.css'
 })
 export class HomeregisterComponent {
-  isFindUser=true;
-  isByAdhar=false;
+  isFindUser=false;
+  isByAdhar=true;
   isManual=false;
 
 

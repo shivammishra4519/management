@@ -281,8 +281,7 @@ discount:any;
         this.sellDeviceForm.reset();
       },
       error: err => {
-        alert('somthing went wrong')
-        console.log(err)
+        this.toaster.error(err.error.message)
       }
     })
 

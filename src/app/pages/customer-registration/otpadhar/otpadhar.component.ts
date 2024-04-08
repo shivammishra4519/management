@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environment';
+import { CustomerDataService } from '../../../datasharing/customer-data.service';
 
 @Component({
   selector: 'app-otpadhar',
@@ -24,7 +25,8 @@ export class OtpadharComponent {
   stateData:any;
   state:any;
   city:any;
-  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router,private auth:AuthService,private toastr:ToastrService) {
+  isAdharOtpVerify:any;
+  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router,private auth:AuthService,private toastr:ToastrService,private customerService:CustomerDataService) {
     this.role=auth.role;
     service.viewAllShopName().subscribe({
       next:data=>{
@@ -56,13 +58,36 @@ export class OtpadharComponent {
     otpAdhar: ['', ],
     shop: ['', Validators.required],
     fatherName: ['', Validators.required],
-    secondIdType: ['', Validators.required],
+    secondIdType: ['1', Validators.required],
     secondId: ['', Validators.required],
 
   });
 
   registerCustomer() {
     const formData = new FormData();
+
+    if (this.profilePictures.length <= 0) {
+      this.toastr.error('upload profile picture');
+      return
+    }
+    if (this.adharCardImages.length <= 0) {
+      this.toastr.error('upload adhar front image');
+      return
+    }
+
+    if (this.otherDocumentImages.length <= 0) {
+      this.toastr.error('upload adhar back image');
+      return
+    }
+    if (this.panCardImages.length <= 0) {
+      this.toastr.error('upload adhar second id');
+      return
+    }
+
+    if (this.customerRegistrationForm.invalid) {
+      this.toastr.error('fill all details');
+      return
+    }
 
     this.profilePictures.forEach(image => {
       formData.append('profilePictures', image);
@@ -80,6 +105,16 @@ export class OtpadharComponent {
       formData.append('otherDocumentImages', image);
     });
 
+    if (!this.isOtpVerfied) {
+      this.toastr.error('mobile number not verifyed');
+      return;
+    }
+
+    if (!this.verifiedAdhar) {
+      this.toastr.error('Adhar number verifyed');
+      return;
+    }
+    
     this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
       (response) => {
         if (response instanceof HttpResponse) {
@@ -87,36 +122,27 @@ export class OtpadharComponent {
           this.customerRegistrationForm.patchValue({
             images: img.body.filenames
           });
-
-
-          if (!this.isOtpVerfied) {
-            this.toastr.error('Mobile number not Verified');
-          }
-          else{
-           if(false){
-            this.toastr.error('Fill all details')
-           }else[
-            this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
-              next: res => {
-                this.toastr.success('Customer Registred Successfully')
-                this.router.navigate(['/dashboard/sell-devices', this.customerRegistrationForm.value.number]);
-              },
-              error: err => {
-               
-                this.toastr.error(err.error.message)
-              }
-            })
-           ]
-          }
-         
         } else {
           this.toastr.error('Upload Image again')
+          return
         }
       },
       (error) => {
         this.toastr.error('Error uploading images')
+        return
       }
     );
+
+
+    this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
+      next: data => {
+        this.customerService.setCustomerData(this.customerRegistrationForm.value);
+        this.toastr.success('customer registred successfully');
+        this.router.navigate(['/dashboard/sell-device']);
+      }, error: err => {
+        this.toastr.error('somtheing went wrong please try again');
+      }
+    })
   }
 
   profilePictures: File[] = [];
@@ -125,20 +151,138 @@ export class OtpadharComponent {
   otherDocumentImages: File[] = [];
 
   onProfilePictureSelected(event: any) {
-    this.profilePictures.push(event.target.files[0]);
-    console.log(this.profilePictures)
+    this.profilePictures = [];
+    const selectedProfilePicture = event.target.files[0];
+
+    if (this.panCardImages && this.panCardImages.length > 0) {
+      const panCardImageName = this.panCardImages[0].name;
+      if (selectedProfilePicture.name === panCardImageName) {
+        this.toastr.error('Image Already Uploaded In Second Id');
+        this.profilePictures = [];
+        return;
+      }
+    }
+
+    if (this.adharCardImages && this.adharCardImages.length > 0) {
+      const adharCardImageName = this.adharCardImages[0].name;
+      if (selectedProfilePicture.name === adharCardImageName) {
+        this.toastr.error('Image Already Uploaded In AdharCard Front');
+        this.profilePictures = [];
+        return;
+      }
+    }
+
+    if (this.otherDocumentImages && this.otherDocumentImages.length > 0) {
+      const otherDocumentImageName = this.otherDocumentImages[0].name;
+      if (selectedProfilePicture.name === otherDocumentImageName) {
+        this.toastr.error('Image Already Uploaded In AdharCard Back');
+        this.profilePictures = [];
+        return;
+      }
+    }
+
+    // If the selected profile picture is not a duplicate, add it to the profilePictures array
+    this.profilePictures.push(selectedProfilePicture);
   }
 
+
   onPanCardSelected(event: any) {
-    this.panCardImages.push(event.target.files[0]);
+    this.panCardImages = []
+    const selectedPicture = event.target.files[0];
+    if (this.profilePictures && this.profilePictures.length > 0) {
+      const profileImage = this.profilePictures[0].name;
+      if (selectedPicture.name === profileImage) {
+        this.toastr.error('Image Already Uploaded In Profile');
+        this.panCardImages = []
+        return;
+      }
+    }
+
+    if (this.adharCardImages && this.adharCardImages.length > 0) {
+      const adharCardImageName = this.adharCardImages[0].name;
+      if (selectedPicture.name === adharCardImageName) {
+        this.toastr.error('Image Already Uploaded In AdharCard Front');
+        this.panCardImages = []
+        return;
+      }
+    }
+
+    if (this.otherDocumentImages && this.otherDocumentImages.length > 0) {
+      const otherDocumentImageName = this.otherDocumentImages[0].name;
+      if (selectedPicture.name === otherDocumentImageName) {
+        this.toastr.error('Image Already Uploaded In AdharCard Back');
+        this.panCardImages = []
+        return;
+      }
+    }
+    this.panCardImages.push(selectedPicture)
   }
 
   onAdharCardSelected(event: any) {
-    this.adharCardImages.push(event.target.files[0]);
+    this.adharCardImages = []
+    const selectedPicture = event.target.files[0];
+    if (this.panCardImages && this.panCardImages.length > 0) {
+      const panCardImageName = this.panCardImages[0].name;
+      if (selectedPicture.name === panCardImageName) {
+        this.toastr.error('Image Already Uploaded In Second Id');
+        this.adharCardImages = []
+        return;
+      }
+    }
+
+    if (this.profilePictures && this.profilePictures.length > 0) {
+      const profileImage = this.profilePictures[0].name;
+      if (selectedPicture.name === profileImage) {
+        this.toastr.error('Image Already Uploaded In Profile');
+        this.adharCardImages = []
+        return;
+      }
+    }
+
+    if (this.otherDocumentImages && this.otherDocumentImages.length > 0) {
+      const otherDocumentImageName = this.otherDocumentImages[0].name;
+      if (selectedPicture.name === otherDocumentImageName) {
+        this.toastr.error('Image Already Uploaded In AdharCard Back');
+        this.adharCardImages = []
+        return;
+      }
+    }
+    this.adharCardImages.push(selectedPicture)
+
   }
 
   onOtherDocumentSelected(event: any) {
-    this.otherDocumentImages.push(event.target.files[0]);
+    this.otherDocumentImages = []
+    this.adharCardImages = []
+    const selectedPicture = event.target.files[0];
+    if (this.panCardImages && this.panCardImages.length > 0) {
+      const panCardImageName = this.panCardImages[0].name;
+      if (selectedPicture.name === panCardImageName) {
+        this.toastr.error('Image Already Uploaded In Second Id');
+        this.otherDocumentImages = []
+        return;
+      }
+    }
+
+    if (this.adharCardImages && this.adharCardImages.length > 0) {
+      const adharCardImageName = this.adharCardImages[0].name;
+      if (selectedPicture.name === adharCardImageName) {
+        this.toastr.error('Image Already Uploaded In AdharCard Front');
+        this.otherDocumentImages = []
+        return;
+      }
+    }
+
+    if (this.profilePictures && this.profilePictures.length > 0) {
+      const profileImage = this.profilePictures[0].name;
+      if (selectedPicture.name === profileImage) {
+        this.toastr.error('Image Already Uploaded In Profile');
+        this.otherDocumentImages = []
+        this.panCardImages = []
+        return;
+      }
+    }
+    this.otherDocumentImages.push(selectedPicture)
   }
 
   otp: any
@@ -212,7 +356,6 @@ export class OtpadharComponent {
           firstName: data.name,
           dob:data.dob,
           fatherName:data.father
-
         })
         this.otpSectionAdhar = false;
         this.toastr.success('OTP VERFIYED')

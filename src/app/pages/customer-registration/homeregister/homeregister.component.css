@@ -1,7 +1,7 @@
 /* @import "../../../../assets/css/customer-register.css"; */
 .card {
-    width: 60vw;
-    margin: auto;
+    width: 30vw;
+    /* margin: auto; */
 }
 
 .row-self {
@@ -14,9 +14,10 @@
 }
 
 .nav {
-    width: 33%;
+    width: 50%;
     background-color: rgb(177, 217, 230);
     border: 1px solid black;
+    text-align: center;
    
 }
 
@@ -30,6 +31,8 @@ a{
     cursor: pointer;
     text-align: center;
     display: block;
+    width: 100%;
+    
 }
 h3{
     text-align: center;

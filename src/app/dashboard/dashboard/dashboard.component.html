@@ -1,24 +1,32 @@
-<div class="header">
-    <div class="row ">
-        <div class="col-md-2" >
-            <h3 class="heading"><a routerLink="/dashboard/setting">DASHBOARD</a></h3>
-        </div>
-        
-    </div>
-    <div >
-        <a routerLink="/dashboard/user-setting">
-            <img src="../../../assets/svg/gear-solid.svg" style="width:32px;">
 
+<nav class="navbar navbar-expand-lg navbar-light bg-self">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/dashboard/setting">
+            DASHBOARD
         </a>
+        <button class="navbar-toggler" type="button">
+            <span>&#8942;</span>
+          </button>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a routerLink="/dashboard/user-setting">
+                        <img src="../../../assets/svg/gear-solid.svg" style="width:32px;">
+                    </a>
+                </li>
+                <li class="nav-item wallet">
+                    <span (click)="checkAmount()">&#8377;</span>
+                    <span> {{walletBalance}}</span>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="wallet">
-      <span class="symbol" (click)="checkAmount()">&#8377;&nbsp;</span>
-        <span class="amount"> {{walletBalance}}</span>
-    </div>
-</div>
+</nav>
+
+
 <div class="row">
     <input type="checkbox" id="sidebar-toggle" />
-        <label for="sidebar-toggle" class="toggle-btn" style="color: rgb(201, 71, 71);">&#9776;</label>
+    <label for="sidebar-toggle" class="toggle-btn" style="color:#fff;">&#9776;</label>
     <div class="col-md-2 sidebar">
         <app-sidebar></app-sidebar>
     </div>
@@ -26,3 +34,29 @@
         <router-outlet />
     </div>
 </div>
+
+
+
+
+
+
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/home">
+            DASHBOARD
+        </a>
+        <button class="navbar-toggler" type="button" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link"  routerLinkActive="active" style="cursor: pointer;">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->

@@ -109,9 +109,21 @@ export class NoneotpComponent {
       (response) => {
         if (response instanceof HttpResponse) {
           const img: any = response;
+          console.log(response)
           this.customerRegistrationForm.patchValue({
             images: img.body.filenames
           });
+          this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
+            next: data => {
+              this.customerService.setCustomerData(this.customerRegistrationForm.value);
+              this.toastr.success('customer registred successfully');
+              this.router.navigate(['/dashboard/sell-device']);
+            }, error: err => {
+              console.log(err)
+              this.toastr.error('somtheing went wrong please try again');
+            }
+          })
+      
         } else {
           this.toastr.error('Upload Image again')
           return
@@ -123,16 +135,8 @@ export class NoneotpComponent {
       }
     );
 
-    this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
-      next: data => {
-        this.customerService.setCustomerData(this.customerRegistrationForm.value);
-        this.toastr.success('customer registred successfully');
-        this.router.navigate(['/dashboard/sell-device']);
-      }, error: err => {
-        this.toastr.error('somtheing went wrong please try again');
-      }
-    })
 
+   
 
 
 
