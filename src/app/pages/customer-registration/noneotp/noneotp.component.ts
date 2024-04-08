@@ -26,7 +26,7 @@ export class NoneotpComponent {
   stateData: any;
   state: any;
   city: any;
-  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router, private auth: AuthService, private toastr: ToastrService,private customerService:CustomerDataService) {
+  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router, private auth: AuthService, private toastr: ToastrService, private customerService: CustomerDataService) {
     this.role = auth.role;
     service.viewAllShopName().subscribe({
       next: data => {
@@ -105,41 +105,50 @@ export class NoneotpComponent {
       this.toastr.error('mobile number not verifyed');
       return;
     }
-    this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
-      (response) => {
-        if (response instanceof HttpResponse) {
-          const img: any = response;
-          console.log(response)
-          this.customerRegistrationForm.patchValue({
-            images: img.body.filenames
-          });
-          this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
-            next: data => {
-              this.customerService.setCustomerData(this.customerRegistrationForm.value);
-              this.toastr.success('customer registred successfully');
-              this.router.navigate(['/dashboard/sell-device']);
-            }, error: err => {
-              console.log(err)
-              this.toastr.error('somtheing went wrong please try again');
-            }
-          })
-      
-        } else {
-          this.toastr.error('Upload Image again')
+
+    this.service.checkIsCustomer(this.customerRegistrationForm.value).subscribe({
+      next:data=>{
+        const status=data.status;
+        if(status == 1){
+          this.toastr.error('Customer Already Exit');
           return
         }
-      },
-      (error) => {
-        this.toastr.error('Error uploading images')
-        return
+        if(status == 0){
+          this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
+            (response) => {
+              if (response instanceof HttpResponse) {
+                const img: any = response;
+                console.log(response)
+                this.customerRegistrationForm.patchValue({
+                  images: img.body.filenames
+                });
+                this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
+                  next: data => {
+                    this.customerService.setCustomerData(this.customerRegistrationForm.value);
+                    this.toastr.success('customer registred successfully');
+                    this.router.navigate(['/dashboard/sell-device']);
+                  }, error: err => {
+                    console.log(err)
+                    this.toastr.error('somtheing went wrong please try again');
+                  }
+                })
+      
+              } else {
+                this.toastr.error('Upload Image again')
+                return
+              }
+            },
+            (error) => {
+              this.toastr.error('Error uploading images')
+              return
+            }
+          );
+        }else{
+          this.toastr.error('Somtheing went wrong')
+        }
       }
-    );
-
-
+    })
    
-
-
-
   }
 
   profilePictures: File[] = [];

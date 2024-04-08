@@ -18,31 +18,31 @@ export class OtpadharComponent {
   isOtpVerfied = true;
   otpSectionAdhar = false;
   verifiedAdhar = false;
-  role:any;
-  shopNames:any;
-  numberOtp=true;
-  otpAdharSended=true;
-  stateData:any;
-  state:any;
-  city:any;
-  isAdharOtpVerify:any;
-  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router,private auth:AuthService,private toastr:ToastrService,private customerService:CustomerDataService) {
-    this.role=auth.role;
+  role: any;
+  shopNames: any;
+  numberOtp = true;
+  otpAdharSended = true;
+  stateData: any;
+  state: any;
+  city: any;
+  isAdharOtpVerify: any;
+  constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router, private auth: AuthService, private toastr: ToastrService, private customerService: CustomerDataService) {
+    this.role = auth.role;
     service.viewAllShopName().subscribe({
-      next:data=>{
-        this.shopNames=data;
+      next: data => {
+        this.shopNames = data;
       },
-      error:err=>{
-        
+      error: err => {
+
       }
     })
     service.getState().subscribe({
       next: data => {
         this.stateData = data;
-        this.state = data.map((obj: any) => obj.state); 
+        this.state = data.map((obj: any) => obj.state);
       }
     });
-   }
+  }
   customerRegistrationForm = this.builder.group({
     firstName: ['', Validators.required],
     number: ['', Validators.required],
@@ -55,7 +55,7 @@ export class OtpadharComponent {
     images: ['', Validators.required],
     address: ['', Validators.required],
     otp: ['',],
-    otpAdhar: ['', ],
+    otpAdhar: ['',],
     shop: ['', Validators.required],
     fatherName: ['', Validators.required],
     secondIdType: ['1', Validators.required],
@@ -114,36 +114,56 @@ export class OtpadharComponent {
       this.toastr.error('Adhar number verifyed');
       return;
     }
-    
-    this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
-      (response) => {
-        if (response instanceof HttpResponse) {
-          const img: any = response;
-          this.customerRegistrationForm.patchValue({
-            images: img.body.filenames
-          });
-        } else {
-          this.toastr.error('Upload Image again')
+
+    this.service.checkIsCustomer(this.customerRegistrationForm.value).subscribe({
+      next: data => {
+        const isAlreadyExit = data.status;
+        if (isAlreadyExit == 1) {
+          this.toastr.error('Customer Already Exit!');
           return
         }
-      },
-      (error) => {
-        this.toastr.error('Error uploading images')
-        return
-      }
-    );
 
 
-    this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
-      next: data => {
-        this.customerService.setCustomerData(this.customerRegistrationForm.value);
-        this.toastr.success('customer registred successfully');
-        this.router.navigate(['/dashboard/sell-device']);
-      }, error: err => {
-        this.toastr.error('somtheing went wrong please try again');
+        if (isAlreadyExit == 0) {
+          this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
+            (response) => {
+              if (response instanceof HttpResponse) {
+                const img: any = response;
+                this.customerRegistrationForm.patchValue({
+                  images: img.body.filenames
+                });
+
+                this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
+                  next: data => {
+                    this.customerService.setCustomerData(this.customerRegistrationForm.value);
+                    this.toastr.success('customer registred successfully');
+                    this.router.navigate(['/dashboard/sell-device']);
+                  }, error: err => {
+                    this.toastr.error('somtheing went wrong please try again');
+                  }
+                })
+              } else {
+                this.toastr.error('Upload Image again')
+                return
+              }
+            },
+            (error) => {
+              this.toastr.error('Error uploading images')
+              return
+            }
+          );
+        }
+        else{
+          this.toastr.error('Somtheing went wrong')
+        }
+
       }
     })
+
+
   }
+
+
 
   profilePictures: File[] = [];
   panCardImages: File[] = [];
@@ -296,7 +316,7 @@ export class OtpadharComponent {
       this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
         next: data => {
           this.otpSection = true
-          this.numberOtp=false;
+          this.numberOtp = false;
           this.toastr.success('Otp send to Your Number')
         },
         error: err => {
@@ -317,7 +337,7 @@ export class OtpadharComponent {
     this.service.verifyeOtp(obj).subscribe({
       next: data => {
         this.isOtpVerfied = true;
-        this.otpSection=false;
+        this.otpSection = false;
         this.toastr.success('OTP Verifyed Successfully')
       },
       error: err => {
@@ -335,7 +355,7 @@ export class OtpadharComponent {
       this.service.verifyAdhar({ Aadhaarid: adhar }).subscribe({
         next: data => {
           this.otpSectionAdhar = true;
-          this.otpAdharSended=false;
+          this.otpAdharSended = false;
           this.toastr.success('OTP Send!')
         }
       })
@@ -354,8 +374,8 @@ export class OtpadharComponent {
         this.verifiedAdhar = true
         this.customerRegistrationForm.patchValue({
           firstName: data.name,
-          dob:data.dob,
-          fatherName:data.father
+          dob: data.dob,
+          fatherName: data.father
         })
         this.otpSectionAdhar = false;
         this.toastr.success('OTP VERFIYED')
@@ -363,26 +383,26 @@ export class OtpadharComponent {
     })
   }
 
- 
+
 
 
 
   onStateSelect(event: Event) {
     const state = (event.target as HTMLSelectElement).value;
-    if(state=='1'){
+    if (state == '1') {
       this.toastr.warning('Select A Valid State')
     }
-else{
-  this.city = this.stateData
-  .filter((item: any) => item.state === state) // Filter items with the specified state
-  .flatMap((item: any) => item.cities); // Extract cities from the filtered items
-}
+    else {
+      this.city = this.stateData
+        .filter((item: any) => item.state === state) // Filter items with the specified state
+        .flatMap((item: any) => item.cities); // Extract cities from the filtered items
+    }
   }
-  
 
-  onCitySelect(event: Event){
+
+  onCitySelect(event: Event) {
     const state = (event.target as HTMLSelectElement).value;
-    if(state=='1'){
+    if (state == '1') {
       this.toastr.warning('Select A Valid State')
     }
   }

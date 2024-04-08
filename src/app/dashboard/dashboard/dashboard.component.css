@@ -9,7 +9,7 @@
   transition: left 0.3s ease;
   width: 200px;
   overflow-x: hidden;
-  min-height: calc(100vh -30px);
+  min-height: calc(100vh -  30px);
 }
 .wallet{
   border: 2px solid grey;

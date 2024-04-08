@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DatasharingService } from '../../../services/datasharing.service';
 import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
-
+import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-view-emi',
   templateUrl: './view-emi.component.html',
@@ -15,22 +15,26 @@ export class ViewEmiComponent {
   constructor(private dataService:DatasharingService,private service:ApiService,private router:Router){
     
   }
+ 
+
   ngOnInit(): void {
-  
-    this.dataService.getCustomerData().subscribe(data => {
-      this.customerData = data;
-      this.service.viewEmi(this.customerData).subscribe({
-        next: (res: any) => {
-          this.emidetails = res;
-          console.log(res)
-          this.emiarray=this.emidetails.installments;
-        },
-        error: err => {
-          console.log(err);
-        }
-      });
+    this.dataService.getCustomerData().pipe(
+      switchMap(data => {
+        this.customerData = data;
+        return this.service.viewEmi(this.customerData);
+      })
+    ).subscribe({
+      next: (res: any) => {
+        this.emidetails = res;
+        console.log(res);
+        this.emiarray = this.emidetails.installments;
+      },
+      error: err => {
+        console.log(err);
+      }
     });
   }
+  
 
 
   PayEmi(data:any){

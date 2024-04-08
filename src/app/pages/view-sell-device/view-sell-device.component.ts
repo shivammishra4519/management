@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { DatasharingService } from '../../services/datasharing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-sell-device',
@@ -13,7 +15,7 @@ export class ViewSellDeviceComponent {
   customerNumber: any = null;
   dataFromDB: any;
 
-  constructor(private service: ApiService) {
+  constructor(private service: ApiService,private dataService: DatasharingService,private router:Router) {
     this.fromDate = new Date().toISOString().split('T')[0];
     this.toDate = new Date().toISOString().split('T')[0];
     service.viewSellDevicesList().subscribe({
@@ -39,6 +41,10 @@ export class ViewSellDeviceComponent {
     }
   }
   
+  viewEmis(data:any){
+    this.dataService.setCustomerData(data);
+    this.router.navigate(['/dashboard/view-emi']);
+  }
   
   
 }

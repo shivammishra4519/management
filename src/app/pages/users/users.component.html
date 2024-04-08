@@ -17,15 +17,17 @@
     <label for="shop">Shop Name:</label>
     <input type="text" name="shop" id="shop" formControlName="shopName" />
     <br />
-
+    <label for="password">PIN:</label>
+    <input type="password" name="password" formControlName="pin" />
+<br>
     <label for="password">Password:</label>
-    <input type="password" name="password" formControlName="password" />
+    <input type="password" name="password" formControlName="password" autocomplete="new-password" />
     <br />
 
     <label for="password">Confirm Password:</label>
     <input type="password" name="password" formControlName="confirmPassword" />
     <br />
 
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
 </form>
 

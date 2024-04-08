@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-users',
@@ -9,13 +10,14 @@ import { ApiService } from '../../services/api.service';
 })
 export class UsersComponent {
 
-  constructor(private builder: FormBuilder, private service: ApiService) { }
+  constructor(private builder: FormBuilder, private service: ApiService,private toastr:ToastrService) { }
 
   userRegister = this.builder.group({
     name: this.builder.control('', Validators.required),
     email: this.builder.control('', Validators.required),
     number: this.builder.control('', Validators.required),
     shopName: this.builder.control('', Validators.required),
+    pin: this.builder.control('', Validators.required),
     password: this.builder.control('', Validators.required),
     confirmPassword: this.builder.control('', Validators.required),
   });
@@ -27,19 +29,19 @@ export class UsersComponent {
         this.service.userRegister(this.userRegister.value).subscribe({
           next: data => {
             this.userRegister.reset();
-            alert('user registered successfully')
+            this.toastr.success('user registered successfully');
           },
           error: error => {
-            console.log(error)
+            this.toastr.error(error.error.message)
           }
         })
       }
       else {
-        alert('Password and confirm Password must be same')
+        this.toastr.error('Password and confirm Password must be same')
       }
     }
     else {
-      alert('Please fill all fields')
+     this.toastr.error('fill all details')
     }
   }
 

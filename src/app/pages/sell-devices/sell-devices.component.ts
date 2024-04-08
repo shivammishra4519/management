@@ -17,7 +17,7 @@ export class SellDevicesComponent {
   models: string[] = []
   deviceData: any;
   emis = [1, 2, 3, 4, 5]
-  otpSection=false;
+  otpSection = false;
   showMessage = false;
   invalidDownPayment = false;
   selectedBrandName: any;
@@ -25,11 +25,11 @@ export class SellDevicesComponent {
   emi = 0;
   emiLabel = false;
   sellAmount1 = 0;
-  isCustomerDataAvailable=false;
-  customerData:any;
-  isSelldevice:any;
-  isVerifyUser=true;
-  constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute,private customerService:CustomerDataService,private toaster:ToastrService) {
+  isCustomerDataAvailable = false;
+  customerData: any;
+  isSelldevice: any;
+  isVerifyUser = true;
+  constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute, private customerService: CustomerDataService, private toaster: ToastrService) {
     service.viewModel().subscribe({
       next: (data: Device[]) => { // Specify the type of 'data' as Device[]
         this.arrayOfObject = data;
@@ -40,17 +40,17 @@ export class SellDevicesComponent {
       }
     })
 
-    customerService.getCustomerData().subscribe(data=>{
-      if(!data){
-        this.isCustomerDataAvailable=false;
+    customerService.getCustomerData().subscribe(data => {
+      if (!data) {
+        this.isCustomerDataAvailable = false;
         return
       }
-      this.customerData=data;
-      this.isCustomerDataAvailable=true;
-      this.isVerifyUser=false;
+      this.customerData = data;
+      this.isCustomerDataAvailable = true;
+      this.isVerifyUser = false;
       this.sellDeviceForm.patchValue({
-        customerName:data.firstName,
-        customerNumber:data.number
+        customerName: data.firstName,
+        customerNumber: data.number
       })
 
     })
@@ -75,19 +75,19 @@ export class SellDevicesComponent {
     interest: this.builder.control(0, Validators.required)
   });
 
-  verifyUserData=this.builder.group({
-    number:this.builder.control('',Validators.required),
-    otp:this.builder.control(''),
+  verifyUserData = this.builder.group({
+    number: this.builder.control('', Validators.required),
+    otp: this.builder.control(''),
   })
 
-  
-  gaurantorDataForm=this.builder.group({
-    name:this.builder.control('',Validators.required),
-    number:this.builder.control('',Validators.required),
-    address:this.builder.control('',Validators.required),
-    adharNumber:this.builder.control('',Validators.required),
+
+  gaurantorDataForm = this.builder.group({
+    name: this.builder.control('', Validators.required),
+    number: this.builder.control('', Validators.required),
+    address: this.builder.control('', Validators.required),
+    adharNumber: this.builder.control('', Validators.required),
   })
- 
+
 
 
 
@@ -107,15 +107,19 @@ export class SellDevicesComponent {
     }
     this.service.viewDeviceData(obj).subscribe({
       next: data => {
-        console.log(data)
+       
         this.deviceData = data;
-        const mrp = data.dpPrice + (data.dpPrice * data.margin) / 100;
-        const fileCharge = ((mrp * data.fileCharge) / 100);
-        const intrest = ((mrp * data.interest) / 100);
+        let mrp:any = data.dpPrice + (data.dpPrice * data.margin) / 100;
+        mrp = mrp.toFixed();
+        let fileCharge :any= ((mrp * data.fileCharge) / 100);
+        fileCharge=fileCharge.toFixed()
+        let intrest:any = ((mrp * data.interest) / 100);
+        intrest=intrest.toFixed();
         const total = (mrp + fileCharge + intrest);
-        const dowmPaymnet = (total * data.downPayment) / 100;
-        const financeAmount = (total -dowmPaymnet)
-      
+        let dowmPaymnet:any = (total * data.downPayment) / 100;
+        dowmPaymnet=dowmPaymnet.toFixed()
+        const financeAmount = (total - dowmPaymnet)
+
         this.deviceData.mrp = mrp;
         this.sellDeviceForm.patchValue({
           mrp: mrp,
@@ -135,19 +139,23 @@ export class SellDevicesComponent {
   }
 
 
-discount:any;
+  discount: any;
 
   discountInput(event: Event) {
-    this.discount=0;
-     this.discount = parseInt((event.target as HTMLSelectElement).value);
+    this.discount = 0;
+    this.discount = parseInt((event.target as HTMLSelectElement).value);
     if (this.discount >= 0) {
 
       let mrp = this.deviceData.dpPrice + (this.deviceData.dpPrice * this.deviceData.margin) / 100;
+      mrp = mrp.toFixed();
       mrp = mrp - this.discount;
-      let fileCharge = ((mrp * this.deviceData.fileCharge) / 100);
-      let intrest = ((mrp * this.deviceData.interest) / 100);
+      let fileCharge: any = ((mrp * this.deviceData.fileCharge) / 100);
+      fileCharge = fileCharge.toFixed()
+      let intrest:any = ((mrp * this.deviceData.interest) / 100);
+      intrest=intrest.toFixed();
       let total = (mrp + fileCharge + intrest);
-      let downPayment=(total * this.deviceData.downPayment) / 100;
+      let downPayment:any = (total * this.deviceData.downPayment) / 100;
+      downPayment=downPayment.toFixed()
       let financeAmount = (total - downPayment);
       this.sellDeviceForm.patchValue({
         mrp: mrp,
@@ -158,14 +166,18 @@ discount:any;
         totalAmount: total
       })
     }
-    else{
-      this.discount=0
+    else {
+      this.discount = 0
       let mrp = this.deviceData.dpPrice + (this.deviceData.dpPrice * this.deviceData.margin) / 100;
+      mrp = mrp.toFixed();
       mrp = mrp - this.discount;
-      let fileCharge = ((mrp * this.deviceData.fileCharge) / 100);
-      let intrest = ((mrp * this.deviceData.interest) / 100);
+      let fileCharge: any = ((mrp * this.deviceData.fileCharge) / 100);
+      fileCharge = fileCharge.toFixed();
+      let intrest: any = ((mrp * this.deviceData.interest) / 100);
+      intrest = intrest.toFixed()
       let total = (mrp + fileCharge + intrest);
-      let downPayment=(total * this.deviceData.downPayment) / 100;
+      let downPayment: any = (total * this.deviceData.downPayment) / 100;
+      downPayment = downPayment.toFixed()
       let financeAmount = (total - downPayment);
       this.sellDeviceForm.patchValue({
         mrp: mrp,
@@ -183,11 +195,12 @@ discount:any;
   dowmPaymnetInput(event: Event) {
     let downPayment = 0;
     downPayment = parseInt((event.target as HTMLSelectElement).value);
-    const total:any=this.sellDeviceForm.value.totalAmount
-    const calculatedDownpayment: any = (total * this.deviceData.downPayment) / 100;;
-    if ( downPayment >= calculatedDownpayment) {
-      let total: any = this.sellDeviceForm.value.totalAmount; 
-      let financeAmount = (total - downPayment); 
+    const total: any = this.sellDeviceForm.value.totalAmount
+    let calculatedDownpayment: any = (total * this.deviceData.downPayment) / 100;
+    calculatedDownpayment = calculatedDownpayment.toFixed();
+    if (downPayment >= calculatedDownpayment) {
+      let total: any = this.sellDeviceForm.value.totalAmount;
+      let financeAmount = (total - downPayment);
       this.sellDeviceForm.patchValue({
         financeAmount: financeAmount,
       });
@@ -209,6 +222,7 @@ discount:any;
     let emiAmount: any;
     if (this.emi >= 0) {
       emiAmount = financeAmount / this.emi;
+      emiAmount = emiAmount.toFixed(2)
       if (emiAmount < 1000) {
         alert('Installment amount can not less then 1000')
         this.sellDeviceForm.patchValue({
@@ -290,95 +304,95 @@ discount:any;
 
 
   verifyUser() {
-    const number:any = this.verifyUserData.value.number;
+    const number: any = this.verifyUserData.value.number;
     const strNum: string = number.toString();
-    const numLength: number = strNum.length; 
+    const numLength: number = strNum.length;
     if (!number || numLength < 10) {
-        this.toaster.error('Enter a valid number');
-        return;
+      this.toaster.error('Enter a valid number');
+      return;
     }
-    
+
     this.service.verifyCustomer(this.verifyUserData.value).subscribe({
-        next: data => {
-            this.toaster.success('OTP sent to number');
-            this.customerData=null;
-            this.customerData=data;
-            this.sellDeviceForm.patchValue({
-              customerName:data.firstName,
-              customerNumber:data.number
-            })
-            this.sendOtp();
-
-
-            // this.isVerifyUser=false;
-            // this.isCustomerDataAvailable=true;
-        },
-        error: err => {
-            this.toaster.error('Customer does not exist');
-        }
-    });
-}
-
-
-
-sendOtp() {
-  const number = this.verifyUserData.value.number;
-
-  if (number) {
-    this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
       next: data => {
-        this.otpSection = true
-        this.toaster.success('Otp send to Your Number')
+        this.toaster.success('OTP sent to number');
+        this.customerData = null;
+        this.customerData = data;
+        this.sellDeviceForm.patchValue({
+          customerName: data.firstName,
+          customerNumber: data.number
+        })
+        this.sendOtp();
+
+
+        // this.isVerifyUser=false;
+        // this.isCustomerDataAvailable=true;
       },
       error: err => {
-        this.toaster.error('Somtheing went wrong')
+        this.toaster.error('Customer does not exist');
+      }
+    });
+  }
+
+
+
+  sendOtp() {
+    const number = this.verifyUserData.value.number;
+
+    if (number) {
+      this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
+        next: data => {
+          this.otpSection = true
+          this.toaster.success('Otp send to Your Number')
+        },
+        error: err => {
+          this.toaster.error('Somtheing went wrong')
+        }
+      })
+    } else {
+      this.toaster.error('Somtheing went wrong')
+    }
+  }
+
+
+  verifyOtp() {
+
+    this.service.verifyeOtp(this.verifyUserData.value).subscribe({
+      next: data => {
+        this.isVerifyUser = false;
+        this.isCustomerDataAvailable = true;
+        this.toaster.success('OTP Verifyed Successfully')
+      },
+      error: err => {
+        this.toaster.error('Invalid OTP')
       }
     })
-  } else {
-    this.toaster.error('Somtheing went wrong')
   }
-}
 
 
-verifyOtp() {
 
-  this.service.verifyeOtp(this.verifyUserData.value).subscribe({
-    next: data => {
-      this.isVerifyUser=false;
-      this.isCustomerDataAvailable=true;
-      this.toaster.success('OTP Verifyed Successfully')
-    },
-    error: err => {
-      this.toaster.error('Invalid OTP')
+
+
+  registerGaurantour() {
+    if (this.gaurantorDataForm.invalid) {
+      this.toaster.error('fill all details');
+      return
     }
-  })
-}
-
-
-
-
-
-registerGaurantour(){
-  if(this.gaurantorDataForm.invalid){
-    this.toaster.error('fill all details');
-    return
+    this.service.registerGuarantor(this.gaurantorDataForm.value).subscribe({
+      next: data => {
+        const number = this.gaurantorDataForm.value.number;
+        this.sellDeviceForm.patchValue({
+          gaurantorNumber: number
+        })
+        this.toaster.success('gaurantor registred successfully');
+        this.isCustomerDataAvailable = false;
+        this.isSelldevice = true;
+      },
+      error: err => {
+        console.log(err)
+        this.toaster.error('somtheing went wrong or gaurantor already exit');
+      }
+    })
   }
-  this.service.registerGuarantor(this.gaurantorDataForm.value).subscribe({
-    next:data=>{
-      const number=this.gaurantorDataForm.value.number;
-      this.sellDeviceForm.patchValue({
-        gaurantorNumber:number
-      })
-      this.toaster.success('gaurantor registred successfully');
-      this.isCustomerDataAvailable=false;
-      this.isSelldevice=true;
-    },
-    error:err=>{
-      console.log(err)
-      this.toaster.error('somtheing went wrong or gaurantor already exit');
-    }
-  })
-}
 
 
 
