@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ export class DatasharingService {
   private customerDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private setting: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   
+  public wallet:any;
 
-  constructor() { }
+  constructor(private service:ApiService) { }
  public isManageDevice=false;
 
   setCustomerData(data: any) {
@@ -28,5 +30,14 @@ export class DatasharingService {
   getSetting(){
     return this.setting.asObservable();
   }
+  checkWallence(){
+    this.service.checkBalance().subscribe({
+      next:data=>{
+        this.wallet=data.amount;
+      }
+    })
+  }
+
+  
 
 }

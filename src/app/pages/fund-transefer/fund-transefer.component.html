@@ -1,23 +1,84 @@
-<div class="body">
+<div class="main">
+    <div class="row-self1">
+        <div class="side-cont">
+            <div class="row-self">
+                <div class="nav-self" [ngClass]="{'active' :isTransfer}" (click)="fundTransferNav()">Fund Transfer</div>
+                <div class="nav-self" [ngClass]="{'active' :isRecive}" (click)="fundReciveNav()">Fund Recive</div>
+            </div>
+            <div *ngIf="isTransfer">
 
-    <form [formGroup]="formInfo" (ngSubmit)="fundTransfer()">
-        <h2>Fill Details</h2>
-       
 
-        <label for="method">Payment type</label>
-        <select id="method" formControlName="user_id" >
-            <option value="0">Select User</option>
-            <option *ngFor="let user of data" value={{user.number}}>{{user.name}} {{user.number}}</option>
-        
-        </select>
+                <form [formGroup]="formInfo" (ngSubmit)="fundTransfer()">
+                    <h2>Fill Details</h2>
 
-        <label for="amount">Amount</label>
-        <input type="number" id="amount" name="amount" formControlName="amount"   >
-        
 
-        <label for="pin">Transection Pin</label>
-        <input type="password" id="pin" name="pin"  formControlName="pin" > 
+                    <label for="method">Payment type</label>
+                    <select id="method" formControlName="user_id">
+                        <option value="0">Select User</option>
+                        <option *ngFor="let user of data" value={{user.number}}>{{user.name}} {{user.number}}</option>
 
-        <button type="submit">Pay</button>
-    </form>
+                    </select>
+
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" formControlName="amount">
+
+
+                    <label for="pin">Transection Pin</label>
+                    <input type="password" id="pin" name="pin" formControlName="pin">
+
+                    <button type="submit">Pay</button>
+                </form>
+
+            </div>
+
+        </div>
+        <div class="right-cont">
+            <div *ngIf="isTransfer">
+                <div class="table-container">
+                    <table class="table">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Transection Id</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                        <tr *ngFor="let fund of fundData">
+                            <td>{{fund.receverId}}</td>
+                            <td>{{fund.type}}</td>
+                            <td>{{fund.amount}}</td>
+                            <td>{{fund.TransactionID}}</td>
+                            <td>{{fund.date}}</td>
+                            <td>{{fund.time}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="isRecive">
+                <div class="table-container">
+                    <h1>Fund Recive</h1>
+                    <table class="table">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Transection Id</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                        <tr *ngFor="let fund of fundReciveData">
+                            <td>{{fund.senderId}}</td>
+                            <td>{{fund.type}}</td>
+                            <td>{{fund.amount}}</td>
+                            <td>{{fund.TransactionID}}</td>
+                            <td>{{fund.date}}</td>
+                            <td>{{fund.time}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

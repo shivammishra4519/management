@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CustomerDataService {
   private customerDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  private guarantor: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   constructor() { }
 
   setCustomerData(data: any) {
@@ -15,4 +16,13 @@ export class CustomerDataService {
   getCustomerData() {
     return this.customerDataSubject.asObservable();
   }
+
+  setGuarantorData(data: any) {
+    this.guarantor.next(data);
+  }
+  getGuarantorData() {
+    return this.guarantor.asObservable();
+  }
+
+
 }

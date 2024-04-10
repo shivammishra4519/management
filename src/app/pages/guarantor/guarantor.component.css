@@ -1,3 +1,7 @@
+.main{
+  height: 87vh;
+}
+
 form {
     display: flex;
     flex-direction: column;

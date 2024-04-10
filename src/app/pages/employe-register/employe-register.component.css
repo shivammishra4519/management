@@ -1,8 +1,9 @@
 
-.body {
+.main {
     margin: 0;
     padding: 0;
     /* background-color: #f4f4f4; */
+    height: 87vh;
   }
   
   form {
@@ -37,4 +38,43 @@
   button:hover {
     background-color: #0056b3;
   }
-  
+  .row-slef{
+    display: flex;
+    /* flex-direction: row; */
+  }
+  .col-self-1{
+width: 30vw;
+height: 86vh;
+border: 1px solid grey;
+
+  }
+
+  .col-self-2{
+    margin-left: 1px;
+    width: 56vw;
+    border: 1px solid grey;
+      }
+
+      .table-container {
+        width: 100%;
+        overflow: auto;
+        margin-top: 10px;
+        min-height: 85vh;
+     }
+     
+     .table {
+        width: 100%;
+        border-collapse: collapse;
+     }
+     
+     th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+     }
+     
+     @media screen and (max-width: 600px) {
+        .table th, .table td {
+            padding: 4px;
+        }
+     }

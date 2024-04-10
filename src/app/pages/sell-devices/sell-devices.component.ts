@@ -29,6 +29,7 @@ export class SellDevicesComponent {
   customerData: any;
   isSelldevice: any;
   isVerifyUser = true;
+  guarantorData:any;
   constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute, private customerService: CustomerDataService, private toaster: ToastrService) {
     service.viewModel().subscribe({
       next: (data: Device[]) => { // Specify the type of 'data' as Device[]
@@ -53,6 +54,23 @@ export class SellDevicesComponent {
         customerNumber: data.number
       })
 
+    })
+    customerService.getGuarantorData().subscribe(data =>{
+      this.guarantorData=data;
+      if(data){
+        this.isSelldevice=true;
+        this.isVerifyUser=false;
+        this.isCustomerDataAvailable=false;
+        this.sellDeviceForm.patchValue({
+          gaurantorNumber:data.number
+        })
+        console.log(this.sellDeviceForm.value)
+      }
+      else{
+        this.isSelldevice=false;
+        this.isVerifyUser=true;
+        this.isCustomerDataAvailable=false;
+      }
     })
   }
 
@@ -80,18 +98,6 @@ export class SellDevicesComponent {
     otp: this.builder.control(''),
   })
 
-
-  gaurantorDataForm = this.builder.group({
-    name: this.builder.control('', Validators.required),
-    number: this.builder.control('', Validators.required),
-    address: this.builder.control('', Validators.required),
-    adharNumber: this.builder.control('', Validators.required),
-  })
-
-
-
-
-
   onBrandSelected(event: Event) {
     this.selectedBrandName = (event.target as HTMLSelectElement).value;
     this.models = this.arrayOfObject
@@ -107,17 +113,17 @@ export class SellDevicesComponent {
     }
     this.service.viewDeviceData(obj).subscribe({
       next: data => {
-       
+
         this.deviceData = data;
-        let mrp:any = data.dpPrice + (data.dpPrice * data.margin) / 100;
-        mrp = mrp.toFixed();
-        let fileCharge :any= ((mrp * data.fileCharge) / 100);
-        fileCharge=fileCharge.toFixed()
-        let intrest:any = ((mrp * data.interest) / 100);
-        intrest=intrest.toFixed();
+        let mrp: any = data.dpPrice + (data.dpPrice * data.margin) / 100;
+
+        let fileCharge: any = ((mrp * data.fileCharge) / 100);
+        fileCharge=parseFloat(fileCharge.toFixed());
+        let intrest: any = ((mrp * data.interest) / 100);
+        intrest=parseFloat(intrest.toFixed())
         const total = (mrp + fileCharge + intrest);
-        let dowmPaymnet:any = (total * data.downPayment) / 100;
-        dowmPaymnet=dowmPaymnet.toFixed()
+        let dowmPaymnet: any = (total * data.downPayment) / 100;
+        dowmPaymnet=parseFloat(dowmPaymnet.toFixed())
         const financeAmount = (total - dowmPaymnet)
 
         this.deviceData.mrp = mrp;
@@ -147,15 +153,15 @@ export class SellDevicesComponent {
     if (this.discount >= 0) {
 
       let mrp = this.deviceData.dpPrice + (this.deviceData.dpPrice * this.deviceData.margin) / 100;
-      mrp = mrp.toFixed();
+      mrp = parseFloat(mrp.toFixed());
       mrp = mrp - this.discount;
       let fileCharge: any = ((mrp * this.deviceData.fileCharge) / 100);
-      fileCharge = fileCharge.toFixed()
-      let intrest:any = ((mrp * this.deviceData.interest) / 100);
-      intrest=intrest.toFixed();
+      fileCharge = parseFloat(fileCharge.toFixed());
+      let intrest: any = ((mrp * this.deviceData.interest) / 100);
+      intrest = parseFloat(intrest.toFixed());
       let total = (mrp + fileCharge + intrest);
-      let downPayment:any = (total * this.deviceData.downPayment) / 100;
-      downPayment=downPayment.toFixed()
+      let downPayment: any = (total * this.deviceData.downPayment) / 100;
+      downPayment = parseFloat(downPayment.toFixed());
       let financeAmount = (total - downPayment);
       this.sellDeviceForm.patchValue({
         mrp: mrp,
@@ -169,15 +175,15 @@ export class SellDevicesComponent {
     else {
       this.discount = 0
       let mrp = this.deviceData.dpPrice + (this.deviceData.dpPrice * this.deviceData.margin) / 100;
-      mrp = mrp.toFixed();
+      mrp = parseFloat(mrp.toFixed());
       mrp = mrp - this.discount;
       let fileCharge: any = ((mrp * this.deviceData.fileCharge) / 100);
-      fileCharge = fileCharge.toFixed();
+      fileCharge = parseFloat(fileCharge.toFixed())
       let intrest: any = ((mrp * this.deviceData.interest) / 100);
-      intrest = intrest.toFixed()
+      intrest = parseFloat(intrest.toFixed())
       let total = (mrp + fileCharge + intrest);
       let downPayment: any = (total * this.deviceData.downPayment) / 100;
-      downPayment = downPayment.toFixed()
+downPayment=parseFloat(downPayment.toFixed());
       let financeAmount = (total - downPayment);
       this.sellDeviceForm.patchValue({
         mrp: mrp,
@@ -197,7 +203,7 @@ export class SellDevicesComponent {
     downPayment = parseInt((event.target as HTMLSelectElement).value);
     const total: any = this.sellDeviceForm.value.totalAmount
     let calculatedDownpayment: any = (total * this.deviceData.downPayment) / 100;
-    calculatedDownpayment = calculatedDownpayment.toFixed();
+    calculatedDownpayment = parseFloat(calculatedDownpayment.toFixed());
     if (downPayment >= calculatedDownpayment) {
       let total: any = this.sellDeviceForm.value.totalAmount;
       let financeAmount = (total - downPayment);
@@ -222,7 +228,7 @@ export class SellDevicesComponent {
     let emiAmount: any;
     if (this.emi >= 0) {
       emiAmount = financeAmount / this.emi;
-      emiAmount = emiAmount.toFixed(2)
+      emiAmount = parseFloat(emiAmount.toFixed(2))
       if (emiAmount < 1000) {
         alert('Installment amount can not less then 1000')
         this.sellDeviceForm.patchValue({
@@ -244,7 +250,6 @@ export class SellDevicesComponent {
         })
       }
     }
-
 
   }
 
@@ -314,18 +319,18 @@ export class SellDevicesComponent {
 
     this.service.verifyCustomer(this.verifyUserData.value).subscribe({
       next: data => {
-        this.toaster.success('OTP sent to number');
+        // this.toaster.success('OTP sent to number');
         this.customerData = null;
         this.customerData = data;
         this.sellDeviceForm.patchValue({
           customerName: data.firstName,
           customerNumber: data.number
         })
-        this.sendOtp();
+        // this.sendOtp();
 
 
-        // this.isVerifyUser=false;
-        // this.isCustomerDataAvailable=true;
+        this.isVerifyUser = false;
+        this.isCustomerDataAvailable = true;
       },
       error: err => {
         this.toaster.error('Customer does not exist');
@@ -367,33 +372,6 @@ export class SellDevicesComponent {
       }
     })
   }
-
-
-
-
-
-  registerGaurantour() {
-    if (this.gaurantorDataForm.invalid) {
-      this.toaster.error('fill all details');
-      return
-    }
-    this.service.registerGuarantor(this.gaurantorDataForm.value).subscribe({
-      next: data => {
-        const number = this.gaurantorDataForm.value.number;
-        this.sellDeviceForm.patchValue({
-          gaurantorNumber: number
-        })
-        this.toaster.success('gaurantor registred successfully');
-        this.isCustomerDataAvailable = false;
-        this.isSelldevice = true;
-      },
-      error: err => {
-        console.log(err)
-        this.toaster.error('somtheing went wrong or gaurantor already exit');
-      }
-    })
-  }
-
 
 
 

@@ -41,8 +41,12 @@ const routes: Routes = [
         path: '', redirectTo: 'home', pathMatch: 'full'
       },
       {
-path:'profile',
-component:ProfileComponent
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'gaurantor',
+        component: GuarantorComponent
       },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       // { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
@@ -102,9 +106,9 @@ component:ProfileComponent
     path: 'forget-password',
     component: ForgetPasswordComponent
   },
-  {path:'home',component:HomeMainComponent },
-  {path:'about-us',component:AboutUsComponent },
-  {path:'contact-us',component:ContactUsComponent },
+  { path: 'home', component: HomeMainComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
   {
     path: '', redirectTo: 'home', pathMatch: 'full'
   },

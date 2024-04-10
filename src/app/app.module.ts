@@ -33,12 +33,13 @@ import { OtpadharComponent } from './pages/customer-registration/otpadhar/otpadh
 import { NoneotpComponent } from './pages/customer-registration/noneotp/noneotp.component';
 import { FindCustomerComponent } from './pages/customer-registration/find-customer/find-customer.component';
 import { PaytmGatwayComponent } from './pages/paytm-gatway/paytm-gatway.component';
-import { GuarantorComponent } from './pages/guarantor/guarantor.component';
 import { HomeMainComponent } from './home-main/home-main.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ServiceComponent } from './service/service.component';
 import { ProfileComponent } from './userspages/profile/profile.component';
+import { WalletcheckComponent } from './popup/walletcheck/walletcheck.component';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -69,12 +70,13 @@ import { ProfileComponent } from './userspages/profile/profile.component';
     NoneotpComponent,
     FindCustomerComponent,
     PaytmGatwayComponent,
-    GuarantorComponent,
     HomeMainComponent,
     AboutUsComponent,
     ContactUsComponent,
     ServiceComponent,
-    ProfileComponent
+    ProfileComponent,
+    WalletcheckComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,8 @@ import { ProfileComponent } from './userspages/profile/profile.component';
     ReactiveFormsModule,
     NoopAnimationsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+   MaterialModule
   ],
   providers: [
     provideClientHydration(),

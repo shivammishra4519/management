@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { DatasharingService } from '../../services/datasharing.service';
 
 @Component({
   selector: 'app-fund-transefer',
@@ -10,11 +11,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FundTranseferComponent {
   data: any[] = []
-  constructor(private service: ApiService, private builder: FormBuilder,private toastr: ToastrService) {
+  isTransfer=true;
+  isRecive=false;
+  fundData:any;
+  fundReciveData:any;
+  constructor(private service: ApiService, private builder: FormBuilder,private toastr: ToastrService,private dataSharing:DatasharingService) {
     service.getUserList().subscribe(res => {
       this.data = res;
-      console.log(res)
+    
     })
+    service.fundHistoryByAdmin().subscribe(res=>{
+      this.fundData=res;
+    })
+    this.fundRecive();
   }
 
   formInfo = this.builder.group({
@@ -38,12 +47,33 @@ export class FundTranseferComponent {
           next: data => {
             this.formInfo.reset()
             this.toastr.success('Fund Transfer succesfully');
+            this.service.fundHistoryByAdmin().subscribe(res=>{
+              this.fundData=res;
+            })
+            this.dataSharing.checkWallence();
           },
           error: err => {
             console.log('err', err)
           }
         })
       }
+    }
+
+
+    fundTransferNav(){
+this.isTransfer=true;
+this.isRecive=false;
+    }
+    fundReciveNav(){
+      this.isTransfer=false;
+      this.isRecive=true;
+    }
+
+    fundRecive(){
+      this.service.fundReciveByAdmin().subscribe(res=>{
+        this.fundReciveData=res
+        console.log(res)
+      })
     }
 
   }

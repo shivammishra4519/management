@@ -14,6 +14,7 @@
           <th class="district">District</th>
           <th class="address">Address</th>
           <th class="shop">Shop</th>
+          <th class="shop">Date</th>
           <th class="button">View Profile</th>
           <th class="emis">View Emi</th>
         
@@ -32,6 +33,7 @@
           <td class="district">{{ user.district }}</td>
           <td class="address">{{ user.address }}</td>
           <td class="shop">{{ user.shop }}</td>
+          <td class="shop">{{ user.registerDate }}</td>
           <td class="button-svg">
             <button (click)="viewProfile(user)">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20">

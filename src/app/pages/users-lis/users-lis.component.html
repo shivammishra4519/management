@@ -1,5 +1,5 @@
 <div class="table-container">
-  <h1 style="text-align: center; color: green;">USER LIST</h1>
+  <h1 style="text-align: center; color: green;">SHOPS</h1>
   <table class="table">
       <tr>
           <th>S.N</th>
@@ -15,11 +15,11 @@
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.number }}</td>
-          <td>{{ user.active }}</td>
+          <td><button class="btn btn-primary" (click)="changeStatus(user)"> {{user.active ? 'Active' : 'Inactive'}}</button></td>
           <td>{{ user.role }}</td>
           <td>
               <div *ngIf="active">
-                  <button (click)="chek()"> Check</button>
+                <button class="btn btn-primary" (click)="openDialog(user)">Check Balance</button>
               </div>
               <div *ngIf="!active">
                   {{amount}}
@@ -28,3 +28,6 @@
       </tr>
   </table>
 </div>
+
+
+

@@ -1,40 +1,118 @@
 
-.body {
-    margin: 0;
-    padding: 0;
-    /* background-color: #f4f4f4; */
+
+form {
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+
+  padding: 10px 15px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+.row-self {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+.row-self1{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.nav-self {
+  width: 49%;
+  border: 1px solid green;
+  background-color: #abccab;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.main{
+  height: 86vh;
+  /* overflow: hidden; */
+}
+.side-cont{
+  border: 1px solid grey;
+  width:30vw;
+  height: 86vh;
+  padding-left: 4px;
+  border-radius: 10px;
+}
+.right-cont{
+  width: 56vw;
+  margin-left: 5px;
+  height: 86vh;
+  overflow: auto;
+
+}
+.active{
+  background-color: rgb(104, 104, 232);
+}
+
+
+
+.table-container {
+  width: 100%;
+  overflow: auto;
+  margin-top: 10px;
+  min-height: 85vh;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .table th, .table td {
+      padding: 4px;
   }
-  
-  form {
-    max-width: 400px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .row-self1{
+    /* flex-wrap: wrap; */
+    flex-direction: column;
   }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
+  .main{
+    overflow: auto;
   }
-  
-  input, textarea,select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  .side-cont{
+    width: 100vw;
   }
-  
-  button {
-  
-    padding: 10px 15px;
-    border-radius: 4px;
+  .right-cont{
+    width: 100vw;
   }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
+}

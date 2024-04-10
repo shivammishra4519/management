@@ -196,6 +196,28 @@ export class ApiService {
     return this.http.post(`${this.url}customer/check/customer`, data,{ headers: this.getHeaders() });
   }
 
+  updateStatus(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/updatestatus`, data,{ headers: this.getHeaders() });
+  }
+
+  walletCheck(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/wallet/user`, data,{ headers: this.getHeaders() });
+  }
+
+  fundHistoryByAdmin(): Observable<any> {
+    return this.http.post(`${this.url}api/fund/history`,{},{ headers: this.getHeaders() });
+  }
+  fundReciveByAdmin(): Observable<any> {
+    return this.http.post(`${this.url}api/fund/history/recive`,{},{ headers: this.getHeaders() });
+  }
+
+  checkGauartor(data:any): Observable<any> {
+    return this.http.post(`${this.url}guarantor/check`,data,{ headers: this.getHeaders() });
+  }
+
+  getEmployeeList(): Observable<any> {
+    return this.http.post(`${this.url}employee/list`,{},{ headers: this.getHeaders() });
+  }
   imageView(imageName: string): Observable<Blob> {
     return this.http.post(`${this.url}api/images`, { fileName: imageName }, {
       responseType: 'blob',
