@@ -12,7 +12,10 @@ import { Router } from '@angular/router';
 })
 export class GuarantorComponent {
   constructor(private builder: FormBuilder, private toastr: ToastrService, private service: ApiService, private dataSharing: CustomerDataService,private router:Router) { }
-
+  otpSection =true;
+  numberOtp=false;
+  isOtpVerfied=false;
+  isOtpsended=false;
   guarantorForm = this.builder.group({
     name: this.builder.control('', Validators.required),
     fatherName: this.builder.control('', Validators.required),
@@ -20,6 +23,7 @@ export class GuarantorComponent {
     number: this.builder.control('', Validators.required),
     address: this.builder.control('', Validators.required),
     images: this.builder.control('',),
+    otp: this.builder.control('',),
   })
 
   profilePictures: File[] = [];
@@ -132,6 +136,10 @@ export class GuarantorComponent {
       return
     }
 
+    if(!this.isOtpVerfied){
+      this.toastr.error('Number Not verifyed')
+    }
+
     this.service.checkGauartor(this.guarantorForm.value).subscribe({
       next: data => {
         console.log(data)
@@ -153,5 +161,45 @@ export class GuarantorComponent {
     })
 
 
+  }
+
+  sendOtp() {
+    const number = this.guarantorForm.value.number;
+   
+    if (number) {
+      this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
+        next: data => {
+          this.otpSection = false
+          this.numberOtp = true;
+          this.isOtpsended=true
+          this.toastr.success('Otp send to Your Number')
+        },
+        error: err => {
+          this.toastr.error('Somtheing went wrong')
+        }
+      })
+    } else {
+      this.toastr.error('Somtheing went wrong')
+    }
+  }
+
+
+
+  verifyOtp() {
+    const obj = {
+      number: this.guarantorForm.value.number,
+      otp: this.guarantorForm.value.otp
+    }
+    this.service.verifyeOtp(obj).subscribe({
+      next: data => {
+        this.isOtpVerfied = true;
+        this.otpSection = false;
+        this.numberOtp=false;
+        this.toastr.success('OTP Verifyed Successfully')
+      },
+      error: err => {
+        this.toastr.error('Invalid OTP')
+      }
+    })
   }
 }

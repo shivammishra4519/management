@@ -30,6 +30,8 @@ import { HomeMainComponent } from './home-main/home-main.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProfileComponent } from './userspages/profile/profile.component';
+import { GuarantorViewComponent } from './pages/guarantor-view/guarantor-view.component';
+import { TermscondtionComponent } from './pdfs/termscondtion/termscondtion.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -47,6 +49,10 @@ const routes: Routes = [
       {
         path: 'gaurantor',
         component: GuarantorComponent
+      },
+      {
+        path: 'view-gaurantor',
+        component: GuarantorViewComponent
       },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       // { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
@@ -115,7 +121,9 @@ const routes: Routes = [
 
   {
     path: 'payment', component: PaytmGatwayComponent
-  }
+  },
+
+  { path: 'terms-condtiton/:data', component: TermscondtionComponent }
 
   // { path: 'customer-registraion', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
   // { path: 'users', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },

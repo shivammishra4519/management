@@ -37,4 +37,15 @@ form {
     outline: none;
     border-color: blue;
   }
+
+  .otp{
+    position: relative;
+    left: 302px;
+    bottom: 26px;
+  }
+  .verify{
+    position: relative;
+    left: 302px;
+    bottom: 29px;
+  }
   

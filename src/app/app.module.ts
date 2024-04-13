@@ -40,6 +40,8 @@ import { ServiceComponent } from './service/service.component';
 import { ProfileComponent } from './userspages/profile/profile.component';
 import { WalletcheckComponent } from './popup/walletcheck/walletcheck.component';
 import { MaterialModule } from './material.module';
+import { GuarantorViewComponent } from './pages/guarantor-view/guarantor-view.component';
+import { TermscondtionComponent } from './pdfs/termscondtion/termscondtion.component';
 
 
 @NgModule({
@@ -75,8 +77,9 @@ import { MaterialModule } from './material.module';
     ContactUsComponent,
     ServiceComponent,
     ProfileComponent,
-    WalletcheckComponent
-  
+    WalletcheckComponent,
+    GuarantorViewComponent,
+    TermscondtionComponent
   ],
   imports: [
     BrowserModule,

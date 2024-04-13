@@ -1,0 +1,116 @@
+.body {
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+.main {
+    width: 750px;
+    min-height: 100vh;
+    max-height: max-content;
+    border: 1px solid red;
+    margin: auto;
+    box-sizing: border-box;
+}
+
+.head {
+    display: flex;
+    width: 100%;
+}
+
+.col {
+    width: 50%;
+}
+
+.logo {
+    width: 106px;
+    height: 115px;
+    position: relative;
+    top: 28px;
+    left: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.bname {
+    position: relative;
+    top: 48px;
+    left: 1px;
+}
+
+.line {
+    border: none;
+    border-top: 4px solid rgb(4, 4, 4);
+}
+
+.line-left {
+    border: none;
+    border-top: 4px solid rgb(15, 182, 201);
+}
+
+.cont {
+    width: 100%;
+    height: 115px;
+    padding: 45px 20px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.content {
+    text-align: left;
+    padding: 10px 25px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #333;
+    box-sizing: border-box;
+    display: flex;
+
+}
+
+.lineunder {
+    width: 50%;
+    /* background-color: black; */
+    height: 3px;
+}
+
+.termsConditon {
+    padding: 10px 20px;
+    margin-bottom: 25px;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.sign {
+    /* border: 1px solid grey; */
+    text-align: right;
+    padding-right: 58px;
+}
+
+.row1{
+    display: flex;
+}
+.profile{
+    width: 50%;
+   margin-left: 15px;
+}

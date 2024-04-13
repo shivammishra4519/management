@@ -1,13 +1,14 @@
-
-<nav class="navbar navbar-expand-lg navbar-light bg-self">
+<nav class="navbar navbar-expand-lg navbar-light bg-self fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/dashboard/setting">
+        <a class="navbar-brand" routerLink="/dashboard/setting" style="margin-left: 10px;">
             DASHBOARD
         </a>
-        <button class="navbar-toggler" type="button">
+        <!-- Add data-target attribute to specify the collapsible element -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
             <span>&#8942;</span>
-          </button>
-        <div class="collapse navbar-collapse justify-content-end">
+        </button>
+        <!-- Add the id attribute to the collapsible element -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a routerLink="/dashboard/user-setting">
@@ -24,9 +25,11 @@
 </nav>
 
 
+
 <div class="row">
-    <input type="checkbox" id="sidebar-toggle" />
-    <label for="sidebar-toggle" class="toggle-btn" style="color:#fff;">&#9776;</label>
+    <input type="checkbox" id="sidebar-toggle" [(ngModel)]="isSidebarOpen" #sidebarToggle />
+<label for="sidebar-toggle" class="toggle-btn" style="color:#fff;">&#9776;</label>
+
     <div class="col-md-2 sidebar">
         <app-sidebar></app-sidebar>
     </div>

@@ -1,0 +1,29 @@
+.main{
+    height: 86vh;
+    
+}
+
+.table-container {
+    width: 100%;
+    overflow: auto;
+    margin-top: 10px;
+    min-height: 85vh;
+ }
+ 
+ .table {
+    width: 100%;
+    border-collapse: collapse;
+ }
+ 
+ th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+ }
+ 
+ @media screen and (max-width: 600px) {
+    .table th, .table td {
+        padding: 4px;
+    }
+ }
+ 

@@ -39,6 +39,7 @@ export class ViewCustomersComponent {
   getImages(object:any){
     this.service.imageView(object.profilePictures).subscribe(imageBlob => {
       this.profile = URL.createObjectURL(imageBlob);
+      console.log(this.profile)
     });
     this.service.imageView(object.panCardImages).subscribe(imageBlob => {
       this.pan = URL.createObjectURL(imageBlob);

@@ -214,6 +214,17 @@ export class ApiService {
   checkGauartor(data:any): Observable<any> {
     return this.http.post(`${this.url}guarantor/check`,data,{ headers: this.getHeaders() });
   }
+  viewGauarntorList(): Observable<any> {
+    return this.http.post(`${this.url}guarantor/view/list`,{},{ headers: this.getHeaders() });
+  }
+
+  viewDeviceByCustomerId(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/viewdevicebyid`,data,{ headers: this.getHeaders() });
+  }
+
+  viewCustomerImageName(data:any): Observable<any> {
+    return this.http.post(`${this.url}customer/view/image`,data,{ headers: this.getHeaders() });
+  }
 
   getEmployeeList(): Observable<any> {
     return this.http.post(`${this.url}employee/list`,{},{ headers: this.getHeaders() });

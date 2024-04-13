@@ -1,26 +1,43 @@
 <div class="main">
-    <form [formGroup]="guarantorForm" (ngSubmit)="register()">
+    <form [formGroup]="guarantorForm">
         <h1>Guarantor Form</h1>
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" formControlName="name"  />
+        <input type="text" name="name" id="name" formControlName="name" />
         <label for="fname">Father's Name:</label>
-        <input type="text" name="fname" id="fname" formControlName="fatherName"  />
-        
+        <input type="text" name="fname" id="fname" formControlName="fatherName" />
+
         <label for="profilePicture">Upload Profile Picture:</label>
-        <input type="file" class="form-control" id="profilePicture" (change)="onProfilePictureSelected($event)" #profilePictureInput multiple accept="image/*">
+        <input type="file" class="form-control" id="profilePicture" (change)="onProfilePictureSelected($event)"
+            #profilePictureInput multiple accept="image/*">
         <label for="anumber">Adhar Number:</label>
         <input type="number" name="anumber" id="anumber" formControlName="aadharNumber" />
         <label for="profilePicture">Upload Aadhar Front:</label>
-        <input type="file" class="form-control" id="profilePicture" (change)="onAadharPictureSelected($event)" #profilePictureInput multiple accept="image/*">
+        <input type="file" class="form-control" id="profilePicture" (change)="onAadharPictureSelected($event)"
+            #profilePictureInput multiple accept="image/*">
         <label for="profilePicture">Upload Aadhar Back:</label>
-        <input type="file" class="form-control" id="profilePicture" (change)="onAadharPictureBack($event)" #profilePictureInput multiple accept="image/*">
-        <label for="number">Number:</label>
-        <input type="number" name="number" id="number" formControlName="number" />
+        <input type="file" class="form-control" id="profilePicture" (change)="onAadharPictureBack($event)"
+        #profilePictureInput multiple accept="image/*">
+
+
+
+            <label for="number">Number:</label>
+            <input type="number" name="number" id="number" formControlName="number" [readOnly]="isOtpsended" />
+           
+      
+        <div class="otp" *ngIf="otpSection">
+            <button style="all: unset;" (click)="sendOtp()">Get OTP</button>
+        </div>
+        <input type="text" name="otp" id="otp" placeholder="Enter OTP" formControlName="otp" *ngIf="numberOtp"/>
+
+        <div class="verify" *ngIf="numberOtp">
+            <button style="all: unset;" (click)="verifyOtp()">SUBMIT</button>
+        </div>
+       
         <label for="address">Address:</label>
         <input type="text" name="address" id="address" formControlName="address" />
-    
-        <button type="submit" class="btn btn-success">Submit</button>
+
+        <button type="submit" class="btn btn-success" (click)="register()">Submit</button>
     </form>
-    
-    
+
+
 </div>

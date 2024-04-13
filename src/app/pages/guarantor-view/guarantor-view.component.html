@@ -1,0 +1,28 @@
+<div class="main">
+    <div class="table-container">
+        <h1 style="text-align: center; color: green; text-transform: uppercase;">guarantor</h1>
+        <table class="table">
+            <tr>
+                <th>S.N</th>
+                <th>Name</th>
+                <th>Father's Name</th>
+                <th>Number</th>
+                <th>aadharNumber</th>
+                <th>Address</th>
+                
+            </tr>
+            <tr *ngFor="let user of users; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.fatherName }}</td>
+                <td>{{ user.number }}</td>
+                <td>{{ user.aadharNumber }}</td>
+                <td>{{ user.address }}</td>
+            </tr>
+        </table>
+      </div>
+      
+      
+      
+      
+</div>
