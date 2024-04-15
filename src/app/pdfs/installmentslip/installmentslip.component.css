@@ -1,0 +1,93 @@
+.main{
+    width: 750px;
+    min-height: 100vh;
+    max-height: max-content;
+    border: 1px solid black;
+    margin: auto;
+    box-sizing: border-box;
+    position: relative;
+}
+.content{
+    width: 100%;
+    padding: 20px 20px;
+    
+    position: relative; /* Ensure the content is positioned relative to the main container */
+    z-index: 1;
+   
+}
+.row-self{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+.u-char{
+    padding-top: 2px;
+    
+    color: #027b9a;
+}
+.brand{
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 32px;
+  
+}
+.mainchar{
+    width: 50px;
+    margin-top:13px ;
+    font-size: 70px;
+    text-align: center;
+    color: #027b9a;
+}
+.full-name{
+    width: fit-content;
+    font-size: 20px;
+}
+.uphar{
+    color: #1f9aba;
+}
+.finance{
+    color: cadetblue;
+}
+.col-self1{
+   width: 100px;
+   height: 100px;
+}
+.col-self{
+    width: fit-content;
+}
+.fileds{
+    margin-left: 45px;
+    box-sizing: border-box;
+}
+.key{
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+    font-size: 17px;
+}
+
+.value{
+    font-size: 15px;
+    margin-top: 15px;
+    display: block;
+    text-decoration: underline;
+}
+
+hr{
+    border: none;
+    border-top: 4px solid rgb(4, 4, 4);
+}
+
+
+.watermark {
+    position: fixed; /* Position the watermark relative to the viewport */
+    top: 10%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) rotate(300deg); /* Rotate and center the watermark */
+    -webkit-transform: translate(-50%, -50%) rotate(300deg); /* For Safari */
+    color: lightgrey; /* Watermark text color */
+    font-size: 40px; /* Watermark text size */
+    z-index: 0; 
+}

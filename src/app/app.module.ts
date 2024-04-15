@@ -42,6 +42,8 @@ import { WalletcheckComponent } from './popup/walletcheck/walletcheck.component'
 import { MaterialModule } from './material.module';
 import { GuarantorViewComponent } from './pages/guarantor-view/guarantor-view.component';
 import { TermscondtionComponent } from './pdfs/termscondtion/termscondtion.component';
+import { AgreementComponent } from './pdfs/agreement/agreement.component';
+import { InstallmentslipComponent } from './pdfs/installmentslip/installmentslip.component';
 
 
 @NgModule({
@@ -79,7 +81,9 @@ import { TermscondtionComponent } from './pdfs/termscondtion/termscondtion.compo
     ProfileComponent,
     WalletcheckComponent,
     GuarantorViewComponent,
-    TermscondtionComponent
+    TermscondtionComponent,
+    AgreementComponent,
+    InstallmentslipComponent
   ],
   imports: [
     BrowserModule,

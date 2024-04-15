@@ -1,0 +1,12 @@
+.main{
+    width: 750px;
+    min-height: 100vh;
+    max-height: max-content;
+    border: 1px solid black;
+    margin: auto;
+    box-sizing: border-box;
+}
+.content{
+    width: 100%;
+    padding: 20px 20px;
+}

@@ -8,11 +8,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './termscondtion.component.html',
   styleUrls: ['./termscondtion.component.css']
 })
-export class TermscondtionComponent implements OnDestroy {
+export class TermscondtionComponent {
   profile: string | null = null;
-  adhar: string | null = null;
-  back: string | null = null;
-  pan: string | null = null;
   deviceData: any;
   installments: any;
   imageSubscriptions: Subscription[] = [];
@@ -34,7 +31,7 @@ export class TermscondtionComponent implements OnDestroy {
 
       this.service.viewCustomerImageName({ number: parseInt(data) }).subscribe({
         next: (data: any) => {
-          console.log('Image data:', data);
+          
           this.getImages(data);
         },
         error: (error) => {
@@ -44,35 +41,18 @@ export class TermscondtionComponent implements OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe from all image subscriptions to prevent memory leaks
-    this.imageSubscriptions.forEach(sub => sub.unsubscribe());
+  // ngOnDestroy(): void {
+  //   // Unsubscribe from all image subscriptions to prevent memory leaks
+  //   this.imageSubscriptions.forEach(sub => sub.unsubscribe());
+  // }
+
+  getImages(object:any){
+    this.service.imageView(object.profilePictures).subscribe(imageBlob => {
+      this.profile = URL.createObjectURL(imageBlob);
+      console.log(this.profile)
+    });
+  
   }
 
-  getImages(object: any): void {
-    ['profilePictures', 'panCardImages', 'adharCardImages', 'otherDocumentImages'].forEach(key => {
-      const subscription = this.service.imageView(object[key]).subscribe({
-        next: (imageBlob) => {
-          switch (key) {
-            case 'profilePictures':
-              this.profile = URL.createObjectURL(imageBlob);
-              break;
-            case 'panCardImages':
-              this.pan = URL.createObjectURL(imageBlob);
-              break;
-            case 'adharCardImages':
-              this.adhar = URL.createObjectURL(imageBlob);
-              break;
-            case 'otherDocumentImages':
-              this.back = URL.createObjectURL(imageBlob);
-              break;
-          }
-        },
-        error: (error) => {
-          console.error('Error loading image:', error);
-        }
-      });
-      this.imageSubscriptions.push(subscription);
-    });
-  }
+
 }

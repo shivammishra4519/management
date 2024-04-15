@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -32,6 +32,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProfileComponent } from './userspages/profile/profile.component';
 import { GuarantorViewComponent } from './pages/guarantor-view/guarantor-view.component';
 import { TermscondtionComponent } from './pdfs/termscondtion/termscondtion.component';
+import { AgreementComponent } from './pdfs/agreement/agreement.component';
+import { InstallmentslipComponent } from './pdfs/installmentslip/installmentslip.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -39,23 +41,10 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      {
-        path: '', redirectTo: 'home', pathMatch: 'full'
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent
-      },
-      {
-        path: 'gaurantor',
-        component: GuarantorComponent
-      },
-      {
-        path: 'view-gaurantor',
-        component: GuarantorViewComponent
-      },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'gaurantor', component: GuarantorComponent },
+      { path: 'view-gaurantor', component: GuarantorViewComponent },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
-      // { path: 'customer-registration', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
       {
         path: 'customer-registration', component: HomeregisterComponent,
         children: [
@@ -76,7 +65,7 @@ const routes: Routes = [
       { path: 'fund-transefer', loadChildren: () => import('./pages/fund-transefer/fund-transefer.module').then(m => m.FundTranseferModule), canActivate: [adminAuthGaurdGuard] },
       { path: 'fund-transfe-details', loadChildren: () => import('./pages/fund-transefer-detaills/fund-transefer-detaills.module').then(m => m.FundTranseferDetaillsModule) },
       { path: 'users-list', loadChildren: () => import('./pages/users-lis/users-lis.module').then(m => m.UsersLisModule), canActivate: [adminAuthGaurdGuard] },
-      { path: 'settle-amount', component: SettleAmountComponent, },
+      { path: 'settle-amount', component: SettleAmountComponent },
       { path: 'bank', component: SettleBankComponent },
       { path: 'admin', component: SettleAdminComponent },
       { path: 'guarantor', component: GuarantorComponent },
@@ -88,7 +77,6 @@ const routes: Routes = [
           { path: 'set-template', component: SetTemplateComponent },
           { path: 'send-sms', component: SendSmsComponent },
           { path: 'sms-setting', component: SmsSettingComponent },
-          // {path:'view-template',component:ViewTemplatesComponent},
         ],
         canActivate: [adminAuthGaurdGuard]
       },
@@ -100,33 +88,19 @@ const routes: Routes = [
           { path: 'settings', component: SettingBodyComponent }
         ]
       },
-
     ],
     canActivate: [authGuard]
   },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'forget-password',
-    component: ForgetPasswordComponent
-  },
+  { path: 'login', component: LoginComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent },
   { path: 'home', component: HomeMainComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
-  {
-    path: '', redirectTo: 'home', pathMatch: 'full'
-  },
-
-  {
-    path: 'payment', component: PaytmGatwayComponent
-  },
-
-  { path: 'terms-condtiton/:data', component: TermscondtionComponent }
-
-  // { path: 'customer-registraion', loadChildren: () => import('./pages/customer-registration/customer-registration.module').then(m => m.CustomerRegistrationModule) },
-  // { path: 'users', loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule) },
+  { path: 'payment', component: PaytmGatwayComponent },
+  { path: 'terms-condtiton/:data', component: TermscondtionComponent },
+  { path: 'aggrement/:data', component: AgreementComponent },
+  { path: 'installment-slip/:data', component: InstallmentslipComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

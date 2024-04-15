@@ -226,6 +226,10 @@ export class ApiService {
     return this.http.post(`${this.url}customer/view/image`,data,{ headers: this.getHeaders() });
   }
 
+  viewLoanByLoanId(data:any): Observable<any> {
+    return this.http.post(`${this.url}emi/viewloan`,data,{ headers: this.getHeaders() });
+  }
+
   getEmployeeList(): Observable<any> {
     return this.http.post(`${this.url}employee/list`,{},{ headers: this.getHeaders() });
   }
