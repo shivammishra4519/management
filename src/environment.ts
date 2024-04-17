@@ -10,7 +10,7 @@ export const environment = {
     senderid:'OMTRDE',
     pe_id:'1201163058752081861',
     adharApiUrl:'https://planapi.in/Api/Ekyc/AdharVerification',
-    
+  
     ApiMode:'1',
     ApiPassword:'RR8^*K4wJJ',
     ApiUserID:'4505',
