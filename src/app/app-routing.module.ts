@@ -97,9 +97,9 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'payment', component: PaytmGatwayComponent },
-  { path: 'terms-condtiton/:data', component: TermscondtionComponent },
-  { path: 'aggrement/:data', component: AgreementComponent },
-  { path: 'installment-slip/:data', component: InstallmentslipComponent },
+  { path: 'terms-condtiton', component: TermscondtionComponent },
+  { path: 'aggrement', component: AgreementComponent },
+  { path: 'installment-slip', component: InstallmentslipComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

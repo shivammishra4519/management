@@ -17,12 +17,14 @@ export class TermscondtionComponent {
   constructor(private route: ActivatedRoute, private service: ApiService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const data = params['data'];
+    this.route.queryParams.subscribe(params => {
+      const data = params['order'];
+      
       this.service.viewDeviceByCustomerId({ number: data }).subscribe({
         next: (data: any) => {
           this.deviceData = data;
           this.installments = data.installments;
+          console.log(data)
         },
         error: (error) => {
           console.error('Error fetching device data:', error);

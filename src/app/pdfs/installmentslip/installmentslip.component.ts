@@ -16,8 +16,8 @@ export class InstallmentslipComponent {
   isPaid=false;
  
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const data = params['data'];
+    this.route.queryParams.subscribe(params => {
+      const data = params['order'];
       this.processData(data);
       this.service.viewLoanByLoanId({ loanId: this.loanId, emiId: this.emiId }).subscribe({
         next: (data: any) => {
