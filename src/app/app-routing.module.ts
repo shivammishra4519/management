@@ -41,6 +41,7 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent,
     children: [
       { path: 'home', component: HomeComponent },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent },
       { path: 'gaurantor', component: GuarantorComponent },
       { path: 'view-gaurantor', component: GuarantorViewComponent },

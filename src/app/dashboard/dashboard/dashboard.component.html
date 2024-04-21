@@ -1,34 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-self fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/dashboard/setting" style="margin-left: 10px;">
+
+
+<header class="header">
+    <div class="logo">
+        <a class="navbar-brand" routerLink="/dashboard/home" style="margin-left: 10px;">
             DASHBOARD
         </a>
-        <!-- Add data-target attribute to specify the collapsible element -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-            <span>&#8942;</span>
-        </button>
-        <!-- Add the id attribute to the collapsible element -->
-        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a routerLink="/dashboard/user-setting">
-                        <img src="../../../assets/svg/gear-solid.svg" style="width:32px;">
-                    </a>
-                </li>
-                <li class="nav-item wallet">
-                    <span (click)="checkAmount()">&#8377;</span>
-                    <span> {{dataSharing.wallet}}</span>
-                </li>
-            </ul>
-        </div>
     </div>
-</nav>
+    <nav class="nav-links">
+        <span style="margin-left: 5px;" (click)="checkAmount()">&#8377;</span>
+        <span> {{dataSharing.wallet}}</span>
 
-
+    </nav>
+</header>
 
 <div class="row">
     <input type="checkbox" id="sidebar-toggle" [(ngModel)]="isSidebarOpen" #sidebarToggle />
-<label for="sidebar-toggle" class="toggle-btn" style="color:#fff;">&#9776;</label>
+    <label for="sidebar-toggle" class="toggle-btn" style="color:#fff;">&#9776;</label>
 
     <div class="col-md-2 sidebar">
         <app-sidebar></app-sidebar>

@@ -233,6 +233,11 @@ export class ApiService {
   getEmployeeList(): Observable<any> {
     return this.http.post(`${this.url}employee/list`,{},{ headers: this.getHeaders() });
   }
+
+  downloadInstallmentSlip(data:any): Observable<any> {
+    return this.http.get(`${this.url}pdf/installment-slip?loanId=${data.loanId}&emiId=${data.emiId}`);
+  }
+
   imageView(imageName: string): Observable<Blob> {
     return this.http.post(`${this.url}api/images`, { fileName: imageName }, {
       responseType: 'blob',

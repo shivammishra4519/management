@@ -5,29 +5,38 @@
     <h1>User Register Form</h1>
     <label for="name">Name:</label>
     <input type="text" name="name" id="name" formControlName="name"  />
-    <br />
+
 
     <label for="email">Email:</label>
     <input type="email" name="email" id="email" formControlName="email" />
-    <br />
+
     <label for="number">Number:</label>
     <input type="number" name="number" id="number" formControlName="number" />
-    <br />
+
 
     <label for="shop">Shop Name:</label>
     <input type="text" name="shop" id="shop" formControlName="shopName" />
-    <br />
+
     <label for="password">PIN:</label>
     <input type="password" name="password" formControlName="pin" />
-<br>
+
     <label for="password">Password:</label>
     <input type="password" name="password" formControlName="password" autocomplete="new-password" />
-    <br />
 
     <label for="password">Confirm Password:</label>
     <input type="password" name="password" formControlName="confirmPassword" />
-    <br />
+   
+    <label for="state">State:</label>
+    <select id="state" name="state" formControlName="state" (change)="onStateSelect($event)" required>
+        <option value="1">Select State</option>
+        <option *ngFor="let name of state">{{name}}</option>
+    </select>
 
+    <label for="District">District:</label>
+    <select id="District" name="District" formControlName="district" required (change)="onCitySelect($event)">
+        <option value="1">Select a city</option>
+        <option *ngFor="let name of city">{{name}}</option>
+    </select>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
 

@@ -26,7 +26,7 @@ export class ViewEmiComponent {
     ).subscribe({
       next: (res: any) => {
         this.emidetails = res;
-        console.log(res);
+       
         this.emiarray = this.emidetails.installments;
       },
       error: err => {
@@ -34,7 +34,16 @@ export class ViewEmiComponent {
       }
     });
   }
+
+  downloadSlip(data:any){
+    this.service.downloadInstallmentSlip(data).subscribe(res=>{
+      console.log(res)
+    })
+  }
   
+  viewSlip(data:any){
+    this.router.navigate(['installment-slip'],{queryParams:{loanid:data.loanId,emiId:data.emiId}})
+  }
 
 
   PayEmi(data:any){

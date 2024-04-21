@@ -14,11 +14,15 @@ export class InstallmentslipComponent {
   installment:any;
   index:any;
   isPaid=false;
- 
+   
+  loanId: string = '';
+  emiId: string = '';
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const data = params['order'];
-      this.processData(data);
+      this.loanId = params['loanid'];
+       this.emiId = params['emiId'];
+    console.log("loan id",this.loanId)
+
       this.service.viewLoanByLoanId({ loanId: this.loanId, emiId: this.emiId }).subscribe({
         next: (data: any) => {
           this.loanData = data;
@@ -27,13 +31,12 @@ export class InstallmentslipComponent {
           if (this.index !== -1) {
             this.installment = installments[this.index];
             this.isPaid=true;
-           
           } else {
             this.toastr.error("Installment not found for EMI ID")
           }
         },
         error: (err: any) => {
-          console.log(err)
+          console.log("err1",err)
           this.toastr.error(err.message.error || 'An error occurred');
         }
       });
@@ -41,24 +44,8 @@ export class InstallmentslipComponent {
   }
   
   
-  loanId: string = '';
-  emiId: string = '';
+  
 
-  processData(data: string) {
-    // Split the data string using '&' as delimiter
-    const parts = data.split('&');
-
-    parts.forEach(part => {
-      const keyValue = part.split('=');
-      const key = keyValue[0];
-      const value = keyValue[1];
-      if (key === 'loanid') {
-        this.loanId = value;
-      } else if (key === 'emiid') {
-        this.emiId = value;
-      }
-    });
-  }
 
 }
 

@@ -46,6 +46,22 @@
                 {{emi.payDate}}
                 </div>
             </div>
+            <div class="rows" *ngIf="(emi.paid)">
+                <div class="detailskey">
+                    Download Slip
+                </div>
+                <div class="detailsvalue">
+               <button class="btn btn-link" (click)="downloadSlip({emiId:emi.installmentId,loanId:emidetails.loanId})">Download</button>
+                </div>
+            </div>
+            <div class="rows" *ngIf="(emi.paid)">
+                <div class="detailskey">
+                    View Slip
+                </div>
+                <div class="detailsvalue">
+               <button class="btn btn-link" (click)="viewSlip({emiId:emi.installmentId,loanId:emidetails.loanId})">View Slip</button>
+                </div>
+            </div>
             <div class="rows" *ngIf="!(emi.paid)">
                 <div class="detailskey">
                     Pay Now
