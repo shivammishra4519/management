@@ -1,47 +1,47 @@
 <div class="table-container">
-  <table class="table">
+  <table>
       <tr>
-          <th class="sr">S.N</th>
-          <th class="first">First Name</th>
+          <th>S.N</th>
+          <th>First Name</th>
         
-          <th class="number">Number</th>
-          <!-- <th class="email">email</th> -->
-          <th class="dob">DOB</th>
-          <th class="pan">Pan Card</th>
-          <th class="adhar">Adhar Card</th>
-          <th class="gender">Gender</th>
-          <th class="state">State</th>
-          <th class="district">District</th>
-          <th class="address">Address</th>
-          <th class="shop">Shop</th>
-          <th class="shop">Date</th>
-          <th class="button">View Profile</th>
-          <th class="emis">View Emi</th>
+          <th>Number</th>
+          <!-- <th>email</th> -->
+          <th>DOB</th>
+          <th>Pan Card</th>
+          <th>Adhar Card</th>
+          <th>Gender</th>
+          <th>State</th>
+          <th>District</th>
+          <th>Address</th>
+          <th>Shop</th>
+          <th>Date</th>
+          <th>View Profile</th>
+          <th>View Emi</th>
         
       </tr>
       <tr *ngFor="let user of customerData; let i = index">
-          <td class="sr">{{ i + 1 }}</td>
-          <td class="first">{{ user.firstName }}</td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ user.firstName }}</td>
         
-          <td class="number">{{ user.number }}</td>
-          <!-- <td class="email">{{ user.email }}</td> -->
-          <td class="dob">{{ user.dob }}</td>
-          <td class="pan">{{ user.panCardNumber }}</td>
-          <td class="adhar">{{ user.adharCardNumber }}</td>
-          <td class="gender">{{ user.gender }}</td>
-          <td class="state">{{ user.state }}</td>
-          <td class="district">{{ user.district }}</td>
-          <td class="address">{{ user.address }}</td>
-          <td class="shop">{{ user.shop }}</td>
-          <td class="shop">{{ user.registerDate }}</td>
-          <td class="button-svg">
+          <td>{{ user.number }}</td>
+          <!-- <td>{{ user.email }}</td> -->
+          <td>{{ user.dob }}</td>
+          <td>{{ user.panCardNumber }}</td>
+          <td>{{ user.adharCardNumber }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.state }}</td>
+          <td>{{ user.district }}</td>
+          <td>{{ user.address }}</td>
+          <td>{{ user.shop }}</td>
+          <td>{{ user.registerDate }}</td>
+          <td>
             <button (click)="viewProfile(user)">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20">
                     <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
                 </svg>
             </button>
         </td>
-        <td class="emis">
+        <td>
           <button (click)="viewEmis(user)">
             <img src="../../../assets/images/5373059.png"  width="20" height="20"  alt="">
           </button>

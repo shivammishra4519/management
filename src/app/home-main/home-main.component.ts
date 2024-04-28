@@ -11,7 +11,7 @@ export class HomeMainComponent {
   constructor(private elementRef: ElementRef) {
     setTimeout(() => {
       this.isLoader = false;
-    }, 3000);
+    }, 1000);
   }
 
   toggleNavbar(): void {

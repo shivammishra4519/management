@@ -1,0 +1,64 @@
+<div class="row-self">
+    <div class="col-left">
+        <div class="body">
+            <form [formGroup]="settleCollection">
+                <h2>SETTLE AMOUNT TO EMPLOYEE</h2>
+                <label for="method">Payment To</label>
+                <select id="method" formControlName="user_id" (change)="onEmployeeSelect($event)">
+                    <option value="0">Select Employee</option>
+                    <option *ngFor="let user of employeeArray" value={{user.number}}>{{user.name}} {{user.number}}
+                    </option>
+                </select>
+                <div *ngIf="isAmount">
+                    <p>Total Amount: &nbsp; {{amount}}</p>
+                </div>
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" formControlName="amount">
+                <label for="pin">Transection Pin</label>
+                <input type="password" id="pin" name="pin" formControlName="pin">
+                <button type="submit" (click)="settleCollectionMethod()">Settle</button>
+            </form>
+        </div>
+        <hr>
+        <div class="employeelist">
+            <table class="user-table">
+                <thead>
+                  <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{ user.user_id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.amount }}</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+        </div>
+    </div>
+    <div class="col-right">
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Amount</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let transaction of transactions">
+                    <td>{{ transaction.date }}</td>
+                    <td>{{ transaction.time }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.user_id }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

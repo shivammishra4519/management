@@ -1,29 +1,32 @@
-.main{
-    height: 86vh;
-    
+/* CSS for styling the table */
+.table {
+   width: 100%;
+   border-collapse: collapse;
 }
 
-.table-container {
-    width: 100%;
-    overflow: auto;
-    margin-top: 10px;
-    min-height: 85vh;
- }
- 
- .table {
-    width: 100%;
-    border-collapse: collapse;
- }
- 
- th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
- }
- 
- @media screen and (max-width: 600px) {
-    .table th, .table td {
-        padding: 4px;
-    }
- }
- 
+.table th,
+.table td {
+   border: 1px solid #ddd;
+   padding: 8px;
+   text-align: left;
+}
+
+.table th {
+   background-color: #f2f2f2;
+}
+
+.table tr:nth-child(even) {
+   background-color: #f2f2f2;
+}
+
+.table tr:hover {
+   background-color: #ddd;
+}
+
+.table th {
+   padding-top: 12px;
+   padding-bottom: 12px;
+   text-align: left;
+   background-color: #4CAF50;
+   color: white;
+}

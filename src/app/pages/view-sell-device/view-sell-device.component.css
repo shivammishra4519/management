@@ -1,113 +1,122 @@
-.table-container {
-     /* Enable horizontal scrolling */
-    width: 100%; /* Ensure the container takes full width of the screen */
-    overflow: hidden;
-    margin-top: 50px;
-}
 
-.filter{
-    background-color:#f0e0e0;
-    width: 60vw;
-    position: fixed;
-    right: 5px;
-    height: 35px;
-    padding: 5px;
-}
-
-.table {
-    /* Your existing table styles */
-    width: auto; 
-    white-space: nowrap; /* Prevent line breaks within table cells */
-    font-size: small;
-    border: 1px solid black;
-}
-
-.sr{
-    width: 20px;
-}
-.brand{
-    width: 80px;
-}
-
-.imei{
-    width: 130px;
-}
-.model{
-    width: 60px;
-}
-.mrp{
-    width: 50px;
-}
-.fileCharge{
-    width: 75px;
-}
-.total{
-    width: 80px;
-}
-.sellamount{
-    width: 70px;
-}
-.downpayment{
-    width: 75px;
-}
-.financeAmount{
-    width: 75px;
-}
-.emiamount{
-    width: 60px;
-}
-.customernumber{
-    width: 120px;
-}
-.emi{
-    width: 40px;
-}
-.loanid{
-    width: 150px;
-}
-
-.date{
-    width: 80px;
-}
-
-td{
-    /* font-weight: 160; */
-    border: 1px solid black;
-text-align: center;
-}
-th{
-    border: 1px solid black;
-    text-align: center;
-}
-.date-inp{
-    width: 200px;
-}
-.row1{
-    display: flex !important;
-}
-.number{
+.header {
     display: flex;
-    gap: 10px;
-}
-input{
-    background:none;
-    border: 1px solid gray;
-    padding-left: 5px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    
 }
 
-.btn-self{
-    background-color: rgb(1, 25, 1);
+/* Filter container */
+.filter {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: 580px;
+}
+
+/* Filter row */
+.row1 {
+    display: flex;
+    align-items: center;
+}
+
+/* Date input */
+.date-inp {
+    margin-right: 10px;
+}
+
+/* Date input label */
+.date-inp::before {
+    content: attr(data-label) ":";
+    margin-right: 5px;
+}
+
+/* Number input container */
+.number {
+    display: flex;
+    align-items: center;
+}
+
+/* Number input label */
+.number .text {
+    margin-right: 5px;
+}
+
+/* Input box */
+.inp-box {
+    margin-right: 10px;
+}
+
+/* Search button */
+.btn-self {
+    background-color: #4CAF50;
     color: white;
-    width: 60px;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
 }
-@media screen and (max-width: 600px) {
-   .table-container{
-    overflow-x: auto !important;
-    margin-top: 55px;
-   }
-  }
+
+/* Style for input fields */
+input[type="date"],
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Style for search button */
+.btn-self {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+}
 
 
+/* styles.css */
 
+/* Table container */
+.table-container {
+    margin-top: 20px;
+}
 
-  
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table header */
+th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Table data cells */
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Alternate row background color */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect on rows */
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Button inside table cell */
+td button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}

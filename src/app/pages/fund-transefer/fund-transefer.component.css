@@ -105,14 +105,49 @@ th, td {
   .row-self1{
     /* flex-wrap: wrap; */
     flex-direction: column;
+    width: 100%;
   }
   .main{
     overflow: auto;
   }
   .side-cont{
-    width: 100vw;
+    width: 100%;
   }
   .right-cont{
-    width: 100vw;
+    width: 100%;
+    padding: 5px 5px;
   }
+}
+
+/* CSS for styling the table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }

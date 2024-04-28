@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -34,6 +34,11 @@ import { GuarantorViewComponent } from './pages/guarantor-view/guarantor-view.co
 import { TermscondtionComponent } from './pdfs/termscondtion/termscondtion.component';
 import { AgreementComponent } from './pdfs/agreement/agreement.component';
 import { InstallmentslipComponent } from './pdfs/installmentslip/installmentslip.component';
+import { GuarantorConditionComponent } from './pdfs/guarantor-condition/guarantor-condition.component';
+import { LoanstatusComponent } from './pages/loanstatus/loanstatus.component';
+import { InvoiceComponent } from './pdfs/invoice/invoice.component';
+import { SettleCollectionComponent } from './admin/settle-collection/settle-collection.component';
+import { InvoiceCustomerComponent } from './pdfs/invoice-customer/invoice-customer.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -66,11 +71,19 @@ const routes: Routes = [
       { path: 'fund-transefer', loadChildren: () => import('./pages/fund-transefer/fund-transefer.module').then(m => m.FundTranseferModule), canActivate: [adminAuthGaurdGuard] },
       { path: 'fund-transfe-details', loadChildren: () => import('./pages/fund-transefer-detaills/fund-transefer-detaills.module').then(m => m.FundTranseferDetaillsModule) },
       { path: 'users-list', loadChildren: () => import('./pages/users-lis/users-lis.module').then(m => m.UsersLisModule), canActivate: [adminAuthGaurdGuard] },
-      { path: 'settle-amount', component: SettleAmountComponent },
-      { path: 'bank', component: SettleBankComponent },
-      { path: 'admin', component: SettleAdminComponent },
+      {
+        path: 'settle-amount', component: SettleAmountComponent,
+        children: [
+          { path: 'bank', component: SettleBankComponent },
+          { path: 'admin', component: SettleAdminComponent },
+          { path: 'employee', component: SettleEmployeeComponent },
+        ]
+      },
+
       { path: 'guarantor', component: GuarantorComponent },
-      { path: 'employee', component: SettleEmployeeComponent },
+      { path: 'settle-collection', component: SettleCollectionComponent , canActivate: [adminAuthGaurdGuard]},
+
+
       {
         path: 'setting', component: SettingComponent,
         children: [
@@ -87,8 +100,10 @@ const routes: Routes = [
           { path: 'home', component: SettingBodyComponent },
           { path: 'manage-device', component: DeviceSettingComponent },
           { path: 'settings', component: SettingBodyComponent }
-        ]
+        ],
+        canActivate: [adminAuthGaurdGuard]
       },
+      { path: 'loan-status', component: LoanstatusComponent }
     ],
     canActivate: [authGuard]
   },
@@ -99,8 +114,11 @@ const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'payment', component: PaytmGatwayComponent },
   { path: 'terms-condtiton', component: TermscondtionComponent },
+  { path: 'guarantor-condtiton', component: GuarantorConditionComponent },
   { path: 'aggrement', component: AgreementComponent },
   { path: 'installment-slip', component: InstallmentslipComponent },
+  { path: 'invoice', component: InvoiceComponent },
+  { path: 'invoice-customer', component: InvoiceCustomerComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

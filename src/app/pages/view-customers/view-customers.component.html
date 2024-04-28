@@ -1,47 +1,71 @@
-<div class="main">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
+<div class="row mt-2">
+    <div class="col-md-4">
+        <div class="main">
+            <div class="profile" style="width: 18rem;">
+               
                 <img [src]="profile" class="card-img-top" alt="...">
-                <!-- <img src="../../../assets/images/1708162611023 (1).jpg" class="card-img-top" alt="..."> -->
-                <div class="card-body">
-                    <!-- <h5 class="card-title">{{customerInfo.firstName}}</h5> -->
-                    <h5 class="card-title">{{customerInfo.firstName}}</h5>
-                    <p class="card-text">Lorem ipsum dolor sit.</p>
-                </div>
+                  
             </div>
-            <div class="data">
-                <div class="row">
-                    <span class="key">Name:</span>
-                    <span class="value">{{customerInfo.firstName}}</span>
-                </div>
-                <div class="row">
-                    <span class="key">Number:</span>
-                    <span class="value">{{customerInfo.number}}</span>
-                </div>
-                <div class="row">
-                    <span class="key">DOB:</span>
-                    <span class="value">{{customerInfo.dob}}</span>
-                </div>
-                <div class="row">
-                    <span class="key">District:</span>
-                    <span class="value">{{customerInfo.district}}</span>
-                </div>
-                <div class="row">
-                    <span class="key">Shop:</span>
-                    <span class="value">{{customerInfo.shop}}</span>
-                </div>
-                <div class="row">
-                    <span class="key">Creadit:</span>
-                    <span class="value">
-                        {{customerInfo.currentCreadit}}
-                    </span>
-                </div>
+            <div class="nav-self">
+                <ul>
+                    <li><a href="">Setting</a></li>
+                    <li><a href="">Change Pin</a></li>
+                    <li><a  >Change Password</a></li>
+                    <li><a href="">View </a></li>
+                </ul>
             </div>
         </div>
-        <div class="col-md-9">
-          
+    </div>
+    <div class="col-md-8">
+        <div class="main">
+            <div *ngIf="isProfile">
+                <h2>IDENTITY</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fa fa-pen fa-xs edit"></i>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>:</td>
+                                    <td style="text-transform: uppercase;">{{customerInfo.firstName}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>:</td>
+                                    <td>{{customerInfo.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Number</td>
+                                    <td>:</td>
+                                    <td>{{customerInfo.number}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>:</td>
+                                    <td>{{customerInfo.address}}</td>
+                                </tr>
+                               
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="changePassword" *ngIf="ischangePass">
+                <div class="main">
+                    <h2>Change Password</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
+
     </div>
 </div>

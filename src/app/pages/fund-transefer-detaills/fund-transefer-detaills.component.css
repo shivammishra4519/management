@@ -1,123 +1,27 @@
 .table-container {
-    /* Enable horizontal scrolling */
-   width: 100%; /* Ensure the container takes full width of the screen */
-   overflow: hidden;
-   margin-top: 50px;
+   overflow-x: auto; /* Enable horizontal scrolling on small screens */
 }
 
-.filter{
-   background-color:#f0e0e0;
-   width: 60vw;
-   position: fixed;
-   right: 5px;
-   height: 35px;
-   padding: 5px;
+table {
+   width: 100%;
+   border-collapse: collapse;
 }
 
-.table {
-   /* Your existing table styles */
-   width: auto; 
-   white-space: nowrap; /* Prevent line breaks within table cells */
-   font-size: small;
-   border: 1px solid black;
+th, td {
+   border: 1px solid #ddd;
+   padding: 8px;
+   text-align: left;
 }
 
-.sr{
-   width: 30px;
-}
-.brand{
-   width: 120px;
+th {
+   background-color: #f2f2f2;
 }
 
-.imei{
-   width: 130px;
-}
-.model{
-   width: 120px;
-}
-.mrp{
-   width: 100px;
-}
-.fileCharge{
-   width: 100px;
-}
-.total{
-   width: 120px;
-}
-.sellamount{
-   width: 120px;
-}
-.downpayment{
-   width: 75px;
-}
-.financeAmount{
-   width: 75px;
-}
-.emiamount{
-   width: 60px;
-}
-.customernumber{
-   width: 200px;
-}
-.emi{
-   width: 40px;
-}
-.loanid{
-   width: 150px;
+/* Style rows based on conditions */
+.bg-red {
+   background-color: #ffcccc;
 }
 
-.date{
-   width: 80px;
+.bg-green {
+   background-color: #ccffcc;
 }
-
-td{
-   /* font-weight: 160; */
-   border: 1px solid black;
-text-align: center;
-
-}
-th{
-   border: 1px solid black;
-   text-align: center;
-}
-.date-inp{
-   width: 200px;
-}
-.row1{
-   display: flex !important;
-}
-.number{
-   display: flex;
-   gap: 10px;
-}
-input{
-   background:none;
-   border: 1px solid gray;
-   padding-left: 5px;
-}
-
-.btn-self{
-   background-color: rgb(1, 25, 1);
-   color: white;
-   width: 60px;
-}
-@media screen and (max-width: 600px) {
-  .table-container{
-   overflow-x: auto !important;
-   margin-top: 55px;
-  }
- }
-
-
- .bg-green{
-   background-color: rgb(15, 182, 15);
-   /* color: white; */
- }
- .bg-red{
-   background-color: rgb(192, 0, 0);
-   color: white;
- }
-
-
-
- 

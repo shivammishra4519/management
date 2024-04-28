@@ -62,7 +62,8 @@ export class PayEmiComponent {
   payNow() {
     this.service.payEmi(this.paymentForm.value).subscribe({
       next:data=>{
-        this.toster.success('Emi Paid Succesfully')
+        this.toster.success('Emi Paid Succesfully');
+        this.paymentForm.reset()
       },
       error:err=>{
         console.log(err);

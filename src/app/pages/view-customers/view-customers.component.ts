@@ -52,5 +52,19 @@ export class ViewCustomersComponent {
     });
   }
 
+  userData: any;
+  
+
+
+  isProfile = true;
+  ischangePass = false;
+
+  passWordChange() {
+    this.ischangePass = true;
+    this.isProfile = false;
+  }
+
+ 
+
 
 }

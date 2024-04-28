@@ -1,4 +1,4 @@
-.container{
+/* .container{
     margin-top: 60px;
     width: 600px;
     padding: 5px;
@@ -24,4 +24,87 @@
     width: 56px;
     height: 56px;
     border-radius: 52px;
-}
+} */
+
+
+
+.setting{
+    width: 450px;
+    height: calc(100vh - 100px);
+    border: 2px solid grey;
+    }
+    /* .body{
+    
+    } */
+    
+    .row-self{
+        display: flex;
+    }
+    .nav-self{
+        width: 33%;
+        display: block;
+        text-align: center;
+        background-color:rgb(199, 199, 222);
+        border: 2px solid wheat;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .half{
+        width: 100%;
+        display: flex;
+        margin-left: 1px;
+    }
+    .active{
+        background-color: blue;
+        color: white;
+    }
+    .body-main{
+        box-sizing: border-box;
+        width:calc(100vw - 600px) ;
+        margin-left: 1px;
+        border: 2px solid grey;
+        padding: 2px;
+        border-radius: 5px
+    }
+
+
+    
+.body {
+    margin: 0;
+    padding: 0;
+    /* background-color: #f4f4f4; */
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  input, textarea,select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+  
+    padding: 10px 15px;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,0 +1,178 @@
+<div class="cont" *ngIf="isDataAbailable">
+    <div class="card1">
+        <h1 style="text-align: center; background-color: #e3cece;">TAX INVOICE</h1>
+        <div class="header">
+            <div class="row1">
+                <div class="col-self">
+                    <h3>Place Of Supply :UTTAR PRADESH</h3>
+                    <h3>Reverse Charge Applicability: NO</h3>
+                </div>
+                <div class="col-self">
+                    <h3>Invoice Number:{{invoice}}</h3>
+                    <h3>Invoice Date: {{loanDetails.purchaseDate}}</h3>
+                </div>
+            </div>
+            <div class="row1">
+                <div class="col-self">
+                    <h3 style="font-weight: bold;">SELLER</h3>
+                    <h3 style="text-transform: capitalize;">{{companyDetails?.companyName || 'NA'}}</h3>
+                    <p style="text-transform: capitalize;">{{companyDetails?.address?.localAddress || 'NA'}} &nbsp;&nbsp;{{companyDetails?.address?.district || 'NA'}} &nbsp;&nbsp;{{companyDetails?.address?.state || 'NA'}}</p>
+                    <p>PAN N. :{{companyDetails?.panNumber || 'NA'}}</p>
+                    <p>GST N. :{{companyDetails?.gstNumber || 'NA'}}</p>
+                    <p>Mobile No :{{companyDetails?.contactNumber || 'NA'}}</p>
+                </div>
+                
+                <div class="col-self">
+                    <h3 style="font-weight: bold;">BUYER</h3>
+                    <h3>{{customerResult.firstName || 'NA'}}</h3>
+                    <p style="text-transform: capitalize;">{{customerResult.district}} {{customerResult.address}}</p>
+                    <p>Adhar No:{{customerResult.number}}</p>
+                    <!-- <p>Pan No:HHH5555kk</p> -->
+                    <p>Mobile No :{{customerResult.number}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="particale">
+            <h2 style="text-align: center; background-color: #d5c8c8;">PARTICULS</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">S.N.</th>
+                        <th style="text-align: center;">Product</th>
+                        <th style="width: 10%;">QTY.</th>
+                        <th style="width: 15%;">Unit Price</th>
+                        <th style="width: 10%;">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><span class="text-bold">Brand Name:</span>{{loanDetails.brandName}}</td>
+                        <td></td>
+                        <td class="subtotal"></td>
+                        <td class="subtotal"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td> <span class="text-bold">Model No :</span>{{loanDetails.modelName}}</td>
+                        <td></td>
+                        <td class="subtotal"></td>
+                        <td class="subtotal"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td> <span class="text-bold">IMEI No 1 :</span> {{loanDetails.imei1}}</td>
+                        <td></td>
+                        <td class="subtotal"></td>
+                        <td class="subtotal"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td> <span class="text-bold">BIMEI No 2 :</span>{{loanDetails.imei2}}</td>
+                        <td></td>
+                        <td class="subtotal"></td>
+                        <td class="subtotal"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td> <span class="text-bold">Batter :</span> yes</td>
+                        <td></td>
+                        <td class="subtotal"></td>
+                        <td class="subtotal"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td> <span class="text-bold">Charger :</span> yes</td>
+                        <td></td>
+                        <td class="subtotal"></td>
+                        <td class="subtotal"></td>
+                    </tr>
+
+                    <!-- <tr class="total-row">
+                        <td colspan="3">Total</td>
+                        <td class="total">$35.00</td>
+                        <td class="total">$35.00</td>
+                    </tr> -->
+                </tbody>
+            </table>
+            <div class="footer1">
+                <div class="col-80">
+                    <div>
+                        <h3>Ruppes in Words : <span>five hundred</span></h3>
+                    </div>
+                    <div>
+                        <h3>Bank Details : <span>Bank Name:{{companyDetails?.account?.bankName || 'NA'}}</span></h3>
+                        <p>A/C No: {{companyDetails?.account?.number || 'NA'}} &nbsp;&nbsp;&nbsp;&nbsp; A/C Name:
+                            {{companyDetails?.account?.name || 'NA'}} </p>
+                        <p>IFSC: {{companyDetails?.account?.ifsc || 'NA'}}</p>
+
+                    </div>
+                </div>
+                <div class="col-20">
+                    <div class="row1">
+                        <div class="col-self1">
+                            Mrp
+                        </div>
+                        <div class="col-self2">
+                            {{calMrp}}
+                        </div>
+                    </div>
+
+                    <div class="row1">
+                        <div class="col-self1">
+                            SGST:9%
+                        </div>
+                        <div class="col-self2">
+                            {{sgst}}
+                        </div>
+                    </div>
+                    <div class="row1">
+                        <div class="col-self1">
+                            CGST:9%
+                        </div>
+                        <div class="col-self2">
+                            {{cgst}}
+                        </div>
+                    </div>
+                    <div class="row1">
+                        <div class="col-self1">
+                            <span>File Charge(included GST)</span>
+                        </div>
+                        <div class="col-self2">
+                            {{loanDetails.fileCharge}}
+                        </div>
+                    </div>
+                    <div class="row1">
+                        <div class="col-self1">
+                            Total Tax Amount
+                        </div>
+                        <div class="col-self2">
+                            {{total}}
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="text-align: center;">For: <span style="text-transform: capitalize;">{{companyDetails.companyName || 'NA'}}</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="footer5">
+
+                <div class="row1">
+                    <div class="col-self0">
+                        नोट: <ul>
+                            <li>सभी मोबाइल की वारंटी सर्विस सेंटर से होगी।</li>
+                            <li>सेवा लेने की जिम्मेदारी ग्राहक की होगी।</li>
+                            <li> बैटरी और चार्जर की वारंटी 6 महीने की होगी।</li>
+                        </ul>
+                    </div>
+                    <div class="col-self0">
+                        <h3 style="text-align: right; margin-top: 50px; margin-right: 10px;">Signature</h3>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

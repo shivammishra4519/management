@@ -27,6 +27,7 @@ export class UsersComponent {
     email: this.builder.control('', Validators.required),
     number: this.builder.control('', Validators.required),
     shopName: this.builder.control('', Validators.required),
+    address: this.builder.control('', Validators.required),
     state: ['1', Validators.required],
     district: ['1', Validators.required],
     pin: this.builder.control('', Validators.required),

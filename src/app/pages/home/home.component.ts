@@ -14,6 +14,11 @@ export class HomeComponent {
   shops:any
   role:any;
   employeeList:any;
+  currentCredit:any;
+  shopWallets:any;
+  employeeWallets:any;
+  dailyCollection:any
+  totalCollectionHold:any;
 
 constructor(private serive:ViewdetailsService,private authService:AuthService){
   this.customerDetails()
@@ -23,7 +28,11 @@ constructor(private serive:ViewdetailsService,private authService:AuthService){
   this.role=authService.decodingRole();
   this.viewShops();
   this.viewEmploye();
-  
+  this.getCurrentCredit();
+  this.getShopWalltes();
+  this.getEmployeeWallet();
+  this.getDailyCollection();
+  this.getAllDailyCollection();
 }
 
 
@@ -72,4 +81,42 @@ this.serive.viewEmployee().subscribe({
 })
 }
 
+getCurrentCredit(){
+  this.serive.currentCredit().subscribe({
+    next:data=>{
+      this.currentCredit=data.totalCredit
+    }
+  })
+}
+
+getShopWalltes(){
+  this.serive.getShopsWallet().subscribe({
+    next:data=>{
+      this.shopWallets=data.totalAmount
+    }
+  })
+}
+
+getEmployeeWallet(){
+  this.serive.getEmployeeWallet().subscribe({
+    next:data=>{
+      this.employeeWallets=data.totalAmount
+    }
+  })
+}
+
+getDailyCollection(){
+  this.serive.getDailyCollection({}).subscribe({
+    next:data=>{
+      this.dailyCollection=data.amount
+    }
+  })
+}
+getAllDailyCollection(){
+  this.serive.getAllDailyCollection().subscribe({
+    next:data=>{
+      this.totalCollectionHold=data.totalAmount
+    }
+  })
+}
 }

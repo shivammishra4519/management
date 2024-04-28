@@ -37,6 +37,9 @@
         <option value="1">Select a city</option>
         <option *ngFor="let name of city">{{name}}</option>
     </select>
+
+    <label for="address">Address:</label>
+    <input type="text" name="address" id="address" formControlName="address" />
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
 

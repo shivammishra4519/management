@@ -44,6 +44,11 @@ import { GuarantorViewComponent } from './pages/guarantor-view/guarantor-view.co
 import { TermscondtionComponent } from './pdfs/termscondtion/termscondtion.component';
 import { AgreementComponent } from './pdfs/agreement/agreement.component';
 import { InstallmentslipComponent } from './pdfs/installmentslip/installmentslip.component';
+import { GuarantorConditionComponent } from './pdfs/guarantor-condition/guarantor-condition.component';
+import { LoanstatusComponent } from './pages/loanstatus/loanstatus.component';
+import { InvoiceComponent } from './pdfs/invoice/invoice.component';
+import { SettleCollectionComponent } from './admin/settle-collection/settle-collection.component';
+import { InvoiceCustomerComponent } from './pdfs/invoice-customer/invoice-customer.component';
 
 
 @NgModule({
@@ -83,7 +88,13 @@ import { InstallmentslipComponent } from './pdfs/installmentslip/installmentslip
     GuarantorViewComponent,
     TermscondtionComponent,
     AgreementComponent,
-    InstallmentslipComponent
+    InstallmentslipComponent,
+    GuarantorConditionComponent,
+    LoanstatusComponent,
+    InvoiceComponent,
+    SettleCollectionComponent,
+    InvoiceCustomerComponent
+    
   ],
   imports: [
     BrowserModule,

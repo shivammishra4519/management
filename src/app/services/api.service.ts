@@ -10,16 +10,14 @@ import { environment } from '../../environment'
 })
 export class ApiService {
   private url = environment.apiUrl;
-  // private url = "http://62.72.56.135:3000/";
+
   jwtToken = this.cookieService.get('jwtToken');
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   private getHeaders(): HttpHeaders {
     let jwtToken: string | null = null;
 
-    // Check if localStorage is available and get the token if it exists
     if (typeof localStorage !== 'undefined' && localStorage.getItem('token')) {
-
       jwtToken = localStorage.getItem('token'); // Get the token from localStorage
     } else {
       console.warn('Token not found in localStorage.');
@@ -27,8 +25,16 @@ export class ApiService {
 
     console.log('Token retrieved from localStorage:', jwtToken); // Log the retrieved token
 
+    // Add error handling for null token
+    if (!jwtToken) {
+      // Handle the case where the token is not found
+      // For example, you can return an HttpHeaders object without the Authorization header
+      return new HttpHeaders();
+    }
+
     return new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
   }
+
 
 
   // headers = new HttpHeaders().set("Authorization", `bearer ${this.jwtToken}`)
@@ -118,7 +124,7 @@ export class ApiService {
   getAllUserList(): Observable<any> {
     return this.http.post(`${this.url}api/getuserlist`, {}, { headers: this.getHeaders() });
   }
-  sendOtp(data:any): Observable<any> {
+  sendOtp(data: any): Observable<any> {
     return this.http.post(`${this.url}api/send-otp`, data, { headers: this.getHeaders() });
   }
   verifyeOtp(data: any): Observable<any> {
@@ -126,7 +132,7 @@ export class ApiService {
   }
 
   verifyeToken(): Observable<any> {
-  
+
     return this.http.post(`${this.url}api/verifytoken`, {}, { headers: this.getHeaders() });
   }
 
@@ -157,85 +163,135 @@ export class ApiService {
   }
 
   getSmsAll(): Observable<any> {
-    return this.http.post(`${this.url}sms/getsms`, {},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}sms/getsms`, {}, { headers: this.getHeaders() });
   }
-  
+
   createNewPassword(data: any): Observable<any> {
     return this.http.post(`${this.url}forget/update`, data,);
   }
   saveConactSms(data: any): Observable<any> {
     return this.http.post(`${this.url}conactus/save`, data,);
   }
-  
+
   viewAllDevice(): Observable<any> {
-    return this.http.post(`${this.url}api/viewalldevice`, {},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}api/viewalldevice`, {}, { headers: this.getHeaders() });
   }
 
   viewAllShopName(): Observable<any> {
-    return this.http.post(`${this.url}shops/names`, {},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}shops/names`, {}, { headers: this.getHeaders() });
   }
 
   getState(): Observable<any> {
-    return this.http.post(`${this.url}api/state`, {},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}api/state`, {}, { headers: this.getHeaders() });
   }
 
-  filterCustomer(data:any): Observable<any> {
-    return this.http.post(`${this.url}customer/filter`, data,{ headers: this.getHeaders() });
+  filterCustomer(data: any): Observable<any> {
+    return this.http.post(`${this.url}customer/filter`, data, { headers: this.getHeaders() });
   }
 
 
-  verifyCustomer(data:any): Observable<any> {
-    return this.http.post(`${this.url}customer/verify`, data,{ headers: this.getHeaders() });
+  verifyCustomer(data: any): Observable<any> {
+    return this.http.post(`${this.url}customer/verify`, data, { headers: this.getHeaders() });
   }
 
-  registerGuarantor(data:any): Observable<any> {
-    return this.http.post(`${this.url}guarantor/register`, data,{ headers: this.getHeaders() });
+  registerGuarantor(data: any): Observable<any> {
+    return this.http.post(`${this.url}guarantor/register`, data, { headers: this.getHeaders() });
   }
 
-  checkIsCustomer(data:any): Observable<any> {
-    return this.http.post(`${this.url}customer/check/customer`, data,{ headers: this.getHeaders() });
+  checkIsCustomer(data: any): Observable<any> {
+    return this.http.post(`${this.url}customer/check/customer`, data, { headers: this.getHeaders() });
   }
 
-  updateStatus(data:any): Observable<any> {
-    return this.http.post(`${this.url}api/updatestatus`, data,{ headers: this.getHeaders() });
+  updateStatus(data: any): Observable<any> {
+    return this.http.post(`${this.url}api/updatestatus`, data, { headers: this.getHeaders() });
   }
 
-  walletCheck(data:any): Observable<any> {
-    return this.http.post(`${this.url}api/wallet/user`, data,{ headers: this.getHeaders() });
+  walletCheck(data: any): Observable<any> {
+    return this.http.post(`${this.url}api/wallet/user`, data, { headers: this.getHeaders() });
   }
 
   fundHistoryByAdmin(): Observable<any> {
-    return this.http.post(`${this.url}api/fund/history`,{},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}api/fund/history`, {}, { headers: this.getHeaders() });
   }
   fundReciveByAdmin(): Observable<any> {
-    return this.http.post(`${this.url}api/fund/history/recive`,{},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}api/fund/history/recive`, {}, { headers: this.getHeaders() });
   }
 
-  checkGauartor(data:any): Observable<any> {
-    return this.http.post(`${this.url}guarantor/check`,data,{ headers: this.getHeaders() });
+  checkGauartor(data: any): Observable<any> {
+    return this.http.post(`${this.url}guarantor/check`, data, { headers: this.getHeaders() });
   }
   viewGauarntorList(): Observable<any> {
-    return this.http.post(`${this.url}guarantor/view/list`,{},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}guarantor/view/list`, {}, { headers: this.getHeaders() });
   }
 
-  viewDeviceByCustomerId(data:any): Observable<any> {
-    return this.http.post(`${this.url}api/viewdevicebyid`,data,{ headers: this.getHeaders() });
+  viewDeviceByCustomerId(data: any): Observable<any> {
+    return this.http.post(`${this.url}api/viewdevicebyid`, data, { headers: this.getHeaders() });
   }
 
-  viewCustomerImageName(data:any): Observable<any> {
-    return this.http.post(`${this.url}customer/view/image`,data,{ headers: this.getHeaders() });
+  viewCustomerImageName(data: any): Observable<any> {
+    return this.http.post(`${this.url}customer/view/image`, data, { headers: this.getHeaders() });
   }
 
-  viewLoanByLoanId(data:any): Observable<any> {
-    return this.http.post(`${this.url}emi/viewloan`,data,{ headers: this.getHeaders() });
+  viewLoanByLoanId(data: any): Observable<any> {
+    return this.http.post(`${this.url}emi/viewloan`, data, { headers: this.getHeaders() });
   }
 
   getEmployeeList(): Observable<any> {
-    return this.http.post(`${this.url}employee/list`,{},{ headers: this.getHeaders() });
+    return this.http.post(`${this.url}employee/list`, {}, { headers: this.getHeaders() });
   }
 
-  downloadInstallmentSlip(data:any): Observable<any> {
-    return this.http.get(`${this.url}pdf/installment-slip?loanId=${data.loanId}&emiId=${data.emiId}`);
+  downloadInstallmentSlip(data: any): Observable<any> {
+    return this.http.get(`${this.url}pdf/installment-slip?loanId=${data.loanId}&emiId=${data.emiId}`, { responseType: 'blob' });
+  }
+
+  exportLoanInExcel(): Observable<any> {
+    return this.http.get(`${this.url}files/download`, { responseType: 'blob' });
+  }
+
+  viewGuarantorByNumber(data: any): Observable<any> {
+    return this.http.post(`${this.url}guarantor/view/guarantor`, data, { headers: this.getHeaders() });
+  }
+
+  viewAllEmi(): Observable<any> {
+    return this.http.post(`${this.url}emi/viewallemi`, {}, { headers: this.getHeaders() });
+  }
+  viewAlldevice(): Observable<any> {
+    return this.http.post(`${this.url}api/viewalldevicesold`, {}, { headers: this.getHeaders() });
+  }
+
+  findadminId(): Observable<any> {
+    return this.http.post(`${this.url}api/find/adminid`, {}, { headers: this.getHeaders() });
+  }
+
+  filterDataByDate(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/filter/device`, data, { headers: this.getHeaders() });
+  }
+
+  dataForInvoice(data:any): Observable<any> {
+    return this.http.post(`${this.url}pdf/data/invoice`, data, { headers: this.getHeaders() });
+  }
+
+
+  settleCollection(data:any): Observable<any> {
+    return this.http.post(`${this.url}collection/settle/collection`, data, { headers: this.getHeaders() });
+  }
+ 
+  findAllcSettleCollection(): Observable<any> {
+    return this.http.post(`${this.url}collection/find/collection`, {}, { headers: this.getHeaders() });
+  }
+
+  findAllCollectionWallet(): Observable<any> {
+    return this.http.post(`${this.url}collection/find/wallets`, {}, { headers: this.getHeaders() });
+  }
+  findPlaceOfShopAndCustomer(data:any): Observable<any> {
+    return this.http.post(`${this.url}pdf/data/aggrement`, data, { headers: this.getHeaders() });
+  }
+
+  findAdminDetails(): Observable<any> {
+    return this.http.post(`${this.url}pdf/admin/details`, {}, { headers: this.getHeaders() });
+  }
+  findLoanDetails(data:any): Observable<any> {
+    return this.http.post(`${this.url}pdf/loand/details`, data, { headers: this.getHeaders() });
   }
 
   imageView(imageName: string): Observable<Blob> {
@@ -256,15 +312,15 @@ export class ApiService {
     return this.http.get(url)
   }
 
-  verifyAdhar(data:any): Observable<any> {
+  verifyAdhar(data: any): Observable<any> {
     return this.http.post(`${this.url}adhar/sendOtp`, data);
   }
 
-  verifyAdharOtp(data:any): Observable<any> {
+  verifyAdharOtp(data: any): Observable<any> {
     return this.http.post(`${this.url}adhar/verify-otp`, data);
   }
 
-  verifyPan(data:any): Observable<any> {
+  verifyPan(data: any): Observable<any> {
     return this.http.post(`${this.url}adhar/verify-pan`, data);
   }
 

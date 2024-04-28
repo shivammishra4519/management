@@ -31,7 +31,7 @@
             </div>
         </div>
         
-        <div class="col-md-3">
+        <div class="col-md-3" *ngIf="role=='admin'">
             <div class="card bg-c-green order-card">
                 <div class="card-block">
                     <!-- <h6 class="m-b-20">Orders Received</h6> -->
@@ -51,12 +51,51 @@
             </div>
         </div>
         
-        <div class="col-md-3">
-            <div class="card bg-c-pink order-card">
+        <div class="col-md-3" *ngIf="role=='admin'">
+            <div class="card bg-c-dark-green order-card">
                 <div class="card-block">
                     <!-- <h6 class="m-b-20">Orders Received</h6> -->
-                    <h2 class="text-right"><span>5</span></h2>
-                    <p class="m-b-0">successful Finded<span class="f-right"></span></p>
+                    <h2 class="text-right"><span>{{currentCredit}}</span></h2>
+                    <p class="m-b-0">Current Credit<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="role=='admin'">
+            <div class="card bg-c-lite-green order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{shopWallets}}</span></h2>
+                    <p class="m-b-0">User Wallet<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="role=='admin'">
+            <div class="card bg-c-lite-blues order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{employeeWallets}}</span></h2>
+                    <p class="m-b-0">Employee Wallet<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3" *ngIf="role=='admin'">
+            <div class="card bg-c-lite-blues order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{totalCollectionHold}}</span></h2>
+                    <p class="m-b-0">Total Collection Hold<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3" *ngIf="role=='employee'">
+            <div class="card bg-c-lite-blues order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{dailyCollection}}</span></h2>
+                    <p class="m-b-0">Collection Hold<span class="f-right"></span></p>
                 </div>
             </div>
         </div>

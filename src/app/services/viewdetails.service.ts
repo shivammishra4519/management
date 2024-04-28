@@ -54,6 +54,25 @@ export class ViewdetailsService {
     return this.http.post(`${this.url}brand/view`, {}, { headers: this.getHeaders() });
   }
 
+  currentCredit(): Observable<any> {
+    return this.http.post(`${this.url}details/credit`, {}, { headers: this.getHeaders() });
+  }
+
+  getShopsWallet(): Observable<any> {
+    return this.http.post(`${this.url}details/users/wallet`, {}, { headers: this.getHeaders() });
+  }
+
+  getEmployeeWallet(): Observable<any> {
+    return this.http.post(`${this.url}details/employee/wallet`, {}, { headers: this.getHeaders() });
+  }
+
+
+  getDailyCollection(data:any): Observable<any> {
+    return this.http.post(`${this.url}collection/find/dailycollection`, data, { headers: this.getHeaders() });
+  }
+  getAllDailyCollection(): Observable<any> {
+    return this.http.post(`${this.url}collection/findall/dailycollection`, {}, { headers: this.getHeaders() });
+  }
 
   
 

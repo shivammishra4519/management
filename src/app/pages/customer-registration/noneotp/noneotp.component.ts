@@ -56,7 +56,7 @@ export class NoneotpComponent {
     address: ['', Validators.required],
     otp: ['',],
     otpAdhar: ['',],
-    shop: ['', Validators.required],
+    shop: [''],
     fatherName: ['', Validators.required],
     secondIdType: ['0', Validators.required],
     secondId: ['', Validators.required],
@@ -98,6 +98,7 @@ export class NoneotpComponent {
     });
 
     if (this.customerRegistrationForm.invalid) {
+      console.log(this.customerRegistrationForm.value)
       this.toastr.error('fill all details');
       return
     }

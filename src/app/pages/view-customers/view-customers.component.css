@@ -1,65 +1,97 @@
-.main{
-    margin:auto;
-    margin-top: 5px;
-    margin-left: 5px;
-    padding: auto;
-    overflow-y: scroll !important;
-    /* overflow-x:scroll !important ; */
+/* Import Font Dancing Script */
+/* @import url(https://fonts.googleapis.com/css?family=Dancing+Script); */
 
-   
-}
 
-.card-title{
-    font-size: 25px;
-    font-weight: bold;
-    text-transform: uppercase;
-    box-sizing: border-box;
+
+/* Main */
+.main {
+    margin-top: 0%;
+    margin-left: 0%;
+    padding: 0 10px;
+    width: 100%;
     overflow: hidden;
 }
-.data{
-    width: 100%;
-    padding:5px;
-    box-sizing: border-box;
-    border: 1px solid black;
-}
-.key{
-width: 33%;
-font-size: 20px;
-overflow: hidden !important;
-/* border: 1px solid black; */
-}
-.value{
-width: fit-content;
-text-align: center;
-font-size: 20px;
-overflow: hidden !important;
+
+.main h2 {
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.key1{
-    width:49%;
-    height: 200px;
-    border: 2px solid black;
-    box-sizing: border-box;
-}
-.value1{
-    width: 49%;
-    height: 200px;
-    border: 2px solid black;
-    box-sizing: border-box;
+.main .card {
+    background-color: #fff;
+    border-radius: 18px;
+    box-shadow: 1px 1px 8px 0 grey;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 0 20px 50px;
 }
 
+.main .card table {
+    border: none;
+    font-size: 16px;
+    height: 270px;
+    width: 80%;
+}
+
+.edit {
+    position: absolute;
+    color: #e7e7e8;
+    right: 14%;
+}
+
+.card-img-top{
+    border-radius: 19%;
+    height: 320px;
+}
+
+.nav-self {
+    font-family: Arial, sans-serif;
+  }
+  
+  .nav-self ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-self ul li {
+    margin-bottom: 10px;
+  }
+  
+  .nav-self ul li a {
+    text-decoration: none;
+    margin-top: 5px;
+    color: #333; /* Link color */
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    width: 274px;
+    background-color: #edd5d5;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+  
+  .nav-self ul li a:hover {
+    background-color: #f0f0f0; /* Hover background color */
+  }
 
 
+  
+  
 
-@media screen and (max-width: 600px) {
-    .key1{
-        width: 100%;
-        
-    }
-    .value1{
-        width: 100%;
-    }
+
+@media only screen and (max-width: 767px) {
     .main{
-        margin-top: 60px;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        margin-left: 2px;
+    }
+    .main .card{
+        padding: 0px 5px;
+
     }
   }
+  

@@ -11,6 +11,7 @@
   overflow-x: hidden;
   min-height: calc(100vh -  30px);
 }
+
 .wallet{
   border: 2px solid grey;
   padding: 5px 5px;
@@ -24,8 +25,11 @@
   margin-left: 210px;
   z-index: 2;
   width: calc(100vw - 200px);
-  margin-top:10pxpx;
+  margin-top:50px;
   overflow: hidden;
+  padding: 0px;
+  padding-left: 2px;
+  box-sizing: border-box;
 }
 
 .bg-self{
@@ -48,7 +52,7 @@ span{
   position: fixed;
   top: 10px;
   left: 0px;
-  z-index: 2505;
+  z-index: 13545;
   display: none;
 width: 20px;
 }
@@ -115,8 +119,8 @@ ul li{
 
   .main-cont {
     width: 100vw;
-    margin: 0px;
-    margin-top: 5px;
+    /* margin: 0px; */
+    margin-top: 50px;
     overflow: hidden;
     margin-left: 0px;
   }
@@ -136,6 +140,10 @@ ul li{
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  position: fixed;
+  z-index: 12545;
+  overflow: hidden;
+  width: 100vw;
 }
 
 .logo {

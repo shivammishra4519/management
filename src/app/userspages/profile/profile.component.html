@@ -7,10 +7,11 @@
             </div>
             <div class="nav-self">
                 <ul>
-                    <li><a href="">Setting</a></li>
-                    <li><a href="">Change Pin</a></li>
-                    <li><a href="">Change Password</a></li>
-                    <li><a href="">View </a></li>
+                    <li><a>Setting</a></li>
+                    <li><a (click)="pinChange()">Change Pin</a></li>
+                    <li><a (click)="passWordChange()">Change Password</a></li>
+                    <li><a (click)="updateAddress()">Update Address </a></li>
+                    <li><a (click)="updateBankAccount()">Add Bank AC </a></li>
                 </ul>
             </div>
         </div>
@@ -27,47 +28,174 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>:</td>
-                                    <td>ImDezCode</td>
+                                    <td style="text-transform: uppercase;">{{userData.name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
                                     <td>:</td>
-                                    <td>imdezcodegmail.com</td>
+                                    <td>{{userData.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Number</td>
+                                    <td>:</td>
+                                    <td>{{userData.number}}</td>
                                 </tr>
                                 <tr>
                                     <td>Address</td>
                                     <td>:</td>
-                                    <td>Bali, Indonesia</td>
+                                    <td>{{userData.address.localAddress}}</td>
+                                </tr>
+                                <tr *ngIf="role !=='user'">
+                                    <td>Role</td>
+                                    <td>:</td>
+                                    <td style="text-transform: capitalize;">{{userData.role}}</td>
+                                </tr>
+                                <tr *ngIf="role =='user'">
+                                    <td>Shop Name</td>
+                                    <td>:</td>
+                                    <td style="text-transform: capitalize;">{{userData.shopName}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Hobbies</td>
+                                    <td>Active</td>
                                     <td>:</td>
-                                    <td>Diving, Reading Book</td>
+                                    <td style="text-transform: capitalize;">{{userData.active}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Job</td>
-                                    <td>:</td>
-                                    <td>Web Developer</td>
-                                </tr>
-                                <tr>
-                                    <td>Skill</td>
-                                    <td>:</td>
-                                    <td>PHP, HTML, CSS, Java</td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-                <div class="changePassword" *ngIf="ischangePass">
-                    <div class="main">
-                        <h2>Change Password</h2>
+            <div class="changePassword" *ngIf="ischangePass">
+                <div class="main">
+                    <h2>Change Password</h2>
+                    <div class="card">
                         <div class="card-body">
-                            <input type="text" placeholder="Enter old Password">
+
+                            <form [formGroup]="passWordDetails">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Old Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        formControlName="oldPassword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        formControlName="newPassword">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        formControlName="confirmPassword">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary"
+                                    (click)="changePasswordMethod()">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-           
+            </div>
+
+            <div class="changePassword" *ngIf="ischangePin">
+                <div class="main">
+                    <h2>Change PIN</h2>
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form [formGroup]="pinDetails">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Old PIN</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        formControlName="oldPin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">New PIN</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        formControlName="newPin">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Confirm PIN</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        formControlName="confirmPin">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary"
+                                    (click)="changePindMethod()">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="changePassword" *ngIf="isUpdateAddress">
+                <div class="main">
+                    <h2>Update Address</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <form [formGroup]="addressForm" class="form-horizontal" role="form">
+                                            <!-- <h2>Address</h2> -->
+                                            <div class="form-group">
+                                                <p class="col-sm-offset-2 col-sm-10 help-block">Address</p>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputAddressLine1" formControlName="localAddress"
+                                                        name="address-line1" placeholder="Local Address">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="selectCountry" class="col-sm-2 control-label">State</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" id="selectCountry" name="state" formControlName="state"
+                                                        (change)="onStateSelect($event)">
+                                                        <option value="1">Select State</option>
+                                                        <option *ngFor="let name of state">{{name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="selectCountry"
+                                                    class="col-sm-2 control-label">District</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" id="selectCountry" name="country" formControlName="district"
+                                                        (change)="onCitySelect($event)">
+                                                        <option value="1">Select a city</option>
+                                                        <option *ngFor="let name of city">{{name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputZipPostalCode" class="col-sm-2 control-label">Zip /
+                                                    Postal Code</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="inputZipPostalCode"
+                                                        name="zip-postal-code" placeholder="Zip / Postal Code" formControlName="zipCode">
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-success mt-2" (click)="updateAddressDetails()">SUBMIT</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="changePassword" *ngIf="isAddBankAccount">
+                <div class="main">
+                    <h2>ADD BANK ACCOUNT</h2>
+                    <div class="card">
+                        <div class="card-body">
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

@@ -1,0 +1,80 @@
+<div style="display: flex; justify-content: flex-end; padding-right: 10px;">
+    <button (click)="exportData()" ><img src="../../../assets/svg/icons8-excel.svg" width="32px" height="32px"></button>
+</div>
+
+
+<div class="table-container">
+    <table class="employee-table">
+        <tr>
+            <th>S.N.</th>
+            <th>Date</th>
+            <th>Loan ID</th>
+            <th>IMEI</th>
+            <th>Name</th>
+            <th>Mobile N.</th>
+            <th>Shop Name</th>
+            <th>Brand Name</th>
+            <th>Model Name</th>
+            <th>Net Amount</th>
+            <th>File Charge</th>
+            <th>Total Amount</th>
+            <th>Downpayment</th>
+            <th>Finance Amount</th>
+            <th>Month of Emi</th>
+            <th>Emi Amount</th>
+            <th>1 Installment</th>
+            <th>Pay Date</th>
+            <th>2 Installment</th>
+            <th>Pay Date</th>
+            <th>3 Installment</th>
+            <th>Pay Date</th>
+            <th>4 Installment</th>
+            <th>Pay Date</th>
+            <th>5 Installment</th>
+            <th>Pay Date</th>
+            <th>Penality remark</th>
+            <th>Penality Amount</th>
+            <th>Current Credit Amount</th>
+        </tr>
+        <tr *ngFor="let item of data;let i = index">
+            <td>{{i+1}}</td>
+            <td >{{ item.purchaseDate }}</td>
+            <td>{{ item.loanId }}</td>
+            <td>{{ item.imei1 }}</td>
+            <td>{{ item.customerName }}</td>
+            <td>{{ item.customerNumber }}</td>
+            <td>{{ item.shop }}</td>
+            <td>{{ item.brandName }}</td>
+            <td>{{ item.modelName }}</td>
+            <td>{{ item.totalAmount - item.fileCharge }}</td>
+            <td>{{ item.fileCharge }}</td>
+            <td>{{ item.totalAmount }}</td>
+            <td>{{ item.downPayment }}</td>
+            <td>{{ item.financeAmount }}</td>
+            <td>{{ item.installments.length }}</td>
+            <td>{{ item.emiAmount }}</td>
+            <td>{{ item.installments[0]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
+            <td >{{ item.installments[0]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+
+            <td>{{ item.installments[1]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
+            <td>{{ item.installments[1]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+
+
+            <td>{{ item.installments[2]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
+            <td>{{ item.installments[2]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+
+
+            <td>{{ item.installments[3]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
+            <td>{{ item.installments[3]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+
+
+            <td>{{ item.installments[4]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
+            <td>{{ item.installments[4]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+
+
+            <td></td>
+            <td></td>
+            <td>{{item.currentCredit}}</td>
+        </tr>
+    </table>
+</div>

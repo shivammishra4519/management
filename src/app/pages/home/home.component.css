@@ -24,6 +24,17 @@ body{
   .bg-c-red {
     background: linear-gradient(45deg,#38020b,#d20023);
   }
+
+  .bg-c-dark-green {
+    background: linear-gradient(45deg, #333507, #170202);
+  }
+  .bg-c-lite-green {
+    background: linear-gradient(45deg, #d9e03b, #085312);
+  }
+
+  .bg-c-lite-blues {
+       background: linear-gradient(45deg, #62e03b, #1d0853);
+  }
   
   
   

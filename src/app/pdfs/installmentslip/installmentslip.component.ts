@@ -21,7 +21,8 @@ export class InstallmentslipComponent {
     this.route.queryParams.subscribe(params => {
       this.loanId = params['loanid'];
        this.emiId = params['emiId'];
-    console.log("loan id",this.loanId)
+       
+  
 
       this.service.viewLoanByLoanId({ loanId: this.loanId, emiId: this.emiId }).subscribe({
         next: (data: any) => {
@@ -36,8 +37,8 @@ export class InstallmentslipComponent {
           }
         },
         error: (err: any) => {
-          console.log("err1",err)
-          this.toastr.error(err.message.error || 'An error occurred');
+          // console.log("err1",err)
+          // this.toastr.error(err.error.message );
         }
       });
     });
