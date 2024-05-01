@@ -1,10 +1,11 @@
-<div class="main">
+<div class="main" *ngIf="isDataAvailable">
     <h3 style="text-align: center; font-weight: bold;">AGREEMENT FOR HIRE-PURCHASE OF A MOBILE PHONE</h3>
     <h5 style="text-align: center; font-weight: bold;">Applicable only for Mobile finance</h5>
 
     <div class="content">
         <p style="font-size: 15px;">
-            This Agreement is executed on {{data.loanDate.purchaseDate}}, at {{data.findShopPlace.address.district}}, {{data.findShopPlace.address.state}}, as specified in the Schedule annexed hereto,
+            This Agreement is executed on{{ data.loanDate?.purchaseDate || 'NA' }}, at {{ data.findShopPlace?.address?.district || 'NA' }}, {{ data.findShopPlace?.address?.state || 'NA' }}
+            as specified in the Schedule annexed hereto,
             <br>
             <span style="font-weight: bold;">BETWEEN:</span> <br>
             <span style="font-weight: bold;"> PARTIES:</span> <br>
@@ -18,7 +19,7 @@
 
             <span style="font-weight: bold;">SECOND PARTY:</span>
             <br>
-           <span style="text-transform: capitalize; font-weight: bold;"> {{data.customerPlace.firstName}}</span>, resident of  {{data.customerPlace.address}} , {{data.customerPlace.district}}, Uttar Pradesh, India, hereinafter referred to as "the
+           <span style="text-transform: capitalize; font-weight: bold;"> {{data.customerPlace.firstName || 'NA'}}</span>, resident of  {{data.customerPlace.address}} , {{data.customerPlace.district}}, Uttar Pradesh, India, hereinafter referred to as "the
             Borrower".
 
             WHEREAS: <br>

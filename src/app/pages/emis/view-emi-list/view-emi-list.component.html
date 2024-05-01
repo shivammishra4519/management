@@ -1,35 +1,36 @@
-<table>
-    <thead>
-      <tr>
-        <th>S.N</th>
-        <th>Transaction ID</th>
-        <th>Amount</th>
-        <th>Date</th>
-        <th>Sender Opening Amount</th>
-        <th>Sender Closing Amount</th>
-        <th>Receiver Opening Amount</th>
-        <th>Receiver Closing Amount</th>
-        <th>Sender ID</th>
-        <th>Receiver ID</th>
-        <th>Time</th>
-        <th>Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of transactionData;let i=index">
-        <td>{{i+1}}</td>
-        <td>{{ item.TransactionID }}</td>
-        <td>{{ item.amount }}</td>
-        <td>{{ item.date }}</td>
-        <td>{{ item.senderDetails.senderOpeningAmount }}</td>
-        <td>{{ item.senderDetails.senderClosingAmount }}</td>
-        <td>{{ item.receiverDetails.receiverOpeningAmount }}</td>
-        <td>{{ item.receiverDetails.receiverClosingAmount }}</td>
-        <td>{{ item.senderId }}</td>
-        <td>{{ item.receiverId }}</td>
-        <td>{{ item.time }}</td>
-        <td>{{ item.type }}</td>
-      </tr>
-    </tbody>
+<div class="table-container">
+  <table class="custom-table" *ngIf="dataAvailable">
+      <thead>
+          <tr>
+              <th>S.N</th>
+              <th>Transaction ID</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Sender Opening Amount</th>
+              <th>Sender Closing Amount</th>
+              <th>Receiver Opening Amount</th>
+              <th>Receiver Closing Amount</th>
+              <th>Sender ID</th>
+              <th>Receiver ID</th>
+              <th>Time</th>
+              <th>Type</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of transactionData; let i=index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.TransactionID }}</td>
+              <td>{{ item.amount }}</td>
+              <td>{{ item.date }}</td>
+              <td>{{ item.senderDetails.senderOpeningAmount }}</td>
+              <td>{{ item.senderDetails.senderClosingAmount }}</td>
+              <td>{{ item.receiverDetails.receiverOpeningAmount }}</td>
+              <td>{{ item.receiverDetails.receiverClosingAmount }}</td>
+              <td>{{ item.senderId }}</td>
+              <td>{{ item.receiverId }}</td>
+              <td>{{ item.time }}</td>
+              <td>{{ item.type }}</td>
+          </tr>
+      </tbody>
   </table>
-  
+</div>

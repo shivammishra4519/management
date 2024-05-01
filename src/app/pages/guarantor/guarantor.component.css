@@ -1,5 +1,7 @@
 .main{
   height: 87vh;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 form {
@@ -48,4 +50,15 @@ form {
     left: 302px;
     bottom: 29px;
   }
+
+  /* Styles for screens smaller than 600 pixels (typical for mobile devices) */
+@media only screen and (max-width: 600px) {
+  .otp{
+    left: 65vw;
+  }
+  .verify{
+    left: 65vw;
+  }
+}
+
   

@@ -29,29 +29,29 @@
 
         <div class="content">
             <div class="info">
-                <p>Customer Name: &nbsp; {{deviceData.customerName}}
+                <p>Customer Name: &nbsp; {{deviceData.customerName ||'NA'}}
                 </p>
                 <div class="lineunder">
                     <hr>
                 </div>
                 <!-- <hr class="underline"> -->
-                <p>Customer Number:&nbsp;{{deviceData.customerNumber}}</p>
+                <p>Customer Number:&nbsp;{{deviceData.customerNumber ||'NA'}}</p>
                 <div class="lineunder">
                     <hr>
                 </div>
-                <p>Mobile Brand And Model:&nbsp;{{deviceData.brandName}} &nbsp; {{deviceData.modelName}}</p>
+                <p>Mobile Brand And Model:&nbsp;{{deviceData.brandName ||'NA'}} &nbsp; {{deviceData.modelName ||'NA'}}</p>
                 <div class="lineunder">
                     <hr>
                 </div>
-                <p>IMEI1:&nbsp;{{deviceData.imei1}}</p>
+                <p>IMEI1:&nbsp;{{deviceData.imei1 ||'NA'}}</p>
                 <div class="lineunder">
                     <hr>
                 </div>
-                <p>IMEI2:&nbsp;{{deviceData.imei2}}</p>
+                <p>IMEI2:&nbsp;{{deviceData.imei2 ||'NA'}}</p>
                 <div class="lineunder">
                     <hr>
                 </div>
-                <p>Installments:&nbsp;{{deviceData.emi}}</p>
+                <p>Installments:&nbsp;{{deviceData.emi ||'NA'}}</p>
                 <div class="lineunder">
                     <hr>
                 </div>
@@ -112,9 +112,9 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let emi of installments">
-                        <td>{{emi.installmentId}}</td>
-                        <td>{{emi.dueDate}}</td>
-                        <td>{{emi.amount}}</td>
+                        <td>{{emi.installmentId ||'NA'}}</td>
+                        <td>{{emi.dueDate ||'NA'}}</td>
+                        <td>{{emi.amount ||'NA'}}</td>
                     </tr>
                 </tbody>
             </table>

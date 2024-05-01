@@ -7,10 +7,12 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './loanstatus.component.css'
 })
 export class LoanstatusComponent {
-  data:any
+  data:any;
+  isDataAvailble=false;
 constructor(private service:ApiService){
   service.viewAlldevice().subscribe(res=>{
   this.data=res
+  this.isDataAvailble=true;
   
 })
 }

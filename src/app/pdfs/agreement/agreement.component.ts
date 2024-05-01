@@ -9,17 +9,27 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './agreement.component.css'
 })
 export class AgreementComponent {
-  data:any;
-  constructor(private route: ActivatedRoute, private service: ApiService,private toastr:ToastrService) {
+  data: any;
+  isDataAvailable = false;
+  constructor(private route: ActivatedRoute, private service: ApiService, private toastr: ToastrService) {
     this.route.queryParams.subscribe(params => {
-      service.findPlaceOfShopAndCustomer(params).subscribe(res=>{
-        this.data=res;
+     if(params){
+      service.findPlaceOfShopAndCustomer(params).subscribe({
+        next:data=>{
+          this.data = data;
+          console.log(data)
+          this.isDataAvailable = true;
+        },
+        error:err=>{
+          toastr.error('error')
+        }
       })
+     }
     })
-   }
- 
+  }
 
 
 
- 
+
+
 }

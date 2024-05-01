@@ -8,14 +8,14 @@
                     <h3>Reverse Charge Applicability: NO</h3>
                 </div>
                 <div class="col-self">
-                    <h3>Invoice Number:{{invoice}}</h3>
-                    <h3>Invoice Date: {{loanDetails.purchaseDate}}</h3>
+                    <h3>Invoice Number:{{invoice || "NA"}}</h3>
+                    <h3>Invoice Date: {{loanDetails.purchaseDate || 'NA'}}</h3>
                 </div>
             </div>
             <div class="row1">
                 <div class="col-self">
                     <h3 style="font-weight: bold;">SELLER</h3>
-                    <h3 style="text-transform: capitalize;">{{companyDetails?.companyName || 'NA'}}</h3>
+                    <h3 style="text-transform: capitalize;">{{companyDetails?.companyName|| 'NA'}}</h3>
                     <p style="text-transform: capitalize;">{{companyDetails?.address?.localAddress || 'NA'}} &nbsp;&nbsp;{{companyDetails?.address?.district || 'NA'}} &nbsp;&nbsp;{{companyDetails?.address?.state || 'NA'}}</p>
                     <p>PAN N. :{{companyDetails?.panNumber || 'NA'}}</p>
                     <p>GST N. :{{companyDetails?.gstNumber || 'NA'}}</p>

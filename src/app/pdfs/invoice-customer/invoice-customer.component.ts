@@ -22,9 +22,7 @@ export class InvoiceCustomerComponent {
     this.route.queryParams.subscribe(params => {
       this.invoice = params['invoice']
       service.findAdminDetails().subscribe(res => {
-        // console.log(res)
-       
-        console.log(this.companyDetails);
+        this.companyDetails=res
       })
       if(params['loanId']){
         service.findLoanDetails(params).subscribe(res=>{
@@ -50,6 +48,7 @@ export class InvoiceCustomerComponent {
     this.sgst=parseFloat(sgstCal.toFixed(2));
     const mrpCal=mrp-this.cgst-this.sgst;
     this.calMrp=parseFloat(mrpCal.toFixed(2));
-    this.total=this.calMrp+this.loanDetails.fileCharge+this.cgst+this.sgst;
+    const calTotal=this.calMrp+this.loanDetails.fileCharge+this.cgst+this.sgst;
+    this.total=parseFloat(calTotal.toFixed())
   }
 }

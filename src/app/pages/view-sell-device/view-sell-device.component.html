@@ -64,7 +64,7 @@
             <td>{{ mobile.financeAmount }}</td>
             <td>{{ mobile.emi }}</td>
             <td>{{ mobile.emiAmount }}</td>
-            <td>{{ mobile.purchaseDate }}</td>
+            <td>{{ mobile.purchaseDate  || 'NA' }}</td>
             <td>
                 <button (click)="viewEmis(mobile)">
                     <img src="../../../assets/images/5373059.png" width="20" height="20" alt="">

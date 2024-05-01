@@ -11,11 +11,13 @@ import { WalletcheckComponent } from '../../popup/walletcheck/walletcheck.compon
 export class EmployeRegisterComponent {
 data:any
 active=true;
+isDataAvailable=false;
   
   constructor(private builder:FormBuilder,private service:ApiService, private dialog: MatDialog) {
     service.getEmployeeList().subscribe({
 next:data=>{
   this.data=data;
+  this.isDataAvailable=true;
 }
     })
    }

@@ -12,12 +12,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ProfileComponent {
   userData: any;
-  stateData:any;
-  state:any;
-  city:any;
-  role:any;
-  constructor(private service: ProfileService,private builder:FormBuilder,private toastr:ToastrService,private apiservice:ApiService,authService:AuthService) {
-    this.role=authService.decodingRole()
+  stateData: any;
+  state: any;
+  city: any;
+  role: any;
+  constructor(private service: ProfileService, private builder: FormBuilder, private toastr: ToastrService, private apiservice: ApiService, authService: AuthService) {
+    this.role = authService.decodingRole()
     service.viewProfile().subscribe({
       next: data => {
         this.userData = data;
@@ -31,87 +31,87 @@ export class ProfileComponent {
     });
   };
 
-  passWordDetails=this.builder.group({
-    oldPassword:this.builder.control('',Validators.required),
-    newPassword:this.builder.control('',Validators.required),
-    confirmPassword:this.builder.control('',Validators.required),
+  passWordDetails = this.builder.group({
+    oldPassword: this.builder.control('', Validators.required),
+    newPassword: this.builder.control('', Validators.required),
+    confirmPassword: this.builder.control('', Validators.required),
   })
   isProfile = true;
   ischangePass = false;
-  ischangePin=false;
-  isUpdateAddress=false;
-  isAddBankAccount=false;
+  ischangePin = false;
+  isUpdateAddress = false;
+  isAddBankAccount = false;
 
   passWordChange() {
     this.ischangePass = true;
     this.isProfile = false;
-    this.ischangePin=false;
-    this.isAddBankAccount=false;
-    this.isUpdateAddress=false;
+    this.ischangePin = false;
+    this.isAddBankAccount = false;
+    this.isUpdateAddress = false;
   }
 
-  changePasswordMethod(){
-    if(this.passWordDetails.invalid){
+  changePasswordMethod() {
+    if (this.passWordDetails.invalid) {
       this.toastr.error('Fill All details');
-      return ;
+      return;
     }
-    if(this.passWordDetails.value.newPassword !== this.passWordDetails.value.confirmPassword){
+    if (this.passWordDetails.value.newPassword !== this.passWordDetails.value.confirmPassword) {
       this.toastr.error('New Password and Confirm Password must be same');
       return;
     }
-    
-   this.service.changePassword(this.passWordDetails.value).subscribe({
-    next:data=>{
-      this.toastr.success('Password Changed Successfully');
-      this.passWordDetails.reset();
-    },error:err=>{
-      // console.log(err);
-      this.toastr.error(err.error.message)
-    }
-   })
+
+    this.service.changePassword(this.passWordDetails.value).subscribe({
+      next: data => {
+        this.toastr.success('Password Changed Successfully');
+        this.passWordDetails.reset();
+      }, error: err => {
+        // console.log(err);
+        this.toastr.error(err.error.message)
+      }
+    })
   }
 
-  pinChange(){
+  pinChange() {
     this.ischangePass = false;
     this.isProfile = false;
-    this.ischangePin=true
-    this.isUpdateAddress=false;
-    this.isAddBankAccount=false;
+    this.ischangePin = true
+    this.isUpdateAddress = false;
+    this.isAddBankAccount = false;
   }
-  pinDetails=this.builder.group({
-    oldPin:this.builder.control('',Validators.required),
-    newPin:this.builder.control('',Validators.required),
-    confirmPin:this.builder.control('',Validators.required),
+  pinDetails = this.builder.group({
+    oldPin: this.builder.control('', Validators.required),
+    newPin: this.builder.control('', Validators.required),
+    confirmPin: this.builder.control('', Validators.required),
   })
 
-  changePindMethod(){
-    if(this.pinDetails.invalid){
+  changePindMethod() {
+    if (this.pinDetails.invalid) {
       this.toastr.error('Fill All details');
-      return ;
+      return;
     }
-    if(this.pinDetails.value.newPin !== this.pinDetails.value.confirmPin){
+    if (this.pinDetails.value.newPin !== this.pinDetails.value.confirmPin) {
       this.toastr.error('New PIN and Confirm PIN must be same');
       return;
     }
-    
-   this.service.changePin(this.pinDetails.value).subscribe({
-    next:data=>{
-      this.toastr.success('PIN Changed Successfully');
-      this.pinDetails.reset();
-    },error:err=>{
-      // console.log(err);
-      this.toastr.error(err.error.message)
-    }
-   })
+
+    this.service.changePin(this.pinDetails.value).subscribe({
+      next: data => {
+        this.toastr.success('PIN Changed Successfully');
+        this.pinDetails.reset();
+      }, error: err => {
+        // console.log(err);
+        this.toastr.error(err.error.message)
+      }
+    })
   }
 
 
-  updateAddress(){
+  updateAddress() {
     this.ischangePass = false;
     this.isProfile = false;
-    this.ischangePin=false
-    this.isUpdateAddress=true;
-    this.isAddBankAccount=false;
+    this.ischangePin = false
+    this.isUpdateAddress = true;
+    this.isAddBankAccount = false;
   }
 
 
@@ -134,22 +134,22 @@ export class ProfileComponent {
   }
 
 
-  addressForm=this.builder.group({
-    localAddress:this.builder.control('',Validators.required),
-    state:this.builder.control('1',Validators.required),
-    district:this.builder.control('1',Validators.required),
-    zipCode:this.builder.control('',Validators.required),
+  addressForm = this.builder.group({
+    localAddress: this.builder.control('', Validators.required),
+    state: this.builder.control('1', Validators.required),
+    district: this.builder.control('1', Validators.required),
+    zipCode: this.builder.control('', Validators.required),
   })
 
-  updateAddressDetails(){
-    if(this.addressForm.invalid){
+  updateAddressDetails() {
+    if (this.addressForm.invalid) {
       this.toastr.error('fill all details')
-    }else{
+    } else {
       this.service.updateAddress(this.addressForm.value).subscribe({
-        next:data=>{
+        next: data => {
           this.toastr.success('Address Updated Successfully');
           this.addressForm.reset();
-        },error:err=>{
+        }, error: err => {
           // console.log(err);
           this.toastr.error(err.error.message)
         }
@@ -157,12 +157,22 @@ export class ProfileComponent {
     }
   }
 
-  updateBankAccount(){
+  bankDetails=this.builder.group({
+    acHolderName:this.builder.control('',Validators.required),
+    acNumber:this.builder.control('',Validators.required),
+    branchName:this.builder.control('',Validators.required),
+    ifsc:this.builder.control('',Validators.required),
+  })
+  updateBankAccount() {
     this.ischangePass = false;
     this.isProfile = false;
-    this.ischangePin=false
-    this.isUpdateAddress=false;
-    this.isAddBankAccount=true;
+    this.ischangePin = false
+    this.isUpdateAddress = false;
+    this.isAddBankAccount = true;
   }
- 
+
+  addBankAccount(){
+    console.log(this.bankDetails.value)
+  }
+
 }

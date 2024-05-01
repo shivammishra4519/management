@@ -69,8 +69,9 @@ export class NoneotpComponent {
       return
     }
     if (this.adharCardImages.length <= 0) {
+      console.log(this.adharCardImages.length)
       this.toastr.error('upload adhar front image');
-      return
+      return;
     }
 
     if (this.otherDocumentImages.length <= 0) {
@@ -97,29 +98,47 @@ export class NoneotpComponent {
       formData.append('otherDocumentImages', image);
     });
 
+
     if (this.customerRegistrationForm.invalid) {
-      console.log(this.customerRegistrationForm.value)
       this.toastr.error('fill all details');
       return
+    }
+    const dobValue: any = this.customerRegistrationForm.value.dob;
+
+    // Calculate age based on the date of birth
+    const today = new Date();
+    const birthDate = new Date(dobValue);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    // If the birthday hasn't occurred yet this year, subtract one year
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    // Perform validation based on age
+    if (age < 18) {
+      this.toastr.error('Customer age cannot be less than 18');
+      return;
     }
     if (!this.isOtpVerfied) {
       this.toastr.error('mobile number not verifyed');
       return;
     }
 
+
     this.service.checkIsCustomer(this.customerRegistrationForm.value).subscribe({
-      next:data=>{
-        const status=data.status;
-        if(status == 1){
+      next: data => {
+        const status = data.status;
+        if (status == 1) {
           this.toastr.error('Customer Already Exit');
           return
         }
-        if(status == 0){
+        if (status == 0) {
           this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
             (response) => {
               if (response instanceof HttpResponse) {
                 const img: any = response;
-                console.log(response)
                 this.customerRegistrationForm.patchValue({
                   images: img.body.filenames
                 });
@@ -133,7 +152,7 @@ export class NoneotpComponent {
                     this.toastr.error('somtheing went wrong please try again');
                   }
                 })
-      
+
               } else {
                 this.toastr.error('Upload Image again')
                 return
@@ -144,12 +163,12 @@ export class NoneotpComponent {
               return
             }
           );
-        }else{
+        } else {
           this.toastr.error('Somtheing went wrong')
         }
       }
     })
-   
+
   }
 
   profilePictures: File[] = [];
@@ -226,6 +245,7 @@ export class NoneotpComponent {
   }
 
   onAdharCardSelected(event: any) {
+
     this.adharCardImages = []
     const selectedPicture = event.target.files[0];
     if (this.panCardImages && this.panCardImages.length > 0) {
@@ -254,13 +274,13 @@ export class NoneotpComponent {
         return;
       }
     }
-    this.adharCardImages.push(selectedPicture)
+    this.adharCardImages.push(selectedPicture);
+
 
   }
 
   onOtherDocumentSelected(event: any) {
     this.otherDocumentImages = []
-    this.adharCardImages = []
     const selectedPicture = event.target.files[0];
     if (this.panCardImages && this.panCardImages.length > 0) {
       const panCardImageName = this.panCardImages[0].name;
@@ -297,9 +317,12 @@ export class NoneotpComponent {
   message: any;
   number: any
   sendOtp() {
-    const number = this.customerRegistrationForm.value.number;
+    const number: any = this.customerRegistrationForm.value.number;
     this.number = number;
-    if (number) {
+    const numberStr = number.toString();
+    const numLenght = numberStr.length;
+
+    if (numLenght == 10) {
       this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
         next: data => {
           this.otpSection = true
@@ -311,7 +334,7 @@ export class NoneotpComponent {
         }
       })
     } else {
-      this.toastr.error('Somtheing went wrong')
+      this.toastr.error('Please Enter a valid number');
     }
   }
 

@@ -1,4 +1,4 @@
-<div class="row mt-2">
+<div class="row mt-2 main-1">
     <div class="col-md-4">
         <div class="main">
             <div class="profile" style="width: 18rem;">
@@ -60,7 +60,6 @@
                                     <td>:</td>
                                     <td style="text-transform: capitalize;">{{userData.active}}</td>
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>
@@ -142,15 +141,16 @@
                                             <div class="form-group">
                                                 <p class="col-sm-offset-2 col-sm-10 help-block">Address</p>
                                                 <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputAddressLine1" formControlName="localAddress"
-                                                        name="address-line1" placeholder="Local Address">
+                                                    <input type="text" class="form-control" id="inputAddressLine1"
+                                                        formControlName="localAddress" name="address-line1"
+                                                        placeholder="Local Address">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="selectCountry" class="col-sm-2 control-label">State</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" id="selectCountry" name="state" formControlName="state"
-                                                        (change)="onStateSelect($event)">
+                                                    <select class="form-control" id="selectCountry" name="state"
+                                                        formControlName="state" (change)="onStateSelect($event)">
                                                         <option value="1">Select State</option>
                                                         <option *ngFor="let name of state">{{name}}</option>
                                                     </select>
@@ -160,8 +160,8 @@
                                                 <label for="selectCountry"
                                                     class="col-sm-2 control-label">District</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control" id="selectCountry" name="country" formControlName="district"
-                                                        (change)="onCitySelect($event)">
+                                                    <select class="form-control" id="selectCountry" name="country"
+                                                        formControlName="district" (change)="onCitySelect($event)">
                                                         <option value="1">Select a city</option>
                                                         <option *ngFor="let name of city">{{name}}</option>
                                                     </select>
@@ -172,10 +172,12 @@
                                                     Postal Code</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="inputZipPostalCode"
-                                                        name="zip-postal-code" placeholder="Zip / Postal Code" formControlName="zipCode">
+                                                        name="zip-postal-code" placeholder="Zip / Postal Code"
+                                                        formControlName="zipCode">
                                                 </div>
                                             </div>
-                                            <button class="btn btn-success mt-2" (click)="updateAddressDetails()">SUBMIT</button>
+                                            <button class="btn btn-success mt-2"
+                                                (click)="updateAddressDetails()">SUBMIT</button>
                                         </form>
                                     </div>
                                 </div>
@@ -190,8 +192,25 @@
                     <h2>ADD BANK ACCOUNT</h2>
                     <div class="card">
                         <div class="card-body">
-
-                            
+                            <form [formGroup]="bankDetails">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Account Holder Name</label>
+                                    <input type="text" class="form-control" id="name" formControlName="acHolderName">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Account No.</label>
+                                    <input type="text" class="form-control" id="name" formControlName="acNumber">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bname" class="form-label">Brnach Name</label>
+                                    <input type="text" class="form-control" id="name" formControlName="branchName">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ifsc" class="form-label">IFSC</label>
+                                    <input type="text" class="form-control" id="ifsc" formControlName="ifsc">
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="addBankAccount()">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>

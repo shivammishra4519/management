@@ -99,6 +99,11 @@ overflow-y: auto;
   .user-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  .trans{
+    overflow-y: auto;
+    overflow-x: auto;
+  }
   
   @media only screen and (max-width: 480px) {
   .row-self{

@@ -88,6 +88,24 @@ export class OtpadharComponent {
       this.toastr.error('fill all details');
       return
     }
+    const dobValue:any = this.customerRegistrationForm.value.dob;
+
+    // Calculate age based on the date of birth
+    const today = new Date();
+    const birthDate = new Date(dobValue);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    
+    // If the birthday hasn't occurred yet this year, subtract one year
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    // Perform validation based on age
+    if (age < 18) {
+      this.toastr.error('Customer age cannot be less than 18');
+      return;
+    }
 
     this.profilePictures.forEach(image => {
       formData.append('profilePictures', image);
@@ -272,8 +290,7 @@ export class OtpadharComponent {
   }
 
   onOtherDocumentSelected(event: any) {
-    this.otherDocumentImages = []
-    this.adharCardImages = []
+    this.otherDocumentImages = [];
     const selectedPicture = event.target.files[0];
     if (this.panCardImages && this.panCardImages.length > 0) {
       const panCardImageName = this.panCardImages[0].name;
@@ -310,9 +327,12 @@ export class OtpadharComponent {
   message: any;
   number: any
   sendOtp() {
-    const number = this.customerRegistrationForm.value.number;
+    const number: any = this.customerRegistrationForm.value.number;
     this.number = number;
-    if (number) {
+    const numberStr = number.toString();
+    const numLenght = numberStr.length;
+
+    if (numLenght == 10) {
       this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
         next: data => {
           this.otpSection = true
@@ -324,7 +344,7 @@ export class OtpadharComponent {
         }
       })
     } else {
-      this.toastr.error('Somtheing went wrong')
+      this.toastr.error('Please Enter a valid number');
     }
   }
 

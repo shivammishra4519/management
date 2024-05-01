@@ -9,10 +9,11 @@ import { ApiService } from '../../../services/api.service';
 export class ViewEmiListComponent {
 
   transactionData:any;
+  dataAvailable=false;
 constructor(private service:ApiService){
  service.viewAllEmi().subscribe(res=>{
   this.transactionData=res;
-  console.log(res)
+ this.dataAvailable=true
  })
 }
 }

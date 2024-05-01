@@ -12,7 +12,7 @@ export class ProfileService {
   private getHeaders(): HttpHeaders {
     let jwtToken: string | null = null;
 
-    // Check if localStorage is available and get the token if it exists
+    // // Check if localStorage is available and get the token if it exists
     if (typeof localStorage !== 'undefined' && localStorage.getItem('token')) {
 
       jwtToken = localStorage.getItem('token'); // Get the token from localStorage

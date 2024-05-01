@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from '../../services/api.service';
 import { CustomerDataService } from '../../datasharing/customer-data.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environment';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-guarantor',
@@ -11,11 +13,11 @@ import { Router } from '@angular/router';
   styleUrl: './guarantor.component.css'
 })
 export class GuarantorComponent {
-  constructor(private builder: FormBuilder, private toastr: ToastrService, private service: ApiService, private dataSharing: CustomerDataService,private router:Router) { }
-  otpSection =true;
-  numberOtp=false;
-  isOtpVerfied=false;
-  isOtpsended=false;
+  constructor(private builder: FormBuilder, private toastr: ToastrService, private service: ApiService, private dataSharing: CustomerDataService, private router: Router, private http: HttpClient) { }
+  otpSection = true;
+  numberOtp = false;
+  isOtpVerfied = false;
+  isOtpsended = false;
   guarantorForm = this.builder.group({
     name: this.builder.control('', Validators.required),
     fatherName: this.builder.control('', Validators.required),
@@ -121,14 +123,15 @@ export class GuarantorComponent {
     this.profilePictures.forEach(image => {
       formData.append('profilePictures', image);
     });
-
+    
     this.aadharCardImagesFront.forEach(image => {
-      formData.append('adharFront', image);
+      formData.append('aadharCardImagesFront', image);
     });
-
+    
     this.aadharCardImagesBack.forEach(image => {
-      formData.append('adharCardBack', image);
+      formData.append('aadharCardImagesBack', image);
     });
+    
 
 
     if (this.guarantorForm.invalid) {
@@ -136,7 +139,7 @@ export class GuarantorComponent {
       return
     }
 
-    if(!this.isOtpVerfied){
+    if (!this.isOtpVerfied) {
       this.toastr.error('Number Not verifyed')
     }
 
@@ -144,15 +147,37 @@ export class GuarantorComponent {
       next: data => {
         console.log(data)
         if (data.status == 0) {
-          this.service.registerGuarantor(this.guarantorForm.value).subscribe({
-            next: data => {
-              this.dataSharing.setGuarantorData(this.guarantorForm.value);
-              this.router.navigate(['/dashboard/sell-device'])
-              this.toastr.success('Gaurantor Registred Successfullyy')
-            }, error: err => {
-              console.log(err)
+          this.http.post<any>(`${environment.apiUrl}guarantor/upload/guarantor`, formData, { observe: 'response' }).subscribe(
+            (response) => {
+              if (response instanceof HttpResponse) {
+                console.log(response)
+                const img: any = response;
+                this.guarantorForm.patchValue({
+                  images: img.body.filenames
+                });
+
+                this.service.registerGuarantor(this.guarantorForm.value).subscribe({
+                  next: data => {
+                   
+                    this.dataSharing.setGuarantorData(this.guarantorForm.value);
+                    this.router.navigate(['/dashboard/sell-device'])
+                    this.toastr.success('Gaurantor Registred Successfullyy')
+                  }, error: err => {
+                    console.log(err)
+                  }
+                })
+               
+
+              } else {
+                this.toastr.error('Upload Image again')
+                return
+              }
+            },
+            (error) => {
+              this.toastr.error('Error uploading images')
+              return
             }
-          })
+          );
         }
         else {
           this.toastr.error('User Already Exit')
@@ -164,14 +189,15 @@ export class GuarantorComponent {
   }
 
   sendOtp() {
-    const number = this.guarantorForm.value.number;
-   
-    if (number) {
+    const number: any = this.guarantorForm.value.number;
+    const str = number.toString()
+    const numLengt = str.length;
+    if (numLengt == 10) {
       this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
         next: data => {
           this.otpSection = false
           this.numberOtp = true;
-          this.isOtpsended=true
+          this.isOtpsended = true
           this.toastr.success('Otp send to Your Number')
         },
         error: err => {
@@ -179,7 +205,7 @@ export class GuarantorComponent {
         }
       })
     } else {
-      this.toastr.error('Somtheing went wrong')
+      this.toastr.error('Please Enter A Valid Number')
     }
   }
 
@@ -194,12 +220,38 @@ export class GuarantorComponent {
       next: data => {
         this.isOtpVerfied = true;
         this.otpSection = false;
-        this.numberOtp=false;
+        this.numberOtp = false;
         this.toastr.success('OTP Verifyed Successfully')
       },
       error: err => {
         this.toastr.error('Invalid OTP')
       }
     })
+  }
+
+  onNumber(event: any) {
+    const num = parseInt((event.target as HTMLSelectElement).value);
+    const str = num.toString()
+    const numLengt = str.length;
+    if (numLengt == 10) {
+      this.service.verfyGaurantor({ number: num }).subscribe({
+        next: data => {
+          if (data.status == 0) {
+
+          }
+          if (data.status == 1) {
+            this.dataSharing.setGuarantorData(data);
+            this.router.navigate(['/dashboard/sell-device'])
+            this.toastr.success('Gaurantor Alreday Exit')
+          }
+
+        }, error: err => {
+          this.toastr.error(err.error.message);
+          this.guarantorForm.reset();
+        }
+      })
+    } else {
+      this.toastr.error('Please Enter A Valid Number')
+    }
   }
 }

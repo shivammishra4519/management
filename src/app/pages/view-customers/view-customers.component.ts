@@ -36,7 +36,7 @@ export class ViewCustomersComponent {
 
 
 
-  getImages(object:any){
+  getImages(object: any) {
     this.service.imageView(object.profilePictures).subscribe(imageBlob => {
       this.profile = URL.createObjectURL(imageBlob);
       console.log(this.profile)
@@ -53,7 +53,7 @@ export class ViewCustomersComponent {
   }
 
   userData: any;
-  
+
 
 
   isProfile = true;
@@ -64,7 +64,7 @@ export class ViewCustomersComponent {
     this.isProfile = false;
   }
 
- 
+
 
 
 }

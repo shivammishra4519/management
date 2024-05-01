@@ -14,7 +14,7 @@ role:any;
   }
 
   logOut() {
-    localStorage.clear();
+    // localStorage.clear();
     this.router.navigate(['/home'])
   }
 }

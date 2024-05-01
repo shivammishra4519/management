@@ -22,7 +22,6 @@
                     formControlName="number" />
                 <button class="otp" (click)="sendOtp()" *ngIf="numberOtp">Get Otp</button>
             </div>
-
             <div class="verifyotp" *ngIf="otpSection">
                 <label for="otp">Verify Otp</label>
                 <input type="text" name="otp" id="otp" placeholder="Enter otp" required formControlName="otp" />

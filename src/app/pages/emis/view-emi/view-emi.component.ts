@@ -3,7 +3,7 @@ import { DatasharingService } from '../../../services/datasharing.service';
 import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import * as CryptoJS from 'crypto-js';
+
 @Component({
   selector: 'app-view-emi',
   templateUrl: './view-emi.component.html',
@@ -13,13 +13,14 @@ export class ViewEmiComponent {
   customerData:any
   emidetails:any;
   emiarray:any;
+  dataAvilable=true;
   constructor(private dataService:DatasharingService,private service:ApiService,private router:Router){
-    const encryptedLoanId = CryptoJS.AES.encrypt('kkkkkk', 'your_secret_key').toString();
-    const encryptedEmiId = CryptoJS.AES.encrypt('lllll', 'your_secret_key').toString();
+    // const encryptedLoanId = CryptoJS.AES.encrypt('kkkkkk', 'your_secret_key').toString();
+    // const encryptedEmiId = CryptoJS.AES.encrypt('lllll', 'your_secret_key').toString();
 
-    // Encode the encrypted data to Base64
-    const encodedLoanId = btoa(encryptedLoanId);
-    const encodedEmiId = btoa(encryptedEmiId);
+    // // Encode the encrypted data to Base64
+    // const encodedLoanId = btoa(encryptedLoanId);
+    // const encodedEmiId = btoa(encryptedEmiId);
     // console.log("emiid=",encodedEmiId)
   }
  
@@ -28,7 +29,7 @@ export class ViewEmiComponent {
     this.dataService.getCustomerData().pipe(
       switchMap(data => {
         this.customerData = data;
-        console.log(data)
+        this.dataAvilable=true;
         return this.service.viewEmi(this.customerData);
       })
     ).subscribe({
@@ -44,7 +45,7 @@ export class ViewEmiComponent {
   }
 
   downloadSlip(data: any): void {
-    console.log('data',data)
+
     this.service.downloadInstallmentSlip(data).subscribe(response => {
       console.log(response)
       const blob = new Blob([response], { type: 'application/pdf' });

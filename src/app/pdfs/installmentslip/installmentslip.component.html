@@ -34,7 +34,7 @@
                         <span class="key">Customer Name:</span>
                     </div>
                     <div class="col-md-6">
-                        <span class="value">{{loanData.customerName}}</span>
+                        <span class="value">{{loanData.customerName ||'NA'}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -43,7 +43,7 @@
                         <span class="key"> Mobile Company/Model Name:</span>
                     </div>
                     <div class="col-md-6">
-                        <span class="value">{{loanData.brandName}} &nbsp; {{loanData.modelName}}</span>
+                        <span class="value">{{loanData.brandName ||'NA'}} &nbsp; {{loanData.modelName ||'NA'}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-6">
 
-                        <span class="value">{{loanData.imei1}}</span>
+                        <span class="value">{{loanData.imei1 ||'NA'}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col-md-6">
 
-                        <span class="value">{{emiId}}</span>
+                        <span class="value">{{emiId ||'NA'}}</span>
                     </div>
                 </div>
 
@@ -88,7 +88,7 @@
                             </div>
                             <div class="col-md-9">
 
-                                <span class="value">{{loanData.loanId}}</span>
+                                <span class="value">{{loanData.loanId ||'NA'}}</span>
 
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-md-6">
 
-                                <span class="value">{{loanData.emiAmount}}</span>
+                                <span class="value">{{loanData.emiAmount ||'NA'}}</span>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                             </div>
                             <div class="col-md-6">
 
-                                <span class="value"> {{loanData.installments[index+1].dueDate}}</span>
+                                <span class="value"> {{loanData.installments[index+1].dueDate ||'NA'}}</span>
                             </div>
                         </div>
                     </div>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="col-md-6">
 
-                        <span class="value">{{loanData.customerNumber}}</span>
+                        <span class="value">{{loanData.customerNumber ||'NA'}}</span>
                     </div>
                 </div>
 

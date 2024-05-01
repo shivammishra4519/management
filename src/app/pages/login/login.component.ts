@@ -25,15 +25,19 @@ export class LoginComponent {
     if(this.loginForm.value){
       this.service.login(this.loginForm.value).subscribe({
         next:data=>{
+         
           // this.loginForm.setValue(data.token);
           // this.cookieService.set('jwtToken', data.token);
-          localStorage.setItem('token',data.token)
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('token', data.token);
+          }
+          console.log(5)
           this.toastr.success('login successfully')
           this.router.navigate(['dashboard'])
 
         },
         error:error=>{
-          // console.log(error.error.message)
+          console.log(error.error.message)
           this.toastr.error((error.error.message))
         }
       })

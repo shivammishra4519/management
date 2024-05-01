@@ -16,25 +16,25 @@ export class ApiService {
 
   private getHeaders(): HttpHeaders {
     let jwtToken: string | null = null;
-
+  
     if (typeof localStorage !== 'undefined' && localStorage.getItem('token')) {
       jwtToken = localStorage.getItem('token'); // Get the token from localStorage
+      console.log('Token retrieved from localStorage:', jwtToken); // Log the retrieved token
     } else {
       console.warn('Token not found in localStorage.');
     }
-
-    console.log('Token retrieved from localStorage:', jwtToken); // Log the retrieved token
-
+  
     // Add error handling for null token
-    if (!jwtToken) {
+    if (jwtToken !== null) {
+      // Handle the case where the token is found
+      return new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
+    } else {
       // Handle the case where the token is not found
       // For example, you can return an HttpHeaders object without the Authorization header
       return new HttpHeaders();
     }
-
-    return new HttpHeaders().set('Authorization', `Bearer ${jwtToken}`);
   }
-
+  
 
 
   // headers = new HttpHeaders().set("Authorization", `bearer ${this.jwtToken}`)
@@ -243,9 +243,25 @@ export class ApiService {
   downloadInstallmentSlip(data: any): Observable<any> {
     return this.http.get(`${this.url}pdf/installment-slip?loanId=${data.loanId}&emiId=${data.emiId}`, { responseType: 'blob' });
   }
+  downloadTermsCondition(data: any): Observable<any> {
+    return this.http.get(`${this.url}pdf/terms-conditon?number=${data.number} `, { responseType: 'blob' });
+  }
 
+  downloadAggrement(data: any): Observable<any> {
+    return this.http.get(`${this.url}pdf/aggrement?customerId=${data.customerId}&shopId=${data.shopId}&loanId=${data.loanId} `, { responseType: 'blob' });
+  }
+  // http://localhost:3000/pdf/aggrement?customerId=7084662163&shopId=6394790592&loanId=1711865969664fhzr
+  downloadInvoice(data: any): Observable<any> {
+    return this.http.get(`${this.url}pdf/download/invoice?loanId=${data.loanId}&invoice=${data.invoice}`, { responseType: 'blob' });
+  }
+  // http://62.72.56.135:3000/pdf/download/invoice?loanId=1712315840160vkwt
+  
+  downloadGaurntorAgreement(data: any): Observable<any> {
+    return this.http.get(`${this.url}pdf/download/gaurantor?number=${data.number}`, { responseType: 'blob' });
+  }
+  // pdf/download/gaurantor?number=5426859625
   exportLoanInExcel(): Observable<any> {
-    return this.http.get(`${this.url}files/download`, { responseType: 'blob' });
+    return this.http.get(`${this.url}files/download`, {headers: this.getHeaders() , responseType: 'blob' });
   }
 
   viewGuarantorByNumber(data: any): Observable<any> {
@@ -294,8 +310,22 @@ export class ApiService {
     return this.http.post(`${this.url}pdf/loand/details`, data, { headers: this.getHeaders() });
   }
 
+  verfyGaurantor(data:any): Observable<any> {
+    return this.http.post(`${this.url}guarantor/verify/guarantor`, data, { headers: this.getHeaders() });
+  }
+
   imageView(imageName: string): Observable<Blob> {
     return this.http.post(`${this.url}api/images`, { fileName: imageName }, {
+      responseType: 'blob',
+      observe: 'response',
+      headers: this.getHeaders()
+    }).pipe(
+      map((response: HttpResponse<Blob>) => response.body || new Blob())
+    );
+  }
+
+  imageViewGaurntor(imageName: string): Observable<Blob> {
+    return this.http.post(`${this.url}guarantor/images/guarantor`, { fileName: imageName }, {
       responseType: 'blob',
       observe: 'response',
       headers: this.getHeaders()

@@ -29,7 +29,7 @@ export class SellDevicesComponent {
   customerData: any;
   isSelldevice: any;
   isVerifyUser = true;
-  guarantorData:any;
+  guarantorData: any;
   constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute, private customerService: CustomerDataService, private toaster: ToastrService) {
     service.viewModel().subscribe({
       next: (data: Device[]) => { // Specify the type of 'data' as Device[]
@@ -55,21 +55,23 @@ export class SellDevicesComponent {
       })
 
     })
-    customerService.getGuarantorData().subscribe(data =>{
-      this.guarantorData=data;
-      if(data){
-        this.isSelldevice=true;
-        this.isVerifyUser=false;
-        this.isCustomerDataAvailable=false;
+    customerService.getGuarantorData().subscribe(data => {
+      this.guarantorData = data;
+     
+      if (data) {
+        this.isSelldevice = true;
+        this.isVerifyUser = false;
+        this.isCustomerDataAvailable = false;
         this.sellDeviceForm.patchValue({
-          gaurantorNumber:data.number
+          gaurantorNumber: data.number
         })
-        console.log(this.sellDeviceForm.value)
+        
+      
       }
-      else{
-        this.isSelldevice=false;
-        this.isVerifyUser=true;
-        this.isCustomerDataAvailable=false;
+      else {
+        this.isSelldevice = false;
+        this.isVerifyUser = true;
+        this.isCustomerDataAvailable = false;
       }
     })
   }
@@ -82,7 +84,7 @@ export class SellDevicesComponent {
     mrp: this.builder.control(0, Validators.required),
     fileCharge: this.builder.control(0, Validators.required),
     totalAmount: this.builder.control(0, Validators.required),
-    discount: this.builder.control(null, Validators.required),
+    discount: this.builder.control(null,),
     downPayment: this.builder.control(0, Validators.required),
     financeAmount: this.builder.control(0, Validators.required),
     emi: this.builder.control(0, Validators.required),
@@ -118,12 +120,12 @@ export class SellDevicesComponent {
         let mrp: any = data.dpPrice + (data.dpPrice * data.margin) / 100;
 
         let fileCharge: any = ((mrp * data.fileCharge) / 100);
-        fileCharge=parseFloat(fileCharge.toFixed());
+        fileCharge = parseFloat(fileCharge.toFixed());
         let intrest: any = ((mrp * data.interest) / 100);
-        intrest=parseFloat(intrest.toFixed())
+        intrest = parseFloat(intrest.toFixed())
         const total = (mrp + fileCharge + intrest);
         let dowmPaymnet: any = (total * data.downPayment) / 100;
-        dowmPaymnet=parseFloat(dowmPaymnet.toFixed())
+        dowmPaymnet = parseFloat(dowmPaymnet.toFixed())
         const financeAmount = (total - dowmPaymnet)
 
         this.deviceData.mrp = mrp;
@@ -150,16 +152,19 @@ export class SellDevicesComponent {
   discountInput(event: Event) {
     this.discount = 0;
     this.discount = parseInt((event.target as HTMLSelectElement).value);
+    console.log("discount",this.discount)
     if (this.discount >= 0) {
 
       let mrp = this.deviceData.dpPrice + (this.deviceData.dpPrice * this.deviceData.margin) / 100;
       mrp = parseFloat(mrp.toFixed());
       mrp = mrp - this.discount;
+      console.log('mrp',mrp)
       let fileCharge: any = ((mrp * this.deviceData.fileCharge) / 100);
       fileCharge = parseFloat(fileCharge.toFixed());
       let intrest: any = ((mrp * this.deviceData.interest) / 100);
       intrest = parseFloat(intrest.toFixed());
       let total = (mrp + fileCharge + intrest);
+      console.log(total)
       let downPayment: any = (total * this.deviceData.downPayment) / 100;
       downPayment = parseFloat(downPayment.toFixed());
       let financeAmount = (total - downPayment);
@@ -183,7 +188,7 @@ export class SellDevicesComponent {
       intrest = parseFloat(intrest.toFixed())
       let total = (mrp + fileCharge + intrest);
       let downPayment: any = (total * this.deviceData.downPayment) / 100;
-downPayment=parseFloat(downPayment.toFixed());
+      downPayment = parseFloat(downPayment.toFixed());
       let financeAmount = (total - downPayment);
       this.sellDeviceForm.patchValue({
         mrp: mrp,
@@ -293,10 +298,15 @@ downPayment=parseFloat(downPayment.toFixed());
       alert('EMI amount cannot be less than 1500 for 5 EMIs');
       return;
     }
-
+    
     this.service.sellDeviceApi(this.sellDeviceForm.value).subscribe({
       next: res => {
-        alert('Device sold successfully');
+        this.toaster.success('Device sold successfully')
+        const data=res;
+        this.downloadAggrement(data);
+        this.downloadTermsCondition();
+        // this.downloadInvoice(data);
+        this.downloadGaurntorAgreement();
         this.sellDeviceForm.reset();
       },
       error: err => {
@@ -371,6 +381,85 @@ downPayment=parseFloat(downPayment.toFixed());
         this.toaster.error('Invalid OTP')
       }
     })
+  }
+
+  downloadTermsCondition(): void {
+    const number = this.sellDeviceForm.value.customerNumber;
+    this.service.downloadTermsCondition({ number: number }).subscribe(response => {
+      console.log(response)
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+
+      a.download = 'termscondition.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error downloading PDF:', error);
+      // Handle error (e.g., display error message to user)
+    });
+  }
+
+  // http://localhost:3000/pdf/aggrement?customerId=7084662163&shopId=6394790592&loanId=1711865969664fhzr
+  downloadAggrement(data: any): void {
+    const number = this.sellDeviceForm.value.customerNumber;
+    data.customerId = number;
+    this.service.downloadAggrement(data).subscribe(response => {
+      console.log(response)
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'aggrement.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error downloading PDF:', error);
+      // Handle error (e.g., display error message to user)
+    });
+  }
+
+  downloadInvoice(data: any): void {
+    console.log('invoice',data)
+    this.service.downloadInvoice(data).subscribe(response => {
+      console.log(response)
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'invoice.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error downloading PDF:', error);
+      // Handle error (e.g., display error message to user)
+    });
+  }
+
+  downloadGaurntorAgreement(): void {
+    const number = this.sellDeviceForm.value.gaurantorNumber;
+    this.service.downloadGaurntorAgreement({number:number}).subscribe(response => {
+      console.log(response)
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'gaurntor-aggrement.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error downloading PDF:', error);
+      // Handle error (e.g., display error message to user)
+    });
   }
 
 

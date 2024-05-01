@@ -119,10 +119,12 @@ ul li{
 
   .main-cont {
     width: 100vw;
+    margin: auto;
     /* margin: 0px; */
     margin-top: 50px;
     overflow: hidden;
     margin-left: 0px;
+   
   }
 
   .footer {

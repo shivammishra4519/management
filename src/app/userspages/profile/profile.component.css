@@ -86,14 +86,18 @@
 
 @media only screen and (max-width: 767px) {
     .main{
-        width: 100%;
+        width: 96%;
         margin: 0px;
         padding: 0px;
-        margin-left: 2px;
+        /* margin-left: 2px; */
+        margin: auto;
     }
     .main .card{
-        padding: 0px 5px;
-
+        padding: 0px 2px;
+        overflow: auto;
+    }
+    .main-1{
+      padding: 0px 5px;
     }
   }
   

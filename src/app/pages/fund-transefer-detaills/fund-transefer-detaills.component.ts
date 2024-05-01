@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 export class FundTranseferDetaillsComponent {
   transectioData:any[]=[]
 number:any;
+role:any;
   constructor(private service:ApiService,private auth:AuthService){
     service.getFundDetails().subscribe({
       next:data=>{
@@ -21,6 +22,8 @@ number:any;
       }
     })
     this.number=auth.userId;
-
+    this.role= this.auth.decodingRole();
   }
+ 
+
 }

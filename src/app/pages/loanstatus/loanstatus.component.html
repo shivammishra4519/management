@@ -3,7 +3,7 @@
 </div>
 
 
-<div class="table-container">
+<div class="table-container" *ngIf="isDataAvailble">
     <table class="employee-table">
         <tr>
             <th>S.N.</th>
@@ -38,10 +38,10 @@
         </tr>
         <tr *ngFor="let item of data;let i = index">
             <td>{{i+1}}</td>
-            <td >{{ item.purchaseDate }}</td>
+            <td >{{ item.purchaseDate  || ''}}</td>
             <td>{{ item.loanId }}</td>
             <td>{{ item.imei1 }}</td>
-            <td>{{ item.customerName }}</td>
+            <td>{{ item.customerName  }}</td>
             <td>{{ item.customerNumber }}</td>
             <td>{{ item.shop }}</td>
             <td>{{ item.brandName }}</td>
@@ -53,23 +53,23 @@
             <td>{{ item.financeAmount }}</td>
             <td>{{ item.installments.length }}</td>
             <td>{{ item.emiAmount }}</td>
-            <td>{{ item.installments[0]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
-            <td >{{ item.installments[0]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+            <td>{{ item.installments[0]?.paid ? item.installments[0]?.amount : '' }}</td>
+            <td >{{ item.installments[0]?.paid ? item.installments[0]?.payDate : '' }}</td>
 
-            <td>{{ item.installments[1]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
-            <td>{{ item.installments[1]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
-
-
-            <td>{{ item.installments[2]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
-            <td>{{ item.installments[2]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+            <td>{{ item.installments[1]?.paid ? item.installments[0]?.amount : '' }}</td>
+            <td>{{ item.installments[1]?.paid ? item.installments[0]?.payDate : '' }}</td>
 
 
-            <td>{{ item.installments[3]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
-            <td>{{ item.installments[3]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+            <td>{{ item.installments[2]?.paid ? item.installments[0]?.amount : '' }}</td>
+            <td>{{ item.installments[2]?.paid ? item.installments[0]?.payDate : '' }}</td>
 
 
-            <td>{{ item.installments[4]?.paid ? item.installments[0]?.amount : 'NA' }}</td>
-            <td>{{ item.installments[4]?.paid ? item.installments[0]?.payDate : 'NA' }}</td>
+            <td>{{ item.installments[3]?.paid ? item.installments[0]?.amount : '' }}</td>
+            <td>{{ item.installments[3]?.paid ? item.installments[0]?.payDate : '' }}</td>
+
+
+            <td>{{ item.installments[4]?.paid ? item.installments[0]?.amount : '' }}</td>
+            <td>{{ item.installments[4]?.paid ? item.installments[0]?.payDate : '' }}</td>
 
 
             <td></td>
