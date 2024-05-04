@@ -250,11 +250,11 @@ export class ApiService {
   downloadAggrement(data: any): Observable<any> {
     return this.http.get(`${this.url}pdf/aggrement?customerId=${data.customerId}&shopId=${data.shopId}&loanId=${data.loanId} `, { responseType: 'blob' });
   }
-  // http://localhost:3000/pdf/aggrement?customerId=7084662163&shopId=6394790592&loanId=1711865969664fhzr
+  
   downloadInvoice(data: any): Observable<any> {
     return this.http.get(`${this.url}pdf/download/invoice?loanId=${data.loanId}&invoice=${data.invoice}`, { responseType: 'blob' });
   }
-  // http://62.72.56.135:3000/pdf/download/invoice?loanId=1712315840160vkwt
+  
   
   downloadGaurntorAgreement(data: any): Observable<any> {
     return this.http.get(`${this.url}pdf/download/gaurantor?number=${data.number}`, { responseType: 'blob' });

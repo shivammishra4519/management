@@ -10,7 +10,7 @@
         <input type="file" class="form-control" id="profilePicture" (change)="onProfilePictureSelected($event)"
             #profilePictureInput multiple accept="image/*">
         <label for="anumber">Adhar Number:</label>
-        <input type="number" name="anumber" id="anumber" formControlName="aadharNumber" />
+        <input type="number" name="anumber" id="anumber" formControlName="aadharNumber"  (change)="onNumber($event)"/>
         <label for="profilePicture">Upload Aadhar Front:</label>
         <input type="file" class="form-control" id="profilePicture" (change)="onAadharPictureSelected($event)"
             #profilePictureInput multiple accept="image/*">

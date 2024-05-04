@@ -21,7 +21,7 @@ export class AgreementComponent {
           this.isDataAvailable = true;
         },
         error:err=>{
-          toastr.error('error')
+          // toastr.error('error')
         }
       })
      }

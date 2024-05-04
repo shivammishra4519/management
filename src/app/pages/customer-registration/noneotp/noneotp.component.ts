@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environment';
@@ -15,7 +15,7 @@ import { CustomerDataService } from '../../../datasharing/customer-data.service'
 })
 export class NoneotpComponent {
   otpSection = false;
-  isOtpVerfied = true;
+  isOtpVerfied = false;
   otpSectionAdhar = false;
   verifiedAdhar = false;
   panverifyed = false;
@@ -144,9 +144,16 @@ export class NoneotpComponent {
                 });
                 this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
                   next: data => {
-                    this.customerService.setCustomerData(this.customerRegistrationForm.value);
+                    // this.customerService.setCustomerData(this.customerRegistrationForm.value);
                     this.toastr.success('customer registred successfully');
-                    this.router.navigate(['/dashboard/sell-device']);
+                    // this.router.navigate(['/dashboard/sell-device']);
+                    const navigationExtras: NavigationExtras = {
+                      queryParams:{ number:this.customerRegistrationForm.value.number}
+                  };
+                
+                  // Navigate to '/dashboard/sell-device' with query parameters
+                  this.router.navigate(['/dashboard/sell-device'], navigationExtras);
+                 
                   }, error: err => {
                     console.log(err)
                     this.toastr.error('somtheing went wrong please try again');
@@ -160,6 +167,7 @@ export class NoneotpComponent {
             },
             (error) => {
               this.toastr.error('Error uploading images')
+              console.log(error)
               return
             }
           );
@@ -168,6 +176,7 @@ export class NoneotpComponent {
         }
       }
     })
+ 
 
   }
 

@@ -41,6 +41,7 @@ export class ProfileComponent {
   ischangePin = false;
   isUpdateAddress = false;
   isAddBankAccount = false;
+  updateOtherDetails = false;
 
   passWordChange() {
     this.ischangePass = true;
@@ -48,6 +49,7 @@ export class ProfileComponent {
     this.ischangePin = false;
     this.isAddBankAccount = false;
     this.isUpdateAddress = false;
+    this.updateOtherDetails = false;
   }
 
   changePasswordMethod() {
@@ -77,6 +79,7 @@ export class ProfileComponent {
     this.ischangePin = true
     this.isUpdateAddress = false;
     this.isAddBankAccount = false;
+    this.updateOtherDetails = false;
   }
   pinDetails = this.builder.group({
     oldPin: this.builder.control('', Validators.required),
@@ -112,6 +115,7 @@ export class ProfileComponent {
     this.ischangePin = false
     this.isUpdateAddress = true;
     this.isAddBankAccount = false;
+    this.updateOtherDetails = false;
   }
 
 
@@ -157,11 +161,11 @@ export class ProfileComponent {
     }
   }
 
-  bankDetails=this.builder.group({
-    acHolderName:this.builder.control('',Validators.required),
-    acNumber:this.builder.control('',Validators.required),
-    branchName:this.builder.control('',Validators.required),
-    ifsc:this.builder.control('',Validators.required),
+  bankDetails = this.builder.group({
+    acHolderName: this.builder.control('', Validators.required),
+    acNumber: this.builder.control('', Validators.required),
+    branchName: this.builder.control('', Validators.required),
+    ifsc: this.builder.control('', Validators.required),
   })
   updateBankAccount() {
     this.ischangePass = false;
@@ -169,10 +173,55 @@ export class ProfileComponent {
     this.ischangePin = false
     this.isUpdateAddress = false;
     this.isAddBankAccount = true;
+    this.updateOtherDetails = false;
   }
 
-  addBankAccount(){
+  addBankAccount() {
     console.log(this.bankDetails.value)
   }
 
+  otherDetailsForm = this.builder.group({
+    gstNumber: this.builder.control('', Validators.required),
+    adhar: this.builder.control('', Validators.required),
+    pan: this.builder.control('', Validators.required),
+  })
+  isUpdate = false;
+  upadteOtherDetailsMethod() {
+    this.ischangePass = false;
+    this.isProfile = false;
+    this.ischangePin = false;
+    this.isAddBankAccount = false;
+    this.isUpdateAddress = false;
+    this.updateOtherDetails = true;
+
+    this.service.viewOtherDetails().subscribe({
+      next: data => {
+        if (data.gstNumber) {
+          this.isUpdate = true
+        }
+        const gstNumbe = data.gstNumber;
+        this.otherDetailsForm.patchValue({
+          gstNumber: gstNumbe,
+          adhar: data.adhar,
+          pan: data.pan
+        });
+      }
+    })
+  }
+
+  updateDetails() {
+    if (this.otherDetailsForm.invalid) {
+      this.toastr.error('fill all details');
+      return;
+    }
+    this.service.updateOtherDetails(this.otherDetailsForm.value).subscribe({
+      next:data=>{
+        this.toastr.success('Details Updated');
+        
+      },
+      error:err=>{
+        this.toastr.error(err.error.message)
+      }
+    })
+  }
 }

@@ -12,6 +12,7 @@
                     <li><a (click)="passWordChange()">Change Password</a></li>
                     <li><a (click)="updateAddress()">Update Address </a></li>
                     <li><a (click)="updateBankAccount()">Add Bank AC </a></li>
+                    <li><a (click)="upadteOtherDetailsMethod()">Update Other Details</a></li>
                 </ul>
             </div>
         </div>
@@ -216,6 +217,31 @@
                 </div>
             </div>
 
+            <div class="changePassword" *ngIf="updateOtherDetails">
+                <div class="main">
+                    <h2>Udate Other Details</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <form [formGroup]="otherDetailsForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">GST</label>
+                                    <input type="text" class="form-control" id="name" formControlName="gstNumber">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">PAN No</label>
+                                    <input type="text" class="form-control" id="name" formControlName="pan">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bname" class="form-label">Adhar No</label>
+                                    <input type="text" class="form-control" id="name" formControlName="adhar">
+                                </div>
+                              
+                                <button type="submit" class="btn btn-primary"  (click)="updateDetails()">{{ isUpdate ? 'UPDATE' : 'SUBMIT' }}</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

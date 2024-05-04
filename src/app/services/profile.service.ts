@@ -42,4 +42,11 @@ export class ProfileService {
     return this.http.post(`${this.url}profile/update/address`, data, { headers: this.getHeaders() });
   }
 
+  viewOtherDetails(): Observable<any> {
+    return this.http.post(`${this.url}profile/check/otherdetails`, {}, { headers: this.getHeaders() });
+  }
+  updateOtherDetails(data:any): Observable<any> {
+    return this.http.post(`${this.url}profile/update/otherdetails`, data, { headers: this.getHeaders() });
+  }
+
 }

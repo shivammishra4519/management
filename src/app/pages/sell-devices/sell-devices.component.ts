@@ -40,24 +40,29 @@ export class SellDevicesComponent {
         console.log(error)
       }
     })
-
-    customerService.getCustomerData().subscribe(data => {
-      if (!data) {
-        this.isCustomerDataAvailable = false;
-        return
-      }
-      this.customerData = data;
-      this.isCustomerDataAvailable = true;
-      this.isVerifyUser = false;
-      this.sellDeviceForm.patchValue({
-        customerName: data.firstName,
-        customerNumber: data.number
+    route.queryParams.subscribe(params => {
+      console.log(params)
+      this.service.verifyCustomer(params).subscribe({
+       
+        next: data => {
+          this.sellDeviceForm.patchValue({
+            customerName: data.firstName,
+            customerNumber: data.number
+          })
+          this.isVerifyUser = false;
+         
+          console.log(this.sellDeviceForm.value)
+        },
+        error: err => {
+          this.isCustomerDataAvailable = false;
+        }
+      });
       })
 
-    })
+   
     customerService.getGuarantorData().subscribe(data => {
       this.guarantorData = data;
-     
+     console.log("data from",data)
       if (data) {
         this.isSelldevice = true;
         this.isVerifyUser = false;
@@ -65,8 +70,7 @@ export class SellDevicesComponent {
         this.sellDeviceForm.patchValue({
           gaurantorNumber: data.number
         })
-        
-      
+        console.log(this.sellDeviceForm.value)
       }
       else {
         this.isSelldevice = false;

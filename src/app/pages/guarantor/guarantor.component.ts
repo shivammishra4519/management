@@ -140,7 +140,8 @@ export class GuarantorComponent {
     }
 
     if (!this.isOtpVerfied) {
-      this.toastr.error('Number Not verifyed')
+      this.toastr.error('Number Not verifyed');
+      return
     }
 
     this.service.checkGauartor(this.guarantorForm.value).subscribe({
@@ -236,12 +237,14 @@ export class GuarantorComponent {
     if (numLengt == 10) {
       this.service.verfyGaurantor({ number: num }).subscribe({
         next: data => {
+         
           if (data.status == 0) {
 
           }
           if (data.status == 1) {
-            this.dataSharing.setGuarantorData(data);
-            this.router.navigate(['/dashboard/sell-device'])
+            console.log("gg",data)
+            this.dataSharing.setGuarantorData(data.data);
+            // this.router.navigate(['/dashboard/sell-device'])
             this.toastr.success('Gaurantor Alreday Exit')
           }
 
@@ -253,5 +256,8 @@ export class GuarantorComponent {
     } else {
       this.toastr.error('Please Enter A Valid Number')
     }
+  }
+  onAdhar(event: any){
+
   }
 }

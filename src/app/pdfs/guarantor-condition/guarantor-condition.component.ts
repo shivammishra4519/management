@@ -19,7 +19,7 @@ export class GuarantorConditionComponent {
         next:data=>{
           this.userData=data;
           this.isDataAvailable=true;
-          this.getImages(data.images)
+          // this.getImages(data.images)
           console.log(data)
         },
         error:err=>{
@@ -33,7 +33,7 @@ export class GuarantorConditionComponent {
   getImages(object:any){
     this.service.imageViewGaurntor(object.profilePictures).subscribe(imageBlob => {
       this.profile = URL.createObjectURL(imageBlob);
-      console.log(this.profile)
+     
     });
   }
 
