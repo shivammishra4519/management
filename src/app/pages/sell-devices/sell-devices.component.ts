@@ -37,32 +37,28 @@ export class SellDevicesComponent {
         this.brandNames = data.map((obj: Device) => obj.brand); // Explicitly specify type for 'obj'
       },
       error: error => {
-        console.log(error)
+       toaster.error()
       }
     })
     route.queryParams.subscribe(params => {
-      console.log(params)
       this.service.verifyCustomer(params).subscribe({
-       
         next: data => {
           this.sellDeviceForm.patchValue({
             customerName: data.firstName,
             customerNumber: data.number
           })
+          this.isCustomerDataAvailable = true;
           this.isVerifyUser = false;
-         
-          console.log(this.sellDeviceForm.value)
         },
         error: err => {
           this.isCustomerDataAvailable = false;
         }
       });
-      })
+    })
 
-   
+
     customerService.getGuarantorData().subscribe(data => {
       this.guarantorData = data;
-     console.log("data from",data)
       if (data) {
         this.isSelldevice = true;
         this.isVerifyUser = false;
@@ -70,7 +66,6 @@ export class SellDevicesComponent {
         this.sellDeviceForm.patchValue({
           gaurantorNumber: data.number
         })
-        console.log(this.sellDeviceForm.value)
       }
       else {
         this.isSelldevice = false;
@@ -145,7 +140,7 @@ export class SellDevicesComponent {
         this.mrpSection = true;
       },
       error: err => {
-        console.log(err)
+        this.toaster.error(err.error.message)
       }
     })
   }
@@ -156,19 +151,17 @@ export class SellDevicesComponent {
   discountInput(event: Event) {
     this.discount = 0;
     this.discount = parseInt((event.target as HTMLSelectElement).value);
-    console.log("discount",this.discount)
     if (this.discount >= 0) {
 
       let mrp = this.deviceData.dpPrice + (this.deviceData.dpPrice * this.deviceData.margin) / 100;
       mrp = parseFloat(mrp.toFixed());
       mrp = mrp - this.discount;
-      console.log('mrp',mrp)
+
       let fileCharge: any = ((mrp * this.deviceData.fileCharge) / 100);
       fileCharge = parseFloat(fileCharge.toFixed());
       let intrest: any = ((mrp * this.deviceData.interest) / 100);
       intrest = parseFloat(intrest.toFixed());
       let total = (mrp + fileCharge + intrest);
-      console.log(total)
       let downPayment: any = (total * this.deviceData.downPayment) / 100;
       downPayment = parseFloat(downPayment.toFixed());
       let financeAmount = (total - downPayment);
@@ -302,15 +295,16 @@ export class SellDevicesComponent {
       alert('EMI amount cannot be less than 1500 for 5 EMIs');
       return;
     }
-    
+
     this.service.sellDeviceApi(this.sellDeviceForm.value).subscribe({
       next: res => {
         this.toaster.success('Device sold successfully')
-        const data=res;
+        const data = res;
         this.downloadAggrement(data);
         this.downloadTermsCondition();
         // this.downloadInvoice(data);
         this.downloadGaurntorAgreement();
+        this.customerService.setGuarantorData(null);
         this.sellDeviceForm.reset();
       },
       error: err => {
@@ -390,7 +384,7 @@ export class SellDevicesComponent {
   downloadTermsCondition(): void {
     const number = this.sellDeviceForm.value.customerNumber;
     this.service.downloadTermsCondition({ number: number }).subscribe(response => {
-      console.log(response)
+
       const blob = new Blob([response], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -402,17 +396,15 @@ export class SellDevicesComponent {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, error => {
-      console.error('Error downloading PDF:', error);
-      // Handle error (e.g., display error message to user)
+      this.toaster.error('Error downloading PDF:', error)
     });
   }
 
-  // http://localhost:3000/pdf/aggrement?customerId=7084662163&shopId=6394790592&loanId=1711865969664fhzr
   downloadAggrement(data: any): void {
     const number = this.sellDeviceForm.value.customerNumber;
     data.customerId = number;
     this.service.downloadAggrement(data).subscribe(response => {
-      console.log(response)
+      
       const blob = new Blob([response], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -423,15 +415,14 @@ export class SellDevicesComponent {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, error => {
-      console.error('Error downloading PDF:', error);
-      // Handle error (e.g., display error message to user)
+      this.toaster.error('Error downloading PDF:', error)
     });
   }
 
   downloadInvoice(data: any): void {
-    console.log('invoice',data)
+   
     this.service.downloadInvoice(data).subscribe(response => {
-      console.log(response)
+   
       const blob = new Blob([response], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -442,15 +433,14 @@ export class SellDevicesComponent {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, error => {
-      console.error('Error downloading PDF:', error);
-      // Handle error (e.g., display error message to user)
+      this.toaster.error('Error downloading PDF:', error)
     });
   }
 
   downloadGaurntorAgreement(): void {
     const number = this.sellDeviceForm.value.gaurantorNumber;
-    this.service.downloadGaurntorAgreement({number:number}).subscribe(response => {
-      console.log(response)
+    this.service.downloadGaurntorAgreement({ number: number }).subscribe(response => {
+    
       const blob = new Blob([response], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -461,8 +451,7 @@ export class SellDevicesComponent {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, error => {
-      console.error('Error downloading PDF:', error);
-      // Handle error (e.g., display error message to user)
+      this.toaster.error('Error downloading PDF:', error)
     });
   }
 

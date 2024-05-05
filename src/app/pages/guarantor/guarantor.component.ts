@@ -242,7 +242,7 @@ export class GuarantorComponent {
 
           }
           if (data.status == 1) {
-            console.log("gg",data)
+          
             this.dataSharing.setGuarantorData(data.data);
             // this.router.navigate(['/dashboard/sell-device'])
             this.toastr.success('Gaurantor Alreday Exit')
