@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../services/api.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ApiService } from '../../services/api.service';
+import { ActivatedRoute } from '@angular/router';
 import { CustomerDataService } from '../../datasharing/customer-data.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-sell-devices',
-  templateUrl: './sell-devices.component.html',
-  styleUrl: './sell-devices.component.css'
+  selector: 'app-loancaluclater',
+  templateUrl: './loancaluclater.component.html',
+  styleUrl: './loancaluclater.component.css'
 })
-export class SellDevicesComponent {
+export class LoancaluclaterComponent {
   mrpSection = false;
   arrayOfObject: Device[] = [];
   brandNames: string[] = [];
@@ -30,7 +30,7 @@ export class SellDevicesComponent {
   isSelldevice: any;
   isVerifyUser = true;
   guarantorData: any;
-  constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute, private customerService: CustomerDataService, private toaster: ToastrService,private router:Router) {
+  constructor(private service: ApiService, private builder: FormBuilder, private route: ActivatedRoute, private toaster: ToastrService) {
     service.viewModel().subscribe({
       next: (data: Device[]) => { // Specify the type of 'data' as Device[]
         this.arrayOfObject = data;
@@ -39,43 +39,10 @@ export class SellDevicesComponent {
           uniqueBrandNames.add(obj.brand);
         }); // Explicitly specify type for 'obj'
         const brandNames: string[] = Array.from(uniqueBrandNames);
-        this.brandNames = brandNames;// Explicitly specify type for 'obj'
+        this.brandNames = brandNames;
       },
       error: error => {
        toaster.error()
-      }
-    })
-    route.queryParams.subscribe(params => {
-      this.service.verifyCustomer(params).subscribe({
-        next: data => {
-          this.sellDeviceForm.patchValue({
-            customerName: data.firstName,
-            customerNumber: data.number
-          })
-          this.isCustomerDataAvailable = true;
-          this.isVerifyUser = false;
-        },
-        error: err => {
-          this.isCustomerDataAvailable = false;
-        }
-      });
-    })
-
-
-    customerService.getGuarantorData().subscribe(data => {
-      this.guarantorData = data;
-      if (data) {
-        this.isSelldevice = true;
-        this.isVerifyUser = false;
-        this.isCustomerDataAvailable = false;
-        this.sellDeviceForm.patchValue({
-          gaurantorNumber: data.number
-        })
-      }
-      else {
-        this.isSelldevice = false;
-        this.isVerifyUser = true;
-        this.isCustomerDataAvailable = false;
       }
     })
   }
@@ -83,8 +50,6 @@ export class SellDevicesComponent {
   sellDeviceForm = this.builder.group({
     brandName: this.builder.control('1', Validators.required),
     modelName: this.builder.control('1', Validators.required),
-    imei1: this.builder.control('', [Validators.required, Validators.pattern("[0-9 ]{15}")]),
-    imei2: this.builder.control('', [Validators.required, Validators.pattern("[0-9 ]{15}")]),
     mrp: this.builder.control(0, Validators.required),
     fileCharge: this.builder.control(0, Validators.required),
     totalAmount: this.builder.control(0, Validators.required),
@@ -93,9 +58,6 @@ export class SellDevicesComponent {
     financeAmount: this.builder.control(0, Validators.required),
     emi: this.builder.control(0, Validators.required),
     emiAmount: this.builder.control(0, Validators.required),
-    customerNumber: this.builder.control('', Validators.required),
-    customerName: this.builder.control('', Validators.required),
-    gaurantorNumber: this.builder.control('', Validators.required),
     interest: this.builder.control(0, Validators.required)
   });
 
@@ -269,134 +231,6 @@ export class SellDevicesComponent {
     }
 
   }
-
-
-
-  sellDevice() {
-    if (this.sellDeviceForm.invalid) {
-      alert('Please fill all fields');
-      return;
-    }
-
-    const brand: any = this.sellDeviceForm.value.brandName;
-    if (brand == 1) {
-      alert('Please select a brand name');
-      return;
-    }
-
-    const model: any = this.sellDeviceForm.value.modelName;
-    if (model == 1) {
-      alert('Please select a model name');
-      return;
-    }
-    const emiAmount: any = this.sellDeviceForm.value.emiAmount;
-    const emis: any = this.sellDeviceForm.value.emi;
-    if (emis <= 0) {
-      alert('Please select a monthly EMI');
-      return;
-    }
-
-    if (emiAmount < 1500 && emis > 4) {
-      alert('EMI amount cannot be less than 1500 for 5 EMIs');
-      return;
-    }
-
-    this.service.sellDeviceApi(this.sellDeviceForm.value).subscribe({
-      next: res => {
-        const navigationExtras: NavigationExtras = {
-          queryParams:{
-            number:this.sellDeviceForm.value.customerNumber,
-            shopId: res.shopId,
-            loanId: res.loanId,
-            invoice: res.invoice,
-            guarntor:this.sellDeviceForm.value.gaurantorNumber
-          }
-      };
-    
-      // Navigate to '/dashboard/sell-device' with query parameters
-      this.router.navigate(['/dashboard/loan-success'], navigationExtras);
-        this.toaster.success('Device sold successfully')
-        const data = res;
-       
-        this.customerService.setGuarantorData(null);
-        this.sellDeviceForm.reset();
-      },
-      error: err => {
-        this.toaster.error(err.error.message)
-      }
-    })
-
-  }
-
-
-
-  verifyUser() {
-    const number: any = this.verifyUserData.value.number;
-    const strNum: string = number.toString();
-    const numLength: number = strNum.length;
-    if (!number || numLength < 10) {
-      this.toaster.error('Enter a valid number');
-      return;
-    }
-
-    this.service.verifyCustomer(this.verifyUserData.value).subscribe({
-      next: data => {
-        // this.toaster.success('OTP sent to number');
-        this.customerData = null;
-        this.customerData = data;
-        this.sellDeviceForm.patchValue({
-          customerName: data.firstName,
-          customerNumber: data.number
-        })
-        // this.sendOtp();
-
-
-        this.isVerifyUser = false;
-        this.isCustomerDataAvailable = true;
-      },
-      error: err => {
-        this.toaster.error('Customer does not exist');
-      }
-    });
-  }
-
-
-
-  sendOtp() {
-    const number = this.verifyUserData.value.number;
-
-    if (number) {
-      this.service.sendOtp({ number: number, type: 'OTP1' }).subscribe({
-        next: data => {
-          this.otpSection = true
-          this.toaster.success('Otp send to Your Number')
-        },
-        error: err => {
-          this.toaster.error('Somtheing went wrong')
-        }
-      })
-    } else {
-      this.toaster.error('Somtheing went wrong')
-    }
-  }
-
-
-  verifyOtp() {
-
-    this.service.verifyeOtp(this.verifyUserData.value).subscribe({
-      next: data => {
-        this.isVerifyUser = false;
-        this.isCustomerDataAvailable = true;
-        this.toaster.success('OTP Verifyed Successfully')
-      },
-      error: err => {
-        this.toaster.error('Invalid OTP')
-      }
-    })
-  }
-
-
-
 
 
 }

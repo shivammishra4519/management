@@ -248,6 +248,7 @@ export class ApiService {
   }
 
   downloadAggrement(data: any): Observable<any> {
+   
     return this.http.get(`${this.url}pdf/aggrement?customerId=${data.customerId}&shopId=${data.shopId}&loanId=${data.loanId} `, { responseType: 'blob' });
   }
   

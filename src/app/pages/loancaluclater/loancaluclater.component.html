@@ -1,0 +1,113 @@
+
+  
+  <div class="body" >
+    <div class="main">
+  
+      <div class="form_wrapper">
+        <div class="form_container">
+          <div class="title_container">
+            <h2>Loan Calculater</h2>
+          </div>
+          <div class="row clearfix">
+            <div class="">
+              <form [formGroup]="sellDeviceForm" >
+                <div class="input_field select_option">
+                  <label for="brand">Select a Brand</label>
+                  <select id="brand" (change)="onBrandSelected($event)" formControlName="brandName">
+                    <option value="1">Select a Brand</option>
+                    <option *ngFor="let name of brandNames" [value]="name">{{ name }}</option>
+                  </select>
+                </div>
+  
+                <div class="input_field select_option">
+                  <label for="model">Select Model</label>
+                  <select id="model" style="margin-top: 5px;" (change)="onModelSelected($event)"
+                    formControlName="modelName">
+                    <option value="1">Select Model</option>
+                    <option *ngFor="let name of models" [value]="name">{{ name }}</option>
+                  </select>
+                </div>
+  
+                <div class="input_field">
+                  <label for="mrp">MRP</label>
+                  <input type="number" id="mrp" name="mrp" placeholder="MRP"
+                    formControlName="mrp" readonly />
+                    <div *ngIf="mrpSection">
+                      <span style="color:green">   Real MRP {{deviceData.mrp}}</span>
+                    </div>
+                    
+                </div>
+  
+                <div class="input_field">
+                  <label for="fileCharge">File Charge</label>
+                  <input type="number" id="fileCharge" name="fileCharge" placeholder="File Charge"
+                     formControlName="fileCharge" readonly />
+                </div>
+                <div class="input_field">
+                  <label for="intrest">Intres</label>
+                  <input type="number" id="intrest" name="intrest" placeholder="File Charge"
+                     formControlName="interest" readonly />
+                </div>
+  
+                <div class="input_field">
+                  <label for="tamount">Total Amount</label>
+                  <input type="number" id="tamount" name="total" placeholder="Total Amount"
+                    formControlName="totalAmount" readonly />
+                </div>
+  
+                <div class="input_field">
+                  <label for="sellAmount">Discount</label>
+                  <input type="number" id="sellAmount" name="discount" placeholder="Sell Amount" 
+                    formControlName="discount" (input)="discountInput($event)" />
+                  <div *ngIf="showMessage">
+                    <label style="font-size: 15px; color: red;">The amount should be less than total amount</label>
+                  </div>
+                </div>
+  
+                <div class="input_field">
+                  <label for="downPayment">Down Payment</label>
+                  <input type="number" id="downPayment" name="downPayment" placeholder="Down Payment"
+                   (input)="dowmPaymnetInput($event)"
+                    formControlName="downPayment" />
+                  <div *ngIf="invalidDownPayment">
+                    <label for="downPayment" style="color: red;">Down Payment must be greater than 40% of total Amount
+                    </label>
+                  </div>
+                </div>
+  
+                <div class="input_field">
+                  <label for="financeAmount">Finance Amount</label>
+                  <input type="number" id="financeAmount" name="financeAmount" placeholder="Finance Amount"
+                    formControlName="financeAmount" readonly />
+                </div>
+  
+                <div class="input_field select_option">
+                  <label for="emi">Select EMI</label>
+                  <select id="emi" (change)="onEmiSelected($event)" formControlName="emi">
+                    <option value="0">Select EMI</option>
+                    <option *ngFor="let emi of emis" [value]="emi">{{ emi }}</option>
+                  </select>
+                </div>
+  
+                <div class="input_field">
+                  <label for="emiAmount">EMI Amount</label>
+                  <input type="number" id="emiAmount" name="emiAmount" placeholder="EMI Amount"
+                     (input)="onEmiAmount($event)" formControlName="emiAmount" readonly />
+                  <div *ngIf="emiLabel">
+                    <label for="downPayment" style="color: red;">Emi amoint should be greater then 1000</label>
+                  </div>
+                </div>
+  
+                <!-- <input class="button" type="submit" value="Register" /> -->
+                <div class="wrap">
+                  <!-- <button type="submit">
+                    Submit
+                  </button> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

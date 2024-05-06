@@ -49,6 +49,8 @@ import { LoanstatusComponent } from './pages/loanstatus/loanstatus.component';
 import { InvoiceComponent } from './pdfs/invoice/invoice.component';
 import { SettleCollectionComponent } from './admin/settle-collection/settle-collection.component';
 import { InvoiceCustomerComponent } from './pdfs/invoice-customer/invoice-customer.component';
+import { LoancaluclaterComponent } from './pages/loancaluclater/loancaluclater.component';
+import { LoansuccessComponent } from './pages/loansuccess/loansuccess.component';
 
 
 @NgModule({
@@ -93,7 +95,10 @@ import { InvoiceCustomerComponent } from './pdfs/invoice-customer/invoice-custom
     LoanstatusComponent,
     InvoiceComponent,
     SettleCollectionComponent,
-    InvoiceCustomerComponent
+    InvoiceCustomerComponent,
+    LoanstatusComponent,
+    LoancaluclaterComponent,
+    LoansuccessComponent
     
   ],
   imports: [
