@@ -314,6 +314,21 @@ export class ApiService {
   verfyGaurantor(data:any): Observable<any> {
     return this.http.post(`${this.url}guarantor/verify/guarantor`, data, { headers: this.getHeaders() });
   }
+  viewAllDeviceByLoanId(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/view/all/loans`, data, { headers: this.getHeaders() });
+  }
+
+  deleteDevice(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/delete-device`, data, { headers: this.getHeaders() });
+  }
+
+  upadteDevice(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/update-device`, data, { headers: this.getHeaders() });
+  }
+
+ findShopIdByName(data:any): Observable<any> {
+    return this.http.post(`${this.url}api/find/shop`, data, { headers: this.getHeaders() });
+  }
 
   imageView(imageName: string): Observable<Blob> {
     return this.http.post(`${this.url}api/images`, { fileName: imageName }, {

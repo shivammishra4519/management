@@ -20,9 +20,6 @@ customerData:any;
   }
 
 
-
-
-
   viewProfile(data: any) {
     this.dataService.setCustomerData(data);
     this.router.navigate(['/dashboard/view-customers']);

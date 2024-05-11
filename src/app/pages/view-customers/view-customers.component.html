@@ -2,16 +2,21 @@
     <div class="col-md-4">
         <div class="main">
             <div class="profile" style="width: 18rem;">
-               
+               <div *ngIf="profile">
                 <img [src]="profile" class="card-img-top" alt="...">
+               </div>
+               <div *ngIf="!profile">
+                <img src="../../../assets/images/7d34d9d53640af5cfd2614c57dfa7f13.png" alt="">
+               </div>
+                
                   
             </div>
             <div class="nav-self">
                 <ul>
-                    <li><a href="">Setting</a></li>
-                    <li><a href="">Change Pin</a></li>
+                    <li (click)="viewLoans()"><a >View Loans</a></li>
+                    <li><a >Change Pin</a></li>
                     <li><a  >Change Password</a></li>
-                    <li><a href="">View </a></li>
+                    <li><a >View </a></li>
                 </ul>
             </div>
         </div>
@@ -52,15 +57,15 @@
                     </div>
                 </div>
             </div>
-            <div class="changePassword" *ngIf="ischangePass">
+            <div class="changePassword" *ngIf="isViewLoans">
                 <div class="main">
-                    <h2>Change Password</h2>
-                    <div class="card">
-                        <div class="card-body">
+                    <h2>Loans</h2>
+                    <div >
+                        <div class="card">
                             
-                           
                         </div>
                     </div>
+                    
                 </div>
             </div>
 

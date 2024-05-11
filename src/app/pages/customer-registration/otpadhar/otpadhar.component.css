@@ -1,5 +1,5 @@
 @import "../../../../assets/css/customer-register.css";
-
+@import "../../../../assets/css/loader.css";
 @media only screen and (max-width: 600px) {
    .otp{
     left: 30vw;

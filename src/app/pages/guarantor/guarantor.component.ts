@@ -18,6 +18,7 @@ export class GuarantorComponent {
   numberOtp = false;
   isOtpVerfied = false;
   isOtpsended = false;
+  isLoading=false;
   guarantorForm = this.builder.group({
     name: this.builder.control('', Validators.required),
     fatherName: this.builder.control('', Validators.required),
@@ -146,8 +147,9 @@ export class GuarantorComponent {
 
     this.service.checkGauartor(this.guarantorForm.value).subscribe({
       next: data => {
-        console.log(data)
+      
         if (data.status == 0) {
+          this.isLoading=true
           this.http.post<any>(`${environment.apiUrl}guarantor/upload/guarantor`, formData, { observe: 'response' }).subscribe(
             (response) => {
               if (response instanceof HttpResponse) {
@@ -159,7 +161,7 @@ export class GuarantorComponent {
 
                 this.service.registerGuarantor(this.guarantorForm.value).subscribe({
                   next: data => {
-                   
+                   this.isLoading=false;
                     this.dataSharing.setGuarantorData(this.guarantorForm.value);
                     this.router.navigate(['/dashboard/sell-device'])
                     this.toastr.success('Gaurantor Registred Successfullyy')

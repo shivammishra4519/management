@@ -26,6 +26,7 @@ export class OtpadharComponent {
   state: any;
   city: any;
   isAdharOtpVerify: any;
+  isLoading=false;
   constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router, private auth: AuthService, private toastr: ToastrService, private customerService: CustomerDataService) {
     this.role = auth.role;
     service.viewAllShopName().subscribe({
@@ -143,6 +144,7 @@ export class OtpadharComponent {
 
 
         if (isAlreadyExit == 0) {
+          this.isLoading=true;
           this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
             (response) => {
               if (response instanceof HttpResponse) {
@@ -153,6 +155,7 @@ export class OtpadharComponent {
 
                 this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
                   next: data => {
+                    this.isLoading=false;
                     // this.customerService.setCustomerData(this.customerRegistrationForm.value);
                     // this.toastr.success('customer registred successfully');
                     // this.router.navigate(['/dashboard/sell-device']);

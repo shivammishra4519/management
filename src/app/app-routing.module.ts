@@ -41,6 +41,7 @@ import { SettleCollectionComponent } from './admin/settle-collection/settle-coll
 import { InvoiceCustomerComponent } from './pdfs/invoice-customer/invoice-customer.component';
 import { LoancaluclaterComponent } from './pages/loancaluclater/loancaluclater.component';
 import { LoansuccessComponent } from './pages/loansuccess/loansuccess.component';
+import { DownloadPdfComponent } from './pages/download-pdf/download-pdf.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -54,6 +55,7 @@ const routes: Routes = [
       { path: 'loan-calculater', component: LoancaluclaterComponent },
       { path: 'loan-success', component: LoansuccessComponent },
       { path: 'view-gaurantor', component: GuarantorViewComponent },
+      { path: 'pdf', component: DownloadPdfComponent },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       {
         path: 'customer-registration', component: HomeregisterComponent,

@@ -26,6 +26,8 @@ export class NoneotpComponent {
   stateData: any;
   state: any;
   city: any;
+  isLoading=false;
+  maincont=true;
   constructor(private builder: FormBuilder, private service: ApiService, private http: HttpClient, private router: Router, private auth: AuthService, private toastr: ToastrService, private customerService: CustomerDataService) {
     this.role = auth.role;
     service.viewAllShopName().subscribe({
@@ -135,6 +137,7 @@ export class NoneotpComponent {
           return
         }
         if (status == 0) {
+          this.isLoading=true;
           this.http.post<any>(`${environment.apiUrl}api/upload`, formData, { observe: 'response' }).subscribe(
             (response) => {
               if (response instanceof HttpResponse) {
@@ -142,10 +145,12 @@ export class NoneotpComponent {
                 this.customerRegistrationForm.patchValue({
                   images: img.body.filenames
                 });
+                
                 this.service.customerRegister(this.customerRegistrationForm.value).subscribe({
                   next: data => {
                     // this.customerService.setCustomerData(this.customerRegistrationForm.value);
                     this.toastr.success('customer registred successfully');
+                    this.isLoading=false;
                     // this.router.navigate(['/dashboard/sell-device']);
                     const navigationExtras: NavigationExtras = {
                       queryParams:{ number:this.customerRegistrationForm.value.number}
@@ -176,6 +181,8 @@ export class NoneotpComponent {
         }
       }
     })
+
+ 
  
 
   }

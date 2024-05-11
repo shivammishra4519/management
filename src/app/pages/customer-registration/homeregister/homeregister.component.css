@@ -15,14 +15,15 @@
 
 .nav {
     width: 50%;
-    background-color: rgb(177, 217, 230);
+    background-color:rgb(199, 199, 222);
     border: 1px solid black;
     text-align: center;
    
 }
 
 .active {
-    background-color: grey;
+    background-color: blue;
+    color: white;
 }
 a{
     text-align: center;

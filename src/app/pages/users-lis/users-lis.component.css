@@ -30,7 +30,9 @@
    background-color: #4CAF50;
    color: white;
 }
-
+.table-container{
+   overflow: auto;
+}
 
 
 

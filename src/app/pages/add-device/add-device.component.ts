@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { ViewdetailsService } from '../../services/viewdetails.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-device',
@@ -10,7 +11,7 @@ import { ViewdetailsService } from '../../services/viewdetails.service';
 })
 export class AddDeviceComponent {
   Brand:[]=[]
-  constructor(private builder: FormBuilder, private service:ApiService,private viewdetails:ViewdetailsService) {
+  constructor(private builder: FormBuilder, private service:ApiService,private viewdetails:ViewdetailsService,private toaster:ToastrService) {
     viewdetails.viewBrand().subscribe({
       next:data=>{
         this.Brand=data.brand;
@@ -38,11 +39,11 @@ submit(): void {
     this.service.addDevice(this.addDevice.value).subscribe({
       next: res => {
         this.addDevice.reset();
-        alert('Device added');
+       this.toaster.success('Device Added Succesfully')
       },
       error: error => {
         console.error(error);
-        alert('An error occurred while adding the device');
+        this.toaster.error(error.error.message)
       }
     });
   }

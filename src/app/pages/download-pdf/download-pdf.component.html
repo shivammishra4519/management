@@ -1,0 +1,22 @@
+<div class="body">
+    <div class="card">
+        <select (change)="onSelectUser($event)">
+            <option value="0" >Select User</option>
+            <option *ngFor="let customer of customerArray" value={{customer.number}}>{{customer.firstName}} {{customer.number}}</option> 
+        </select>
+        <select (change)="onSelectLoan($event)" >
+            <option value="0">Select Loan</option>
+            <option *ngFor="let loan of loansArray" value={{loan.loanId}}>{{loan.loanId}}</option>
+            
+        </select>
+        <select name="" id="" (change)="onSelectOfpdf($event)">
+            <option value="0">Select Type</option>
+            <option value="1">Terms Condition</option>
+            <option value="2">Aggreement</option>
+            <option value="3">Guarantor Aggreement</option>
+            <option value="4">Invoice</option>
+        </select>
+       
+        <button (click)="downloadPdf()">download</button>
+    </div>
+</div>

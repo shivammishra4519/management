@@ -30,7 +30,7 @@ export class ViewCustomersComponent {
         error: err => {
           console.log(err);
         }
-      });
+      });  
     });
   }
 
@@ -57,14 +57,21 @@ export class ViewCustomersComponent {
 
 
   isProfile = true;
-  ischangePass = false;
+  isViewLoans=false;
 
   passWordChange() {
-    this.ischangePass = true;
+   
     this.isProfile = false;
   }
-
-
-
+loansArry:any;
+  viewLoans(){
+    this.isProfile = false;
+    this.isViewLoans=true;
+    this.service.viewDeviceByCustomerId(this.customerData).subscribe(res=>{
+      console.log(res);
+      this.loansArry=res;
+     
+    })
+  }
 
 }
