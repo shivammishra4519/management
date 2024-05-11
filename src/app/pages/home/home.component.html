@@ -100,6 +100,16 @@
             </div>
         </div>
 
+        <div class="col-md-3" *ngIf="role=='admin'">
+            <div class="card bg-c-lite-green-blue  order-card">
+                <div class="card-block">
+                    <!-- <h6 class="m-b-20">Orders Received</h6> -->
+                    <h2 class="text-right"><span>{{totalFileCharge}}</span></h2>
+                    <p class="m-b-0">Total Filecharge<span class="f-right"></span></p>
+                </div>
+            </div>
+        </div>
+
        
 	</div>
 </div>

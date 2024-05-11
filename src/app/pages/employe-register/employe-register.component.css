@@ -77,4 +77,18 @@ border: 1px solid grey;
         .table th, .table td {
             padding: 4px;
         }
+        .main{
+          overflow: auto;
+        }
+        .row-slef{
+          flex-wrap: wrap;
+
+        }
+        .col-self-1{
+          width: 100%;
+          height: min-content;
+        }
+        .col-self-2{
+          width: 100%;
+        }
      }

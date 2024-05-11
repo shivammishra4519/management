@@ -74,6 +74,9 @@ export class ViewdetailsService {
     return this.http.post(`${this.url}collection/findall/dailycollection`, {}, { headers: this.getHeaders() });
   }
 
+  getAllFIleCharge(): Observable<any> {
+    return this.http.post(`${this.url}details/total/filecharge`, {}, { headers: this.getHeaders() });
+  }
   
 
 }

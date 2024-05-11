@@ -8,115 +8,125 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  customer:any;
-  devices:any;
-  soldDevices:any;
-  shops:any
-  role:any;
-  employeeList:any;
-  currentCredit:any;
-  shopWallets:any;
-  employeeWallets:any;
-  dailyCollection:any
-  totalCollectionHold:any;
+  customer: any;
+  devices: any;
+  soldDevices: any;
+  shops: any
+  role: any;
+  employeeList: any;
+  currentCredit: any;
+  shopWallets: any;
+  employeeWallets: any;
+  dailyCollection: any
+  totalCollectionHold: any;
+  totalFileCharge: any;
 
-constructor(private serive:ViewdetailsService,private authService:AuthService){
-  this.customerDetails()
-  this.deviceDetails()
-  this.viewSoldDevice()
- 
-  this.role=authService.decodingRole();
-  this.viewShops();
-  this.viewEmploye();
-  this.getCurrentCredit();
-  this.getShopWalltes();
-  this.getEmployeeWallet();
-  this.getDailyCollection();
-  this.getAllDailyCollection();
-}
+  constructor(private serive: ViewdetailsService, private authService: AuthService) {
+    this.customerDetails()
+    this.deviceDetails()
+    this.viewSoldDevice()
 
-
-
-customerDetails(){
-this.serive.viewCustomer().subscribe({
-  next:data=>{
-    this.customer=data.totalCustomers;
+    this.role = authService.decodingRole();
+    this.viewShops();
+    this.viewEmploye();
+    this.getCurrentCredit();
+    this.getShopWalltes();
+    this.getEmployeeWallet();
+    this.getDailyCollection();
+    this.getAllDailyCollection();
+    this.getAllFileCharge();
   }
-})
-}
-
-deviceDetails(){
-  this.serive.viewDevices().subscribe({
-    next:data=>{
-      this.devices=data.response;
-    },
-    error:err=>{
-      console.log(err)
-    }
-  })
-}
-
-viewSoldDevice(){
-  this.serive.viewSoldDevice().subscribe({
-    next:data=>{
-this.soldDevices=data.response;
-    }
-  })
-}
 
 
-viewShops(){
-this.serive.viewShops().subscribe({
-  next:data=>{
-    this.shops=data.totalShops;
+
+  customerDetails() {
+    this.serive.viewCustomer().subscribe({
+      next: data => {
+        this.customer = data.totalCustomers;
+      }
+    })
   }
-})
-}
 
-viewEmploye(){
-this.serive.viewEmployee().subscribe({
-  next:data=>{
-    this.employeeList=data.totalEmployees;
+  deviceDetails() {
+    this.serive.viewDevices().subscribe({
+      next: data => {
+        this.devices = data.response;
+      },
+      error: err => {
+        console.log(err)
+      }
+    })
   }
-})
-}
 
-getCurrentCredit(){
-  this.serive.currentCredit().subscribe({
-    next:data=>{
-      this.currentCredit=data.totalCredit
-    }
-  })
-}
+  viewSoldDevice() {
+    this.serive.viewSoldDevice().subscribe({
+      next: data => {
+        this.soldDevices = data.response;
+      }
+    })
+  }
 
-getShopWalltes(){
-  this.serive.getShopsWallet().subscribe({
-    next:data=>{
-      this.shopWallets=data.totalAmount
-    }
-  })
-}
 
-getEmployeeWallet(){
-  this.serive.getEmployeeWallet().subscribe({
-    next:data=>{
-      this.employeeWallets=data.totalAmount
-    }
-  })
-}
+  viewShops() {
+    this.serive.viewShops().subscribe({
+      next: data => {
+        this.shops = data.totalShops;
+      }
+    })
+  }
 
-getDailyCollection(){
-  this.serive.getDailyCollection({}).subscribe({
-    next:data=>{
-      this.dailyCollection=data.amount
-    }
-  })
-}
-getAllDailyCollection(){
-  this.serive.getAllDailyCollection().subscribe({
-    next:data=>{
-      this.totalCollectionHold=data.totalAmount
-    }
-  })
-}
+  viewEmploye() {
+    this.serive.viewEmployee().subscribe({
+      next: data => {
+        this.employeeList = data.totalEmployees;
+      }
+    })
+  }
+
+  getCurrentCredit() {
+    this.serive.currentCredit().subscribe({
+      next: data => {
+        this.currentCredit = data.totalCredit
+      }
+    })
+  }
+
+  getShopWalltes() {
+    this.serive.getShopsWallet().subscribe({
+      next: data => {
+        this.shopWallets = data.totalAmount
+      }
+    })
+  }
+
+  getEmployeeWallet() {
+    this.serive.getEmployeeWallet().subscribe({
+      next: data => {
+        this.employeeWallets = data.totalAmount
+      }
+    })
+  }
+
+  getDailyCollection() {
+    this.serive.getDailyCollection({}).subscribe({
+      next: data => {
+        this.dailyCollection = data.amount
+      }
+    })
+  }
+  getAllDailyCollection() {
+    this.serive.getAllDailyCollection().subscribe({
+      next: data => {
+        this.totalCollectionHold = data.totalAmount
+      }
+    })
+  }
+
+  getAllFileCharge() {
+    this.serive.getAllFIleCharge().subscribe({
+      next: data => {
+this.totalFileCharge=data.totalAmount
+      }
+    })
+  }
 }
