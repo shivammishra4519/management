@@ -1,0 +1,70 @@
+<div style="display: flex; justify-content: flex-end; padding-right: 10px;">
+  <button (click)="exportData()" ><img src="../../../assets/svg/icons8-excel.svg" width="32px" height="32px"></button>
+</div>
+
+<div class="table-conatiner">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>CustomerName</th>
+        <th>Number</th>
+        <th>Brand Name</th>
+        <th>IMEI</th>
+        <th>MRP</th>
+        <th>File Charge</th>
+        <th>Total Amount</th>
+        <th>Discount</th>
+        <th>Down Payment</th>
+        <th>Finance Amount</th>
+        <th>EMI</th>
+        <th>EMI Amount</th>
+        <th>Guarantor Number</th>
+        <th>1 EMI</th>
+        <th>Date</th>
+        <th>2 EMI</th>
+        <th>Date</th>
+        <th>3 EMI</th>
+        <th>Date</th>
+        <th>4 EMI</th>
+        <th>Date</th>
+        <th>5 EMI</th>
+        <th>Date</th>
+       
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let device of sellDevices; let i = index">
+        <td>{{device.customerName || ''}}</td>
+        <td>{{device.customerNumber || ''}}</td>
+        <td>{{device.brandName || ''}}</td>
+        <td>{{device.imei1 || ''}}</td>
+        <td>{{device.mrp || ''}}</td>
+        <td>{{device.fileCharge || ''}}</td>
+        <td>{{device.totalAmount || ''}}</td>
+        <td>{{device.discount || ''}}</td>
+        <td>{{device.downPayment || ''}}</td>
+        <td>{{device.financeAmount || ''}}</td>
+        <td>{{device.emi || ''}}</td>
+        <td>{{device.emiAmount || ''}}</td>
+        <td>{{device.gaurantorNumber || ''}}</td>
+        <td>{{device.installments[0].amount || ''}}</td>
+        <td>{{device.installments[0].payDate || 'notpaid'}}</td>
+
+        <td>{{device.installments[1].amount || ''}}</td>
+        <td>{{device.installments[1].payDate || 'notpaid'}}</td>
+
+        <td>{{device.installments[2].amount || ''}}</td>
+        <td>{{device.installments[2].payDate || 'notpaid'}}</td>
+
+        <td>{{device.installments[3].amount || ''}}</td>
+        <td>{{device.installments[3].payDate || 'notpaid'}}</td>
+
+        <td>{{device.installments[4].amount || ''}}</td>
+        <td>{{device.installments[4].payDate || 'notpaid'}}</td>
+    
+      </tr>
+    </tbody>
+  </table>
+  
+</div>

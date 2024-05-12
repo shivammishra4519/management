@@ -264,6 +264,10 @@ export class ApiService {
   exportLoanInExcel(): Observable<any> {
     return this.http.get(`${this.url}files/download`, {headers: this.getHeaders() , responseType: 'blob' });
   }
+  exportUnpaidInExcel(): Observable<any> {
+    return this.http.get(`${this.url}files/download/unpaidemi`, {headers: this.getHeaders() , responseType: 'blob' });
+  }
+
 
   viewGuarantorByNumber(data: any): Observable<any> {
     return this.http.post(`${this.url}guarantor/view/guarantor`, data, { headers: this.getHeaders() });
@@ -328,6 +332,10 @@ export class ApiService {
 
  findShopIdByName(data:any): Observable<any> {
     return this.http.post(`${this.url}api/find/shop`, data, { headers: this.getHeaders() });
+  }
+
+  unpaidEmi(): Observable<any> {
+    return this.http.post(`${this.url}api/view/all/emi/notpaid`, {}, { headers: this.getHeaders() });
   }
 
   imageView(imageName: string): Observable<Blob> {

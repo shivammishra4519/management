@@ -52,6 +52,7 @@ import { InvoiceCustomerComponent } from './pdfs/invoice-customer/invoice-custom
 import { LoancaluclaterComponent } from './pages/loancaluclater/loancaluclater.component';
 import { LoansuccessComponent } from './pages/loansuccess/loansuccess.component';
 import { DownloadPdfComponent } from './pages/download-pdf/download-pdf.component';
+import { EminotpaidComponent } from './pages/eminotpaid/eminotpaid.component';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { DownloadPdfComponent } from './pages/download-pdf/download-pdf.componen
     LoanstatusComponent,
     LoancaluclaterComponent,
     LoansuccessComponent,
-    DownloadPdfComponent
+    DownloadPdfComponent,
+    EminotpaidComponent
     
   ],
   imports: [
