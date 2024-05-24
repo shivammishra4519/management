@@ -31,7 +31,7 @@ exportData() {
       window.URL.revokeObjectURL(url);
     },
     error => {
-      console.error('Error downloading Excel:', error);
+      // console.error('Error downloading Excel:', error);
       // Handle error (e.g., display error message to user)
     }
   );

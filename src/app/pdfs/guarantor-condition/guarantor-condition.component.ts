@@ -20,7 +20,7 @@ export class GuarantorConditionComponent {
           this.userData=data;
           this.isDataAvailable=true;
           // this.getImages(data.images)
-          console.log(data)
+          // console.log(data)
         },
         error:err=>{
           console.log(err)

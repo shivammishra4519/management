@@ -14,7 +14,7 @@ constructor(private service:ApiService){
 this.smsArray=data;
     },
     error:err=>{
-      console.log(err)
+      // console.log(err)
     }
   })
 }

@@ -96,7 +96,8 @@ export class SellDevicesComponent {
     customerNumber: this.builder.control('', Validators.required),
     customerName: this.builder.control('', Validators.required),
     gaurantorNumber: this.builder.control('', Validators.required),
-    interest: this.builder.control(0, Validators.required)
+    interest: this.builder.control(0, Validators.required),
+    loanKey: this.builder.control('',Validators.required),
   });
 
   verifyUserData = this.builder.group({

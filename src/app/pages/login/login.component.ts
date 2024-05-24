@@ -31,13 +31,13 @@ export class LoginComponent {
           if (typeof localStorage !== 'undefined') {
             localStorage.setItem('token', data.token);
           }
-          console.log(5)
+          // console.log(5)
           this.toastr.success('login successfully')
           this.router.navigate(['dashboard'])
 
         },
         error:error=>{
-          console.log(error.error.message)
+          // console.log(error.error.message)
           this.toastr.error((error.error.message))
         }
       })

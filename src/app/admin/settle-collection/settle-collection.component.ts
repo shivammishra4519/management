@@ -47,7 +47,7 @@ export class SettleCollectionComponent {
       next: data => {
         this.amount = data.amount;
         this.isAmount = true;
-        console.log(data)
+        // console.log(data)
       }
     })
 
@@ -61,7 +61,7 @@ export class SettleCollectionComponent {
     }
     if (amount > this.amount) {
       this.toaster.error('Amount can not be greater then Current Amount');
-      console.log(this.amount)
+      // console.log(this.amount)
       return
     }
     this.service.settleCollection(this.settleCollection.value).subscribe(res => {

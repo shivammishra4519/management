@@ -27,7 +27,7 @@ export class TermscondtionComponent {
             
           },
           error: (error) => {
-            console.error('Error fetching device data:', error);
+            // console.error('Error fetching device data:', error);
           }
         });
       }

@@ -53,6 +53,9 @@ import { LoancaluclaterComponent } from './pages/loancaluclater/loancaluclater.c
 import { LoansuccessComponent } from './pages/loansuccess/loansuccess.component';
 import { DownloadPdfComponent } from './pages/download-pdf/download-pdf.component';
 import { EminotpaidComponent } from './pages/eminotpaid/eminotpaid.component';
+import { CustomerHomeComponent } from './pages/customer-home/customer-home.component';
+import { AppViewComponent } from './pages/app-view/app-view.component';
+import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
 
 
 @NgModule({
@@ -102,7 +105,11 @@ import { EminotpaidComponent } from './pages/eminotpaid/eminotpaid.component';
     LoancaluclaterComponent,
     LoansuccessComponent,
     DownloadPdfComponent,
-    EminotpaidComponent
+    EminotpaidComponent,
+    CustomerHomeComponent,
+    AppViewComponent,
+    HomeAppComponent
+    
     
   ],
   imports: [

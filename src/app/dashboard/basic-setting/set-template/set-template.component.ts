@@ -40,7 +40,7 @@ setTemplate(): void {
       },
       error: (err) => {
         alert('Something went wrong');
-        console.log(err);
+        // console.log(err);
       }
     });
   }

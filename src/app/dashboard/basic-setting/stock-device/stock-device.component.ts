@@ -38,7 +38,7 @@ deleteMethod(data:any){
   if (confirm('Are you sure you want to delete this device?')) {
     this.service.deleteDevice(data).subscribe({
       next:data=>{
-        console.log(data)
+        
         this.service.viewAllDevice().subscribe({
           next:data=>{
             this.devices=data;

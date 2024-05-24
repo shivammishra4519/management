@@ -15,7 +15,7 @@ role:any;
     service.getFundDetails().subscribe({
       next:data=>{
         this.transectioData=data;
-        console.log(this.transectioData)
+        // console.log(this.transectioData)
       },
       error:err=>{
         console.log(err)

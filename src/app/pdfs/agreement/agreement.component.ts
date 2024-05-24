@@ -17,7 +17,7 @@ export class AgreementComponent {
       service.findPlaceOfShopAndCustomer(params).subscribe({
         next:data=>{
           this.data = data;
-          console.log(data)
+          // console.log(data)
           this.isDataAvailable = true;
         },
         error:err=>{

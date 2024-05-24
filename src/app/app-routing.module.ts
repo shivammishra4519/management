@@ -43,6 +43,9 @@ import { LoancaluclaterComponent } from './pages/loancaluclater/loancaluclater.c
 import { LoansuccessComponent } from './pages/loansuccess/loansuccess.component';
 import { DownloadPdfComponent } from './pages/download-pdf/download-pdf.component';
 import { EminotpaidComponent } from './pages/eminotpaid/eminotpaid.component';
+import { CustomerHomeComponent } from './pages/customer-home/customer-home.component';
+import { AppViewComponent } from './pages/app-view/app-view.component';
+import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -58,6 +61,7 @@ const routes: Routes = [
       { path: 'view-gaurantor', component: GuarantorViewComponent },
       { path: 'pdf', component: DownloadPdfComponent },
       { path: 'emi-notpaid', component: EminotpaidComponent },
+      { path: 'customer-home', component: CustomerHomeComponent },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       {
         path: 'customer-registration', component: HomeregisterComponent,
@@ -89,7 +93,7 @@ const routes: Routes = [
       },
 
       { path: 'guarantor', component: GuarantorComponent },
-      { path: 'settle-collection', component: SettleCollectionComponent , canActivate: [adminAuthGaurdGuard]},
+      { path: 'settle-collection', component: SettleCollectionComponent, canActivate: [adminAuthGaurdGuard] },
 
 
       {
@@ -127,6 +131,16 @@ const routes: Routes = [
   { path: 'installment-slip', component: InstallmentslipComponent },
   { path: 'invoice', component: InvoiceComponent },
   { path: 'invoice-customer', component: InvoiceCustomerComponent },
+
+  {
+    path: 'app',
+    component: AppViewComponent,
+    children: [
+      { path: '', redirectTo: 'customer', pathMatch: 'full' }, // Redirect default child route
+      { path: 'customer', component: HomeAppComponent },
+    ]
+  },
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

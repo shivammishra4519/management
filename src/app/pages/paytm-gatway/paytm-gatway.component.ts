@@ -13,7 +13,7 @@ export class PaytmGatwayComponent {
     this.http.post<any>('http://localhost:3000/api/initiatePayment', {})
       .subscribe(
         response => {
-          console.log('Payment initiation response:', response);
+          // console.log('Payment initiation response:', response);
           // this.redirectToPaytm(response);
         },
         error => {

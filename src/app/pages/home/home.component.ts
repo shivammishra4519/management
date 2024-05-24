@@ -53,7 +53,7 @@ export class HomeComponent {
         this.devices = data.response;
       },
       error: err => {
-        console.log(err)
+        // console.log(err)
       }
     })
   }

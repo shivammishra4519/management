@@ -53,7 +53,8 @@ export class FundTranseferComponent {
             this.dataSharing.checkWallence();
           },
           error: err => {
-            console.log('err', err)
+           
+            this.toastr.error(err.error.message)
           }
         })
       }

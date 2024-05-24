@@ -1,0 +1,48 @@
+<!-- navbar.component.html -->
+
+<div class="body">
+    
+    <label for="checkbox">
+
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <input type="checkbox" name="" id="checkbox">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+            <ul class="menu-items">
+                <li><a >Home</a></li>
+                <li><a >About</a></li>
+                <li><a >Category</a></li>
+                <li><a >Menu</a></li>
+                <li><a >Testimonial</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <!-- <h1 class="logo">Navbar</h1> -->
+        </div>
+    </nav>
+</label>
+</div>
+ 
+  <!-- <app-home-app></app-home-app> -->
+  <router-outlet></router-outlet>
+
+
+<div class="bottom-nav">
+    <a routerLink="/app/home" class="nav-item">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="nav-icon">🔍</span>
+      <span class="nav-label">Search</span>
+    </a>
+    <a href="#" class="nav-item">
+      <span class="nav-icon">⚙️</span>
+      <span class="nav-label">Settings</span>
+    </a>
+  </div>
+  
+  

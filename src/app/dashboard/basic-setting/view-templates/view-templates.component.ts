@@ -16,7 +16,7 @@ export class ViewTemplatesComponent {
     this.service.viewTemplate().subscribe({
       next: (data: []) => {
         this.template = data;
-        console.log(data)
+        // console.log(data)
       },
       error: err => {
         console.log(err)
