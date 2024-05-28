@@ -38,6 +38,11 @@ body{
   .bg-c-lite-green-blue {
     background: linear-gradient(45deg, #F57F17, #6f1fd5);
   }
+
+  
+  .bg-c-lite-purple-blue {
+    background: linear-gradient(45deg, #e10bb9, #1f6cd5);
+  }
   
   
   

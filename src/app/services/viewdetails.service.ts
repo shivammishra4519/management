@@ -78,5 +78,12 @@ export class ViewdetailsService {
     return this.http.post(`${this.url}details/total/filecharge`, {}, { headers: this.getHeaders() });
   }
   
+  getAllFIleChargeCurrentMonth(): Observable<any> {
+    return this.http.post(`${this.url}details/total/filecharge/currentmonth`, {}, { headers: this.getHeaders() });
+  }
+
+  getAllCurrentCredittCurrentMonth(): Observable<any> {
+    return this.http.post(`${this.url}details/total/currentcredit/currentmonth`, {}, { headers: this.getHeaders() });
+  }
 
 }

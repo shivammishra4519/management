@@ -20,6 +20,8 @@ export class HomeComponent {
   dailyCollection: any
   totalCollectionHold: any;
   totalFileCharge: any;
+  totalFileChargeCM: any;
+  totalCurrentCreditCM: any;
 
   constructor(private serive: ViewdetailsService, private authService: AuthService) {
     this.customerDetails()
@@ -35,6 +37,8 @@ export class HomeComponent {
     this.getDailyCollection();
     this.getAllDailyCollection();
     this.getAllFileCharge();
+    this.getAllCurrentCreditCurrentMonth();
+    this.getAllFileChargeCurrentmonth()
   }
 
 
@@ -126,6 +130,24 @@ export class HomeComponent {
     this.serive.getAllFIleCharge().subscribe({
       next: data => {
 this.totalFileCharge=data.totalAmount
+      }
+    })
+  }
+
+
+  getAllFileChargeCurrentmonth() {
+    this.serive.getAllFIleChargeCurrentMonth().subscribe({
+      next: data => {
+this.totalFileChargeCM=data.totalAmount
+      }
+    })
+  }
+
+
+  getAllCurrentCreditCurrentMonth() {
+    this.serive.getAllCurrentCredittCurrentMonth().subscribe({
+      next: data => {
+this.totalCurrentCreditCM=data.totalAmount
       }
     })
   }
