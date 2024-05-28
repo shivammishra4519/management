@@ -76,6 +76,12 @@ export class ApiService {
     return this.http.post(`${this.url}customer/list`, {}, { headers: this.getHeaders() });
   }
 
+  
+  viewPaidEmiAdmin(): Observable<any> {
+    // const headers = new HttpHeaders().set("Authorization", `bearer ${this.jwtToken}`);
+    return this.http.post(`${this.url}emi/viewemi/admin`, {}, { headers: this.getHeaders() });
+  }
+
   viewProfile(data: any): Observable<any> {
     return this.http.post(`${this.url}customer/profile`, data, { headers: this.getHeaders() });
   }
@@ -261,8 +267,8 @@ export class ApiService {
     return this.http.get(`${this.url}pdf/download/gaurantor?number=${data.number}`, { responseType: 'blob' });
   }
   // pdf/download/gaurantor?number=5426859625
-  exportLoanInExcel(): Observable<any> {
-    return this.http.get(`${this.url}files/download`, {headers: this.getHeaders() , responseType: 'blob' });
+  exportLoanInExcel(data:any): Observable<any> {
+    return this.http.post(`${this.url}files/download`,data, {headers: this.getHeaders() , responseType: 'blob' });
   }
   exportUnpaidInExcel(): Observable<any> {
     return this.http.get(`${this.url}files/download/unpaidemi`, {headers: this.getHeaders() , responseType: 'blob' });
@@ -338,6 +344,26 @@ export class ApiService {
     return this.http.post(`${this.url}api/view/all/emi/notpaid`, {}, { headers: this.getHeaders() });
   }
 
+  setApi(data:any): Observable<any> {
+    return this.http.post(`${this.url}sms/set/api`, data, { headers: this.getHeaders() });
+  }
+
+  viewApi(): Observable<any> {
+    return this.http.post(`${this.url}sms/view/api`,{}, { headers: this.getHeaders() });
+  }
+
+  viewTemplateSms(data:any): Observable<any> {
+    return this.http.post(`${this.url}sms/get/template`,data, { headers: this.getHeaders() });
+  }
+
+  saveSmsDetails(data:any): Observable<any> {
+    return this.http.post(`${this.url}sms/save/sms`,data, { headers: this.getHeaders() });
+  }
+  sendsmsbyapi(data:any): Observable<any> {
+    return this.http.post(`${this.url}sms/send/Sms`,data, { headers: this.getHeaders() });
+  }
+
+  
   imageView(imageName: string): Observable<Blob> {
     return this.http.post(`${this.url}api/images`, { fileName: imageName }, {
       responseType: 'blob',
@@ -366,6 +392,10 @@ export class ApiService {
     return this.http.get(url)
   }
 
+  sendEmiPaidSms(data:any){
+    const apiUrl = data.api;
+    return this.http.get(apiUrl)
+  }
   verifyAdhar(data: any): Observable<any> {
     return this.http.post(`${this.url}adhar/sendOtp`, data);
   }

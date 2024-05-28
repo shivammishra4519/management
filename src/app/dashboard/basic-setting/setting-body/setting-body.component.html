@@ -1,2 +1,24 @@
-<p>setting-body works!</p>
-
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Serial No</th>
+                <th>API Type</th>
+                <th>API URL</th>
+                <th>API Method</th>
+                <th>Body</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of apiData; let i = index" [ngClass]="{'whatsapp-row': item.apiType === 'Whatsapp', 'text-row': item.apiType === 'Text', 'default-row': item.apiType !== 'Whatsapp' && item.apiType !== 'Text'}">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.apiType }}</td>
+                <td>{{ item.apiUrl }}</td>
+                <td>{{ item.apiMethod }}</td>
+                <td>{{ item.body }}</td>
+                <td><button (click)="deleteRow()"><img src="../../../../assets/svg/trash-solid.svg"  width="25px" height="25px"></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,1 +1,27 @@
-<p>sms-setting works!</p>
+<div class="body">
+
+    <form  [formGroup]="addApi">
+        <h2>Fill Details</h2>
+       
+
+        <label for="method">Select  API Type</label>
+        <select id="method" formControlName="apiType" >
+            <option value="0">Select API type</option>
+            <option >Whatsapp</option>
+            <option >Text</option>
+        </select>
+
+        <label for="smsType">API Url</label>
+        <input type="text" id="smsType" name="smsType"  placeholder="Enter API Url"  formControlName="apiUrl">
+
+        <label for="method">Select method</label>
+        <select id="method" formControlName="apiMethod" >
+            <option >GET</option>
+            <option >POST</option>
+        </select> 
+        <label for="temp">Set Body</label>
+       <textarea name="" id="" cols="20" rows="4" formControlName="body"></textarea>
+
+        <button type="submit" (click)="submitRequest()">SUBMIT</button>
+    </form>
+</div>

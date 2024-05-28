@@ -1,0 +1,40 @@
+<div class="table-container">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Employee ID</th>
+                <th>Installment ID</th>
+                <th>Loan ID</th>
+                <th>Payment By</th>
+                <th>Payment Mode</th>
+                <th>PIN</th>
+                <th>Time</th>
+                <th>User ID</th>
+                <th>UTR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data; let i = index" [ngClass]="{
+                'online-payment': item.paymentMod === 'online',
+                'cash-payment': item.paymentMod === 'cash',
+                'other-payment': item.paymentMod !== 'online' && item.paymentMod !== 'cash'
+            }">
+                <td>{{i + 1}}</td>
+                <td>{{item.amount}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.employeeId}}</td>
+                <td>{{item.installmentId}}</td>
+                <td>{{item.loan_Id}}</td>
+                <td>{{item.paymentBy || 'NA'}}</td>
+                <td>{{item.paymentMod}}</td>
+                <td>{{item.pin}}</td>
+                <td>{{item.time}}</td>
+                <td>{{item.user_id}}</td>
+                <td>{{item.utr || 'NA'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

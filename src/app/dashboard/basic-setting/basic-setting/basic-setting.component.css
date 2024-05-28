@@ -8,12 +8,13 @@ th{
     text-align: center;
     /* color: #C0DFE7; */
     color: #014122;
+    background-color: green;
 }
 
 .table-container {
     /* Enable horizontal scrolling */
    width: 100%; /* Ensure the container takes full width of the screen */
-   overflow: hidden;
+   overflow: auto;
    /* margin-top: 50px; */
   }
   

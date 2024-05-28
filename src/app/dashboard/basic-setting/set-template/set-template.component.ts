@@ -8,9 +8,11 @@ import { ApiService } from '../../../services/api.service';
   styleUrl: './set-template.component.css'
 })
 export class SetTemplateComponent {
-
+apiData:any
 constructor(private builder:FormBuilder,private service:ApiService){
-
+  service.viewApi().subscribe(res=>{
+    this.apiData=res
+  })
 }
 templateForm=this.builder.group({
   api:this.builder.control('0',Validators.required),

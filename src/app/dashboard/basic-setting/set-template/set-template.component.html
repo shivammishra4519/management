@@ -7,8 +7,7 @@
         <label for="method">Select SMS API</label>
         <select id="method" formControlName="api" >
             <option value="0">Select SMS API</option>
-            <option >https://textsms.vastbazaar.com/app/smsapi/index.php</option>
-            <option >ABC API</option>
+           <option *ngFor="let api of apiData" value={{api.apiUrl}}>{{api.apiUrl}}</option>
         
         </select>
 

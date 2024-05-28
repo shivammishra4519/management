@@ -1,0 +1,44 @@
+.table-container {
+    width: 100%;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: green;
+    color: white;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+.whatsapp-row {
+    background-color: #e6ffe6; /* Light green for WhatsApp */
+}
+
+.text-row {
+    background-color: #e6f7ff; /* Light blue for Text */
+}
+
+.default-row {
+    background-color: #ffe6e6; /* Light red for default */
+}
+
+button {
+    /* background-color: red; */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkred;
+}

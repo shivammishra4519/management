@@ -46,6 +46,7 @@ import { EminotpaidComponent } from './pages/eminotpaid/eminotpaid.component';
 import { CustomerHomeComponent } from './pages/customer-home/customer-home.component';
 import { AppViewComponent } from './pages/app-view/app-view.component';
 import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
+import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
       { path: 'pdf', component: DownloadPdfComponent },
       { path: 'emi-notpaid', component: EminotpaidComponent },
       { path: 'customer-home', component: CustomerHomeComponent },
+      { path: 'viewpaidemi-admin', component: ViewemiAdminComponent },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       {
         path: 'customer-registration', component: HomeregisterComponent,

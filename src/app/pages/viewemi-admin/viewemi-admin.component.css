@@ -1,0 +1,39 @@
+.table-container {
+    width: 100%;
+    margin: 20px auto;
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.data-table td {
+    padding: 10px;
+    border: 1px solid black;
+    text-align: left;
+}
+
+.data-table td:first-child {
+    text-align: center;
+}
+
+.online-payment {
+    background-color: #d4edda; /* Light green for online payments */
+}
+
+.cash-payment {
+    background-color: #fff3cd; /* Light yellow for cash payments */
+}
+
+.other-payment {
+    background-color: #f8d7da; /* Light red for other payments */
+}

@@ -56,6 +56,7 @@ import { EminotpaidComponent } from './pages/eminotpaid/eminotpaid.component';
 import { CustomerHomeComponent } from './pages/customer-home/customer-home.component';
 import { AppViewComponent } from './pages/app-view/app-view.component';
 import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
+import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.component';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
     EminotpaidComponent,
     CustomerHomeComponent,
     AppViewComponent,
-    HomeAppComponent
+    HomeAppComponent,
+    ViewemiAdminComponent
     
     
   ],

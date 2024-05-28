@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-loanstatus',
@@ -9,7 +10,7 @@ import { ApiService } from '../../services/api.service';
 export class LoanstatusComponent {
   data:any;
   isDataAvailble=false;
-constructor(private service:ApiService){
+constructor(private service:ApiService,private builder:FormBuilder){
   service.viewAlldevice().subscribe(res=>{
   this.data=res
   this.isDataAvailble=true;
@@ -18,7 +19,7 @@ constructor(private service:ApiService){
 }
 
 exportData() {
-  this.service.exportLoanInExcel().subscribe(
+  this.service.exportLoanInExcel(this.filterForm.value).subscribe(
     (response: Blob) => {
       const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
       const url = window.URL.createObjectURL(blob);
@@ -35,6 +36,15 @@ exportData() {
       // Handle error (e.g., display error message to user)
     }
   );
+}
+
+filterForm = this.builder.group({
+  from: this.builder.control(''),
+  to: this.builder.control(''),
+})
+
+submit(){
+  console.log(this.filterForm.value)
 }
 
 

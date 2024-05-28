@@ -1,4 +1,4 @@
-.main{
+.main {
     width: 750px;
     min-height: 100vh;
     max-height: max-content;
@@ -7,87 +7,98 @@
     box-sizing: border-box;
     position: relative;
 }
-.content{
+
+.content {
     width: 100%;
-    padding: 20px 20px;
-    
-    position: relative; /* Ensure the content is positioned relative to the main container */
+    padding: 20px;
+    position: relative;
     z-index: 1;
-   
 }
-.row-self{
+
+.row-self {
     width: 80%;
     margin: auto;
     display: flex;
 }
 
-.u-char{
+.u-char {
     padding-top: 2px;
-    
     color: #027b9a;
 }
-.brand{
+
+.brand {
     display: flex;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     margin-top: 32px;
-  
 }
-.mainchar{
+
+.mainchar {
     width: 50px;
-    margin-top:13px ;
+    margin-top: 13px;
     font-size: 70px;
     text-align: center;
     color: #027b9a;
 }
-.full-name{
+
+.full-name {
     width: fit-content;
     font-size: 20px;
 }
-.uphar{
+
+.uphar {
     color: #1f9aba;
 }
-.finance{
+
+.finance {
     color: cadetblue;
 }
-.col-self1{
-   width: 100px;
-   height: 100px;
+
+.col-self1 {
+    width: 100px;
+    height: 100px;
 }
-.col-self{
+
+.col-self {
     width: fit-content;
 }
-.fileds{
-    margin-left: 45px;
-    box-sizing: border-box;
+
+.detail-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
 }
-.key{
+
+.detail-table .key {
     font-weight: bold;
-    margin-top: 15px;
-    display: block;
     font-size: 17px;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid black;
+    width: 50%; /* Ensure key takes 50% width */
 }
 
-.value{
+.detail-table .value {
     font-size: 15px;
-    margin-top: 15px;
-    display: block;
     text-decoration: underline;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid black;
+    width: 50%; /* Ensure value takes 50% width */
 }
 
-hr{
+hr {
     border: none;
     border-top: 4px solid rgb(4, 4, 4);
 }
 
-
 .watermark {
-    position: fixed; /* Position the watermark relative to the viewport */
-    top: 10%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%) rotate(300deg); /* Rotate and center the watermark */
-    -webkit-transform: translate(-50%, -50%) rotate(300deg); /* For Safari */
-    color: lightgrey; /* Watermark text color */
-    font-size: 40px; /* Watermark text size */
-    z-index: 0; 
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(300deg);
+    -webkit-transform: translate(-50%, -50%) rotate(300deg);
+    color: lightgrey;
+    font-size: 40px;
+    z-index: 0;
 }

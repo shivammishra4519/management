@@ -15,7 +15,7 @@ th, td {
 }
 
 th {
-    background-color: #d2d9b7;
+    background-color: green;
 }
 
 tr:nth-child(even) {
@@ -39,4 +39,91 @@ td:nth-child(24) {
 
 button {
     all: initial;
+}
+
+
+
+
+
+
+
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    
+}
+
+/* Filter container */
+.filter {
+    background-color: #f9f9f9;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    left: 1010px;
+    margin-bottom: 5px;
+}
+
+/* Filter row */
+.row1 {
+    display: flex;
+    align-items: center;
+}
+
+/* Date input */
+.date-inp {
+    margin-right: 10px;
+}
+
+/* Date input label */
+.date-inp::before {
+    content: attr(data-label) ":";
+    margin-right: 5px;
+}
+
+/* Number input container */
+.number {
+    display: flex;
+    align-items: center;
+}
+
+/* Number input label */
+.number .text {
+    margin-right: 5px;
+}
+
+/* Input box */
+.inp-box {
+    margin-right: 10px;
+}
+
+/* Search button */
+.btn-self {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Style for input fields */
+input[type="date"],
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Style for search button */
+.btn-self {
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
 }

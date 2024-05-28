@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DatasharingService } from '../../../services/datasharing.service';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-setting-body',
@@ -7,9 +8,14 @@ import { DatasharingService } from '../../../services/datasharing.service';
   styleUrl: './setting-body.component.css'
 })
 export class SettingBodyComponent {
-  isManageDevices=false;
-constructor(private dataSharing:DatasharingService){
-  this.isManageDevices=this.dataSharing.isManageDevice;
+  apiData:any;
+constructor(private service:ApiService){
+service.viewApi().subscribe(res=>{
+  this.apiData=res
+})
 }
 
+deleteRow(){
+  
+}
 }

@@ -1,5 +1,26 @@
-<div style="display: flex; justify-content: flex-end; padding-right: 10px;">
+<!-- <div style="display: flex; justify-content: flex-end; padding-right: 10px;">
     <button (click)="exportData()" ><img src="../../../assets/svg/icons8-excel.svg" width="32px" height="32px"></button>
+</div> -->
+
+<div class="header">
+    <!-- Filter section -->
+    <div class="filter">
+        <form [formGroup]="filterForm">
+            <div class="row1">
+                <div class="date-inp">
+                    From:
+                    <input type="date" formControlName="from">
+                </div>
+                <div class="date-inp">
+                    To:
+                    <input type="date" formControlName="to">
+                </div>
+                <div class="number">
+                    <button (click)="exportData()" ><img src="../../../assets/svg/icons8-excel.svg" width="32px" height="32px"></button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 
@@ -38,10 +59,10 @@
         </tr>
         <tr *ngFor="let item of data;let i = index">
             <td>{{i+1}}</td>
-            <td >{{ item.purchaseDate  || ''}}</td>
+            <td>{{ item.purchaseDate || ''}}</td>
             <td>{{ item.loanId }}</td>
             <td>{{ item.imei1 }}</td>
-            <td>{{ item.customerName  }}</td>
+            <td>{{ item.customerName }}</td>
             <td>{{ item.customerNumber }}</td>
             <td>{{ item.shop }}</td>
             <td>{{ item.brandName }}</td>
@@ -54,7 +75,7 @@
             <td>{{ item.installments.length }}</td>
             <td>{{ item.emiAmount }}</td>
             <td>{{ item.installments[0]?.paid ? item.installments[0]?.amount : '' }}</td>
-            <td >{{ item.installments[0]?.paid ? item.installments[0]?.payDate : '' }}</td>
+            <td>{{ item.installments[0]?.paid ? item.installments[0]?.payDate : '' }}</td>
 
             <td>{{ item.installments[1]?.paid ? item.installments[0]?.amount : '' }}</td>
             <td>{{ item.installments[1]?.paid ? item.installments[0]?.payDate : '' }}</td>

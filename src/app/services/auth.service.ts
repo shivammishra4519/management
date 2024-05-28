@@ -10,7 +10,7 @@ export class AuthService {
   constructor() { }
 userId:any;
 role:any;
-
+name:any;
   decodingRole() {
     const token = localStorage.getItem('token');
 
@@ -20,6 +20,7 @@ role:any;
       const role=decodeToken.role;
       this.role=role;
       this.userId=decodeToken.number;
+      this.name=decodeToken.name
       return role;
     } else {
       console.error('Token not found in localStorage');
