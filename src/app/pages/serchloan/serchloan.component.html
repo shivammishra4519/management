@@ -1,0 +1,45 @@
+<div class="lightbox" id="popup" *ngIf="data">
+    <h3>Loan Details</h3>
+    <div class="content1">
+      <div class="container">
+        <h2>Loan Details</h2>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Customer Information</h5>
+            <p class="card-text"><strong>Name:</strong> {{ data.customerName }}</p>
+            <p class="card-text"><strong>Number:</strong> {{ data.customerNumber }}</p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Loan Information</h5>
+            <p class="card-text"><strong>Brand:</strong> {{ data.brandName }}</p>
+            <p class="card-text"><strong>Model:</strong> {{ data.modelName }}</p>
+            <p class="card-text"><strong>Current Credit:</strong> {{ data.currentCredit }}</p>
+            <p class="card-text"><strong>Loan ID:</strong> {{ data.loanId }}</p>
+            <p class="card-text"><strong>IMEI:</strong> {{ data.imei1 }}</p>
+          </div>
+        </div>
+  
+        <h2>Upcoming/Due Installments</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Installment ID</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Pay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let installment of upcomingInstallments">
+              <td>{{ installment.installmentId }}</td>
+              <td>{{ installment.dueDate }}</td>
+              <td>{{ installment.amount }}</td>
+              <td><button class="btn btn-outline-success" (click)="payNow({installmentId: installment.installmentId,loanId:data.loanId})">Pay</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+   
+  </div>
+  

@@ -1,4 +1,8 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
+import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-main',
@@ -8,7 +12,7 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 export class HomeMainComponent {
   isNavbarOpen: boolean = false;
   isLoader=true;
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef,private service:ApiService,private toastr:ToastrService,private builder:FormBuilder,private route:Router) {
     setTimeout(() => {
       this.isLoader = false;
     }, 1000);
@@ -55,8 +59,22 @@ export class HomeMainComponent {
     }
   }
   
+  userInput=this.builder.group({
+    userInput:this.builder.control('')
+  })
 
+  openPopup(){
+    this.service.findLoanByAny(this.userInput.value).subscribe({
+      next:data=>{
+        const queryParams = {userInput:this.userInput.value.userInput};
+        this.route.navigate(['/search-loan'], { queryParams });
+      },
+      error:err=>{
+        this.toastr.error("No Loan Exit With This details")
+      }
+    })
 
-
+   
+  }
  
 }

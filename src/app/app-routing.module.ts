@@ -47,6 +47,8 @@ import { CustomerHomeComponent } from './pages/customer-home/customer-home.compo
 import { AppViewComponent } from './pages/app-view/app-view.component';
 import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
 import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.component';
+import { SerchloanComponent } from './pages/serchloan/serchloan.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -122,6 +124,7 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   { path: 'login', component: LoginComponent },
+  { path: 'search-loan', component: SerchloanComponent },
   { path: 'forget-password', component: ForgetPasswordComponent },
   { path: 'home', component: HomeMainComponent },
   { path: 'about-us', component: AboutUsComponent },
@@ -133,6 +136,8 @@ const routes: Routes = [
   { path: 'installment-slip', component: InstallmentslipComponent },
   { path: 'invoice', component: InvoiceComponent },
   { path: 'invoice-customer', component: InvoiceCustomerComponent },
+  { path: 'payment-success', component: PaymentSuccessComponent },
+  
 
   {
     path: 'app',

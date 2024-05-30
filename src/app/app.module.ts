@@ -57,6 +57,8 @@ import { CustomerHomeComponent } from './pages/customer-home/customer-home.compo
 import { AppViewComponent } from './pages/app-view/app-view.component';
 import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
 import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.component';
+import { SerchloanComponent } from './pages/serchloan/serchloan.component';
+import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 
 
 @NgModule({
@@ -110,7 +112,9 @@ import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.compo
     CustomerHomeComponent,
     AppViewComponent,
     HomeAppComponent,
-    ViewemiAdminComponent
+    ViewemiAdminComponent,
+    SerchloanComponent,
+    PaymentSuccessComponent
     
     
   ],

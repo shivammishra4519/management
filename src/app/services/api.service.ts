@@ -302,6 +302,14 @@ export class ApiService {
   settleCollection(data:any): Observable<any> {
     return this.http.post(`${this.url}collection/settle/collection`, data, { headers: this.getHeaders() });
   }
+
+findLoanByAny(data:any): Observable<any> {
+    return this.http.post(`${this.url}customer/View/loan`, data, { headers: this.getHeaders() });
+  }
+
+  payInstallmentOnline(data:any): Observable<any> {
+    return this.http.post(`${this.url}emi/payonline/installment`, data, { headers: this.getHeaders() });
+  }
  
   findAllcSettleCollection(): Observable<any> {
     return this.http.post(`${this.url}collection/find/collection`, {}, { headers: this.getHeaders() });

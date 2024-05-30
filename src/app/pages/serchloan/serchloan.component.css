@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+  }
+  
+  a, a:visited {
+    color: #6a4;
+    text-decoration: none;
+  }
+  
+  a:hover, a:active {
+    color: #6b4;
+    text-decoration: underline;
+  }
+  
+  .lightbox {
+    display: block; /* Change from "display: none" to "display: block" to initially show the popup */
+    position: fixed;
+    background: #fff;
+    border: solid 10px #5BA546;
+    border-radius: 20px;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1002;
+  }
+  
+  .content1 {
+    background-color: #ded;
+    border-radius: 5px;
+    padding: 20px;
+    overflow: auto;
+  }
+  
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .card {
+    margin-bottom: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.25em;
+    margin-top: 0;
+  }
+  
+  .button-panel {
+    text-align: center;
+  }
+  
+  .primary {
+    background-color: #6a4;
+  }
+  
+  .primary:hover {
+    background-color: #6b4;
+  }
+  
+  .secondary {
+    background-color: #666;
+  }
+  
+  .secondary:hover {
+    background-color: #777;
+  }
+  
+  .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+  }
+  
+  .table .table {
+    background-color: #fff;
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-bordered th, .table-bordered td {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-bordered thead th, .table-bordered thead td {
+    border-bottom-width: 2px;
+  }
+  
+  .table-borderless th, .table-borderless td, .table-borderless thead th, .table-borderless tbody + tbody {
+    border: 0;
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+  }
+  
