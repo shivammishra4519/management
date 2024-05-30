@@ -200,6 +200,11 @@ export class ApiService {
     return this.http.post(`${this.url}customer/verify`, data, { headers: this.getHeaders() });
   }
 
+  
+  verifyOnlinePayment(data: any): Observable<any> {
+    return this.http.post(`${this.url}emi/verify/installment`, data, { headers: this.getHeaders() });
+  }
+
   registerGuarantor(data: any): Observable<any> {
     return this.http.post(`${this.url}guarantor/register`, data, { headers: this.getHeaders() });
   }
