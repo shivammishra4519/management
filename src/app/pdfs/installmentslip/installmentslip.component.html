@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <td class="key">Total Payment:</td>
-                <td class="value">555</td>
+                <td class="value">{{loanData.emiAmount  + loanData.emiAmount|| 'NA'}}</td>
             </tr>
             <tr>
                 <td class="key">Loan ID:</td>
@@ -58,7 +58,7 @@
             </tr>
             <tr>
                 <td class="key">Due Payment:</td>
-                <td class="value">5000</td>
+                <td class="value">{{loanData.currentCredit || 'NA'}}</td>
             </tr>
             <tr>
                 <td class="key">Next Due Date:</td>
@@ -66,7 +66,7 @@
             </tr>
             <tr>
                 <td class="key">Late Fee:</td>
-                <td class="value">500</td>
+                <td class="value">0</td>
             </tr>
             <tr>
                 <td class="key">Mobile No.:</td>

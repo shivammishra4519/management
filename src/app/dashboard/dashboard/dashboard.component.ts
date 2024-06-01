@@ -33,7 +33,7 @@ checkAmount(){
     }
   })
 }
-
+// wallet=this.dataSharing.wallet.toFixed(2)
 
 
 @HostListener('document:click', ['$event'])

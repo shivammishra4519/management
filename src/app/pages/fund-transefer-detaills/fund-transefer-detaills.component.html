@@ -51,6 +51,22 @@
             <td>{{ transection.time }}</td>
             <td>{{ transection.date }}</td>
         </tr>
+        <tr *ngFor="let transection of transectioData1; let i = index" [ngClass]="{ 'bg-red': transection.senderId == number || transection.receiverId == number, 'bg-green': transection.receiverId == number }">
+            <td>{{ i + 1 }}</td>
+            <td>{{ transection.TransactionID }}</td>
+            <td>{{ transection.amount }}</td>
+            <td *ngIf="transection.senderId == number">Dr</td>
+            <td *ngIf="transection.receiverId == number">Cr</td>
+            <td *ngIf="transection.senderId != number && transection.receiverId != number">U2U</td> <!-- New condition -->
+            <td>{{ transection.senderId }}</td>
+            <td>{{ transection.receiverId }}</td>
+            <td>{{ transection.senderDetails.senderOpeningAmount }}</td>
+            <td>{{ transection.senderDetails.senderClosingAmount }}</td>
+            <td>{{ transection.receiverDetails.receiverOpeningAmount }}</td>
+            <td>{{ transection.receiverDetails.receiverClosingAmount }}</td>
+            <td>{{ transection.time }}</td>
+            <td>{{ transection.date }}</td>
+        </tr>
         
     </table>
 </div>

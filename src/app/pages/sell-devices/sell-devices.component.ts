@@ -244,8 +244,8 @@ export class SellDevicesComponent {
           emiAmount: 0,
         })
       }
-      else if (emiAmount < 1300 && this.emi > 4) {
-        alert('for 5 installment  Installment amount should be greater then 1500')
+      else if (emiAmount < 1200 && this.emi > 4) {
+        alert('for 5 installment  Installment amount should be greater then 1200')
         this.sellDeviceForm.patchValue({
           emi: 0,
           emiAmount: 0
@@ -263,7 +263,7 @@ export class SellDevicesComponent {
 
   onEmiAmount(event: Event) {
     const emiAmount = parseInt((event.target as HTMLSelectElement).value);
-    if (emiAmount < 1500 && this.emi > 4) {
+    if (emiAmount < 1200 && this.emi > 4) {
       this.emiLabel = true;
     } else {
       this.emiLabel = false;

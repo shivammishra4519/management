@@ -11,27 +11,28 @@ import { ToastrService } from 'ngx-toastr';
 export class InstallmentslipComponent {
   constructor(private route: ActivatedRoute, private service: ApiService, private toastr: ToastrService) { }
   loanData: any;
-  installment:any;
-  index:any;
-  isPaid=false;
-   
+  installment: any;
+  index: any;
+  isPaid = false;
+
   loanId: string = '';
   emiId: string = '';
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.loanId = params['loanid'];
-       this.emiId = params['emiId'];
-       
-  
+      this.emiId = params['emiId'];
+
+
 
       this.service.viewLoanByLoanId({ loanId: this.loanId, emiId: this.emiId }).subscribe({
         next: (data: any) => {
+         
           this.loanData = data;
           const installments = data.installments;
           this.index = installments.findIndex((inst: any) => inst.installmentId === this.emiId);
           if (this.index !== -1) {
             this.installment = installments[this.index];
-            this.isPaid=true;
+            this.isPaid = true;
           } else {
             this.toastr.error("Installment not found for EMI ID")
           }
@@ -43,9 +44,9 @@ export class InstallmentslipComponent {
       });
     });
   }
-  
-  
-  
+
+
+
 
 
 }

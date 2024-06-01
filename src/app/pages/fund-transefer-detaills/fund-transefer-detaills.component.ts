@@ -9,13 +9,15 @@ import { AuthService } from '../../services/auth.service';
 })
 export class FundTranseferDetaillsComponent {
   transectioData:any[]=[]
+  transectioData1:any[]=[]
 number:any;
 role:any;
   constructor(private service:ApiService,private auth:AuthService){
     service.getFundDetails().subscribe({
       next:data=>{
-        this.transectioData=data;
-        // console.log(this.transectioData)
+        this.transectioData=data.filterData;
+        this.transectioData1=data.filterData1;
+        console.log(this.transectioData)
       },
       error:err=>{
         console.log(err)
