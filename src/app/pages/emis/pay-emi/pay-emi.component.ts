@@ -68,6 +68,12 @@ export class PayEmiComponent {
   }
 
   payNow() {
+
+    const paymentMethod = this.paymentForm.value.paymentMod;
+    if (paymentMethod == '0') {
+      this.toster.error('Select Payment Method');
+      return;
+    }
     this.service.payEmi(this.paymentForm.value).subscribe({
       next: data => {
         this.toster.success('Emi Paid Succesfully');
@@ -77,11 +83,11 @@ export class PayEmiComponent {
         console.log(err);
       }
     })
-  
+
   }
 
 
- 
+
 
 
 }
