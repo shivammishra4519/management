@@ -71,8 +71,7 @@ export class PayEmiComponent {
     this.service.payEmi(this.paymentForm.value).subscribe({
       next: data => {
         this.toster.success('Emi Paid Succesfully');
-        this.paymentForm.reset()
-        this.sendSms()
+        this.paymentForm.reset();
       },
       error: err => {
         console.log(err);
@@ -82,43 +81,7 @@ export class PayEmiComponent {
   }
 
 
-  sendSms() {
-
-    let template: any
-    let api: any;
-    this.service.viewTemplateSms({ type: 'EMI_PAID' }).subscribe({
-      next: data => {
-        template = data.template;
-        api = data.api;
-        const values = [this.amount, this.empName, this.currentCredit]
-        const result = this.replacePlaceholders(template, values);
-        this.service.sendsmsbyapi({
-          type: "Whatsapp",
-          number: this.emidetails.customerNumber,
-          sms: result
-        }).subscribe(res=>{
-          
-        })
-      }
-    })
-  }
-
-
-  replacePlaceholders(template: string, values: any[]): string {
-    let index = 0;
-    return template.replace(/{#var#}/g, () => {
-      return values[index++];
-    });
-  }
-
-
-
-  // const urlTemplate = "http://62.72.56.135:4000/getmesaage?phoneNumber=mmmm&message=tttt";
-  // const phoneNumber = "1234567890";
-  // const message = "Hello, this is a test message";
-
-  // const finalUrl = replaceUrlPlaceholders(urlTemplate, phoneNumber, message);
-  // console.log(finalUrl);
+ 
 
 
 }
