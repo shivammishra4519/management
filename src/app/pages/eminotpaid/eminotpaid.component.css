@@ -1,31 +1,32 @@
 .table {
-    width: 100%;
-    border-collapse: collapse;
-   
-  }
-  
-  .table th, .table td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .table th {
-    background-color: #f2f2f2;
-  }
-  
-  .table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .table tr:hover {
-    background-color: #ddd;
-  }
-  .table-conatiner{
-    overflow: auto;
-  }
-  button{
-    all: unset;
-    cursor: pointer;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.table-container {
+  overflow-x: auto;
+  width: 100%; /* Ensure the container takes full width */
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}

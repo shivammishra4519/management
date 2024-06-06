@@ -11,7 +11,7 @@ export class EminotpaidComponent {
 constructor(private service:ApiService){
   service.unpaidEmi().subscribe(res=>{
     this.sellDevices=res;
-    console.log(this.sellDevices[0].installments);
+    console.log(this.sellDevices);
 
   })
 }
