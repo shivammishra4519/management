@@ -115,13 +115,19 @@ export class HomeComponent {
     this.serive.getDailyCollection({}).subscribe({
       next: data => {
         this.dailyCollection = data.amount
+        const formattedAmount =  data.amount.toFixed(2); // Returns a string with 2 decimal places
+        this.dailyCollection= parseFloat(formattedAmount);
+      
       }
     })
   }
   getAllDailyCollection() {
     this.serive.getAllDailyCollection().subscribe({
       next: data => {
-        this.totalCollectionHold = data.totalAmount
+        this.totalCollectionHold = data.totalAmount;
+        const formattedAmount = data.totalAmount.toFixed(2); // Returns a string with 2 decimal places
+        this.totalCollectionHold = parseFloat(formattedAmount);
+        
       }
     })
   }
@@ -147,7 +153,7 @@ this.totalFileChargeCM=data.totalAmount
   getAllCurrentCreditCurrentMonth() {
     this.serive.getAllCurrentCredittCurrentMonth().subscribe({
       next: data => {
-this.totalCurrentCreditCM=data.totalAmount
+this.totalCurrentCreditCM=data.totalCredit;
       }
     })
   }

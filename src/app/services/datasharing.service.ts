@@ -33,7 +33,11 @@ export class DatasharingService {
   checkWallence(){
     this.service.checkBalance().subscribe({
       next:data=>{
-        this.wallet=data.amount;
+        
+        const amount=data.amount;
+        const formattedAmount = amount.toFixed(2); // Returns a string with 2 decimal places
+        this.wallet = parseFloat(formattedAmount);
+       
       }
     })
   }
