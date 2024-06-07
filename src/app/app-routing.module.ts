@@ -49,6 +49,7 @@ import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
 import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.component';
 import { SerchloanComponent } from './pages/serchloan/serchloan.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
+import { OnlinepyamnetrequestComponent } from './pages/onlinepyamnetrequest/onlinepyamnetrequest.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -65,6 +66,7 @@ const routes: Routes = [
       { path: 'pdf', component: DownloadPdfComponent },
       { path: 'emi-notpaid', component: EminotpaidComponent },
       { path: 'customer-home', component: CustomerHomeComponent },
+      { path: 'online-request', component: OnlinepyamnetrequestComponent },
       { path: 'viewpaidemi-admin', component: ViewemiAdminComponent },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       {

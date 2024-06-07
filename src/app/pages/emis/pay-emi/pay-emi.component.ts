@@ -80,7 +80,7 @@ export class PayEmiComponent {
         this.paymentForm.reset();
       },
       error: err => {
-        console.log(err);
+        this.toster.error(err.error.message)
       }
     })
 

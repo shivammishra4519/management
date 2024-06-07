@@ -1,0 +1,35 @@
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Customer Mobile</th>
+          <!-- <th>User Token</th> -->
+          <th>Amount</th>
+          <th>Order ID</th>
+          <th>Customer Name</th>
+          <th>Date</th>
+          <!-- <th>Redirect URL</th> -->
+          <th>Loan ID</th>
+          <th>EMI ID</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ transaction.customer_mobile }}</td>
+          <!-- <td>{{ transaction.user_token }}</td> -->
+          <td>{{ transaction.amount }}</td>
+          <td>{{ transaction.order_id }}</td>
+          <td>{{ transaction.customerName || 'NA'}}</td>
+          <td>{{ transaction.date }}</td>
+          <!-- <td>{{ transaction.redirect_url }}</td> -->
+          <td>{{ transaction.remark1 }}</td>
+          <td>{{ transaction.remark2 }}</td>
+          <td><button class="btn btn-primary" (click)="chechStatus(transaction)">Check Status</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

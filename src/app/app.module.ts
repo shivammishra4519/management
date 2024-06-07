@@ -59,6 +59,7 @@ import { HomeAppComponent } from './customer-pages/home-app/home-app.component';
 import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.component';
 import { SerchloanComponent } from './pages/serchloan/serchloan.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
+import { OnlinepyamnetrequestComponent } from './pages/onlinepyamnetrequest/onlinepyamnetrequest.component';
 
 
 @NgModule({
@@ -114,8 +115,8 @@ import { PaymentSuccessComponent } from './pages/payment-success/payment-success
     HomeAppComponent,
     ViewemiAdminComponent,
     SerchloanComponent,
-    PaymentSuccessComponent
-    
+    PaymentSuccessComponent,
+    OnlinepyamnetrequestComponent
     
   ],
   imports: [

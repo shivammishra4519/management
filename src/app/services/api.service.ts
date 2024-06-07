@@ -375,6 +375,13 @@ findLoanByAny(data:any): Observable<any> {
   sendsmsbyapi(data:any): Observable<any> {
     return this.http.post(`${this.url}sms/send/Sms`,data, { headers: this.getHeaders() });
   }
+  onlinepaymentRequest(): Observable<any> {
+    return this.http.post(`${this.url}payment/requests`,{}, { headers: this.getHeaders() });
+  }
+
+  paymentStatus(data:any): Observable<any> {
+    return this.http.post(`${this.url}payment/status`,data, { headers: this.getHeaders() });
+  }
 
   
   imageView(imageName: string): Observable<Blob> {
