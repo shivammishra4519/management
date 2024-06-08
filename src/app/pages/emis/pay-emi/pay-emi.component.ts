@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../services/auth.service';
+import { subscribe } from 'diagnostics_channel';
 
 @Component({
   selector: 'app-pay-emi',
@@ -74,15 +75,25 @@ export class PayEmiComponent {
       this.toster.error('Select Payment Method');
       return;
     }
-    this.service.payEmi(this.paymentForm.value).subscribe({
-      next: data => {
-        this.toster.success('Emi Paid Succesfully');
-        this.paymentForm.reset();
-      },
-      error: err => {
-        this.toster.error(err.error.message)
+    this.service.checkUtr(this.paymentForm.value).subscribe(res => {
+      console.log(res)
+      if (!res) {
+        this.service.payEmi(this.paymentForm.value).subscribe({
+          next: data => {
+            this.toster.success('Emi Paid Succesfully');
+            this.paymentForm.reset();
+          },
+          error: err => {
+            this.toster.error(err.error.message)
+          }
+        })
+
+      }
+      else {
+        this.toster.error(`Utr Already used for : ${res.user_id}`)
       }
     })
+
 
   }
 

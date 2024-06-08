@@ -382,6 +382,9 @@ findLoanByAny(data:any): Observable<any> {
   paymentStatus(data:any): Observable<any> {
     return this.http.post(`${this.url}payment/status`,data, { headers: this.getHeaders() });
   }
+  checkUtr(data:any): Observable<any> {
+    return this.http.post(`${this.url}payment/utr`,data, { headers: this.getHeaders() });
+  }
 
   
   imageView(imageName: string): Observable<Blob> {

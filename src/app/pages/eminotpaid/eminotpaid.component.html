@@ -30,6 +30,7 @@
         <th>Date</th>
         <th>5 EMI</th>
         <th>Date</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -58,6 +59,11 @@
         <td>{{ device.installments[3]?.payDate || '' }}</td>
         <td>{{ device.installments[4]?.amount || '' }}</td>
         <td>{{ device.installments[4]?.payDate || '' }}</td>
+        <td>
+          <button (click)="viewEmis(device)">
+            <img src="../../../assets/images/5373059.png" width="20" height="20" alt="">
+        </button>
+        </td>
       </tr>
     </tbody>
   </table>

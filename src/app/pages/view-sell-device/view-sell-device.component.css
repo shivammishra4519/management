@@ -3,15 +3,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 0px;
     
 }
 
 /* Filter container */
 .filter {
     background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 0px;
+    border-radius: 0px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     left: 580px;
@@ -77,6 +77,40 @@ input[type="text"] {
 }
 
 
+
+@media (max-width: 400px) {
+    .header{
+        margin-top: 40px;
+    }
+    .filter {
+        max-width: 100%;
+        left: 0px;
+    }
+    .row1 {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+    .date-inp {
+        flex: 1;
+        margin-right: 0px;
+        margin-bottom: 0;
+        display: inline-block;
+    }
+    .number {
+        flex: 2;
+    }
+    .inp-box {
+        flex: 1;
+        margin-right: 10px;
+        margin-bottom: 0;
+        flex-direction: column;
+    }
+    .btn-self {
+        flex: 1;
+        width: auto;
+        margin-bottom: 0;
+    }
+}
 /* styles.css */
 
 /* Table container */

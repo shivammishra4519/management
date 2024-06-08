@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { DatasharingService } from '../../services/datasharing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eminotpaid',
@@ -8,7 +10,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class EminotpaidComponent {
   sellDevices:any;
-constructor(private service:ApiService){
+constructor(private service:ApiService, private dataService: DatasharingService, private router: Router,){
   service.unpaidEmi().subscribe(res=>{
     this.sellDevices=res;
     console.log(this.sellDevices);
@@ -37,5 +39,8 @@ exportData() {
   );
 }
 
-
+viewEmis(data: any) {
+  this.dataService.setCustomerData(data);
+  this.router.navigate(['/dashboard/view-emi']);
+}
 }
