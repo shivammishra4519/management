@@ -153,6 +153,27 @@ export class DownloadPdfComponent {
     }
   }
 
+
+  
+
+  downloadInvoiceForCompany(): void {
+    const number = this.currentLoan.guarntor;
+    this.service.downloadInvoiceForCompany({ loanId: this.currentLoan.loanId }).subscribe(response => {
+
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'invoice-company.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      this.toaster.error('Error downloading PDF:', error)
+    });
+  }
+
   downloadPdf() {
     if (!this.customerNumber) {
       this.toaster.error('Select a User');
@@ -176,6 +197,10 @@ export class DownloadPdfComponent {
     }
     if(this.currentType == '3'){
       this.downloadGaurntorAgreement();
+      return;
+    }
+    if(this.currentType == '5'){
+      this.downloadInvoiceForCompany();
       return;
     }
   }

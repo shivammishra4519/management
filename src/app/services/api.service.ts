@@ -271,6 +271,9 @@ export class ApiService {
   downloadGaurntorAgreement(data: any): Observable<any> {
     return this.http.get(`${this.url}pdf/download/gaurantor?number=${data.number}`, { responseType: 'blob' });
   }
+  downloadInvoiceForCompany(data: any): Observable<any> {
+    return this.http.get(`${this.url}pdf/download/invoice/company?loanId=${data.loanId}`, { responseType: 'blob' });
+  }
   // pdf/download/gaurantor?number=5426859625
   exportLoanInExcel(data:any): Observable<any> {
     return this.http.post(`${this.url}files/download`,data, {headers: this.getHeaders() , responseType: 'blob' });

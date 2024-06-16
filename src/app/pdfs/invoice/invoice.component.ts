@@ -23,6 +23,7 @@ export class InvoiceComponent {
       service.dataForInvoice(params).subscribe(res=>{
        this.loanDetails=res.result;
        this.shopDetails=res.result1;
+      
        this.isDataAbailable=true
        this.calculatedCgst()
       })
