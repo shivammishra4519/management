@@ -14,7 +14,8 @@ isBasic=false
 isManageDevices=false;
 isAddDevice=false;
 isStockDevice=false;
-
+isHomeAppliance=false;
+isHomeApplianceView=false;
 
 userSetting(){
 this.isBasic=false;
@@ -28,18 +29,39 @@ addBrand(){
   this.isManageDevices=true;
   this.isAddDevice=false
   this.isStockDevice=false
+  this.isHomeAppliance=false;
+  this.isHomeApplianceView=false;
 }
 addDevice(){
   this.isManageDevices=false;
   this.isAddDevice=true
   this.isStockDevice=false
-
+  this.isHomeAppliance=false;
+  this.isHomeApplianceView=false;
 }
 
 viewDevice(){
   this.isManageDevices=false;
   this.isAddDevice=false
   this.isStockDevice=true
+  this.isHomeAppliance=false;
+  this.isHomeApplianceView=false;
+}
+
+homeAppliance(){
+  this.isManageDevices=false;
+  this.isAddDevice=false
+  this.isStockDevice=false;
+  this.isHomeAppliance=true;
+  this.isHomeApplianceView=false;
+}
+
+homeApplianceView(){
+  this.isManageDevices=false;
+  this.isAddDevice=false
+  this.isStockDevice=false;
+  this.isHomeAppliance=false;
+  this.isHomeApplianceView=true;
 }
 
  

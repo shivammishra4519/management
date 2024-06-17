@@ -157,8 +157,9 @@ export class DownloadPdfComponent {
   
 
   downloadInvoiceForCompany(): void {
+    console.log(this.currentLoan)
     const number = this.currentLoan.guarntor;
-    this.service.downloadInvoiceForCompany({ loanId: this.currentLoan.loanId }).subscribe(response => {
+    this.service.downloadInvoiceForCompany({ loanId: this.currentLoan[0].loanId }).subscribe(response => {
 
       const blob = new Blob([response], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
@@ -170,6 +171,7 @@ export class DownloadPdfComponent {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, error => {
+      console.log(error)
       this.toaster.error('Error downloading PDF:', error)
     });
   }

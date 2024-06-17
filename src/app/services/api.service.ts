@@ -389,6 +389,37 @@ findLoanByAny(data:any): Observable<any> {
     return this.http.post(`${this.url}payment/utr`,data, { headers: this.getHeaders() });
   }
 
+  addHomeAplliancesBrand(data:any): Observable<any> {
+    return this.http.post(`${this.url}home/add/brand`,data, { headers: this.getHeaders() });
+  }
+
+  getAllBrands(): Observable<any> {
+    return this.http.post(`${this.url}home/get/brand`,{}, { headers: this.getHeaders() });
+  }
+
+  saveDevicesInfo(data:any): Observable<any> {
+    return this.http.post(`${this.url}home/save/model`,data, { headers: this.getHeaders() });
+  }
+
+  getAllDevices(): Observable<any> {
+    return this.http.post(`${this.url}home/get/model`,{}, { headers: this.getHeaders() });
+  }
+
+  updateDeviceHomeAplliances(data:any): Observable<any> {
+    return this.http.post(`${this.url}home/update/model`,data, { headers: this.getHeaders() });
+  }
+  deleteDeviceHomeAplliances(data:any): Observable<any> {
+    return this.http.post(`${this.url}home/delete/model`,data, { headers: this.getHeaders() });
+  }
+
+  viewBrandsAppliance(): Observable<any> {
+    return this.http.post(`${this.url}home/get/all/brands`,{}, { headers: this.getHeaders() });
+  }
+  
+  
+  viewBrandsApplianceModel(data:any): Observable<any> {
+    return this.http.post(`${this.url}home/brand/model`,data, { headers: this.getHeaders() });
+  }
   
   imageView(imageName: string): Observable<Blob> {
     return this.http.post(`${this.url}api/images`, { fileName: imageName }, {

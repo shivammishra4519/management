@@ -7,10 +7,41 @@
         <button class="btn btn-success" (click)="saveBrand()">SAVE</button>
     </div>
 </div>
+
+
+<div class="half">
+
+    <div class="nav-self">
+        <label for="brnad">Add Brand For Home Appliances</label>
+        <input type="text" id="brnad" name="brnad" placeholder="Enter Brand Name"  [(ngModel)]="brandName1" style="text-transform: uppercase;" />
+    </div>
+    <div class="nav-self">
+        <button class="btn btn-success" (click)="saveBrandHomeAppliance()">SAVE</button>
+    </div>
+</div>
 <hr class="line">
+
 <div class="data">
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni assumenda nisi reprehenderit non vero ipsa
-        dignissimos eum, consequatur ratione laborum nesciunt, repellendus excepturi dolor nemo et doloribus facere
-        temporibus officiis veritatis. Eveniet quo vitae eligendi nisi consectetur vero facere, pariatur, voluptatum
-        commodi quibusdam nam ut quam, cumque corporis tenetur assumenda?</p>
+    <div>
+        <h2>Brand Information</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Brand Name</th>
+              <th>Date</th>
+              <th>Key</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let brnad of homeApplilcesBrands">
+              <td>{{ brnad.brandName }}</td>
+              <td>{{ brnad.date | date: 'medium' }}</td>
+              <td>{{ brnad.key }}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
 </div>

@@ -50,6 +50,8 @@ import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.compo
 import { SerchloanComponent } from './pages/serchloan/serchloan.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { OnlinepyamnetrequestComponent } from './pages/onlinepyamnetrequest/onlinepyamnetrequest.component';
+import { HomeAppliancesComponent } from './dashboard/basic-setting/home-appliances/home-appliances.component';
+import { SellProductComponent } from './pages/sell-product/sell-product.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -68,6 +70,7 @@ const routes: Routes = [
       { path: 'customer-home', component: CustomerHomeComponent },
       { path: 'online-request', component: OnlinepyamnetrequestComponent },
       { path: 'viewpaidemi-admin', component: ViewemiAdminComponent },
+      { path: 'sell-product', component: SellProductComponent },
       { path: 'sell-device', loadChildren: () => import('./pages/sell-devices/sell-devices.module').then(m => m.SellDevicesModule), },
       {
         path: 'customer-registration', component: HomeregisterComponent,
@@ -117,7 +120,8 @@ const routes: Routes = [
         children: [
           { path: 'home', component: SettingBodyComponent },
           { path: 'manage-device', component: DeviceSettingComponent },
-          { path: 'settings', component: SettingBodyComponent }
+          { path: 'settings', component: SettingBodyComponent },
+          { path: 'home-appliances', component: HomeAppliancesComponent },
         ],
         canActivate: [adminAuthGaurdGuard]
       },

@@ -60,6 +60,11 @@ import { ViewemiAdminComponent } from './pages/viewemi-admin/viewemi-admin.compo
 import { SerchloanComponent } from './pages/serchloan/serchloan.component';
 import { PaymentSuccessComponent } from './pages/payment-success/payment-success.component';
 import { OnlinepyamnetrequestComponent } from './pages/onlinepyamnetrequest/onlinepyamnetrequest.component';
+import { HomeAppliancesComponent } from './dashboard/basic-setting/home-appliances/home-appliances.component';
+import { HomeAppliancesViewComponent } from './dashboard/basic-setting/home-appliances-view/home-appliances-view.component';
+import { SellProductComponent } from './pages/sell-product/sell-product.component';
+import { GuarantorComponent } from './pages/guarantor/guarantor.component';
+import { GaurntorSelfComponent } from './pages/gaurntor-self/gaurntor-self.component';
 
 
 @NgModule({
@@ -116,8 +121,11 @@ import { OnlinepyamnetrequestComponent } from './pages/onlinepyamnetrequest/onli
     ViewemiAdminComponent,
     SerchloanComponent,
     PaymentSuccessComponent,
-    OnlinepyamnetrequestComponent
-    
+    OnlinepyamnetrequestComponent,
+    HomeAppliancesComponent,
+    HomeAppliancesViewComponent,
+    SellProductComponent,
+    GaurntorSelfComponent
   ],
   imports: [
     BrowserModule,

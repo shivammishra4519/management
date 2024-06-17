@@ -1,0 +1,66 @@
+<div class="table-responsive" *ngIf="!isEdita">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>BRAND</th>
+                <th>MODEL</th>
+                <th>DPPRICE</th>
+                <th>MARGIN</th>
+                <th>INTEREST</th>
+                <th>FILE CHARGE</th>
+                <th>DOWN PAYMENT</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let device of devices">
+                <td>{{device.brand}}</td>
+                <td>{{device.model}}</td>
+                <td>{{device.dpPrice}}</td>
+                <td>{{device.margin}}</td>
+                <td>{{device.interest}}</td>
+                <td>{{device.fileCharge}}</td>
+                <td>{{device.downPayment}}</td>
+                <td>
+                    <button (click)="deleteMethod(device)" class="btn btn-danger">
+                        <img src="../../../../assets/svg/trash-solid.svg" class="delete" width="20px">
+                    </button>
+                </td>
+                <td>
+                    <button (click)="editMethod(device)" class="btn btn-primary">
+                        <img src="../../../../assets/svg/pen-to-square-solid.svg" class="delete" width="20px">
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<form [formGroup]="editDevice" *ngIf="isEdita">
+    <h1>Edit</h1>
+
+    <label for="model">Brand</label>
+    <input type="text" id="model" style="text-transform: uppercase;" placeholder="Enter model Name" formControlName="brand" readonly>
+
+    <label for="model">Model</label>
+    <input type="text" id="model" style="text-transform: uppercase;" placeholder="Enter model Name" formControlName="model">
+
+    <label for="dpPrice">DP Price</label>
+    <input type="number" id="dpPrice" placeholder="Enter dealer price" formControlName="dpPrice"  >
+    <label for="margin">Margin</label>
+    <input type="number" id="margin" placeholder="Margin count in % " formControlName="margin" >
+    <label for="Intrest">Intrest</label>
+    <input type="number" formControlName="interest" placeholder="Intrest count in % " >
+
+    <label for="file">File charge</label>
+    <input type="number" formControlName="fileCharge" placeholder="File charge count in % ">
+
+    <label for="Intrest">downPayment</label>
+    <input type="number" id="Intrest" formControlName="downPayment" placeholder="down payment count in %">
+
+
+
+    <button class="btn btn-light" type="submit" (click)="edit()" >Submit</button>
+</form>

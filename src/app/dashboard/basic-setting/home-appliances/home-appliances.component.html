@@ -1,0 +1,30 @@
+<form [formGroup]="addDevice">
+    <h1>ADD Product</h1>
+    <select name="" id="" formControlName="brand">
+        <option value="0">Select A brand</option>
+        <option  *ngFor="let brand of Brand" value={{brand.brandName}}>{{brand.brandName}}</option>
+    </select>
+    <label for="model">Product</label>
+    <input type="text" id="model" style="text-transform: uppercase;" placeholder="Enter Product Details" formControlName="model">
+
+    <label for="dpPrice">DP Price</label>
+    <input type="number" id="dpPrice" placeholder="Enter dealer price" formControlName="dpPrice"  >
+
+    <!-- <label for="img">Upload Image</label>
+    <input type="file" id="img"> -->
+
+    <label for="margin">Margin</label>
+    <input type="number" id="margin" placeholder="Margin count in % " formControlName="margin" >
+    <label for="Intrest">Intrest</label>
+    <input type="number" formControlName="interest" placeholder="Intrest count in % " >
+
+    <label for="file">File charge</label>
+    <input type="number" formControlName="fileCharge" placeholder="File charge count in % ">
+
+    <label for="Intrest">downPayment</label>
+    <input type="number" id="Intrest" formControlName="downPayment" placeholder="down payment count in %">
+
+
+
+    <button class="btn btn-success" type="submit" (click)="submit()">Submit</button>
+</form>
