@@ -1,0 +1,48 @@
+<div class="main" *ngIf="isDataAvailable">
+    <h3 style="text-align: center; font-weight: bold;">AGREEMENT FOR HIRE-PURCHASE OF A HOME APPLIANCE</h3>
+    <h5 style="text-align: center; font-weight: bold;">Applicable only for Home Appliance finance</h5>
+
+    <div class="content">
+        <p style="font-size: 15px;">
+            This Agreement is executed on {{ data.loanDate?.purchaseDate || 'NA' }}, at {{ data.findShopPlace?.address?.district || 'NA' }}, {{ data.findShopPlace?.address?.state || 'NA' }} as specified in the Schedule annexed hereto,
+            <br>
+            <span style="font-weight: bold;">BETWEEN:</span> <br>
+            <span style="font-weight: bold;"> FIRST PARTY:</span>
+            <br>
+            Uphar Finance Services, a private company limited by shares registered under the relevant laws of Uttar Pradesh, India, having its registered office at Shahjhanpur, Uttar Pradesh, represented herein by [Authorized Representative], duly authorized for the purpose, hereinafter referred to as "the Company".
+            <br>
+            <span style="font-weight: bold;">AND</span> <br>
+            <span style="text-transform: capitalize; font-weight: bold;">{{ data.customerPlace?.firstName || 'NA' }}</span>, resident of {{ data.customerPlace?.address || 'NA' }}, {{ data.customerPlace?.district || 'NA' }}, Uttar Pradesh, India, hereinafter referred to as "the Borrower".
+            <br>
+            WHEREAS: <br>
+            The Borrower has approached the Company for financial assistance to purchase a home appliance and has agreed to enter into this Agreement under the terms and conditions set forth herein.
+        </p>
+        <h3 style="font-weight: bold;">NOW IT IS AGREED BETWEEN THE PARTIES AS FOLLOWS:</h3>
+        <ol>
+            <li>The Company will let and the Borrower will take on hire the home appliance described in the Schedule.</li>
+            <li>The Company has delivered the appliance to the Borrower for use in the usual manner.</li>
+            <li>The Borrower will pay an initial sum and then monthly payments as specified in the Schedule.</li>
+            <li>The Borrower shall not sell, assign, or part with the possession of the appliance and shall keep it insured.</li>
+            <li>Upon completing all payments, the Borrower will own the appliance, and the Company will transfer all rights and interests in the appliance to the Borrower.</li>
+            <li>If the Borrower defaults, the Company may block or repossess the appliance without prejudice to its claims for arrears or damages.</li>
+            <li>The Borrower agrees that their mobile phone will be used as a guarantee for the loan. The Company shall have the following rights over the mobile phone until full payment is made:
+                <ol type="a">
+                    <li>Remotely lock the mobile phone.</li>
+                    <li>Disable/enable camera, outgoing calls, file transfer, debugging, and factory reset options on the mobile phone.</li>
+                    <li>Set or unset the lock screen PIN/password on the mobile phone.</li>
+                    <li>Access phone number, network details, and location using Google API on the mobile phone.</li>
+                    <li>Request the last known location of the mobile phone.</li>
+                    <li>Play an audio file on the mobile phone remotely.</li>
+                    <li>Send EMI reminder messages to the mobile phone.</li>
+                    <li>Control the mobile phone remotely using Google APIs, push notifications, or SMS.</li>
+                </ol>
+            </li>
+            <li>This agreement is personal to the Borrower and cannot be assigned.</li>
+            <li>All disputes will be resolved through arbitration, as per the provisions of the Arbitration and Conciliation Act, 1996.</li>
+        </ol>
+        <p>IN WITNESS WHEREOF, the parties have set and subscribed their hands on the date and year mentioned above.</p>
+        <h3 style="text-align: right;">Signed and delivered by the owner</h3>
+        <br>
+        <h3 style="text-align: right;">Signed and delivered by the hirer</h3>
+    </div>
+</div>

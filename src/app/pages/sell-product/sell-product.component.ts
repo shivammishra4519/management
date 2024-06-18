@@ -98,6 +98,7 @@ export class SellProductComponent {
     gaurantorNumber: this.builder.control('', Validators.required),
     interest: this.builder.control(0, Validators.required),
     loanKey: this.builder.control('',Validators.required),
+    serialNumber: this.builder.control('',Validators.required),
     type:this.builder.control('homeAppliances')
   });
 
@@ -316,7 +317,7 @@ export class SellProductComponent {
       };
     
       // Navigate to '/dashboard/sell-device' with query parameters
-      this.router.navigate(['/dashboard/loan-success'], navigationExtras);
+      this.router.navigate(['/dashboard/appliances-success'], navigationExtras);
         this.toaster.success('Device sold successfully')
         const data = res;
        

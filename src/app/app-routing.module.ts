@@ -52,6 +52,9 @@ import { PaymentSuccessComponent } from './pages/payment-success/payment-success
 import { OnlinepyamnetrequestComponent } from './pages/onlinepyamnetrequest/onlinepyamnetrequest.component';
 import { HomeAppliancesComponent } from './dashboard/basic-setting/home-appliances/home-appliances.component';
 import { SellProductComponent } from './pages/sell-product/sell-product.component';
+import { AggrementHomeApplinceComponent } from './pdfs/aggrement-home-applince/aggrement-home-applince.component';
+import { HomeApplincesSuccessComponent } from './pages/home-applinces-success/home-applinces-success.component';
+import { InvoiceHomeApplincesCompanyComponent } from './pdfs/invoice-home-applinces-company/invoice-home-applinces-company.component';
 // import { ViewTemplatesComponent } from './dashboard/basic-setting/view-templates/view-templates.component';
 
 const routes: Routes = [
@@ -64,6 +67,7 @@ const routes: Routes = [
       { path: 'gaurantor', component: GuarantorComponent },
       { path: 'loan-calculater', component: LoancaluclaterComponent },
       { path: 'loan-success', component: LoansuccessComponent },
+      { path: 'appliances-success', component: HomeApplincesSuccessComponent },
       { path: 'view-gaurantor', component: GuarantorViewComponent },
       { path: 'pdf', component: DownloadPdfComponent },
       { path: 'emi-notpaid', component: EminotpaidComponent },
@@ -139,10 +143,12 @@ const routes: Routes = [
   { path: 'terms-condtiton', component: TermscondtionComponent },
   { path: 'guarantor-condtiton', component: GuarantorConditionComponent },
   { path: 'aggrement', component: AgreementComponent },
+  { path: 'aggrement-homeapplinaces', component: AggrementHomeApplinceComponent },
   { path: 'installment-slip', component: InstallmentslipComponent },
   { path: 'invoice', component: InvoiceComponent },
   { path: 'invoice-customer', component: InvoiceCustomerComponent },
   { path: 'payment-success', component: PaymentSuccessComponent },
+  { path: 'invoice-homeappliance', component: InvoiceHomeApplincesCompanyComponent },
   
 
   {

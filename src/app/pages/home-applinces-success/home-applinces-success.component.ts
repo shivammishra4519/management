@@ -4,11 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-loansuccess',
-  templateUrl: './loansuccess.component.html',
-  styleUrl: './loansuccess.component.css'
+  selector: 'app-home-applinces-success',
+  templateUrl: './home-applinces-success.component.html',
+  styleUrl: './home-applinces-success.component.css'
 })
-export class LoansuccessComponent {
+export class HomeApplincesSuccessComponent {
   data: any
 
   constructor(private service: ApiService, private toaster: ToastrService, private route: ActivatedRoute,) {
@@ -47,7 +47,7 @@ export class LoansuccessComponent {
       shopId:this.data.shopId,
       customerId:this.data.number
     }
-    this.service.downloadAggrement(obj).subscribe(response => {
+    this.service.downloadAggrementHomeApplinces(obj).subscribe(response => {
 
       const blob = new Blob([response], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
@@ -96,6 +96,25 @@ export class LoansuccessComponent {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, error => {
+      this.toaster.error('Error downloading PDF:', error)
+    });
+  }
+
+  downloadInvoiceForCompany(): void {
+  
+    this.service.downloadInvoiceForCompanyHomeAppliances({ loanId: this.data.loanId }).subscribe(response => {
+
+      const blob = new Blob([response], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'invoice-company.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.log(error)
       this.toaster.error('Error downloading PDF:', error)
     });
   }

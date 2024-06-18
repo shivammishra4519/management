@@ -30,6 +30,7 @@ export class InstallmentslipComponent {
           this.loanData = data;
           const installments = data.installments;
           this.index = installments.findIndex((inst: any) => inst.installmentId === this.emiId);
+          this.calulateTotalAmount();
           if (this.index !== -1) {
             this.installment = installments[this.index];
             this.isPaid = true;
@@ -46,6 +47,27 @@ export class InstallmentslipComponent {
   }
 
 
+totalAmount:any;
+  calulateTotalAmount(){
+   
+    if(this.emiId == 'EMI0'){
+      this.totalAmount=this.loanData.financeAmount;
+    }
+    if(this.emiId == 'EMI1'){
+      this.totalAmount=this.loanData.financeAmount-this.loanData.emiAmount;
+    }
+    if(this.emiId == 'EMI2'){
+      this.totalAmount=this.loanData.financeAmount-((this.loanData.emiAmount)*2);
+    }
+    if(this.emiId == 'EMI3'){
+      this.totalAmount=this.loanData.financeAmount-((this.loanData.emiAmount)*3);
+    }
+    if(this.emiId == 'EMI4'){
+      this.totalAmount=this.loanData.financeAmount-((this.loanData.emiAmount)*4);
+    }
+  
+    
+  }
 
 
 

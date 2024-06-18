@@ -262,6 +262,10 @@ export class ApiService {
    
     return this.http.get(`${this.url}pdf/aggrement?customerId=${data.customerId}&shopId=${data.shopId}&loanId=${data.loanId} `, { responseType: 'blob' });
   }
+  downloadAggrementHomeApplinces(data: any): Observable<any> {
+   
+    return this.http.get(`${this.url}pdf/download/aggrement/homeapplinaces?customerId=${data.customerId}&shopId=${data.shopId}&loanId=${data.loanId} `, { responseType: 'blob' });
+  }
   
   downloadInvoice(data: any): Observable<any> {
     return this.http.get(`${this.url}pdf/download/invoice?loanId=${data.loanId}&invoice=${data.invoice}`, { responseType: 'blob' });
@@ -273,6 +277,10 @@ export class ApiService {
   }
   downloadInvoiceForCompany(data: any): Observable<any> {
     return this.http.get(`${this.url}pdf/download/invoice/company?loanId=${data.loanId}`, { responseType: 'blob' });
+  }
+
+  downloadInvoiceForCompanyHomeAppliances(data: any): Observable<any> {
+    return this.http.get(`${this.url}pdf/download/invoice/homeapplinaces?loanId=${data.loanId}`, { responseType: 'blob' });
   }
   // pdf/download/gaurantor?number=5426859625
   exportLoanInExcel(data:any): Observable<any> {

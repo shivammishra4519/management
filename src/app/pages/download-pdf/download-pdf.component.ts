@@ -84,9 +84,10 @@ export class DownloadPdfComponent {
   }
 
   downloadAggrement(): void {
+   
     const obj = {
-      loanId: this.currentLoan.loanId,
-      shopId: this.shopid,
+      loanId: this.currentLoan[0].loanId,
+      shopId: this.currentLoan[0].shop,
       customerId: this.customerNumber
     }
     this.service.downloadAggrement(obj).subscribe(response => {

@@ -65,6 +65,9 @@ import { HomeAppliancesViewComponent } from './dashboard/basic-setting/home-appl
 import { SellProductComponent } from './pages/sell-product/sell-product.component';
 import { GuarantorComponent } from './pages/guarantor/guarantor.component';
 import { GaurntorSelfComponent } from './pages/gaurntor-self/gaurntor-self.component';
+import { AggrementHomeApplinceComponent } from './pdfs/aggrement-home-applince/aggrement-home-applince.component';
+import { HomeApplincesSuccessComponent } from './pages/home-applinces-success/home-applinces-success.component';
+import { InvoiceHomeApplincesCompanyComponent } from './pdfs/invoice-home-applinces-company/invoice-home-applinces-company.component';
 
 
 @NgModule({
@@ -125,7 +128,11 @@ import { GaurntorSelfComponent } from './pages/gaurntor-self/gaurntor-self.compo
     HomeAppliancesComponent,
     HomeAppliancesViewComponent,
     SellProductComponent,
-    GaurntorSelfComponent
+    GaurntorSelfComponent,
+    AggrementHomeApplinceComponent,
+    HomeApplincesSuccessComponent,
+    InvoiceHomeApplincesCompanyComponent,
+    
   ],
   imports: [
     BrowserModule,
