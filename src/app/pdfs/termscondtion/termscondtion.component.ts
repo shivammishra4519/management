@@ -23,6 +23,7 @@ export class TermscondtionComponent {
         this.service.viewDeviceByCustomerId({ number: data }).subscribe({
           next: (data: any) => {
             this.deviceData = data;
+            console.log("dtatata",data)
             this.installments = data.installments;
             
           },
