@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
     // apiUrl: 'http://localhost:3000/',
-    apiUrl: 'https://umfmobileapi.store/',
+    apiUrl: 'https://api.umfmobile.store/',
     // apiUrl: 'http://localhost:3260/',
     smsApiUrl:'https://textsms.vastbazaar.com/app/smsapi/index.php',
     key: '36138A813805F9',
